@@ -19,7 +19,7 @@ import noordermin from "../images/No-order-minimum.png"
 import highspeed from "../images/High-Speed-Service.png"
 import freetemplate from "../images/Free-Templates.png"
 import outstandquality from "../images/Outstanding-Quality1.png"
-import tshirtmen from "../images/tshirtimage.png"
+
 import tshirtmen1 from "../images/tshiirtimage1.png"
 import bg2 from "../images/bg2.png"
 
@@ -215,18 +215,18 @@ return (
           </div>
           <div>
             <img
-              src={logo}
+              src={tshirtmen1}
               alt="logo"
-              style={{ height: "200px", width: "200px" }}
+              style={{ height: "285px", width: "200px",position:"relative",marginLeft:"-22px",marginBottom:"36px" }}
             ></img>
           </div>
         </div>
         <div className="explore">
           <div>
             <img
-              src={logo}
+              src={tshirtmen1}
               alt="logo"
-              style={{ height: "200px", width: "200px" }}
+              style={{ height: "285px", width: "200px",position:"relative",marginLeft:"-67px",marginBottom:"31px"  }}
             ></img>
           </div>
           <div>
@@ -248,7 +248,7 @@ return (
           </div>
         </div>
       </div>
-      <div style={{ marginTop: "80px" }}>
+      <div style={{ marginTop: "40px",marginBottom:"20px" }}>
         <text style={{ color: "#a2a2a2" }}>All the features you need</text>
         <h1
           style={{
@@ -837,7 +837,11 @@ return (
             </div>
           </div>
           <div className="img-container">
-          <img src={tshirtmen1} alt="Offer"></img>
+          <img
+              src={tshirtmen1}
+              alt="logo"
+              style={{ height: "508px", width: "408px",position:"relative",marginLeft:"784px",marginBottom:"74px"  }}
+            ></img>
           </div>
         </div>
         <p
@@ -1159,7 +1163,7 @@ return (
         </div>
       </div>
       <div className="footer2">
-        <p style={{ color: "#000000", fontSize: "16px" }}>
+        <p style={{ color: "#000000", fontSize: "16px",margin:"0px" }}>
           © All Copyright 2025 by Website Design and Build -
           <span style={{ fontWeight: "bold", color: "#000000" }}>
             www.Tabsquareinfotech.com

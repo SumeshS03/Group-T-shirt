@@ -98,10 +98,13 @@
     
     background-color: #ffffff;
     display: flex;
-    padding-bottom: 130px;
+    /* padding-bottom: 130px; */
     /* gap: 10px; */
 
     
+}
+.img-container{
+    position: absolute;
 }
 .design-text {
     width: 33%;
@@ -164,7 +167,7 @@
     display: flex; 
     gap: 30px;
      /* Adds space inside the container */
-    background-color: #0066cb; /* Optional: Just to visualize the container */
+    background-color: #f4f4f4; /* Optional: Just to visualize the container */
     justify-content: center;
     padding: 20px 0px 20px 0px;
 
@@ -172,7 +175,7 @@
 }
 .shopnow{
     flex: 1;
-    background-color: lightgray;
+    background-color: #0066cb;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -192,7 +195,7 @@
 }
 .explore {
     flex: 1; 
-    background-color: lightgray; 
+    background-color: #0066cb; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -271,8 +274,8 @@
    
     align-items: center;
     justify-content: center;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    
+    
 }
 .verify-photo-box{
      
@@ -321,8 +324,8 @@
     /* height: 500px; */
     background-color: #f8f8f8;
     display: flex;
-    gap: 20px;
-    margin-top: 100px;
+  
+    
     flex-direction: column;
     align-items: center;
 }
@@ -370,8 +373,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 47px;
-    margin-bottom: 174px;
+    margin-bottom: 80px;
 }
 .comment-box{
     width: 75%;
@@ -380,6 +382,7 @@
     display: flex;
     margin-top: 22px;
     gap: 15px;
+    margin-left: 60px;
 
 }
 .comment-lines{
@@ -430,36 +433,35 @@
 .mailbox{
     width: 100%;
     display: flex;
-    /* padding: 30px; */
-    /* padding-top: 10px; */
     flex-direction: column;
-    /* height: 400px; */
     justify-content: center;
     align-items: center;
-    position: relative;
-    overflow: hidden;
+   
+    
+    
+  
     
 }
 .image-container {
-    /* flex: 1; */
+   
     position: relative;
 }
 .image-container img {
     width: 350px;
     position: absolute;
-    top: -50px; /* Extend outside */
+    top: -50px; 
     right: 0;
     z-index: 1;
 }
-.mailbox-divider{
-    /* margin-top: 230px; */
-   
+.mailbox-divider {
     width: 100%;
-    
-   
-    background-color: #ffd401;
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-image: url("../images/foot1.png"); /* Ensure correct path */
+    background-position: center;
+    background-repeat: no-repeat;
+ 
 }
 .text-divider{
     display: flex;
@@ -488,7 +490,7 @@
 .shipping{
     width: 100%;
     display: flex;
-    margin-top: 95px;
+    /* margin-top: 95px; */
     background-color: #efefef;
     
     
@@ -576,7 +578,7 @@
     width: 80%;
     height: 40px;
     background-color: #000000;
-    margin-top: 45px;
+  
     justify-content: space-between;
 }
 .footersocial1{
