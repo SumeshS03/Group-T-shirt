@@ -1,0 +1,139 @@
+.header{
+    width: 100%;
+    /* height: 145px; */
+    background-color: white;
+    display: flex;
+    gap: 70px;
+    /* box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3); */
+}
+.logo-img{
+    width: 100%;
+    height: 145px;
+}
+
+.dotted{
+    width: 1px; 
+    height: 20px; 
+    border-left: 2px dotted gray;
+}
+.no-underline{
+    text-decoration: none;
+    color: #181818;
+    font-weight: normal;
+    
+}
+.no-underline-1{
+    text-decoration: none;
+    color: yellow;
+    font-weight: bold;
+}
+.address{
+    display: flex;
+    margin-top: 30px;
+    gap: 10px;
+    /* justify-content: space-between; */
+}
+.insta-box{
+    width: 20px;
+    height: 20px;
+    background-color: #a3a3a3 ;
+    margin-top: 30px;
+    border-radius: 5px;
+}
+.home-text{
+    display: flex;
+    margin-top: 45PX;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+}
+.search-box {
+    width: 175px;
+    height: 22px;
+    border: 1px solid #f5f5f5; 
+    border-radius: 5px;
+    padding: 5px 10px; 
+    font-size: 16px; 
+    outline: none; 
+}
+.pofile-box{
+    height: 32px;
+    width: 31px;
+    background-color: #f5f5f5;
+    margin-right: 5px;
+    display: flex; /* Enables flexbox */
+    align-items: center; /* Centers vertically */
+    justify-content: center;
+}
+.search-container {
+    position: relative;
+    display: inline-block;
+    margin-right: 15px;
+  }
+.search-icon {
+    position: absolute;
+    right: 15px; /* Adjust icon position */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: gray;
+    cursor: pointer;
+}
+.st-line{
+
+    width: 1px;
+    height: 31px;
+    border-left: 2px solid gray;
+    margin-right: 5px;
+}
+.logo{
+    width: 250px;
+    /* height: 172px; */
+    background-color: white;
+    margin-left: 100px;
+    border-radius: 0px 0px 10px 10px;
+    padding: 15px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+
+}
+.divider{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    
+    
+}
+.address-divider{
+    display: flex;
+    justify-content: space-between;
+}
+.icon-diver{
+    display: flex;
+    gap: 10px;
+    margin-right: 110px;
+}
+.home-divider{
+    display: flex;
+    gap: 59px;
+}
+.home-divider1{
+    display: flex;
+    margin-right: 105px;
+}
+.location-icon {
+    color: #00a0ff; 
+    font-size: 50px; 
+    width: 30px; 
+    height: 20px; 
+  }
+ .telephone-icon{
+    color: #00a0ff; 
+    font-size: 50px; 
+    width: 30px; 
+    height: 20px; 
+ } 
+.solid{
+    width: 1px;
+    height: 22px;
+    border-left: 2px solid gray;
+}
