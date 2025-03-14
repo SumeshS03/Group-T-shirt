@@ -10,10 +10,11 @@
     justify-content: center;
 }
 .get-started {
-    position: absolute;  
+    /* position: absolute;  
     top: 35%;  
     left: 50%; 
-    transform: translate(-50%, -50%); 
+    transform: translate(-50%, -50%);  */
+    margin-bottom: 40px;
 }
 .print-shirt{
     margin-bottom: 16px;
@@ -49,9 +50,9 @@
 }
 .photo-box {
     width: 100%;
-    height: 250px;
+    /* height: 250px; */
     background-color: #f8f7f3;
-    margin-top: 180px;
+    /* margin-top: 180px; */
    
     
   }
@@ -67,6 +68,7 @@
     align-items: center;
     
   }
+
   .inner-box{
     
     width: 240px; 
@@ -87,7 +89,9 @@
     width: 98%;
 }
 .offset-text{
-    width: 100vw;
+    /* width: 100vw; */
+    margin-bottom: 30px;
+    margin-top: 30px;
 }
 .design-box{
     width: 100vw;
@@ -251,10 +255,7 @@
     transition: filter 0.3s ease;
      /* Adds space between image and heading */
 }
-.box-image:hover{
-    color: #e4a70c;
-    background-color: #e4a70c;
-}
+
 .box:hover h2 {
     color: #c8a03b; /* Changes h2 color to golden yellow */
 }
@@ -417,6 +418,10 @@
     text-align: left;  
     
 }
+.createstyleflex{
+    display: flex;
+    
+}
 .profile-icon{
     margin-left: 17px;
     width: 16%;
@@ -433,7 +438,20 @@
     /* height: 400px; */
     justify-content: center;
     align-items: center;
+    position: relative;
+    overflow: hidden;
     
+}
+.image-container {
+    /* flex: 1; */
+    position: relative;
+}
+.image-container img {
+    width: 350px;
+    position: absolute;
+    top: -50px; /* Extend outside */
+    right: 0;
+    z-index: 1;
 }
 .mailbox-divider{
     /* margin-top: 230px; */
@@ -574,3 +592,7 @@
     background-color: #c8a03b;
     justify-content: center;
 }
+
+.box:hover img {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(100%) saturate(300%) hue-rotate(0deg);
+  }

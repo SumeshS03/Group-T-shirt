@@ -19,6 +19,8 @@ import noordermin from "../images/No-order-minimum.png"
 import highspeed from "../images/High-Speed-Service.png"
 import freetemplate from "../images/Free-Templates.png"
 import outstandquality from "../images/Outstanding-Quality1.png"
+import tshirtmen from "../images/tshirtimage.png"
+import tshirtmen1 from "../images/tshiirtimage1.png"
 
 import tshirt from "../images/yourstyle.png";
 import yourprintone from "../images/yourprint.png";
@@ -70,6 +72,7 @@ return (
       </div>
 
       <div className="home-feed">
+        <div className="createstyleflex">
         <div className="get-started">
           <h1 className="unique-style">
           <span style={{ color: "blue" }}>Creating Your </span>
@@ -85,7 +88,9 @@ return (
           <p className="print-shirt">
             Print shirts for yourself or your online business
           </p>
-          <button className="start-btd">GET STARTED</button>
+          <button className="start-btd ">GET STARTED</button>
+        </div>
+        <div></div>
         </div>
 
         {/* Multi-item Carousel */}
@@ -277,7 +282,7 @@ return (
                 src={qualityshirt}
                 alt="Premium Quality"
                 className="box-image"
-                style={{ height: "79px" }}
+                style={{}}
               />
               <h2 style={{ margin: "0", color: "blue", textAlign: "left" }}>
                 Premium quality shirts
@@ -292,7 +297,7 @@ return (
                 src={outstandquality}
                 alt="Premium Quality"
                 className="box-image"
-                style={{ height: "79px" }}
+                style={{ }}
               />
               <h2 style={{ margin: "0", color: "blue", textAlign: "left" }}>
                 Outstanding quality
@@ -307,7 +312,7 @@ return (
                 src={secpayment}
                 alt="Premium Quality"
                 className="box-image"
-                style={{ height: "79px" }}
+                style={{ }}
               />
               <h2 style={{ margin: "0", color: "blue", textAlign: "left" }}>
                 Secure payment
@@ -322,7 +327,7 @@ return (
                 src={cussizestyle }
                 alt="Premium Quality"
                 className="box-image"
-                style={{ height: "79px" }}
+                style={{ }}
               />
               <h2 style={{ margin: "0", color: "blue", textAlign: "left" }}>
                 Custom size & style
@@ -339,7 +344,7 @@ return (
                 src={shipworldwide}
                 alt="Premium Quality"
                 className="box-image"
-                style={{ height: "79px" }}
+                style={{ }}
               />
               <h2 style={{ margin: "0", color: "blue", textAlign: "left" }}>
                 Shipping Worldwide
@@ -354,7 +359,7 @@ return (
                 src={noordermin}
                 alt="Premium Quality"
                 className="box-image"
-                style={{ height: "79px" }}
+                style={{  }}
               />
               <h2 style={{ margin: "0", color: "blue", textAlign: "left" }}>
                 No order minimums
@@ -369,7 +374,7 @@ return (
                 src={highspeed}
                 alt="Premium Quality"
                 className="box-image"
-                style={{ height: "79px" }}
+                style={{ }}
               />
               <h2 style={{ margin: "0", color: "blue", textAlign: "left" }}>
                 High Speed Services
@@ -384,7 +389,7 @@ return (
                 src={freetemplate}
                 alt="Premium Quality"
                 className="box-image"
-                style={{ height: "79px" }}
+                style={{ }}
               />
               <h2 style={{ margin: "0", color: "blue", textAlign: "left" }}>
                 Free templates
@@ -829,6 +834,9 @@ return (
                 }}
               />
             </div>
+          </div>
+          <div className="img-container">
+          <img src={tshirtmen1} alt="Offer"></img>
           </div>
         </div>
         <p
