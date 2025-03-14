@@ -21,6 +21,7 @@ import freetemplate from "../images/Free-Templates.png"
 import outstandquality from "../images/Outstanding-Quality1.png"
 import tshirtmen from "../images/tshirtimage.png"
 import tshirtmen1 from "../images/tshiirtimage1.png"
+import bg2 from "../images/bg2.png"
 
 import tshirt from "../images/yourstyle.png";
 import yourprintone from "../images/yourprint.png";
@@ -404,9 +405,9 @@ return (
         <div className="verify-photo">
           <div className="verify-photo-box">
             <img
-              src={logo}
+              src={require("../images/Girl-image.png")}
               alt="logo"
-              style={{ width: "200px", height: "200px" }}
+              style={{ width: "500px", height: "500px" }}
             ></img>
           </div>
           <div className="verify-photo-text">
