@@ -1,0 +1,259 @@
+.first-background{
+ border-radius: 0 0 35px 35px;
+ height: 130px;
+ font-weight: 900;
+ width: 80% !important;
+ /* background-image: url("../images/About-us4.png"); */
+ background-size: cover;
+ 
+  overflow: hidden;
+ 
+  
+  background-image: 
+  url("../images/About-us5.png");
+ 
+}
+.imagetop{
+  /* style={{position:"absolute",marginTop: "-128px",marginLeft: "32%",width:"350px" 
+  }} */
+  position: absolute;
+  left: 63%;
+  width: 325px;
+  margin-top: -62px;
+
+}
+.about-box{
+    background-color: #f2b201;
+    
+    
+}
+.design-box{
+    /* width: 100vw; */
+    width: 100%;
+    background-color: #ffffff;
+    display: flex;
+    margin-top: 100px;
+    
+    /* padding-bottom: 130px; */
+    /* gap: 10px; */
+
+    
+}
+.design-text {
+    width: 42%;
+    height: 87%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px; 
+    margin-left: 150px;
+    display: flex;
+   
+    justify-content: space-between;
+    flex-direction: column; 
+     
+    
+}
+.letstalkimage{
+  position: absolute;
+  width: 51%;
+  margin-top: -363px;
+  margin-left: -57px;
+  height: 123%;
+}
+.heading-text {
+    margin: 0;
+    color: #eeae0c;
+    font-size: 45px;
+    font-weight: 100;
+    font-family:  'Bevan';
+    margin-top: 10px;
+}
+.design-text-2 {
+    flex: unset;
+    display: unset;
+    justify-content: unset;
+    width: 40%;
+    position: relative;
+}
+.image-1{
+    
+    /* height: 471px; */
+    /* width: 593px; */
+    /* padding: 1%; */
+    background-color: white;
+    margin-right: -34%;
+    width: 400px;
+    height: 400px;
+    border: 5px solid yellow;
+    border-radius: 30px;
+}
+.image-2{
+    left: 9%;
+    bottom: -3%;
+    position: absolute;
+    
+    width: 260px;
+    height: 270px;
+    border: 5px solid yellow;
+    border-radius: 30px;
+
+}
+.heading-text-two {
+    margin: 0;
+    color: #0066cb;
+    font-size: 45px;
+    font-weight: 100;
+   
+    
+    font-family: 'Bevan';
+}
+.circle-check{
+    width: 40px;
+    height: 30px;
+}
+.toolsbox {
+    width: 65%;
+    background-color: white;
+    display: flex;
+    gap: 5px;
+    height: 100px;
+    margin-top: 20px;
+    margin-left: 18.5%;
+    margin-bottom: 10px;
+}
+.getstarted-btn {
+    background-color: #034e9f !important; 
+    color: white !important; /* White Text */
+    border: none !important;
+    border-radius: 25px
+    
+  }
+  .bringyouridea-box{
+    background-color:#3a3e40 ;
+    width: 100%;
+    padding: 70px;
+    margin-top: 50px;
+    background-image: url('../images/about-us3.png'); /* Add your image URL */
+    background-size: cover; /* Ensures the image covers the entire div */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; 
+  }
+  .lettalk{
+    border-radius: 50px 0 0 50px;
+    background-color: #eeae0c !important;
+    padding: 2%;
+    padding-left: 6% !important;
+  }
+  .letstalk-box{
+    margin-top: 150px;
+  }
+  .jionour-team{
+    padding: 10px;
+    background-color: #f7f7f7;
+  }
+
+
+
+  .profile-box {
+    width: 250px; /* Set a fixed width */
+    height: 180px; /* Set a fixed height */
+    background: #f7f7f7; /* Light gray background */
+    border-radius: 10px; /* Rounded corners */
+    padding: 15px;
+    /* box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Hover Effect */
+  .profile-box:hover {
+    transform: scale(1.05);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .profile-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border: 1px solid gray;
+  }
+  .join-our-team {
+    background-color: #04509e !important;
+    color: white !important;
+    
+    margin-bottom: -26px !important;
+    
+  }
+
+  .enjoyup{
+    background-color: #3a3e40 !important;
+    background-image: url('../images/about-us3.png'); /* Add your image URL */
+    background-size: cover; /* Ensures the image covers the entire div */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; 
+    
+  }
+  .shopnow-btn{
+    background-color: #034e9f !important;
+    color: #ffffff !important;
+  }
+  .contactus-btn{
+    background-color: #f1bb3d !important;
+    color: #ffffff !important;
+  }
+ 
+
+
+
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .profile-box {
+      width: 160px; /* Smaller on smaller screens */
+      height: 130px;
+    }
+  }
+
+
+
+
+
+
+  @media (max-width: 1280px){
+    .home-contactustext{
+      margin-left: -20%;
+    }
+    .imagetop {
+      left: 58%;
+        width: 313px;
+        margin-top: -52px;
+  }
+  .design-text {
+    margin-left: 50px;
+
+  }
+  .image-2 {
+    left: 2%;
+    bottom: 19%;
+  }
+  .letstalkimage {
+    position: absolute;
+        width: 51%;
+        margin-top: -200px;
+        margin-left: -40px;
+        height: 185%;
+}
+/* .shopnow-btn{
+ width: 10% !important;
+}
+.contactus-btn{
+  width: 10% !important;
+} */
+
+}
+  

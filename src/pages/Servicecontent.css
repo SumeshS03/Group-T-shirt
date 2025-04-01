@@ -1,0 +1,195 @@
+.custom-gap {
+    gap: 20rem;
+    margin-left: 12rem;
+  }
+.browse-all{
+    background-color: #3a3e40 !important;
+    background-image: url("../images/about-us3.png");
+    /* background: no-repeat; */
+    background-repeat: no-repeat;
+    background-repeat: no-repeat; /* Prevents image repetition */
+    background-size: cover; /* Ensures image covers the entire div */
+    background-position: center;
+}
+.browse-btn{
+    color: blue !important;
+    background-color: white !important;
+}
+
+.accordion-item {
+    border: none !important;
+  }
+
+.accordion-button{
+    color: #5d5d5d !important;
+    background-color: #dadada !important;
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: var(--bs-accordion-btn-active-icon);
+    transform: var(--bs-accordion-btn-icon-transform);
+    background-color: aliceblue !important;
+    width: 24px !important; 
+  height: 24px !important;
+  border-radius: 50%;
+}
+
+/* Default button styles */
+.custom-accordion-button {
+    background-color: #dadada; /* Default background */
+    color: black; /* Default text color */
+    border: none;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  /* When button is clicked (expanded) */
+  .custom-accordion-button:not(.collapsed) {
+    background-color: #015dc0 !important; /* Blue background */
+    color: white !important; /* White text */
+  }
+  .verify-photo-textone {
+    width: 42%;
+    /* height: 50%; */
+    /* margin: 60px; */
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  
+  }
+
+
+.heading-textprint{
+    margin: 0;
+    color: #eeae0c;
+    font-size: 30px;
+    font-weight: 100;
+    font-family: 'Bevan';
+    margin-top: 10px;
+    text-align: left;
+    
+}
+.custom-artwork{
+    width: 86% !important;
+    height: 350px !important;
+    
+}
+
+
+.custom-artworkone{
+    background-color: #eeae0c !important;
+    width: 100%;
+    height: 70%;
+    border-radius: 40px !important;
+    margin-top: 5% !important;
+}
+.video-box{
+    
+    margin-top: -200px;
+    height: 208px;
+    z-index: 10;
+    
+    width: 393px;
+    border-radius: 40px ;
+    margin-bottom: 23px;
+    /* background-image: url(../images/service-page1.png); */
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    display: flex; /* Ensures the image follows the box's dimensions */
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+}
+.shipit-you{
+  margin-bottom: -283px;
+  
+}
+.profilecustomart{
+  gap: 100px !important;
+}
+.enjoyup {
+  position: relative; /* Needed for absolute positioning of the overlay */
+  margin-top: 171px;
+  background-image: linear-gradient(to right, rgba(43, 47, 48, 2), rgba(255, 255, 0, 0)),url("../images/service-page5.jpg");
+  background-size: cover;
+  background-position: center;
+  color: white; /* Ensures text remains readable */
+}
+
+
+
+
+.enjoyup * {
+  position: relative;
+  z-index: 2;
+}
+.shopnow-btn{
+  background-color: white !important;
+  color: black !important;
+}
+.easycustomize{
+  width: 30%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.digitalscanpagenation{
+  margin-bottom: -111px;
+}
+.verify-photo{
+  margin-top: 90px;
+}
+
+.pagination-button {
+  margin-bottom: -140px;
+  color: #eaa606;
+  border: 3px solid white;
+  border-radius: 50%;
+}
+.outterimage-border{
+  width: 110px;
+  height: 110px;
+  border-radius: 50% !important;
+  border: 0.1px solid GRAY;
+  box-shadow: 5px;
+  align-items: center;
+}
+.designerprofile{
+  width: 100%;
+  height: 100%;
+  /* border-radius:  !important; */
+}
+.pickproducttext{
+  color: #6b6b6b;
+  font-size: 15px;
+}
+.videoimage{
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image fills the container without distortion */
+  border-radius: inherit;
+}
+
+.easytext{
+  font-size: 14px;
+  margin-bottom: 0;
+  font-weight: bold;
+}
+.easytexttwo{
+  font-size: 14px;
+  margin-bottom: 16px;
+  font-weight: bold;
+}
+
+
+
+
+@media (max-width: 1280px) { /* Large screens */
+  .digitalscanpagenation {
+    margin-left: 0 !important;
+  }
+}

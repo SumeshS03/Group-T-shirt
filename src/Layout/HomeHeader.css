@@ -1,36 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Bevan&display=swap');
+
+
 .header{
-    width: 100%;
-    /* height: 145px; */
     background-color: white;
     display: flex;
     gap: 70px;
     background-image: url("../images/header-line.png");
-    /* box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3); */
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3);
     background-repeat: no-repeat;
 }
 .logo-img{
     width: 100%;
-    height: 145px;
+    height: 100%;
 }
 
 .dotted{
+    margin-bottom: -6px;
     width: 1px; 
-    height: 20px; 
+    height: 28px; 
     border-left: 2px dotted gray;
 }
 .no-underline{
     text-decoration: none;
-    color: #181818;
+    color: #252525;
     font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
     
 }
 .no-underline-1{
     text-decoration: none;
-    color: yellow;
-    font-weight: bold;
+    color: blue;
+    font-weight: 540;
 }
+.no-underline-2{
+    text-decoration: none;
+    color: blue;
+    font-weight: 540;
+}
+
 .address{
     display: flex;
+    width: 100%;
     margin-top: 30px;
     gap: 10px;
     /* justify-content: space-between; */
@@ -39,19 +49,23 @@
     width: 20px;
     height: 20px;
     background-color: #a3a3a3 ;
-    margin-top: 30px;
+    /* margin-top: 30px; */
     border-radius: 5px;
+
 }
 .home-text{
     display: flex;
-    margin-top: 45PX;
+    margin-top: 11PX;
     align-items: center;
     gap: 10px;
+    margin-left: 11px;
+    font-family: "Arial", sans-serif;
     justify-content: space-between;
+    font-weight: bold;
 }
 .search-box {
-    width: 175px;
-    height: 22px;
+    width: 230px;
+    height: 35px;
     border: 1px solid #f5f5f5; 
     border-radius: 5px;
     padding: 5px 10px; 
@@ -89,34 +103,39 @@
     margin-right: 5px;
 }
 .logo{
-    width: 250px;
-    /* height: 172px; */
+    width: 223px;
+    height: 154px;
     background-color: white;
     margin-left: 100px;
     border-radius: 0px 0px 10px 10px;
-    padding: 15px;
+    /* padding: 15px; */
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    z-index: 2;
 
 }
 .divider{
     display: flex;
     flex-direction: column;
     width: 100%;
+    padding-left: 23%;
+    padding-bottom: 0.7%;
     
     
 }
-.address-divider{
+/* .address-divider{
     display: flex;
     justify-content: space-between;
-}
+} */
 .icon-diver{
     display: flex;
     gap: 10px;
-    margin-right: 110px;
+    /* margin-right: 110px; */
 }
 .home-divider{
     display: flex;
-    gap: 59px;
+    gap: 40px;
+    
 }
 .home-divider1{
     display: flex;
@@ -126,16 +145,102 @@
     color: #00a0ff; 
     font-size: 50px; 
     width: 30px; 
-    height: 20px; 
+    height: 27px; 
   }
  .telephone-icon{
     color: #00a0ff; 
-    font-size: 50px; 
+    /* font-size: 50px;  */
     width: 30px; 
     height: 20px; 
  } 
 .solid{
     width: 1px;
-    height: 22px;
+    height: 18px;
     border-left: 2px solid gray;
 }
+.header-insta-icon{
+    padding-right: 10%;
+}
+.header{
+    position: relative;
+}
+
+@media screen and (max-width: 1280px) {
+    .header{
+        gap: 20px;
+    }
+    .logo{
+        margin-left: 24px;
+        width: 127px;
+        height: 123px;
+    }
+    .icon-diver{
+        gap: 4px;
+    }
+    .location-icon{
+        
+        
+        width: 21px;
+        height: 20px;
+    }
+    .dotted{
+        height: 26px;
+    }
+    .telephone-icon{
+        width: 21px;
+        height: 18px;
+    }
+    .header-insta-icon{
+        padding-right: 3%;
+    }
+    .home-divider1{
+        margin-right: 12px;
+    }
+    .home-text{
+        margin-top: -6px;
+    }
+    .address-gapfix {
+        
+    }
+    .search-box{
+        width: 127px;
+        height: auto;
+    }
+    .divider{
+       padding-left: 17%;
+    }
+    
+  }
+  @media screen and (max-width: 768px) {
+    .header{
+        gap: 1px;
+    }
+    .logo{
+        margin-left: 20px;
+        width: 100px;
+        height: 130px;
+    }
+    .header-insta-icon{
+        padding-right: 0%;
+    }
+    .home-divider1{
+        margin-right: 1px;
+    }
+    .home-text{
+        margin-top: 8px;
+    }
+    .address-gapfix {
+        gap: 0px;
+    }
+    .search-box{
+        width: 80px;
+        height: auto;
+    }
+    .logo-img{
+        height: 130px;
+    }
+    .address{
+        margin-top: 2px;
+    }
+    
+  }
