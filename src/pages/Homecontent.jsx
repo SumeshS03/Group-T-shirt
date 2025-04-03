@@ -39,6 +39,7 @@ import phonepay from "../images/Phonepe.jpg";
 import { LiaCheckCircleSolid } from "react-icons/lia";
 
 import { BsTelephoneOutbound } from "react-icons/bs";
+import aboutustwo from "../images/Aboutus2.png";
 
 import tshirtmen1 from "../images/tshiirtimage1.png";
 
@@ -778,8 +779,8 @@ const Homecontent = () => {
       </div>
       <div className="mailbox  mt-4">
         <div className="mailbox-divider container-fluid ">
-          <div className="row w-100">
-            <div className="text-divider col-md-6 d-flex flex-column align-items-start justify-content-center p-5">
+          <div className="row w-100 d-flex flex-column flex-md-row align-items-md-start">
+            <div className="text-divider col-lg-6 d-flex flex-column align-items-start justify-content-center p-5">
               <h1
                 className="heading-text mt-4 text-white"
                 style={{
@@ -801,7 +802,7 @@ const Homecontent = () => {
                   Special Offer
                 </span>
               </h1>
-              <p className="register-text">
+              <p className="register-text align-items-start">
                 Register to receive news about the latest, savings combos,
                 discount codes...
               </p>
@@ -827,15 +828,8 @@ const Homecontent = () => {
                 <input
                   type="email"
                   placeholder="Your email address"
-                  style={{
-                    margin: "10px",
-                    width: "390px",
-                    border: "none",
-                    marginLeft: "-51px",
-                    height: "47px",
-                    borderRadius: "24px",
-                    marginBottom: "40px",
-                  }}
+                  className="mailbox-mailinput"
+                  
                 />
                 <FaCircleArrowRight
                   style={{
@@ -849,13 +843,16 @@ const Homecontent = () => {
               </div>
             </div>
 
-            <div className="img-container col-6 ">
-              <img
-                className="mailbox-main-image"
-                src={tshirtmen1}
-                alt="logo"
-              ></img>
-            </div>
+            <div className="col-12 col-lg-6">
+                          <div className=" d-flex justify-content-center align-items-end mt-3 mt-md-0 image-bottomfix ">
+                            <img
+                              src={aboutustwo}
+                              
+                              alt="About Us"
+                              className="letstalkimage"
+                            />
+                          </div>
+                          </div>
           </div>
         </div>
 

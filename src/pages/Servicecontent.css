@@ -48,13 +48,12 @@
     color: white !important; /* White text */
   }
   .verify-photo-textone {
-    width: 42%;
-    /* height: 50%; */
-    /* margin: 60px; */
+    
     background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    
   
   }
 
@@ -141,7 +140,7 @@
   margin-bottom: -111px;
 }
 .verify-photo{
-  margin-top: 90px;
+  margin-top: 10% !important;
 }
 
 .pagination-button {
@@ -173,6 +172,9 @@
   object-fit: cover; /* Ensures the image fills the container without distortion */
   border-radius: inherit;
 }
+.container{
+  margin-bottom: 2% !important;
+}
 
 .easytext{
   font-size: 14px;
@@ -188,8 +190,25 @@
 
 
 
-@media (max-width: 1280px) { /* Large screens */
+@media (max-width: 1025px) { /* Large screens */
   .digitalscanpagenation {
     margin-left: 0 !important;
   }
+  .imagetop {
+    left: 41%;
+    width: 313px;
+    margin-top: -52px;
+}
+.custom-artwork{
+  margin-top: 8% !important;
+}
+}
+
+@media (max-width: 426px) {
+  .imagetop {
+    left: 16%;
+    width: 250px;
+    margin-top: -52px;
+}
+  
 }

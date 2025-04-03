@@ -30,14 +30,24 @@
 
 
 .letstalkimage{
-  position: absolute;
+  /* position: absolute;
   width: 51%;
   margin-top: -363px;
   margin-left: -57px;
-  height: 123%;
+  height: 123%; */
+  position: relative;
+    width: 76%;
 }
 .heading-text {
     margin: 0;
+    color: #eeae0c;
+    font-size: 45px;
+    font-weight: 100;
+    font-family:  'Bevan';
+    margin-top: 10px;
+}
+.heading-textenjoyup{
+  margin: 0;
     color: #eeae0c;
     font-size: 45px;
     font-weight: 100;
@@ -64,7 +74,7 @@
     background-color: white;
     display: flex;
     
-    height: 100px;
+    /* height: 100px; */
     margin-top: 20px;
     margin-left: 18.5%;
     margin-bottom: 10px;
@@ -87,10 +97,11 @@
     background-repeat: no-repeat; 
   }
   .lettalk{
-    border-radius: 50px 0 0 50px;
+    border-radius: 50px 50px 50px 50px;
     background-color: #eeae0c !important;
-    padding: 2%;
-    padding-left: 6% !important;
+    /* padding: 2%;
+    padding-left: 6% !important; */
+    padding: 0 !important;
   }
   .letstalk-box{
     margin-top: 150px;
@@ -154,6 +165,9 @@
     background-color: #f1bb3d !important;
     color: #ffffff !important;
   }
+  .image-bottomfix{
+   
+  }
  
 
 
@@ -165,6 +179,12 @@
       width: 160px; /* Smaller on smaller screens */
       height: 130px;
     }
+    .letstalkimage {
+      position: relative;
+      width: 54%;
+      margin-top: 35px;
+      bottom: 0px !important;
+  }
   }
 
 
@@ -189,11 +209,9 @@
     height: 282px;
 } */
   .letstalkimage {
-    position: absolute;
-        width: 51%;
-        margin-top: -200px;
-        margin-left: -40px;
-        height: 185%;
+    position: relative;
+    width: 99%;
+    bottom: -25px;
 }
 /* .shopnow-btn{
  width: 10% !important;
@@ -204,3 +222,27 @@
 
 }
   
+@media (max-width: 426px){
+  .heading-textenjoyup{
+    
+      font-size: 25px;
+     
+  }
+  .shopnow-btn{
+    font-size: 9px !important;
+    padding: 0% !important;
+  }
+  .contactus-btn{
+    font-size: 9px !important;
+    padding: 0% !important;
+  }
+  .letstalkimage {
+    position: relative;
+    width: 74%;
+    margin-top: 35px;
+    
+}
+.form-control{
+  margin-top: 10px;
+}
+}

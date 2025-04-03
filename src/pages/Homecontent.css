@@ -520,7 +520,7 @@
     background-color: white;
     display: flex;
     
-    height: 100px;
+    /* height: 100px; */
     margin-top: 20px;
 }
 .shipping{
@@ -689,14 +689,14 @@
 
   
 .register-text{
-    margin: 7px 7px 7px 145px;
+    /* margin: 7px 7px 7px 145px; */
     font-size: 17px;
     color: rgb(75, 75, 72);
 }
 .combos-divider{
     display: flex;
     gap: 10px;
-    margin: 7px 7px 7px 174px;
+    /* margin: 7px 7px 7px 174px; */
     
 }
 .mailbox-main-image{
@@ -708,6 +708,15 @@
     left: 10%;
     
     
+}
+.mailbox-mailinput{
+    
+    width: 390px;
+    border: none;
+   
+    height: 47px;
+    border-radius: 24px;
+    margin-top: 13px;
 }
 
 .box-innersize{
@@ -766,7 +775,8 @@
         margin-left: 30px;
     }
     .mailbox-main-image{
-        top: -147px;
+        top: -87px;
+        left: 1%;
     }
     .shippingdivider{
         width: 16%;
@@ -915,9 +925,13 @@
         
         height: 149px;
     }
+    .shopnow-image {
+        margin-left: -206px;
+        width: 217px;
+    }
     .bortextone {
         
-        font-size: 11px;
+        font-size: 9px;
         
         
     }

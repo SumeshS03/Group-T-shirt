@@ -60,12 +60,79 @@
     margin-bottom: 16px;
     font-weight: bold;
 }
+.contactustext{
+    margin: 0;
+    color: #eeae0c;
+    font-size: 45px;
+    font-weight: 100;
+    font-family: 'Bevan';
+    margin-top: 10px;
+}
+.contactuscalltext{
+    font-size: 22px;
+    color: white;
+}
 
 
 
-@media (max-width: 1280px) { /* Large screens */
+@media (max-width: 1280px) { 
     .addressboxpara {
         font-size: 13px;
         margin-bottom: 0;
+    }
+  }
+
+
+  @media (max-width: 1280px) { 
+    .contactus-box {
+       
+    }
+    .address-box {
+        width: 96%;
+        
+    }
+
+
+    
+  }
+
+  @media (max-width: 769px) { 
+    .contactus-box {
+       
+    }
+    .address-box {
+        width: 100%;
+        
+    }
+    .contactustext{
+        font-size: 30px;
+    }
+    .contactusparatext{
+        font-size: 13px;
+    }
+    .call-box{
+        width: 28%;
+    }
+    .contactus-box{
+        padding: 1% !important;
+    }
+    .addressboxpara {
+        font-size: 12px;
+        margin-bottom: 0;
+    }
+
+
+    
+  }
+  @media (max-width: 426px){
+    .contactus-box{
+        padding: 0% !important;
+    }
+    .call-box {
+        width: 30%;
+    }
+    .locationround {
+        width: 63px;
+        height: 68px;
     }
   }
