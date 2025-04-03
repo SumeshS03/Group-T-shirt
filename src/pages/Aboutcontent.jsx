@@ -60,51 +60,56 @@ const Aboutcontent = () => {
         <img src={aboutus} className="imagetop"></img>
       </div>
 
-      <div className="design-box">
-        <div className="design-text">
-          <text
-            style={{ color: "#a2a2a2", marginLeft: "6px", fontSize: "20px" }}
-          >
-            Who are we
-          </text>
-          <h1 className="heading-text" style={{ margin: "0px" }}>
-            Create Stunning Print
-          </h1>
-
-          <h1 style={{ margin: "0px" }}>
-            <span className="heading-text">for</span>
-            <span className="heading-text-two" style={{ margin: "0px" }}>
-              {" "}
-              Your Business
-            </span>
-          </h1>
-          <text
-            style={{ color: "#a2a2a2", marginTop: "23px", fontSize: "20px" }}
-          >
-            T-Shirt Printing for Everyone. Get a head start wiyh
-          </text>
-          <text style={{ color: "#a2a2a2", fontSize: "20px" }}>
-            free design templates you can customize in a few clicks
-          </text>
-          <text
-            style={{ color: "#a2a2a2", marginTop: "23px", fontSize: "20px" }}
-          >
-            <LiaCheckCircle className="circle-check" /> Top quality prints using
-            the latest technology
-          </text>
-          <text style={{ color: "#a2a2a2", fontSize: "20px" }}>
-            <LiaCheckCircle className="circle-check" /> Mix and match
-            colors,sizes,and designs
-          </text>
-          <button className="start-btd-1" style={{ marginTop: "40px" }}>
-            GET STARTED
-          </button>
-        </div>
-        <div className="design-text-2">
-          <img src={designimage} alt="Image 1" className="image-1" />
-          <img src={designimage} alt="Image 1" className="image-2" />
-        </div>
-      </div>
+      <div className="design-box container-fluid d-flex align-items-center">
+            {/* <div className="row "> */}
+              <div className="  col-lg-6 col-md-12 design-text d-flex flex-column justify-content-between text-start">
+                <p
+                  style={{ color: "#a2a2a2", marginLeft: "6px", fontSize: "20px" }}
+                >
+                  Who are we
+                </p>
+                <h1 className="heading-text m-0" >
+                  Create Stunning Print
+                </h1>
+      
+                <h1 className="m-0 ">
+                  <span className="heading-text">for</span>
+                  <span className="heading-text-two" style={{ margin: "0px" }}>
+                    {" "}
+                    Your Business
+                  </span>
+                </h1>
+                <p className="text-secondary mt-3 fs-5"
+                  style={{ color: "#a2a2a2", marginTop: "23px", fontSize: "20px" }}
+                >
+                  T-Shirt Printing for Everyone. Get a head start wiyh
+                </p>
+                <p className="text-secondary  fs-5"
+                style={{ color: "#a2a2a2", fontSize: "20px" }}>
+                  free design templates you can customize in a few clicks
+                </p>
+                <p className="text-secondary mt-3 fs-5"
+                  style={{ color: "#a2a2a2", marginTop: "23px", fontSize: "20px" }}
+                >
+                  <LiaCheckCircle className="circle-check"/> Top quality prints using the latest
+                  technology
+                </p>
+                <p className="text-secondary mt-3 fs-5"
+                style={{ color: "#a2a2a2", fontSize: "20px" }}>
+                  <LiaCheckCircle className="circle-check"/> Mix and match colors,sizes,and designs
+                </p>
+                <button className="btn  mt-4 start-btd-1"
+                 style={{ marginTop: "40px" }}>
+                  GET STARTED
+                </button>
+              </div>
+            
+              <div className="  col-lg-6 col-md-12 design-text-2 d-flex justify-content-end position-relative">
+                <img src={designimage} alt="Image 1" className="image-1" />
+                <img src={designimage} alt="Image 1" className="image-2" />
+              </div>
+            </div>
+            {/* </div> */}
       <div style={{ marginTop: "70px", marginBottom: "20px" }}>
         <text style={{ color: "#a2a2a2", fontSize: "20px" }}>
           All the features you need
