@@ -54,7 +54,7 @@ const Aboutcontent = () => {
         style={{ position: "relative" }}
       >
         <div className="first-background p-5  mb-4 d-flex text-white ">
-          <h1 className="mt-4">ABOUT US</h1>
+          <h1 className="mt-4 aboutustext">ABOUT US</h1>
         </div>
         <p
           className=" w-50 home-contactustext"
@@ -116,7 +116,7 @@ const Aboutcontent = () => {
                   </button>
                 </div>
       
-                <div className=" col-lg-6 col-md-12  design-text-2 d-flex justify-content-end position-relative">
+                <div className=" col-lg-6 col-md-12  design-text-2  justify-content-end position-relative hide-on-768">
                   <img src={designimage} alt="Image 1" className="image-1" />
                   <img src={designimage} alt="Image 1" className="image-2" />
                 </div>
@@ -141,7 +141,7 @@ const Aboutcontent = () => {
       <div className="quality-box">
               <div className="servicesbox">
                 <div className="row g-2 d-flex flex-row ">
-                  <div className="box col-lg-3 col-6">
+                  <div className="box col-lg-3 col-12">
                     <div className="box-innersize">
                       <img
                         src={qualityshirt}
@@ -156,7 +156,7 @@ const Aboutcontent = () => {
                       </p>
                     </div>
                   </div>
-                  <div className="box col-lg-3 col-6">
+                  <div className="box col-lg-3 col-12">
                     <div className="box-innersize">
                       <img
                         src={outstandquality}
@@ -171,7 +171,7 @@ const Aboutcontent = () => {
                       </p>
                     </div>
                   </div>
-                  <div className="box col-lg-3 col-6">
+                  <div className="box col-lg-3 col-12">
                     <div className="box-innersize">
                       <img
                         src={secpayment}
@@ -186,7 +186,7 @@ const Aboutcontent = () => {
                       </p>
                     </div>
                   </div>
-                  <div className="box col-lg-3 col-6">
+                  <div className="box col-lg-3 col-12">
                     <div className="box-innersize">
                       <img
                         src={cussizestyle}
@@ -203,7 +203,7 @@ const Aboutcontent = () => {
                   </div>
                 </div>
                 <div className="row g-2 d-flex flex-row ">
-                  <div className="box col-lg-3 col-6">
+                  <div className="box col-lg-3 col-12">
                     <div className="box-innersize">
                       <img
                         src={shipworldwide}
@@ -218,7 +218,7 @@ const Aboutcontent = () => {
                       </p>
                     </div>
                   </div>
-                  <div className="box col-lg-3 col-6">
+                  <div className="box col-lg-3 col-12">
                     <div className="box-innersize">
                       <img
                         src={noordermin}
@@ -233,7 +233,7 @@ const Aboutcontent = () => {
                       </p>
                     </div>
                   </div>
-                  <div className="box col-lg-3 col-6">
+                  <div className="box col-lg-3 col-12">
                     <div className="box-innersize">
                       <img
                         src={highspeed}
@@ -248,7 +248,7 @@ const Aboutcontent = () => {
                       </p>
                     </div>
                   </div>
-                  <div className="box col-lg-3 col-6">
+                  <div className="box col-lg-3 col-12">
                     <div className="box-innersize">
                       <img
                         src={freetemplate}

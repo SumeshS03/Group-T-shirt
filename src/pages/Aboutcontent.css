@@ -185,6 +185,20 @@
       margin-top: 35px;
       bottom: 0px !important;
   }
+  .home-contactustext{
+    margin-left: -17% !important;
+  }
+  .imagetop {
+    /* left: 52% !important;
+    width: 280px !important;
+    margin-top: -27px !important; */
+    display: none;
+}
+.hide-on-768 {
+  display: none !important;
+  
+}
+
   }
 
 
@@ -244,5 +258,25 @@
 }
 .form-control{
   margin-top: 10px;
+}
+.first-background {
+  
+  height: 98px !important;
+}
+.aboutustext{
+  margin-top: -0.5rem !important;
+    margin-left: 75px !important;
+    font-size: 19px !important;
+}
+.home-contactustext {
+  margin-left: -17% !important;
+  font-size: 14px;
+}
+}
+@media (max-width: 320px){
+  .aboutustext {
+    
+    margin-left: 39px !important;
+    font-size: 14px !important;
 }
 }

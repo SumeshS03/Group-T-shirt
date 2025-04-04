@@ -137,10 +137,60 @@
     gap: 40px;
     
 }
+.hamburger-menu {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
+.hamburger-menuone{
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.mobile-menu-icon {
+    display: none;
+    cursor: pointer;
+  }
 .home-divider1{
     display: flex;
     margin-right: 105px;
 }
+/* added */
+
+.mobile-sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 240px;
+    height: 100%;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease-in-out;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+  }
+  .mobile-sidebar a {
+    padding: 12px 0;
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .mobile-sidebar.open {
+    left: 69%;
+  }
+  
+  .close-btn {
+    align-self: flex-end;
+    font-size: 24px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+
+  /* added */
 .location-icon {
     color: #00a0ff; 
     font-size: 50px; 
@@ -211,7 +261,7 @@
     }
     
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 769px) {
     .header{
         gap: 1px;
     }
@@ -228,6 +278,7 @@
     }
     .home-text{
         margin-top: 8px;
+        right: -84%;
     }
     .address-gapfix {
         gap: 0px;
@@ -242,5 +293,65 @@
     .address{
         margin-top: 2px;
     }
-    
+    .hide-on-770 {
+        display: none !important;
+      }
+      /* added */
+      .home-divider,
+  .home-divider1 {
+    display: none;
   }
+
+  .hamburger-menu {
+    display: block;
+  }
+  .hamburger-menuone{
+    display: block;
+    display: flex;
+    align-items: end;
+  }
+  .icon-diver {
+    display: flex;
+    flex-direction: column !important;
+    gap: 10px;
+    margin-left: 85px;
+}
+  .logo {
+    margin-left: 37px;
+    width: 138px;
+    
+    
+}
+}
+
+
+
+
+  @media screen and (max-width: 426px){
+    .logo {
+        margin-left: 14px;
+        width: 109px;
+    }
+    .mobile-sidebar.open {
+        left: 63%;
+    }
+    .mobile-sidebar {
+        width: 157px;
+    }
+    .icon-diver {
+        display: flex;
+        flex-direction: column !important;
+        gap: 10px;
+        margin-left: 43px;
+    }
+  }
+  @media screen and (max-width: 320px){
+    .mobile-sidebar {
+        width: 121px;
+    }
+    .icon-diver {
+       
+        margin-left: 31px;
+    }
+  }
+  

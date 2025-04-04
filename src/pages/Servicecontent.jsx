@@ -108,7 +108,7 @@ const Servicecontent = () => {
       </div>
       <div className="about-box d-flex  h-50 flex-column align-items-center">
         <div className="first-background p-5 bg-primary mb-4 d-flex text-white ">
-          <h1 className="mt-4">SERVICE</h1>
+          <h1 className="mt-4 aboutustext">SERVICE</h1>
         </div>
         <p
           className=" w-50  home-contactustext "

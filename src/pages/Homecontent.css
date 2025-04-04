@@ -32,15 +32,9 @@
     margin-top: 58px;
 }
 
-/* .unique-style span {
-    animation: colorChange 4s infinite alternate;
+.letstalkimageone{
+    width: 100%;
 }
-
-@keyframes colorChange {
-    0% { color: yellow; }
-    50% { color: blue; }
-    100% { color: red; }
-} */
 
 .start-btd{
     width: 150px;
@@ -122,6 +116,7 @@
 }
 .design-text-2{
     padding-right: 8% !important;
+    display: flex !important;
 }
 .design-text h1,
 .design-text text {
@@ -505,6 +500,12 @@
     width: 50%;
 
 }
+.wegottext{
+    margin-top: 40px;
+    margin-bottom: 0px;
+    font-size: 14px;
+    font-weight: bold;
+}
 .combos{
     width: 40px;
     height: 40px;
@@ -686,11 +687,20 @@
     right: 95%;
     top: 30%;
 } */
-
+.slick-dots {
+    position: absolute;
+    bottom: -37px;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+}
   
 .register-text{
     /* margin: 7px 7px 7px 145px; */
-    font-size: 17px;
+    
     color: rgb(75, 75, 72);
 }
 .combos-divider{
@@ -743,6 +753,7 @@
     }
     .design-text-2{
         padding-top: 4% !important;
+        display: flex !important;
     }
    
     .shopnow-one{
@@ -761,16 +772,16 @@
         left: -1%;
     }
     .servicesbox{
-        width: 98%;
-        gap: 20px;
+        width: 88%;
+        gap: 40px;
     }
     
     .yourstyle-box{
         width: 100%;
     }
-    .register-text{
+    /* .register-text{
         margin-left: 12px;
-    }
+    } */
     .combos-divider{
         margin-left: 30px;
     }
@@ -797,9 +808,7 @@
     .comment-box{
         width: 89%;
     }
-    .servicesbox{
-        width: 100%;
-    }
+    
     .verify-photo-image {
         width: 363px;
         height: 500px;
@@ -818,8 +827,11 @@
         transition: filter 0.3s ease;
     }
     .first-box {
-        width: 163px !important;
-        height: 200px !important;
+        width: 135px !important;
+        height: 170px !important;
+    }
+    .designboxhead{
+        font-size: 20px !important;
     }
     
   }
@@ -827,6 +839,27 @@
  
 
 @media screen and (max-width: 768px) {
+
+    .letstalkimageone{
+        display: none !important;
+    }
+
+    .bortextone {
+        white-space: normal; /* allow text to wrap into multiple lines */
+      }
+      .heading-text {
+        
+        font-size: 33px !important;
+        
+    }
+    .heading-textone {
+        
+        font-size: 33px;
+        
+    }
+    .heading-text-two{
+        font-size: 33px !important;
+    }
 
     .comment-lineone{
         margin-top: 10px;
@@ -859,6 +892,10 @@
   .design-box .row {
     flex-direction: column;
   }
+  .hide-on-768 {
+    display: none !important;
+    
+  }
   
   .design-text,
   .design-text-2 {
@@ -889,8 +926,12 @@
     border-radius: 0% !important;
 }
 .shopnow-image {
-    margin-left: -164px;
-    width: 217px;
+    margin-left: -164px ;
+    width: 111px !important;
+}
+.explore-image {
+    width: 118px;
+    left: -43%;
 }
 
 
@@ -917,6 +958,19 @@
       height: 180px ;
       
     }
+    .heading-text {
+        font-size: 22px !important;
+    }
+    .heading-text-two {
+        font-size: 22px !important;
+    }
+    .heading-textone {
+        font-size: 22px;
+    }
+    .mailbox-mailinput {
+        width: 248px;
+        
+    }
     .bortexthead {
         margin: 1px 0;
         font-size: 15px;
@@ -926,8 +980,7 @@
         height: 149px;
     }
     .shopnow-image {
-        margin-left: -206px;
-        width: 217px;
+        margin-left: -150px;
     }
     .bortextone {
         
@@ -966,17 +1019,19 @@
     .socilaheader{
         font-size: 17px !important;
     }
+    .explore-image {
+        
+        left: -13%;
+    }
   }
 
 
   @media screen and (max-width: 376px){
     .first-box {
-        width: 116px !important;
+        width: 144px !important;
         height: 161px !important;
     }
-    .designboxhead{
-        font-size: 22px !important;
-    }
+    
     .designboxpara{
         font-size: 16px !important;
     }
@@ -985,6 +1040,25 @@
     }
     .socialtexts{
         font-size: 10px !important;
+    }
+    .shopnowpercentage{
+        font-size: 18px !important;
+    }
+    .shopnowparatext{
+        font-size: 12px !important;
+    }
+    .start-btd-1 {
+        width: 110px !important;
+        height: 33px !important;
+        margin-left: 8%;
+    }
+    .shopnow-image {
+        margin-left: -143px;
+        width: 95px !important;
+    }
+    .explore-image {
+        left: -13%;
+        width: 95px;
     }
 
   }
@@ -997,18 +1071,13 @@
         font-size: 10px !important;
     }
 
-    .first-box {
-        width: 100px !important;
-        height: 161px !important;
-    }
-    .designboxhead{
-        font-size: 20px !important;
-    }
+    
+    
     .designboxpara{
         font-size: 15px !important;
     }
     .box-image {
-        width: 32px;
+        width: 29px;
         margin-bottom: 0px;
     }
     .bortexthead {

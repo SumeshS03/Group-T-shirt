@@ -15,9 +15,21 @@ import { FaPhoneVolume } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
+
+import { FaBars } from 'react-icons/fa';
+
 const HomeHeader = () => {
   const location = useLocation(); // Get current URL
   const [activeLink, setActiveLink] = useState("");
+  
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  useEffect(() => {
+    setActiveLink(location.pathname.replace("/", ""));
+  }, [location]);
+
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+ 
 
   useEffect(() => {
     // Extract pathname and set active link
@@ -34,7 +46,7 @@ const HomeHeader = () => {
           
           <div className='divider'>
           <div className='address-divider'>
-          <div className='address'>
+          <div className='address hide-on-770 '>
             <nav className='d-flex justify-content-between w-100'> 
             <div>
               <ul className='address-gapfix list-inline d-flex '>
@@ -74,9 +86,34 @@ const HomeHeader = () => {
               </div>
               
               </div>
+              
+          <nav className='home-text navbar '>
+            {/* <div className="hamburger-menuone">
+             
+            <div className="search-container">
+               <input type="text" className="search-box" placeholder="Search..." />
+               <FaSearch className="search-icon" />
+               </div>
+               <div className='pofile-box'><MdPerson style={{ color: "blue", fontSize: "20px"  }} />
+               </div>
+               <div className='st-line'>
+
+              </div>
+              <div className='pofile-box'><FaCartShopping /></div>
+            </div> */}
+            
+          <div className="hamburger-menu" onClick={toggleSidebar}>
           
-          <div className='home-text'>
+          {/* <div className="search-container">
+               <input type="text" className="search-box" placeholder="Search..." />
+               <FaSearch className="search-icon" />
+               </div> */}
+              
+        <FaBars />
+      </div>
+          
             <div className='home-divider'>
+              
                <Link to="/home" className="no-underline-1" style={{ color: activeLink === "home" ? "#cf9601" : "blue" }}>
        
                  HOME 
@@ -114,7 +151,35 @@ const HomeHeader = () => {
               </div>
               <div className='pofile-box'><FaCartShopping /></div>
               </div>
-          </div>
+          </nav>
+
+          {/* added */}
+          <div className={`mobile-sidebar ${isSidebarOpen ? 'open' : ''}`}>
+        <div className="close-btn" onClick={toggleSidebar} style={{color:'blue'}}>×</div>
+        <Link to="/home" onClick={toggleSidebar} className="no-underline-1" style={{ color: activeLink === "home" ? "#cf9601" : "blue" }}>HOME</Link>
+        <Link to="/aboutus" onClick={toggleSidebar} className="no-underline-2"  style={{ color: activeLink === "aboutus" ? "#cf9601" : "blue" }}>ABOUTUS</Link>
+        <Link to="/shop" onClick={toggleSidebar} class="no-underline-2" style={{ color: activeLink === "shop" ? "#cf9601" : "blue" }}>SHOP</Link>
+        <Link to="/service" onClick={toggleSidebar} className="no-underline-2"  style={{ color: activeLink === "service" ? "#cf9601" : "blue" }}>SERVICE</Link>
+        <Link to="/contactus" onClick={toggleSidebar} className="no-underline-2"  style={{ color: activeLink === "contactus" ? "#cf9601" : "blue" }}>CONTACT US</Link>
+        <div className='icon-diver'>
+              <div className='insta-box'>
+              <FaSquareInstagram style={{ color: "white",width:"100%",height:"100%" }} />
+
+              </div>
+              <div className='insta-box'>
+              <FaFacebookSquare  style={{ color: "white",width:"100%",height:"100%"}}/>
+              </div>
+              <div className='insta-box'>
+              <FaTwitterSquare style={{ color: "white",width:"100%",height:"100%" }}/>
+              </div>
+              <div className='insta-box'>
+              <FaWhatsappSquare style={{ color: "white",width:"100%",height:"100%" }}/>
+              </div>
+              <div className='insta-box'>
+              <FaYoutubeSquare style={{ color: "white",width:"100%",height:"100%" }}/>
+              </div>
+              </div>
+      </div>
           
 
 

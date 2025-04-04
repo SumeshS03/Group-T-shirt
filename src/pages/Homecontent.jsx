@@ -75,6 +75,69 @@ const Homecontent = () => {
 
   //     return () => clearInterval(interval); // Cleanup function
   //   }, []);
+  const profiles = [
+    {
+      name: "Cristian L.",
+      position: "Manager",
+      review:
+        "Best services ever-Flags, programs for exceptional capacities, birthday, and are largely still mainstream on paper occasion welcome.",
+    },
+    {
+      name: "Samantha J.",
+      position: "Designer",
+      review:
+        "Amazing creativity and timely delivery. Our go-to company for events!",
+    },
+    {
+      name: "David M.",
+      position: "Team Lead",
+      review:
+        "Professional team and high-quality services. Really impressed.",
+    },
+    {
+      name: "Emma W.",
+      position: "Sales",
+      review:
+        "Their team exceeded expectations. Great customer support!",
+    },
+    {
+      name: "Lucas G.",
+      position: "HR",
+      review:
+        "Helpful, responsive and creative solutions always.",
+    },
+    {
+      name: "Olivia P.",
+      position: "Developer",
+      review:
+        "Their work helped boost our engagement by 40%. Superb service.",
+    },
+  ];
+  const profilesettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3, // Change to 2 or 3 based on screen size
+    slidesToScroll: 1,
+    arrows: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: { slidesToShow: 3 }
+      },
+      {
+        breakpoint: 768,
+        settings: { slidesToShow: 1 }
+      }
+    ]
+  };
+
+
+
+
+
+
+
   const settings = {
     dots: true,
     infinite: true,
@@ -117,12 +180,7 @@ const Homecontent = () => {
             <h1 className="unique-style">
               <span
                 className="heading-text"
-                // style={{
-                //   color: "#eeae0c",
-                //   fontFamily: "'Libre Baskerville', serif",
-                //   fontWeight: 700,
-                //   fontSize: "67px",
-                // }}
+                
               >
                 Creating Your{" "}
               </span>
@@ -221,10 +279,10 @@ const Homecontent = () => {
             </p>
             <h1 className="heading-text m-0">Create Stunning Print</h1>
 
-            <h1 className="m-0 ">
+            <h1 className="m-0 text-start">
               <span className="heading-text">for</span>
               <span className="heading-text-two" style={{ margin: "0px" }}>
-                {" "}
+              
                 Your Business
               </span>
             </h1>
@@ -262,7 +320,7 @@ const Homecontent = () => {
             </button>
           </div>
 
-          <div className=" col-lg-6 col-md-12  design-text-2 d-flex justify-content-end position-relative">
+          <div className=" col-lg-6 col-md-12  design-text-2  justify-content-end position-relative hide-on-768 ">
             <img src={designimage} alt="Image 1" className="image-1" />
             <img src={designimage} alt="Image 1" className="image-2" />
           </div>
@@ -272,10 +330,10 @@ const Homecontent = () => {
         <div className="col-lg-6">
           <div className="shopnow d-flex flex-row  align-items-center justify-content-center   ">
             <div className="shopnow-one  text-md-start text-center ms-5">
-              <h1 className="text-white fw-bold m-0">10% off your</h1>
-              <h1 className="text-white fw-bold m-0">first order</h1>
-              <p className="text-white m-0">Free and easy way to bring</p>
-              <p className="text-white m-0">your ideas to life</p>
+              <h1 className="text-white fw-bold m-0 shopnowpercentage">10% off your</h1>
+              <h1 className="text-white fw-bold m-0 shopnowpercentage">first order</h1>
+              <p className="text-white m-0 shopnowparatext">Free and easy way to bring</p>
+              <p className="text-white m-0 shopnowparatext">your ideas to life</p>
               <button className="start-btd-1 btn btn-warning mt-4 mb-2 ">
                 SHOP NOW
               </button>
@@ -292,10 +350,10 @@ const Homecontent = () => {
               <img className="explore-image" src={tshirtmen1} alt="logo"></img>
             </div>
             <div className="explore-gapfix ps-3 text-md-start text-center me-5">
-              <h1 className="text-white fw-bold m-0">Create your</h1>
-              <h1 className="text-white fw-bold m-0">unique style</h1>
-              <p className="text-white m-0">Free and easy way to bring</p>
-              <p className="text-white m-0">your ideas to life</p>
+              <h1 className="text-white fw-bold m-0 shopnowpercentage">Create your</h1>
+              <h1 className="text-white fw-bold m-0 shopnowpercentage">unique style</h1>
+              <p className="text-white m-0 shopnowparatext">Free and easy way to bring</p>
+              <p className="text-white m-0 shopnowparatext">your ideas to life</p>
               <button className="start-btd-1 btn btn-warning mt-4 mb-2">
                 EXPLORE
               </button>
@@ -329,7 +387,7 @@ const Homecontent = () => {
       <div className="quality-box">
         <div className="servicesbox">
           <div className="row g-2 d-flex flex-row ">
-            <div className="box col-lg-3 col-6">
+            <div className="box col-lg-3 col-12">
               <div className="box-innersize">
                 <img
                   src={qualityshirt}
@@ -344,7 +402,7 @@ const Homecontent = () => {
                 </p>
               </div>
             </div>
-            <div className="box col-lg-3 col-6">
+            <div className="box col-lg-3 col-12">
               <div className="box-innersize">
                 <img
                   src={outstandquality}
@@ -359,7 +417,7 @@ const Homecontent = () => {
                 </p>
               </div>
             </div>
-            <div className="box col-lg-3 col-6">
+            <div className="box col-lg-3 col-12">
               <div className="box-innersize">
                 <img
                   src={secpayment}
@@ -374,7 +432,7 @@ const Homecontent = () => {
                 </p>
               </div>
             </div>
-            <div className="box col-lg-3 col-6">
+            <div className="box col-lg-3 col-12">
               <div className="box-innersize">
                 <img
                   src={cussizestyle}
@@ -391,7 +449,7 @@ const Homecontent = () => {
             </div>
           </div>
           <div className="row g-2 d-flex flex-row ">
-            <div className="box col-lg-3 col-6">
+            <div className="box col-lg-3 col-12">
               <div className="box-innersize">
                 <img
                   src={shipworldwide}
@@ -406,7 +464,7 @@ const Homecontent = () => {
                 </p>
               </div>
             </div>
-            <div className="box col-lg-3 col-6">
+            <div className="box col-lg-3 col-12">
               <div className="box-innersize">
                 <img
                   src={noordermin}
@@ -421,7 +479,7 @@ const Homecontent = () => {
                 </p>
               </div>
             </div>
-            <div className="box col-lg-3 col-6">
+            <div className="box col-lg-3 col-12">
               <div className="box-innersize">
                 <img
                   src={highspeed}
@@ -436,7 +494,7 @@ const Homecontent = () => {
                 </p>
               </div>
             </div>
-            <div className="box col-lg-3 col-6">
+            <div className="box col-lg-3 col-12">
               <div className="box-innersize">
                 <img
                   src={freetemplate}
@@ -453,7 +511,7 @@ const Homecontent = () => {
             </div>
           </div>
         </div>
-        <div className="container-fluid py-0 my-5">
+        <div className="container py-0 my-5">
           <div className="row align-items-center ">
             {/* Image Section */}
             <div className="col-lg-6 text-center">
@@ -484,7 +542,7 @@ const Homecontent = () => {
                   elements. Although this tag is deprecated.
                 </p>
                 <div className="row mt-4">
-                  <div className="col-lg-4 col-md-4 col-4 d-flex flex-column align-items-center">
+                  <div className="col-lg-4 col-12 d-flex flex-column align-items-center mt-2">
                     <div className="first-box bg-warning rounded p-3">
                       <h4
                         className="text-primary fw-bold designboxhead"
@@ -500,7 +558,7 @@ const Homecontent = () => {
                       </span>
                     </div>
                   </div>
-                  <div className="col-lg-4 col-md-4 col-4 d-flex flex-column align-items-center">
+                  <div className="col-lg-4 col-12 d-flex flex-column align-items-center mt-2">
                     <div className="first-box bg-primary text-white rounded p-3">
                       <h4
                         className="fw-bold designboxhead"
@@ -518,7 +576,7 @@ const Homecontent = () => {
                       </span>
                     </div>
                   </div>
-                  <div className="col-lg-4 col-md-4 col-4 d-flex flex-column align-items-center">
+                  <div className="col-lg-4 col-12 d-flex flex-column align-items-center mt-2">
                     <div className="first-box bg-warning rounded p-3">
                       <h4
                         className="text-primary fw-bold designboxhead"
@@ -540,6 +598,7 @@ const Homecontent = () => {
           </div>
         </div>
         <div className="we-work-box">
+          <div className="w-80">
           <h1 className="heading-textone">
             How we
             <span style={{ color: "blue" }}> work </span>
@@ -631,6 +690,7 @@ const Homecontent = () => {
           </div>
         </div>
       </div>
+      </div>
       <div className="rating">
         <h1 className="heading-textone" style={{ marginTop: "180px" }}>
           <span>What {}</span>
@@ -641,151 +701,61 @@ const Homecontent = () => {
         </p>
 
         <div className="comment-box container mt-4">
-          <div class="row">
-            <div className="col-lg-4">
-              <div className="comment-lines ">
-                <div className="profile-name">
-                  <div className="profile-icon">
-                    <img
-                      src={profileicon}
-                      alt="profile"
-                      style={{
-                        borderRadius: "50%",
-                        width: "100%",
-                        height: "100%",
-                        border: "1px solid black",
-                      }}
-                    ></img>
-                  </div>
-                  <div
+      <Slider {...profilesettings}>
+        {profiles.map((profile, index) => (
+          <div className="col-lg-4 px-2" key={index}>
+            <div className="comment-lines">
+              <div className="profile-name">
+                <div className="profile-icon">
+                  <img
+                    src={profileicon}
+                    alt="profile"
                     style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "flex-start",
-                      margin: 15,
+                      borderRadius: "50%",
+                      width: "100%",
+                      height: "100%",
+                      border: "1px solid black",
                     }}
-                  >
-                    <p style={{ margin: 0 }}>
-                      Cristian L. <span>Manager</span>
-                    </p>
-                    <span style={{ display: "flex", color: "#f4b92d" }}>
-                      <MdOutlineStarPurple500 />
-                      <MdOutlineStarPurple500 />
-                      <MdOutlineStarPurple500 />
-                      <MdOutlineStarPurple500 />
-                      <MdOutlineStarPurple500 />
-                    </span>
-                  </div>
+                  />
                 </div>
-                <div className="profile-about">
-                  <p>
-                    "Best services ever-Flags,programs for exceptional
-                    capacities,birthday,and are largely still mainstream on
-                    paper occasion welcom."
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                    margin: 15,
+                  }}
+                >
+                  <p style={{ margin: 0 }}>
+                    {profile.name} <span>{profile.position}</span>
                   </p>
+                  <span style={{ display: "flex", color: "#f4b92d" }}>
+                    <MdOutlineStarPurple500 />
+                    <MdOutlineStarPurple500 />
+                    <MdOutlineStarPurple500 />
+                    <MdOutlineStarPurple500 />
+                    <MdOutlineStarPurple500 />
+                  </span>
                 </div>
               </div>
-            </div>
-            <div className="col-lg-4">
-              <div className="comment-lines comment-lineone">
-                <div className="profile-name">
-                  <div className="profile-icon">
-                    <img
-                      src={profileicon}
-                      alt="profile"
-                      style={{
-                        borderRadius: "50%",
-                        width: "100%",
-                        height: "100%",
-                        border: "1px solid black",
-                      }}
-                    ></img>
-                  </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "flex-start",
-                      margin: 15,
-                    }}
-                  >
-                    <p style={{ margin: 0 }}>
-                      Cristian L. <span>Manager</span>
-                    </p>
-                    <span style={{ display: "flex", color: "#f4b92d" }}>
-                      <MdOutlineStarPurple500 />
-                      <MdOutlineStarPurple500 />
-                      <MdOutlineStarPurple500 />
-                      <MdOutlineStarPurple500 />
-                      <MdOutlineStarPurple500 />
-                    </span>
-                  </div>
-                </div>
-                <div className="profile-about">
-                  <p>
-                    "Best services ever-Flags,programs for exceptional
-                    capacities,birthday,and are largely still mainstream on
-                    paper occasion welcom."
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4">
-              <div className="comment-lines comment-lineone ">
-                <div className="profile-name">
-                  <div className="profile-icon">
-                    <img
-                      src={profileicon}
-                      alt="profile"
-                      style={{
-                        borderRadius: "50%",
-                        width: "100%",
-                        height: "100%",
-                        border: "1px solid black",
-                      }}
-                    ></img>
-                  </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "flex-start",
-                      margin: 15,
-                    }}
-                  >
-                    <p style={{ margin: 0 }}>
-                      Cristian L. <span>Manager</span>
-                    </p>
-                    <span style={{ display: "flex", color: "#f4b92d" }}>
-                      <MdOutlineStarPurple500 />
-                      <MdOutlineStarPurple500 />
-                      <MdOutlineStarPurple500 />
-                      <MdOutlineStarPurple500 />
-                      <MdOutlineStarPurple500 />
-                    </span>
-                  </div>
-                </div>
-                <div className="profile-about">
-                  <p>
-                    "Best services ever-Flags,programs for exceptional
-                    capacities,birthday,and are largely still mainstream on
-                    paper occasion welcom."
-                  </p>
-                </div>
+              <div className="profile-about">
+                <p>{profile.review}</p>
               </div>
             </div>
           </div>
-        </div>
+        ))}
+      </Slider>
+    </div>
       </div>
       <div className="mailbox  mt-4">
         <div className="mailbox-divider container-fluid ">
-          <div className="row w-100 d-flex flex-column flex-md-row align-items-md-start">
+          <div className="row w-100 d-flex flex-column flex-md-row align-items-md-start px-5">
             <div className="text-divider col-lg-6 d-flex flex-column align-items-start justify-content-center p-5">
               <h1
                 className="heading-text mt-4 text-white"
-                style={{
-                  fontSize: "3rem",
-                }}
+                // style={{
+                //   fontSize: "3rem",
+                // }}
               >
                 Don't Miss Out
               </h1>
@@ -794,11 +764,11 @@ const Homecontent = () => {
                 style={{
                   marginTop: "0",
                   marginBottom: "0px",
-                  fontSize: "2rem",
+                  
                 }}
               >
-                <span style={{ color: "white", fontSize: "3rem" }}>On </span>
-                <span style={{ color: "blue", fontSize: "3rem" }}>
+                <span style={{ color: "white"}}>On </span>
+                <span style={{ color: "blue"}}>
                   Special Offer
                 </span>
               </h1>
@@ -844,29 +814,29 @@ const Homecontent = () => {
             </div>
 
             <div className="col-12 col-lg-6">
-                          <div className=" d-flex justify-content-center align-items-end mt-3 mt-md-0 image-bottomfix ">
+                          <div className=" d-flex justify-content-center align-items-end mt-3  image-bottomfix ">
                             <img
                               src={aboutustwo}
                               
                               alt="About Us"
-                              className="letstalkimage"
+                              className="letstalkimageone"
                             />
                           </div>
                           </div>
           </div>
         </div>
 
-        <p
-          style={{
-            marginTop: "35px",
-            marginBottom: "0px",
-            fontSize: "20px",
-            fontWeight: "bold",
-          }}
+        <p className="wegottext"
+          // style={{
+          //   marginTop: "35px",
+          //   marginBottom: "0px",
+          //   fontSize: "20px",
+          //   fontWeight: "bold",
+          // }}
         >
           "We've got custom T-shirts in a range of fits and sizes, so"
         </p>
-        <span style={{ fontSize: "20px", fontWeight: "bold" }}>
+        <span className="wegottext" style={{marginTop:"0px"}} >
           everyon can wear your brand or message"
         </span>
         <div className="toolsbox container-fluid mt-3">

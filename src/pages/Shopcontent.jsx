@@ -14,7 +14,7 @@ const Shopcontent = () => {
         style={{ position: "relative" }}
       >
         <div className="first-background p-5  mb-4 d-flex text-white ">
-          <h1 className="mt-4">ABOUT US</h1>
+          <h1 className="mt-4 aboutustext">ABOUT US</h1>
         </div>
         <p
           className=" w-50 home-contactustext "

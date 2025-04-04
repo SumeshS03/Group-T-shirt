@@ -41,7 +41,7 @@ const Contactus = () => {
         style={{ position: "relative" }}
       >
         <div className="first-background p-5  mb-4 d-flex text-white ">
-          <h1 className="mt-4">CONTACT US</h1>
+          <h1 className="mt-4 aboutustext">CONTACT US</h1>
         </div>
         <p
           className=" w-50 home-contactustext "
@@ -68,8 +68,8 @@ const Contactus = () => {
       </div>
       <div className="contactus-box w-100  bg-white p-5 d-flex justify-content-center align-items-center">
       <div className="address-box d-flex flex-center justify-content-center align-items-center flex-column">
-        <div className="row gap-3 w-100 justify-content-center addressboxrow">
-          <div className="col-lg-3 col-12 call-box text-center p-4 " style={{backgroundColor:"#eaa606"}}>
+        <div className="row gap-3 w-100 justify-content-center addressboxrow p-5">
+          <div className="col-lg-3 col-12 call-box text-center p-4 mt-5 " style={{backgroundColor:"#eaa606"}}>
             <div className="w-100 d-flex align-item-center justify-content-center">
             <div className="locationround" style={{backgroundColor:"#eaa606"}}>
             <div className="locationinnerround d-flex justify-content-center align-items-center">
@@ -82,7 +82,7 @@ const Contactus = () => {
             <p className="addressboxpara">+91 96000 52220</p>
             <p className="addressboxpara mb-4">+91 98843 52220</p>
           </div>
-          <div className="col-lg-3 col-12 call-box text-center p-4" style={{backgroundColor:"#0060c7"}}>
+          <div className="col-lg-3 col-12 call-box text-center p-4 mt-5" style={{backgroundColor:"#0060c7"}}>
           <div className="w-100 d-flex align-item-center justify-content-center">
           <div className="locationround" style={{backgroundColor:"#0060c7"}}>
             <div className="locationinnerround d-flex justify-content-center align-items-center" style={{backgroundColor:"white"}}>
@@ -94,7 +94,7 @@ const Contactus = () => {
           <h2 className="mt-2 mb-2" style={{fontSize:"22px",color:"#eaa606"}}>VISIT US AT</h2>
           <p className="addressboxpara">14/15 || Floor,Gandhi Nagar, Karambayam, Porur, Chennai-600166</p>
           </div>
-          <div className="col-lg-3 col-12 call-box text-center p-4 mt-sm-3" style={{backgroundColor:"#eaa606"}}>
+          <div className="col-lg-3 col-12 call-box text-center p-4 mt-5 " style={{backgroundColor:"#eaa606"}}>
           <div className="w-100 d-flex align-items-center justify-content-center">
           <div className="locationround" style={{backgroundColor:"#eaa606"}}>
             <div className="locationinnerround d-flex justify-content-center align-items-center">
@@ -182,7 +182,7 @@ const Contactus = () => {
 
       <div className="enjoyup p-5 ">
               <div className="row">
-                <div className="col-12 " style={{ paddingBottom:"6%"}}>
+                <div className="col-12 " style={{ padding:"5%"}}>
                   <h2
                     className="heading-text"
                     style={{ textAlign: "left", marginTop: "0" }}
@@ -213,7 +213,7 @@ const Contactus = () => {
             </div>
       
             <div className="toolsbox container-fluid mt-3">
-                    <div className="row w-100">
+                    <div className="row w-100 p-5">
                     <div className="easycustomize col-lg-3 col-6 ">
                       <img src={glow} alt="profile" style={{width:"45px",marginBottom:"20px"}}></img>
                       <div className="d-flex flex-column text-start item-center">
@@ -267,7 +267,7 @@ const Contactus = () => {
                     </div>
                   </div>
             <div className="bg-primary p-5 d-flex justify-content-between align-item-center row">
-              <div className="col-lg-8" >
+              <div className="col-lg-8 d-flex flex-column ps-5 " >
                 <h2
                   className="text-xl font-semibold  mb-3 text-white text-start"
                   style={{ font: "bold", fontWeight: "700" }}

@@ -36,7 +36,7 @@
     margin-top: 10%;
 }
 .addressboxrow{
-    margin-top: -6%;
+    margin-top: -18%;
 }
 .address-textbox{
     width: 80%;
@@ -120,13 +120,18 @@
         font-size: 12px;
         margin-bottom: 0;
     }
-
+    .call-box{
+        width: 100% !important;
+    }
+    .contactus-box{
+        padding: 10% !important;
+    }
 
     
   }
   @media (max-width: 426px){
     .contactus-box{
-        padding: 0% !important;
+        padding: 10% !important;
     }
     .call-box {
         width: 30%;
