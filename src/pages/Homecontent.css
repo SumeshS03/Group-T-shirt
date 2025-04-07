@@ -503,7 +503,7 @@
 .wegottext{
     margin-top: 40px;
     margin-bottom: 0px;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: bold;
 }
 .combos{
@@ -511,7 +511,7 @@
     height: 40px;
     background-color: blue;
     border-radius: 50%;
-    font-size: 1.5rem; 
+    font-size: 21px; 
     font-weight: bold;
     margin-top: 2px;
     color: white;
@@ -718,6 +718,44 @@
     left: 10%;
     
     
+}
+.text-secondary{
+    font-size: 25px;
+}
+.marqueetext{
+    width: 100%;
+    text-align: center;
+    font-size: 45px;
+    color: rgb(162, 162, 162);
+}
+.shippingimagefix{
+    width: 31%;
+    height: 41%;
+    color: green;
+    margin-top: 20px;
+}
+.offerboxparatext{
+    font-size: 20px;
+}
+.shippingtextfix{
+    margin-top: 15px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.elastix-text {
+    font-size: 20px;
+    font-weight: 500;
+}
+.mailbox-arrow{
+    margin-left: -45px;
+    width: 30px;
+    height: 30px;
+    margin-bottom: 2px;
+    color: #0151c5;
+}
+.savingscombostext{
+    margin: 7px;
+    margin-top: 12px;
 }
 .mailbox-mailinput{
     
@@ -933,6 +971,9 @@
     width: 118px;
     left: -43%;
 }
+.text-secondary {
+    font-size: 20px;
+}
 
 
 
@@ -958,6 +999,12 @@
       height: 180px ;
       
     }
+    .offerboxparatext{
+        font-size: 17px;
+    }
+    .text-secondary {
+        font-size: 20px;
+    }
     .heading-text {
         font-size: 22px !important;
     }
@@ -969,6 +1016,10 @@
     }
     .mailbox-mailinput {
         width: 248px;
+        
+    }
+    .elastix-text {
+        font-size: 15px;
         
     }
     .bortexthead {
@@ -991,6 +1042,12 @@
     .servicesbox {
        
         gap: 1px;
+    }
+    .marqueetext{
+        width: 100%;
+        text-align: center;
+        font-size: 21px;
+        color: rgb(162, 162, 162);
     }
   
     .logo-imgone {
@@ -1023,6 +1080,37 @@
         
         left: -13%;
     }
+    .combos {
+        width: 35px !important;
+    }
+    .savingscombostext{
+        margin-top: 7px !important;
+        margin-left: -3px;
+
+    }
+    .combos-divider {
+        margin-left: 11px;
+    }
+    .wegottext {
+        
+        font-size: 13px !important;
+        
+    }
+    .shippingimagefix {
+        width: 23%;
+        height: 32%;
+        
+    }
+    .shippingtextfix {
+        
+        font-size: 11px;
+        
+    }
+    .shippingtextfixone {
+        
+        font-size: 11px;
+        
+    }
   }
 
 
@@ -1031,6 +1119,26 @@
         width: 144px !important;
         height: 161px !important;
     }
+    .savingscombostext {
+        margin-top: -2px !important;
+        margin-left: -3px;
+    }
+    .text-divider{
+        padding: none;
+    }
+    .mailbox-mailinput {
+        width: 210px;
+        height: 31px;
+    }
+    .mailbox-arrow {
+        margin-left: -34px;
+        width: 24px;
+        
+    }
+    .followuson{
+        font-size: 14px;
+    }
+   
     
     .designboxpara{
         font-size: 16px !important;

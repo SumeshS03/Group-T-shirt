@@ -88,29 +88,14 @@ const HomeHeader = () => {
               </div>
               
           <nav className='home-text navbar '>
-            {/* <div className="hamburger-menuone">
-             
-            <div className="search-container">
-               <input type="text" className="search-box" placeholder="Search..." />
-               <FaSearch className="search-icon" />
-               </div>
-               <div className='pofile-box'><MdPerson style={{ color: "blue", fontSize: "20px"  }} />
-               </div>
-               <div className='st-line'>
-
-              </div>
-              <div className='pofile-box'><FaCartShopping /></div>
-            </div> */}
-            
-          <div className="hamburger-menu" onClick={toggleSidebar}>
           
-          {/* <div className="search-container">
-               <input type="text" className="search-box" placeholder="Search..." />
-               <FaSearch className="search-icon" />
-               </div> */}
+            
+          {/* <div className="hamburger-menu" onClick={toggleSidebar}>
+          
+          
               
         <FaBars />
-      </div>
+      </div>  */}
           
             <div className='home-divider'>
               
@@ -138,6 +123,8 @@ const HomeHeader = () => {
                     
                  CONTACT US 
                </Link>
+
+               
                </div>
                <div className='home-divider1'>
                <div className="search-container">
@@ -151,6 +138,33 @@ const HomeHeader = () => {
               </div>
               <div className='pofile-box'><FaCartShopping /></div>
               </div>
+
+
+              <div className='hamburger-menu search-boxhead '>
+              <div className="search-container">
+               <input type="text" className="search-box" placeholder="Search..." />
+               <FaSearch className="search-icon" />
+               </div>
+               <div className='pofile-box'><MdPerson style={{ color: "blue", fontSize: "20px"  }} />
+               </div>
+               <div className='st-line'>
+
+              </div>
+              <div className='pofile-box'><FaCartShopping /></div>
+              
+
+              </div>
+
+              <div className="hamburger-menu" onClick={toggleSidebar}>
+          
+          
+              
+        <FaBars />
+      </div> 
+
+      
+
+              
           </nav>
 
           {/* added */}

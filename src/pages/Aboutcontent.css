@@ -176,9 +176,9 @@
   /* Responsive Design */
   @media (max-width: 768px) {
     .profile-box {
-      width: 160px; /* Smaller on smaller screens */
-      height: 130px;
-    }
+      width: 169px;
+      height: 151px;
+  }
     .letstalkimage {
       position: relative;
       width: 54%;

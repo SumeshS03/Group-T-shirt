@@ -83,37 +83,32 @@ const Aboutcontent = () => {
                     </span>
                   </h1>
                   <p
-                    className="text-secondary mt-3 fs-5"
-                    style={{ color: "#a2a2a2", marginTop: "23px", fontSize: "20px" }}
-                  >
-                    T-Shirt Printing for Everyone. Get a head start wiyh
-                  </p>
-                  <p
-                    className="text-secondary  fs-5"
-                    style={{ color: "#a2a2a2", fontSize: "20px" }}
-                  >
-                    free design templates you can customize in a few clicks
-                  </p>
-                  <p
-                    className="text-secondary mt-3 fs-5"
-                    style={{ color: "#a2a2a2", marginTop: "23px", fontSize: "20px" }}
-                  >
-                    <LiaCheckCircle className="circle-check" /> Top quality prints
-                    using the latest technology
-                  </p>
-                  <p
-                    className="text-secondary mt-3 fs-5"
-                    style={{ color: "#a2a2a2", fontSize: "20px" }}
-                  >
-                    <LiaCheckCircle className="circle-check" /> Mix and match
-                    colors,sizes,and designs
-                  </p>
-                  <button
-                    className="btn  mt-4 start-btd-1"
-                    style={{ marginTop: "40px" }}
-                  >
-                    GET STARTED
-                  </button>
+                                className="text-secondary mt-3 "
+                                style={{ color: "#a2a2a2", marginTop: "23px" }}
+                              >
+                                T-Shirt Printing for Everyone. Get a head start wiyh
+                              </p>
+                              <p
+                                className="text-secondary  "
+                                style={{ color: "#a2a2a2" }}
+                              >
+                                free design templates you can customize in a few clicks
+                              </p>
+                              <p
+                                className="text-secondary mt-3 "
+                                style={{ color: "#a2a2a2", marginTop: "23px" }}
+                              >
+                                <LiaCheckCircle className="circle-check" /> Top quality prints
+                                using the latest technology
+                              </p>
+                              <p
+                                className="text-secondary mt-3 "
+                                style={{ color: "#a2a2a2" }}
+                              >
+                                <LiaCheckCircle className="circle-check" /> Mix and match
+                                colors,sizes,and designs
+                              </p>
+                              <button className="start-btd ">GET STARTED</button>
                 </div>
       
                 <div className=" col-lg-6 col-md-12  design-text-2  justify-content-end position-relative hide-on-768">
@@ -123,17 +118,25 @@ const Aboutcontent = () => {
               </div>
             </div>
             {/* </div> */}
-      <div style={{ marginTop: "70px", marginBottom: "20px" }}>
-        <text style={{ color: "#a2a2a2", fontSize: "20px" }}>
+            <div style={{ marginTop: "70px", marginBottom: "20px" }}>
+        <text  className="offerboxparatext" style={{ color: "#a2a2a2" }}>
           All the features you need
         </text>
-        <h1 className="heading-text">
+        <h1
+          className="heading-text"
+          // style={{
+          //   margin: "0",
+          //   color: "#eeae0c",
+          //   fontSize: "3rem",
+          //   fontWeight: "bold",
+          // }}
+        >
           What Makes <span style={{ color: "blue" }}>GroupTshirt</span>
         </h1>
         <h1 className="heading-text" style={{ margin: "0" }}>
           <span style={{ color: "#eeae0c" }}>Custom T-Shirts Different</span>
         </h1>
-        <text style={{ color: "#a2a2a2", fontSize: "20px" }}>
+        <text className="offerboxparatext" style={{ color: "#a2a2a2"}}>
           T-Shirt Printing for Everyone. Get a head start wiyh free design
           templates you can customize in a few clicks.
         </text>
@@ -296,7 +299,7 @@ const Aboutcontent = () => {
                   elements. Although this tag is deprecated.
                 </p>
                 <div className="row mt-4">
-                  <div className="col-lg-4 col-md-4 col-4 d-flex flex-column align-items-center">
+                  <div className="col-lg-4 col-12 d-flex flex-column align-items-center mt-2">
                     <div className="first-box bg-warning rounded p-3">
                       <h4
                         className="text-primary fw-bold designboxhead"
@@ -312,7 +315,7 @@ const Aboutcontent = () => {
                       </span>
                     </div>
                   </div>
-                  <div className="col-lg-4 col-md-4 col-4 d-flex flex-column align-items-center">
+                  <div className="col-lg-4 col-12 d-flex flex-column align-items-center mt-2">
                     <div className="first-box bg-primary text-white rounded p-3">
                       <h4
                         className="fw-bold designboxhead"
@@ -330,7 +333,7 @@ const Aboutcontent = () => {
                       </span>
                     </div>
                   </div>
-                  <div className="col-lg-4 col-md-4 col-4 d-flex flex-column align-items-center">
+                  <div className="col-lg-4 col-12 d-flex flex-column align-items-center mt-2">
                     <div className="first-box bg-warning rounded p-3">
                       <h4
                         className="text-primary fw-bold designboxhead"
@@ -443,55 +446,55 @@ const Aboutcontent = () => {
                 </div>
               </div>
             </div>
-      <p
-        style={{
-          marginTop: "35px",
-          marginBottom: "0px",
-          fontSize: "20px",
-          fontWeight: "bold",
-        }}
-      >
-        "We've got custom T-shirts in a range of fits and sizes, so"
-      </p>
-      <span style={{ fontSize: "20px", fontWeight: "bold" }}>
-        everyon can wear your brand or message"
-      </span>
+            <p className="wegottext"
+          // style={{
+          //   marginTop: "35px",
+          //   marginBottom: "0px",
+          //   fontSize: "20px",
+          //   fontWeight: "bold",
+          // }}
+        >
+          "We've got custom T-shirts in a range of fits and sizes, so"
+        </p>
+        <span className="wegottext" style={{marginTop:"0px"}} >
+          everyon can wear your brand or message"
+        </span>
       <div className="toolsbox container-fluid mt-3">
                 <div className="row toolsbox bg-white p-3 ">
                   <div class="col-lg-2 d-flex justify-content-center align-items-center bg-white p-2 col-4">
-                    <TbBrandElastic /> <span class="fw-bold fs-5 ms-2">Elastic</span>
+                    <TbBrandElastic /> <span class="  ms-2 elastix-text">Elastic</span>
                   </div>
                   <div class="col-lg-2 d-flex justify-content-center align-items-center bg-white p-2 col-4">
                     <SiAirbnb />{" "}
-                    <span style={{ fontWeight: "bold", fontSize: "20px" }}>
+                    <span class="  ms-2 elastix-text">
                       {" "}
                       airbnb
                     </span>
                   </div>
                   <div class="col-lg-2 d-flex justify-content-center align-items-center bg-white p-2 col-4">
                     <SiAirbnb />{" "}
-                    <span style={{ fontWeight: "bold", fontSize: "20px" }}>
+                    <span class="  ms-2 elastix-text">
                       {" "}
                       Airtable
                     </span>
                   </div>
                   <div class="col-lg-2 d-flex justify-content-center align-items-center bg-white p-2 col-4 ">
                     <SiAirbnb />{" "}
-                    <span style={{ fontWeight: "bold", fontSize: "20px" }}>
+                    <span class="  ms-2 elastix-text">
                       {" "}
                       Framer
                     </span>
                   </div>
                   <div class="col-lg-2 d-flex justify-content-center align-items-center bg-white p-2 col-4 ">
                     <SiAirbnb />{" "}
-                    <span style={{ fontWeight: "bold", fontSize: "20px" }}>
+                    <span class="  ms-2 elastix-text">
                       {" "}
                       freshworks
                     </span>
                   </div>
                   <div class="col-lg-2 d-flex justify-content-center align-items-center bg-white p-2 col-4">
                     <SiAirbnb />{" "}
-                    <span style={{ fontWeight: "bold", fontSize: "20px" }}>
+                    <span class="  ms-2 elastix-text">
                       {" "}
                       Gitlab
                     </span>

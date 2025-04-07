@@ -68,15 +68,15 @@ const items = [
 
 const Servicecontent = () => {
   const [currentPage, setCurrentPage] = useState(0);
-  const [itemsPerPage, setItemsPerPage] = useState(5);// Number of items to show at a time
+  const [itemsPerPage, setItemsPerPage] = useState(4);// Number of items to show at a time
 
 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 770) {
-        setItemsPerPage(3); // Small screen (below 768px) - Show 2 items
+        setItemsPerPage(1); // Small screen (below 768px) - Show 2 items
       } else {
-        setItemsPerPage(5); // Large screen - Show 5 items
+        setItemsPerPage(4); // Large screen - Show 5 items
       }
     };
 
@@ -135,7 +135,7 @@ const Servicecontent = () => {
       <div className="quality-box">
               <div className="servicesbox">
                 <div className="row g-2 d-flex flex-row ">
-                  <div className="box col-lg-3 col-6">
+                  <div className="box col-lg-3 col-12">
                     <div className="box-innersize">
                       <img
                         src={qualityshirt}
@@ -150,7 +150,7 @@ const Servicecontent = () => {
                       </p>
                     </div>
                   </div>
-                  <div className="box col-lg-3 col-6">
+                  <div className="box col-lg-3 col-12">
                     <div className="box-innersize">
                       <img
                         src={outstandquality}
@@ -165,7 +165,7 @@ const Servicecontent = () => {
                       </p>
                     </div>
                   </div>
-                  <div className="box col-lg-3 col-6">
+                  <div className="box col-lg-3 col-12">
                     <div className="box-innersize">
                       <img
                         src={secpayment}
@@ -180,7 +180,7 @@ const Servicecontent = () => {
                       </p>
                     </div>
                   </div>
-                  <div className="box col-lg-3 col-6">
+                  <div className="box col-lg-3 col-12">
                     <div className="box-innersize">
                       <img
                         src={cussizestyle}
@@ -203,9 +203,9 @@ const Servicecontent = () => {
             </div>
       <div className="browse-all p-lg-5 mt-5 d-flex justify-content-center flex-column">
         <div className="row w-100">
-          <div className="col-12 text-center d-flex">
+          <div className="col-12 text-center ">
             <div className="d-flex  col-12 custom-gap ">
-              <h2
+              <h2 className="photoboxheader"
                 style={{ margin: "0px", fontFamily: "bevan", color: "#eeae0c" }}
               >
                 <span>T-shirt printing </span>
@@ -214,27 +214,27 @@ const Servicecontent = () => {
                   made easy.
                 </span>
               </h2>
-              <button className="btn rounded-pill browse-btn">
+              <button className="btn rounded-pill browse-btn lg-mt-3 mt-md-0">
                 Browse all
               </button>
             </div>
           </div>
         </div>
-        <div className="row w-70">
+        <div className="row w-100">
           <div className="col-12 text-center d-flex">
             <div
-              className="d-flex  col-12 "
-              style={{ marginLeft: "12rem", color: "white" }}
+              className="d-flex  col-12 custom-gap  "
+              style={{ color: "white" }}
             >
               <p>Let us show you how your product come to life</p>
             </div>
           </div>
         </div>
-        <div className="row ms-1 w-90 digitalscanpagenation">
-          <div className="col-12 text-center d-flex gap-3">
+        <div className="row   digitalscanpagenation justify-content-center mt-4">
+          <div className="col-12 text-center d-flex profilesimagepad  ">
             {/* Left Arrow */}
             <button
-              className="btn"
+              className="btn col-1"
               onClick={prevPage}
               disabled={currentPage === 0}
             >
@@ -245,7 +245,7 @@ const Servicecontent = () => {
             {visibleItems.map((item) => (
               <div
                 key={item.id}
-                className="d-flex col-2 flex-column align-items-center"
+                className="d-flex col-4 col-lg-2 flex-column align-items-center profileimagesizing"
                 style={{ color: "white" }}
               >
                 <div className="w-100 border border-2 border-secondary rounded-4 overflow-hidden">
@@ -271,7 +271,7 @@ const Servicecontent = () => {
 
             {/* Right Arrow */}
             <button
-              className="btn"
+              className="btn col-1"
               onClick={nextPage}
               disabled={currentPage === totalPages - 1}
             >
@@ -282,13 +282,15 @@ const Servicecontent = () => {
       </div>
       <div className="container">
       <div className="verify-photo row ">
-        <div className="verify-photo-box col-lg-6">
-          <img
-            src={require("../images/Girl-image.png")}
-            alt="logo"
-            style={{ width: "500px", height: "500px" }}
-          ></img>
-        </div>
+        <div className="col-lg-6 text-center">
+              <div className="verify-photo-box ">
+                <img
+                  src={require("../images/Girl-image.png")}
+                  alt="logo"
+                  className="img-fluid"
+                />
+              </div>
+            </div>
         <div className="verify-photo-textone col-lg-6 ">
           <div>
             <h2 className="heading-textprint ms-3 ">
@@ -459,14 +461,26 @@ const Servicecontent = () => {
       </p>
 
       <div className=" bg-white my-2 d-flex justify-content-center align-items-center">
-        <div className="row justify-content-center custom-artwork mt-5 rounded-fill ">
-          <div className="col-12 rounded-fill custom-artworkone d-flex flex-column justify-content-center align-items-center ">
-            <div className="w-20 start-50 video-box ">
+        {/* <div className="row justify-content-center w-100">
+          <div className="col-auto">
+      <div className="w-20 start-50 video-box ">
               <img className="videoimage rounded-4" src={videoimage}></img>
             </div>
-            <div className=" d-flex   justify-center p-6 shipit-you profilecustomart items-center">
+            </div>
+            </div> */}
+        <div className="row justify-content-center custom-artwork mt-5 rounded-fill ">
+          <div className="col-12 rounded-fill custom-artworkone d-flex flex-column justify-content-center align-items-center ">
+          <div className="row justify-content-center w-100">
+          <div className="col-auto">
+      <div className="w-20 start-50 video-box ">
+              <img className="videoimage rounded-4" src={videoimage}></img>
+            </div>
+            </div>
+            </div>
+            <div className="container py-5">
+            <div className=" d-flex row  justify-center  shipit-you profilecustomart items-center">
               {/* Profile 1 */}
-              <div className=" p-1  text-center flex-1">
+              <div className=" p-3  text-center flex-1  item-center col-lg-4 col-md-12">
               <div className="d-flex justify-content-center align-items-center w-100">
               <div className=" bg-white outterimage-border d-flex justify-content-center align-items-center ">
                   <img
@@ -477,14 +491,14 @@ const Servicecontent = () => {
                 </div>
                 </div>
                 <div className="w-55">
-                <h2 className=" font-semibold ">PICK A PRODUCT</h2>
+                <h2 className=" font-semibold pickproductheadtext" >PICK A PRODUCT</h2>
                 <p className="  my-0 pickproducttext " >PRINTED ON 100% QUALITY COTTON FOR A </p>
                 <p className="pickproducttext">VIBRANT FINISH AND ALL - DAY COMFORT</p>
                 </div>
               </div>
 
               {/* Profile 2 */}
-              <div className=" p-1  text-center flex-1">
+              <div className=" p-3  text-center flex-1 item-center col-lg-4 col-md-12">
               <div className="d-flex justify-content-center align-items-center w-100">
               <div className=" bg-white outterimage-border d-flex justify-content-center align-items-center ">
                   <img
@@ -495,14 +509,14 @@ const Servicecontent = () => {
                 </div>
                 </div>
                 <div className="w-55">
-                <h2 className="text-xl font-semibold ">CUSTOM ARTWORK</h2>
+                <h2 className="text-xl font-semibold pickproductheadtext ">CUSTOM ARTWORK</h2>
                 <p className=" my-0 pickproducttext " style={{color:"#6b6b6b"}}>PRINTED ON 100% QUALITY COTTON FOR A </p>
                 <p className="pickproducttext">VIBRANT FINISH AND ALL - DAY COMFORT</p>
                 </div>
               </div>
 
               {/* Profile 3 */}
-              <div className=" p-1  text-center flex-1 item-center">
+              <div className=" p-3  text-center flex-1 item-center col-lg-4 col-md-12">
                 <div className="d-flex justify-content-center align-items-center w-100">
               <div className=" bg-white outterimage-border d-flex justify-content-center align-items-center ">
                   <img
@@ -513,14 +527,16 @@ const Servicecontent = () => {
                 </div>
                 </div>
                 <div className="w-55">
-                <h2 className="text-xl font-semibold ">SHIP IT FOR YOU</h2>
+                <h2 className="text-xl font-semibold pickproductheadtext">SHIP IT FOR YOU</h2>
                 <p className="my-0 pickproducttext" style={{color:"#6b6b6b"}}>PRINTED ON 100% QUALITY COTTON FOR A </p>
                 <p className="pickproducttext">VIBRANT FINISH AND ALL - DAY COMFORT</p>
                 </div>
               </div>
             </div>
+            </div>
           </div>
         </div>
+        
       </div>
       <div className="enjoyup p-5 ">
               <div className="row">

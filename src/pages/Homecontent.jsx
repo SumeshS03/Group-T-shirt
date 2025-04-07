@@ -256,13 +256,13 @@ const Homecontent = () => {
         </div>
       </div>
       <div className="offset-text">
-        <marquee
-          style={{
-            width: "100%",
-            textAlign: "center",
-            fontSize: "45px",
-            color: "#a2a2a2",
-          }}
+        <marquee className="marqueetext"
+          // style={{
+          //   width: "100%",
+          //   textAlign: "center",
+          //   fontSize: "45px",
+          //   color: "#a2a2a2",
+          // }}
         >
           OFFSET PRINTING <span style={{ color: "blue" }}>*</span> WELCOME TO
           GROUPTSHIRT <span style={{ color: "blue" }}>*</span> DESIGN YOUR OWN
@@ -287,27 +287,27 @@ const Homecontent = () => {
               </span>
             </h1>
             <p
-              className="text-secondary mt-3 fs-5"
-              style={{ color: "#a2a2a2", marginTop: "23px", fontSize: "20px" }}
+              className="text-secondary mt-3 "
+              style={{ color: "#a2a2a2", marginTop: "23px" }}
             >
               T-Shirt Printing for Everyone. Get a head start wiyh
             </p>
             <p
-              className="text-secondary  fs-5"
-              style={{ color: "#a2a2a2", fontSize: "20px" }}
+              className="text-secondary  "
+              style={{ color: "#a2a2a2" }}
             >
               free design templates you can customize in a few clicks
             </p>
             <p
-              className="text-secondary mt-3 fs-5"
-              style={{ color: "#a2a2a2", marginTop: "23px", fontSize: "20px" }}
+              className="text-secondary mt-3 "
+              style={{ color: "#a2a2a2", marginTop: "23px" }}
             >
               <LiaCheckCircle className="circle-check" /> Top quality prints
               using the latest technology
             </p>
             <p
-              className="text-secondary mt-3 fs-5"
-              style={{ color: "#a2a2a2", fontSize: "20px" }}
+              className="text-secondary mt-3 "
+              style={{ color: "#a2a2a2" }}
             >
               <LiaCheckCircle className="circle-check" /> Mix and match
               colors,sizes,and designs
@@ -362,7 +362,7 @@ const Homecontent = () => {
         </div>
       </div>
       <div style={{ marginTop: "70px", marginBottom: "20px" }}>
-        <text style={{ color: "#a2a2a2", fontSize: "20px" }}>
+        <text  className="offerboxparatext" style={{ color: "#a2a2a2" }}>
           All the features you need
         </text>
         <h1
@@ -379,7 +379,7 @@ const Homecontent = () => {
         <h1 className="heading-text" style={{ margin: "0" }}>
           <span style={{ color: "#eeae0c" }}>Custom T-Shirts Different</span>
         </h1>
-        <text style={{ color: "#a2a2a2", fontSize: "20px" }}>
+        <text className="offerboxparatext" style={{ color: "#a2a2a2"}}>
           T-Shirt Printing for Everyone. Get a head start wiyh free design
           templates you can customize in a few clicks.
         </text>
@@ -749,7 +749,7 @@ const Homecontent = () => {
       </div>
       <div className="mailbox  mt-4">
         <div className="mailbox-divider container-fluid ">
-          <div className="row w-100 d-flex flex-column flex-md-row align-items-md-start px-5">
+          <div className="row w-100 d-flex flex-column flex-md-row align-items-md-start px-4">
             <div className="text-divider col-lg-6 d-flex flex-column align-items-start justify-content-center p-5">
               <h1
                 className="heading-text mt-4 text-white"
@@ -778,19 +778,19 @@ const Homecontent = () => {
               </p>
               <div className="combos-divider">
                 <div className="combos">01</div>
-                <text style={{ margin: "7px", marginTop: "12px" }}>
+                <text  className="savingscombostext">
                   Savings combos
                 </text>
               </div>
               <div className="combos-divider">
                 <div className="combos">02</div>
-                <text style={{ margin: "7px", marginTop: "12px" }}>
+                <text  className="savingscombostext">
                   Savings combos
                 </text>
               </div>
               <div className="combos-divider">
                 <div className="combos">03</div>
-                <text style={{ margin: "7px", marginTop: "12px" }}>
+                <text  className="savingscombostext">
                   Savings combos
                 </text>
               </div>
@@ -802,13 +802,14 @@ const Homecontent = () => {
                   
                 />
                 <FaCircleArrowRight
-                  style={{
-                    marginLeft: "-45px",
-                    width: "30px",
-                    height: "30px",
-                    marginBottom: "2px",
-                    color: "#0151c5",
-                  }}
+                className="mailbox-arrow"
+                  // style={{
+                  //   marginLeft: "-45px",
+                  //   width: "30px",
+                  //   height: "30px",
+                  //   marginBottom: "2px",
+                  //   color: "#0151c5",
+                  // }}
                 />
               </div>
             </div>
@@ -842,39 +843,39 @@ const Homecontent = () => {
         <div className="toolsbox container-fluid mt-3">
           <div className="row toolsbox bg-white p-3 ">
             <div class="col-lg-2 d-flex justify-content-center align-items-center bg-white p-2 col-4">
-              <TbBrandElastic /> <span class="fw-bold fs-5 ms-2">Elastic</span>
+              <TbBrandElastic /> <span class="  ms-2 elastix-text">Elastic</span>
             </div>
             <div class="col-lg-2 d-flex justify-content-center align-items-center bg-white p-2 col-4">
               <SiAirbnb />{" "}
-              <span style={{ fontWeight: "bold", fontSize: "20px" }}>
+              <span class="  ms-2 elastix-text">
                 {" "}
                 airbnb
               </span>
             </div>
             <div class="col-lg-2 d-flex justify-content-center align-items-center bg-white p-2 col-4">
               <SiAirbnb />{" "}
-              <span style={{ fontWeight: "bold", fontSize: "20px" }}>
+              <span class="  ms-2 elastix-text">
                 {" "}
                 Airtable
               </span>
             </div>
             <div class="col-lg-2 d-flex justify-content-center align-items-center bg-white p-2 col-4 ">
               <SiAirbnb />{" "}
-              <span style={{ fontWeight: "bold", fontSize: "20px" }}>
+              <span class="  ms-2 elastix-text">
                 {" "}
                 Framer
               </span>
             </div>
             <div class="col-lg-2 d-flex justify-content-center align-items-center bg-white p-2 col-4 ">
               <SiAirbnb />{" "}
-              <span style={{ fontWeight: "bold", fontSize: "20px" }}>
+              <span class="  ms-2 elastix-text">
                 {" "}
                 freshworks
               </span>
             </div>
             <div class="col-lg-2 d-flex justify-content-center align-items-center bg-white p-2 col-4">
               <SiAirbnb />{" "}
-              <span style={{ fontWeight: "bold", fontSize: "20px" }}>
+              <span class="  ms-2 elastix-text">
                 {" "}
                 Gitlab
               </span>
@@ -895,89 +896,64 @@ const Homecontent = () => {
         > */}
           <div className="shippingdivider col-md-3 d-flex flex-column align-items-center">
             <img
+            className="shippingimagefix"
               src={worldwideshipping}
-              style={{
-                width: "31%",
-                height: "41%",
-                color: "green",
-                marginTop: "20px",
-              }}
+              // style={{
+              //   width: "31%",
+              //   height: "41%",
+              //   color: "green",
+              //   marginTop: "20px",
+              // }}
             ></img>
 
-            <text
-              style={{
-                marginTop: "15px",
-                fontWeight: "bold",
-                marginBottom: "10px",
-              }}
+            <text 
+            className="shippingtextfix"
+              // style={{
+              //   marginTop: "15px",
+              //   fontWeight: "bold",
+              //   marginBottom: "10px",
+              // }}
             >
               Worldwide shipping
             </text>
-            <text>Get free shipping over $65.</text>
+            <text className="shippingtextfixone">Get free shipping over $65.</text>
           </div>
           <div className="shippingdivider col-md-3 d-flex flex-column align-items-center">
             <img
               src={returnicon}
-              style={{
-                width: "31%",
-                height: "41%",
-                color: "green",
-                marginTop: "20px",
-              }}
+              className="shippingimagefix"
             ></img>
             <text
-              style={{
-                marginTop: "15px",
-                fontWeight: "bold",
-                marginBottom: "10px",
-              }}
+              className="shippingtextfix"
             >
               Returns
             </text>
-            <text>Within 30 days for an exchange</text>
+            <text className="shippingtextfixone">Within 30 days for an exchange</text>
           </div>
           <div className="shippingdivider col-md-3 d-flex flex-column align-items-center">
             <img
               src={onlinesupport}
-              style={{
-                width: "31%",
-                height: "41%",
-                color: "green",
-                marginTop: "20px",
-              }}
+              className="shippingimagefix"
             ></img>
 
             <text
-              style={{
-                marginTop: "15px",
-                fontWeight: "bold",
-                marginBottom: "10px",
-              }}
+             className="shippingtextfix"
             >
               Online Support
             </text>
-            <text>Top notch customer service.</text>
+            <text className="shippingtextfixone">Top notch customer service.</text>
           </div>
           <div className="shippingdivider col-md-3 d-flex flex-column align-items-center">
             <img
               src={flexiblepayment}
-              style={{
-                width: "31%",
-                height: "41%",
-                color: "green",
-                marginTop: "20px",
-              }}
+              className="shippingimagefix"
             ></img>
             <text
-              style={{
-                marginTop: "15px",
-                fontWeight: "bold",
-                marginBottom: "10px",
-              }}
+              className="shippingtextfix"
             >
               Flexible Payment
             </text>
-            <text>Pay with Multiple Credit Cards </text>
+            <text className="shippingtextfixone">Pay with Multiple Credit Cards </text>
           </div>
         </div>
         {/* </div> */}
@@ -1119,7 +1095,7 @@ const Homecontent = () => {
             className="footersocial1 col-md-6 d-flex align-items-center gap-3"
             style={{ display: "flex", gap: "20px", color: "#8a8a8a" }}
           >
-            <span style={{ marginTop: "6px" }}>Follow us on </span>
+            <span className="followuson" style={{ marginTop: "6px" }}>Follow us on </span>
             <span>
               <FaTwitter style={{ color: "#8a8a8a", marginTop: "6px" }} />
             </span>

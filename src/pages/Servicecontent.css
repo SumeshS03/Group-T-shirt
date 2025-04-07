@@ -104,9 +104,9 @@
   margin-bottom: -283px;
   
 }
-.profilecustomart{
+/* .profilecustomart{
   gap: 100px !important;
-}
+} */
 .enjoyup {
   position: relative; /* Needed for absolute positioning of the overlay */
   margin-top: 171px;
@@ -136,8 +136,10 @@
   gap: 4px;
 }
 
+
 .digitalscanpagenation{
   margin-bottom: -111px;
+  margin-left: 14% !important;
 }
 .verify-photo{
   margin-top: 10% !important;
@@ -166,6 +168,9 @@
   color: #6b6b6b;
   font-size: 15px;
 }
+.profileimagesizing{
+  min-width: 200px;
+}
 .videoimage{
   width: 100%;
   height: 100%;
@@ -190,7 +195,7 @@
 
 
 
-@media (max-width: 1025px) { /* Large screens */
+@media (max-width: 1026px) { /* Large screens */
   .digitalscanpagenation {
     margin-left: 0 !important;
   }
@@ -202,6 +207,57 @@
 .custom-artwork{
   margin-top: 8% !important;
 }
+.custom-artworkone {
+  
+  margin-top: 9% !important;
+}
+
+
+.outterimage-border {
+  width: 95px;
+  height: 92px;
+}
+.pickproductheadtext{
+  font-size: 20px;
+}
+.pickproducttext{
+  font-size: 14px;
+}
+.custom-gap {
+  gap: 20rem;
+  margin-left: 3rem;
+}
+}
+
+
+
+
+
+@media(max-width: 768px){
+  .video-box {
+    margin-top: 196px;
+}
+.enjoyup {
+  
+  margin-top: 71%;
+}
+.verify-photo {
+  
+  margin-top: 22% !important;
+}
+.browse-all{
+  padding: 6% !important;
+}
+.profilesimagepad {
+  padding-left: 15% !important;
+  gap: 12%;
+}
+
+.custom-gap {
+  gap: 7rem;
+  margin-left: 3rem;
+}
+
 }
 
 @media (max-width: 426px) {
@@ -210,5 +266,101 @@
     width: 250px;
     margin-top: -52px;
 }
+.digitalscanpagenation {
+  margin-bottom: -67px;
   
+}
+.photoboxheader{
+  
+  font-size: 16px;
+}
+.browse-btn{
+  margin-top: 0% !important;
+}
+.custom-gap {
+  gap: 3rem;
+  margin-left: 0rem;
+}
+.browse-all {
+  padding: 1% !important;
+}
+.profilesimagepad {
+  padding-left: 7% !important;
+  
+}
+.video-box {
+ 
+  height: 140px;
+ 
+  width: 262px;
+}
+.enjoyup {
+  margin-top: 108%;
+}
+.pickproducttext {
+  font-size: 11px;
+}
+.outterimage-border {
+  width: 82px;
+  height: 76px;
+}
+.browse-btn{
+  padding: 0 !important;
+}
+  
+}
+@media (max-width: 376px) {
+  .video-box {
+    height: 105px;
+    width: 207px;
+    margin-top: 212px;
+}
+.browse-btn{
+  padding: 0 !important;
+}
+  .custom-artwork {
+    width: 86% !important;
+    height: 286px !important;
+}
+.enjoyup {
+  margin-top: 146%;
+}
+.profileimagesizing {
+  min-width: 159px;
+}
+.photoboxheader {
+  font-size: 12px;
+}
+.digitalscanpagenation {
+  margin-bottom: -79px;
+}
+.verify-photo {
+  margin-top: 26% !important;
+}
+}
+@media (max-width: 320px) {
+
+  
+  .browse-btn{
+    padding: 0 !important;
+  }
+  .video-box {
+     
+      margin-top: 357px;
+  }
+  .enjoyup {
+    margin-top: 168%;
+}
+.video-box {
+  margin-top: 220px;
+}
+.profileimagesizing {
+  min-width: 136px;
+}
+.digitalscanpagenation {
+  margin-bottom: -94px;
+}
+.verify-photo {
+  margin-top: 37% !important;
+}
 }
