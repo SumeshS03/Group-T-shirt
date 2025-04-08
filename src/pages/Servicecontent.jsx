@@ -461,15 +461,9 @@ const Servicecontent = () => {
       </p>
 
       <div className=" bg-white my-2 d-flex justify-content-center align-items-center">
-        {/* <div className="row justify-content-center w-100">
-          <div className="col-auto">
-      <div className="w-20 start-50 video-box ">
-              <img className="videoimage rounded-4" src={videoimage}></img>
-            </div>
-            </div>
-            </div> */}
+        
         <div className="row justify-content-center custom-artwork mt-5 rounded-fill ">
-          <div className="col-12 rounded-fill custom-artworkone d-flex flex-column justify-content-center align-items-center ">
+          <div className="col-12 rounded-fill custom-artworkone d-flex flex-column justify-content-center align-items-center position-relative ">
           <div className="row justify-content-center w-100">
           <div className="col-auto">
       <div className="w-20 start-50 video-box ">
@@ -540,7 +534,7 @@ const Servicecontent = () => {
       </div>
       <div className="enjoyup p-5 ">
               <div className="row">
-                <div className="col-12 " style={{ paddingBottom:"6%"}}>
+                <div className="col-12 enjoyup-text " style={{ paddingBottom:"6%"}}>
                   <h2
                     className="heading-text"
                     style={{ textAlign: "left", marginTop: "0" }}
@@ -625,7 +619,7 @@ const Servicecontent = () => {
         </div>
       </div>
       <div className="bg-primary p-5 d-flex justify-content-between align-item-center row">
-              <div className="col-lg-8" >
+              <div className="col-lg-8 enjoyup-text" >
                 <h2
                   className="text-xl font-semibold  mb-3 text-white text-start"
                   style={{ font: "bold", fontWeight: "700" }}
@@ -710,7 +704,7 @@ const Servicecontent = () => {
                       >
                         Hotline
                       </span>
-                      <span className="text-secondary" style={{ color: "#8a8a8a" }}>
+                      <span  style={{ color: "#8a8a8a" }}>
                         19008188
                       </span>
                     </div>
@@ -785,12 +779,12 @@ const Servicecontent = () => {
                   </div>
                 </div>
               </div>
-              <div className="footersocial row justify-content-between align-items-center text-secondary mt-5 px-4">
+              <div className="footersocial row justify-content-between align-items-center  mt-5 px-4">
                 <div
                   className="footersocial1 col-md-6 d-flex align-items-center gap-3"
                   style={{ display: "flex", gap: "20px", color: "#8a8a8a" }}
                 >
-                  <span style={{ marginTop: "6px" }}>Follow us on </span>
+                  <span className="followuson" style={{ marginTop: "6px" }}>Follow us on </span>
                   <span>
                     <FaTwitter style={{ color: "#8a8a8a", marginTop: "6px" }} />
                   </span>

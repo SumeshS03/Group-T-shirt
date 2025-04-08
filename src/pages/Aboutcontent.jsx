@@ -27,7 +27,6 @@ import visa from "../images/Visa1.jpg";
 import mastercard1 from "../images/Master1.jpg";
 import phonepay from "../images/Phonepe.jpg";
 
-
 import { FiPhoneCall } from "react-icons/fi";
 import { HiOutlineMailOpen } from "react-icons/hi";
 import { IoLocationOutline } from "react-icons/io5";
@@ -38,9 +37,40 @@ import { FaInstagram } from "react-icons/fa6";
 import { FiYoutube } from "react-icons/fi";
 import profilecommon from "../images/profilecommon.png";
 import aboutus from "../images/about-us1.png";
-import { FaFacebook,} from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
+import Slider from "react-slick";
 
 import aboutustwo from "../images/Aboutus2.png";
+
+const sliderSettingsicons = {
+  dots: false,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 2000,
+  responsive: [
+    {
+      breakpoint: 992,
+      settings: {
+        slidesToShow: 3,
+      },
+    },
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 2,
+      },
+    },
+    {
+      breakpoint: 576,
+      settings: {
+        slidesToShow: 1,
+      },
+    },
+  ],
+};
 
 const Aboutcontent = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -66,60 +96,54 @@ const Aboutcontent = () => {
       </div>
 
       <div className="design-box container-fluid mt-5 ">
-              <div className="row  ">
-                <div className="  col-lg-6  col-md-12  design-text d-flex flex-column justify-content-between text-start">
-                  <p
-                    style={{ color: "#a2a2a2", marginLeft: "6px", fontSize: "20px" }}
-                  >
-                    Who are we
-                  </p>
-                  <h1 className="heading-text m-0">Create Stunning Print</h1>
-      
-                  <h1 className="m-0 ">
-                    <span className="heading-text">for</span>
-                    <span className="heading-text-two" style={{ margin: "0px" }}>
-                      {" "}
-                      Your Business
-                    </span>
-                  </h1>
-                  <p
-                                className="text-secondary mt-3 "
-                                style={{ color: "#a2a2a2", marginTop: "23px" }}
-                              >
-                                T-Shirt Printing for Everyone. Get a head start wiyh
-                              </p>
-                              <p
-                                className="text-secondary  "
-                                style={{ color: "#a2a2a2" }}
-                              >
-                                free design templates you can customize in a few clicks
-                              </p>
-                              <p
-                                className="text-secondary mt-3 "
-                                style={{ color: "#a2a2a2", marginTop: "23px" }}
-                              >
-                                <LiaCheckCircle className="circle-check" /> Top quality prints
-                                using the latest technology
-                              </p>
-                              <p
-                                className="text-secondary mt-3 "
-                                style={{ color: "#a2a2a2" }}
-                              >
-                                <LiaCheckCircle className="circle-check" /> Mix and match
-                                colors,sizes,and designs
-                              </p>
-                              <button className="start-btd ">GET STARTED</button>
-                </div>
-      
-                <div className=" col-lg-6 col-md-12  design-text-2  justify-content-end position-relative hide-on-768">
-                  <img src={designimage} alt="Image 1" className="image-1" />
-                  <img src={designimage} alt="Image 1" className="image-2" />
-                </div>
-              </div>
-            </div>
-            {/* </div> */}
-            <div style={{ marginTop: "70px", marginBottom: "20px" }}>
-        <text  className="offerboxparatext" style={{ color: "#a2a2a2" }}>
+        <div className="row  ">
+          <div className="  col-lg-6  col-md-12  design-text d-flex flex-column justify-content-between text-start">
+            <p
+              style={{ color: "#a2a2a2", marginLeft: "6px", fontSize: "20px" }}
+            >
+              Who are we
+            </p>
+            <h1 className="heading-text m-0">Create Stunning Print</h1>
+
+            <h1 className="m-0 ">
+              <span className="heading-text">for</span>
+              <span className="heading-text-two" style={{ margin: "0px" }}>
+                {" "}
+                Your Business
+              </span>
+            </h1>
+            <p
+              className="text-secondary mt-3 "
+              style={{ color: "#a2a2a2", marginTop: "23px" }}
+            >
+              T-Shirt Printing for Everyone. Get a head start wiyh
+            </p>
+            <p className="text-secondary  " style={{ color: "#a2a2a2" }}>
+              free design templates you can customize in a few clicks
+            </p>
+            <p
+              className="text-secondary mt-3 "
+              style={{ color: "#a2a2a2", marginTop: "23px" }}
+            >
+              <LiaCheckCircle className="circle-check" /> Top quality prints
+              using the latest technology
+            </p>
+            <p className="text-secondary mt-3 " style={{ color: "#a2a2a2" }}>
+              <LiaCheckCircle className="circle-check" /> Mix and match
+              colors,sizes,and designs
+            </p>
+            <button className="start-btd ">GET STARTED</button>
+          </div>
+
+          <div className=" col-lg-6 col-md-12  design-text-2  justify-content-end position-relative hide-on-768">
+            <img src={designimage} alt="Image 1" className="image-1" />
+            <img src={designimage} alt="Image 1" className="image-2" />
+          </div>
+        </div>
+      </div>
+      {/* </div> */}
+      <div style={{ marginTop: "70px", marginBottom: "20px" }}>
+        <text className="offerboxparatext" style={{ color: "#a2a2a2" }}>
           All the features you need
         </text>
         <h1
@@ -136,147 +160,147 @@ const Aboutcontent = () => {
         <h1 className="heading-text" style={{ margin: "0" }}>
           <span style={{ color: "#eeae0c" }}>Custom T-Shirts Different</span>
         </h1>
-        <text className="offerboxparatext" style={{ color: "#a2a2a2"}}>
+        <text className="offerboxparatext" style={{ color: "#a2a2a2" }}>
           T-Shirt Printing for Everyone. Get a head start wiyh free design
           templates you can customize in a few clicks.
         </text>
       </div>
       <div className="quality-box">
-              <div className="servicesbox">
-                <div className="row g-2 d-flex flex-row ">
-                  <div className="box col-lg-3 col-12">
-                    <div className="box-innersize">
-                      <img
-                        src={qualityshirt}
-                        alt="Premium Quality"
-                        className=" img-fluid box-image"
-                        style={{}}
-                      />
-                      <h2 className="bortexthead">Premium quality shirts</h2>
-                      <p className="bortextone">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Rerum, quo! Deserunt
-                      </p>
-                    </div>
-                  </div>
-                  <div className="box col-lg-3 col-12">
-                    <div className="box-innersize">
-                      <img
-                        src={outstandquality}
-                        alt="Premium Quality"
-                        className="box-image img-fluid "
-                        style={{}}
-                      />
-                      <h2 className="bortexthead">Outstanding quality</h2>
-                      <p className="bortextone">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Rerum, quo! Deserunt
-                      </p>
-                    </div>
-                  </div>
-                  <div className="box col-lg-3 col-12">
-                    <div className="box-innersize">
-                      <img
-                        src={secpayment}
-                        alt="Premium Quality"
-                        className="box-image"
-                        style={{}}
-                      />
-                      <h2 className="bortexthead">Secure payment</h2>
-                      <p className="bortextone">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Rerum, quo! Deserunt
-                      </p>
-                    </div>
-                  </div>
-                  <div className="box col-lg-3 col-12">
-                    <div className="box-innersize">
-                      <img
-                        src={cussizestyle}
-                        alt="Premium Quality"
-                        className="box-image"
-                        style={{}}
-                      />
-                      <h2 className="bortexthead">Custom size & style</h2>
-                      <p className="bortextone">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Rerum, quo! Deserunt
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="row g-2 d-flex flex-row ">
-                  <div className="box col-lg-3 col-12">
-                    <div className="box-innersize">
-                      <img
-                        src={shipworldwide}
-                        alt="Premium Quality"
-                        className="box-image"
-                        style={{}}
-                      />
-                      <h2 className="bortexthead">Shipping Worldwide</h2>
-                      <p className="bortextone">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Rerum, quo! Deserunt
-                      </p>
-                    </div>
-                  </div>
-                  <div className="box col-lg-3 col-12">
-                    <div className="box-innersize">
-                      <img
-                        src={noordermin}
-                        alt="Premium Quality"
-                        className="box-image"
-                        style={{}}
-                      />
-                      <h2 className="bortexthead">No order minimums</h2>
-                      <p className="bortextone">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Rerum, quo! Deserunt
-                      </p>
-                    </div>
-                  </div>
-                  <div className="box col-lg-3 col-12">
-                    <div className="box-innersize">
-                      <img
-                        src={highspeed}
-                        alt="Premium Quality"
-                        className="box-image"
-                        style={{}}
-                      />
-                      <h2 className="bortexthead">High Speed Services</h2>
-                      <p className="bortextone">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Rerum, quo! Deserunt
-                      </p>
-                    </div>
-                  </div>
-                  <div className="box col-lg-3 col-12">
-                    <div className="box-innersize">
-                      <img
-                        src={freetemplate}
-                        alt="Premium Quality"
-                        className="box-image"
-                        style={{}}
-                      />
-                      <h2 className="bortexthead">Free templates</h2>
-                      <p className="bortextone">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Rerum, quo! Deserunt
-                      </p>
-                    </div>
-                  </div>
-                </div>
+        <div className="servicesbox">
+          <div className="row g-2 d-flex flex-row ">
+            <div className="box col-lg-3 col-12">
+              <div className="box-innersize">
+                <img
+                  src={qualityshirt}
+                  alt="Premium Quality"
+                  className=" img-fluid box-image"
+                  style={{}}
+                />
+                <h2 className="bortexthead">Premium quality shirts</h2>
+                <p className="bortextone">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Rerum, quo! Deserunt
+                </p>
               </div>
-              <div className="container-fluid py-0 my-5">
-          <div className="row align-items-center ">
+            </div>
+            <div className="box col-lg-3 col-12">
+              <div className="box-innersize">
+                <img
+                  src={outstandquality}
+                  alt="Premium Quality"
+                  className="box-image img-fluid "
+                  style={{}}
+                />
+                <h2 className="bortexthead">Outstanding quality</h2>
+                <p className="bortextone">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Rerum, quo! Deserunt
+                </p>
+              </div>
+            </div>
+            <div className="box col-lg-3 col-12">
+              <div className="box-innersize">
+                <img
+                  src={secpayment}
+                  alt="Premium Quality"
+                  className="box-image"
+                  style={{}}
+                />
+                <h2 className="bortexthead">Secure payment</h2>
+                <p className="bortextone">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Rerum, quo! Deserunt
+                </p>
+              </div>
+            </div>
+            <div className="box col-lg-3 col-12">
+              <div className="box-innersize">
+                <img
+                  src={cussizestyle}
+                  alt="Premium Quality"
+                  className="box-image"
+                  style={{}}
+                />
+                <h2 className="bortexthead">Custom size & style</h2>
+                <p className="bortextone">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Rerum, quo! Deserunt
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="row g-2 d-flex flex-row ">
+            <div className="box col-lg-3 col-12">
+              <div className="box-innersize">
+                <img
+                  src={shipworldwide}
+                  alt="Premium Quality"
+                  className="box-image"
+                  style={{}}
+                />
+                <h2 className="bortexthead">Shipping Worldwide</h2>
+                <p className="bortextone">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Rerum, quo! Deserunt
+                </p>
+              </div>
+            </div>
+            <div className="box col-lg-3 col-12">
+              <div className="box-innersize">
+                <img
+                  src={noordermin}
+                  alt="Premium Quality"
+                  className="box-image"
+                  style={{}}
+                />
+                <h2 className="bortexthead">No order minimums</h2>
+                <p className="bortextone">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Rerum, quo! Deserunt
+                </p>
+              </div>
+            </div>
+            <div className="box col-lg-3 col-12">
+              <div className="box-innersize">
+                <img
+                  src={highspeed}
+                  alt="Premium Quality"
+                  className="box-image"
+                  style={{}}
+                />
+                <h2 className="bortexthead">High Speed Services</h2>
+                <p className="bortextone">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Rerum, quo! Deserunt
+                </p>
+              </div>
+            </div>
+            <div className="box col-lg-3 col-12">
+              <div className="box-innersize">
+                <img
+                  src={freetemplate}
+                  alt="Premium Quality"
+                  className="box-image"
+                  style={{}}
+                />
+                <h2 className="bortexthead">Free templates</h2>
+                <p className="bortextone">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Rerum, quo! Deserunt
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="container py-0 my-5">
+          <div className="row verifyimagebox ">
             {/* Image Section */}
-            <div className="col-lg-6 text-center">
-              <div className="verify-photo-box ">
+            <div className="col-lg-6 text-center position-relative">
+              <div className="verify-photo-box  ">
                 <img
                   src={require("../images/Girl-image.png")}
                   alt="logo"
-                  className="img-fluid"
+                  className=" verify-photo-img position-absolute"
                 />
               </div>
             </div>
@@ -284,13 +308,13 @@ const Aboutcontent = () => {
             {/* Text Section */}
             <div className="col-lg-6 ">
               <div className="verify-photo-text w-100">
-                <h2 className="heading-text text-left">
+                <h2 className="heading-text text-start">
                   Ok, Let's See{" "}
                   <span style={{ color: "blue" }}>GroupTshirt</span>
                 </h2>
-                <h2 className="heading-text text-left">In Numbers</h2>
+                <h2 className="heading-text text-start">In Numbers</h2>
                 <p
-                  className="text-left text-dark mt-2"
+                  className="text-left text-start mt-2"
                   style={{ fontSize: "17px" }}
                 >
                   Creates a scrolling text or image effect within a webpage. It
@@ -302,51 +326,57 @@ const Aboutcontent = () => {
                   <div className="col-lg-4 col-12 d-flex flex-column align-items-center mt-2">
                     <div className="first-box bg-warning rounded p-3">
                       <h4
-                        className="text-primary fw-bold designboxhead"
+                        className="text-primary fw-bold designboxhead text-center"
                         style={{ fontSize: "38px" }}
                       >
                         $ 50M
                       </h4>
-                      <span
-                        className="text-dark designboxpara"
-                        style={{ fontSize: "18px" }}
-                      >
-                        printing <br /> sumesh
-                      </span>
+                      <div className="text-center">
+                        <span
+                          className="text-dark designboxpara "
+                          style={{ fontSize: "18px" }}
+                        >
+                          printing <br /> sumesh
+                        </span>
+                      </div>
                     </div>
                   </div>
                   <div className="col-lg-4 col-12 d-flex flex-column align-items-center mt-2">
                     <div className="first-box bg-primary text-white rounded p-3">
                       <h4
-                        className="fw-bold designboxhead"
+                        className="fw-bold designboxhead text-center"
                         style={{ fontSize: "38px" }}
                       >
                         32M +
                       </h4>
-                      <span
-                        className="designboxpara"
-                        style={{ fontSize: "18px" }}
-                      >
-                        Items trusted
-                        <br />
-                        to deliver
-                      </span>
+                      <div className="text-center">
+                        <span
+                          className="designboxpara"
+                          style={{ fontSize: "18px" }}
+                        >
+                          Items trusted
+                          <br />
+                          to deliver
+                        </span>
+                      </div>
                     </div>
                   </div>
                   <div className="col-lg-4 col-12 d-flex flex-column align-items-center mt-2">
                     <div className="first-box bg-warning rounded p-3">
                       <h4
-                        className="text-primary fw-bold designboxhead"
+                        className="text-primary fw-bold designboxhead text-center"
                         style={{ fontSize: "38px" }}
                       >
                         70M +
                       </h4>
-                      <span
-                        className="text-dark designboxpara"
-                        style={{ fontSize: "18px" }}
-                      >
-                        sold by customers <br /> through grouptshirt
-                      </span>
+                      <div className="text-center">
+                        <span
+                          className="text-dark designboxpara"
+                          style={{ fontSize: "18px" }}
+                        >
+                          sold by customers <br /> through grouptshirt
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -354,233 +384,204 @@ const Aboutcontent = () => {
             </div>
           </div>
         </div>
-              <div className="we-work-box">
-                <h1 className="heading-textone">
-                  How we
-                  <span style={{ color: "blue" }}> work </span>
-                </h1>
-                <text
-                  style={{ textAlign: "left", color: "#a2a2a2", fontSize: "17px" }}
-                >
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, quo!
-                  Deserunt it is still useful to understand its functionality
-                </text>
-                <div className="container-fluid d-flex flex-column align-items-center mt-4">
-                  <div className="your-style row d-flex flex-wrap justify-content-center align-items-center bg-light mt-4 rounded">
-                    <div className="your-print col-lg-3 col-md-6 col-12 d-flex flex-column align-items-center mb-3 ">
-                      <div className="your-tshirt">
-                        <img
-                          src={tshirt}
-                          alt="tshirt"
-                          style={{
-                            width: "111px",
-                            height: "111px",
-                            borderRadius: "50%",
-                            border: "2px solid black",
-                          }}
-                        ></img>
-                      </div>
-                      <h3 className="yourstyle-box">Your Style</h3>
-                    </div>
-                    <div className="your-print col-lg-3 col-md-6 col-12 d-flex flex-column align-items-center mb-3 your-printtwo">
-                      <div className="your-tshirt">
-                        <img
-                          src={yourprintone}
-                          alt="tshirt"
-                          style={{
-                            width: "111px",
-                            height: "111px",
-                            borderRadius: "50%",
-                            border: "2px solid black",
-                          }}
-                        ></img>
-                      </div>
-                      <h3
-                        className="yourstyle-box"
-                        style={{ backgroundColor: "#ffd401", color: "blue" }}
-                      >
-                        Your Print
-                      </h3>
-                    </div>
-                    <div className="your-print col-lg-3 col-md-6 col-12 d-flex flex-column align-items-center mb-3 your-printone">
-                      <div className="your-tshirt">
-                        <img
-                          src={quantity}
-                          alt="tshirt"
-                          style={{
-                            width: "111px",
-                            height: "111px",
-                            borderRadius: "50%",
-                            border: "2px solid black",
-                          }}
-                        ></img>
-                      </div>
-                      <h3
-                        className="yourstyle-box"
-                        style={{ backgroundColor: "#ffd401", color: "blue" }}
-                      >
-                        Quantity
-                      </h3>
-                    </div>
-                    <div className="your-print col-lg-3 col-md-6 col-12 d-flex flex-column align-items-center mb-3 your-printone">
-                      <div className="your-tshirt">
-                        <img
-                          src={payment}
-                          alt="tshirt"
-                          style={{
-                            width: "111px",
-                            height: "111px",
-                            borderRadius: "50%",
-                            border: "2px solid black",
-                          }}
-                        ></img>
-                      </div>
-                      <h3
-                        className="yourstyle-box"
-                        style={{ backgroundColor: "#ffd401", color: "blue" }}
-                      >
-                        Payment
-                      </h3>
-                    </div>
-                  </div>
+        <div className="we-work-box">
+          <h1 className="heading-textone">
+            How we
+            <span style={{ color: "blue" }}> work </span>
+          </h1>
+          <text
+            style={{ textAlign: "left", color: "#a2a2a2", fontSize: "17px" }}
+          >
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, quo!
+            Deserunt it is still useful to understand its functionality
+          </text>
+          <div className="container-fluid d-flex flex-column align-items-center mt-4">
+            <div className="your-style row d-flex flex-wrap justify-content-center align-items-center bg-light mt-4 rounded">
+              <div className="your-print col-lg-3 col-md-6 col-12 d-flex flex-column align-items-center mb-3 ">
+                <div className="your-tshirt">
+                  <img
+                    src={tshirt}
+                    alt="tshirt"
+                    style={{
+                      width: "111px",
+                      height: "111px",
+                      borderRadius: "50%",
+                      border: "2px solid black",
+                    }}
+                  ></img>
                 </div>
+                <h3 className="yourstyle-box">Your Style</h3>
+              </div>
+              <div className="your-print col-lg-3 col-md-6 col-12 d-flex flex-column align-items-center mb-3 your-printtwo">
+                <div className="your-tshirt">
+                  <img
+                    src={yourprintone}
+                    alt="tshirt"
+                    style={{
+                      width: "111px",
+                      height: "111px",
+                      borderRadius: "50%",
+                      border: "2px solid black",
+                    }}
+                  ></img>
+                </div>
+                <h3
+                  className="yourstyle-box"
+                  style={{ backgroundColor: "#ffd401", color: "blue" }}
+                >
+                  Your Print
+                </h3>
+              </div>
+              <div className="your-print col-lg-3 col-md-6 col-12 d-flex flex-column align-items-center mb-3 your-printone">
+                <div className="your-tshirt">
+                  <img
+                    src={quantity}
+                    alt="tshirt"
+                    style={{
+                      width: "111px",
+                      height: "111px",
+                      borderRadius: "50%",
+                      border: "2px solid black",
+                    }}
+                  ></img>
+                </div>
+                <h3
+                  className="yourstyle-box"
+                  style={{ backgroundColor: "#ffd401", color: "blue" }}
+                >
+                  Quantity
+                </h3>
+              </div>
+              <div className="your-print col-lg-3 col-md-6 col-12 d-flex flex-column align-items-center mb-3 your-printone">
+                <div className="your-tshirt">
+                  <img
+                    src={payment}
+                    alt="tshirt"
+                    style={{
+                      width: "111px",
+                      height: "111px",
+                      borderRadius: "50%",
+                      border: "2px solid black",
+                    }}
+                  ></img>
+                </div>
+                <h3
+                  className="yourstyle-box"
+                  style={{ backgroundColor: "#ffd401", color: "blue" }}
+                >
+                  Payment
+                </h3>
               </div>
             </div>
-            <p className="wegottext"
-          // style={{
-          //   marginTop: "35px",
-          //   marginBottom: "0px",
-          //   fontSize: "20px",
-          //   fontWeight: "bold",
-          // }}
-        >
-          "We've got custom T-shirts in a range of fits and sizes, so"
-        </p>
-        <span className="wegottext" style={{marginTop:"0px"}} >
-          everyon can wear your brand or message"
-        </span>
-      <div className="toolsbox container-fluid mt-3">
-                <div className="row toolsbox bg-white p-3 ">
-                  <div class="col-lg-2 d-flex justify-content-center align-items-center bg-white p-2 col-4">
-                    <TbBrandElastic /> <span class="  ms-2 elastix-text">Elastic</span>
+          </div>
+        </div>
+      </div>
+      <p
+        className="wegottext"
+        // style={{
+        //   marginTop: "35px",
+        //   marginBottom: "0px",
+        //   fontSize: "20px",
+        //   fontWeight: "bold",
+        // }}
+      >
+        "We've got custom T-shirts in a range of fits and sizes, so"
+      </p>
+      <span className="wegottext" style={{ marginTop: "0px" }}>
+        everyon can wear your brand or message"
+      </span>
+      <div className="toolsbox container-fluid mt-5">
+        <Slider {...sliderSettingsicons}>
+          {[
+            { icon: <TbBrandElastic />, label: "Elastic" },
+            { icon: <SiAirbnb />, label: "Airbnb" },
+            { icon: <SiAirbnb />, label: "Airtable" },
+            { icon: <SiAirbnb />, label: "Framer" },
+            { icon: <SiAirbnb />, label: "Freshworks" },
+            { icon: <SiAirbnb />, label: "Gitlab" },
+          ].map((item, index) => (
+            <div
+              key={index}
+              className="d-flex justify-content-center align-items-center bg-white p-2"
+            >
+              {item.icon}
+              <span className="ms-2 elastix-text">{item.label}</span>
+            </div>
+          ))}
+        </Slider>
+      </div>
+      <div className="letstalk-box mb-5 container-fluid ">
+        <div className="row  lettalk">
+        {/* d-flex flex-column flex-md-row align-items-md-start */}
+          <div className="col-12 col-lg-6 ps-lg-3 p-2">
+            <div className=" d-flex flex-column justify-content-center">
+              <h5
+                className="heading-text"
+                style={{ textAlign: "center", color: "#034e9f" }}
+              >
+                Let's talk
+              </h5>
+              <p style={{ textAlign: "center" }}>
+                Printed and shipped on demand!{" "}
+              </p>
+              <form>
+                {/* First Row: First Name & Last Name */}
+                <div className="row mb-2">
+                  <div className="col-md-6">
+                    <input
+                      type="text"
+                      className="form-control rounded-pill"
+                      placeholder="First Name"
+                    />
                   </div>
-                  <div class="col-lg-2 d-flex justify-content-center align-items-center bg-white p-2 col-4">
-                    <SiAirbnb />{" "}
-                    <span class="  ms-2 elastix-text">
-                      {" "}
-                      airbnb
-                    </span>
-                  </div>
-                  <div class="col-lg-2 d-flex justify-content-center align-items-center bg-white p-2 col-4">
-                    <SiAirbnb />{" "}
-                    <span class="  ms-2 elastix-text">
-                      {" "}
-                      Airtable
-                    </span>
-                  </div>
-                  <div class="col-lg-2 d-flex justify-content-center align-items-center bg-white p-2 col-4 ">
-                    <SiAirbnb />{" "}
-                    <span class="  ms-2 elastix-text">
-                      {" "}
-                      Framer
-                    </span>
-                  </div>
-                  <div class="col-lg-2 d-flex justify-content-center align-items-center bg-white p-2 col-4 ">
-                    <SiAirbnb />{" "}
-                    <span class="  ms-2 elastix-text">
-                      {" "}
-                      freshworks
-                    </span>
-                  </div>
-                  <div class="col-lg-2 d-flex justify-content-center align-items-center bg-white p-2 col-4">
-                    <SiAirbnb />{" "}
-                    <span class="  ms-2 elastix-text">
-                      {" "}
-                      Gitlab
-                    </span>
+                  <div className="col-md-6">
+                    <input
+                      type="text"
+                      className="form-control rounded-pill"
+                      placeholder="Last Name"
+                    />
                   </div>
                 </div>
-              </div>
-      <div className="letstalk-box mb-5 container-fluid">
-        <div className="row justify-content-center">
-          {/* <div className="col-2"></div> */}
-          <div className="col-12 text-white lettalk text-start">
-            <div className="row d-flex flex-column flex-md-row align-items-md-start">
-              <div className="col-12 col-lg-6">
-              <div className=" d-flex flex-column justify-content-center">
-                <h5
-                  className="heading-text"
-                  style={{ textAlign: "center", color: "#034e9f" }}
-                >
-                  Let's talk
-                </h5>
-                <p style={{ textAlign: "center" }}>
-                  Printed and shipped on demand!{" "}
-                </p>
-                <form>
-                  {/* First Row: First Name & Last Name */}
-                  <div className="row mb-2">
-                    <div className="col-md-6">
-                      <input
-                        type="text"
-                        className="form-control rounded-pill"
-                        placeholder="First Name"
-                      />
-                    </div>
-                    <div className="col-md-6">
-                      <input
-                        type="text"
-                        className="form-control rounded-pill"
-                        placeholder="Last Name"
-                      />
-                    </div>
-                  </div>
 
-                  {/* Second Row: Email or Phone */}
-                  <div className="row mb-2">
-                    <div className="col-12">
-                      <input
-                        type="text"
-                        className="form-control rounded-pill"
-                        placeholder="Email or Phone Number"
-                      />
-                    </div>
+                {/* Second Row: Email or Phone */}
+                <div className="row mb-2">
+                  <div className="col-12">
+                    <input
+                      type="text"
+                      className="form-control rounded-pill"
+                      placeholder="Email or Phone Number"
+                    />
                   </div>
+                </div>
 
-                  {/* Third Row: Message Box */}
-                  <div className="row mb-2">
-                    <div className="col-12">
-                      <textarea
-                        className="form-control rounded-4"
-                        rows="4"
-                        placeholder="Your Message"
-                      ></textarea>
-                    </div>
+                {/* Third Row: Message Box */}
+                <div className="row mb-2">
+                  <div className="col-12">
+                    <textarea
+                      className="form-control rounded-4"
+                      rows="4"
+                      placeholder="Your Message"
+                    ></textarea>
                   </div>
+                </div>
 
-                  {/* Submit Button */}
-                  <div className="text-center">
-                    <button
-                      className="btn btn-light rounded-pill py-2 px-4"
-                      style={{ backgroundColor: "#034e9f" }}
-                    >
-                      {" "}
-                      SUBMIT{" "}
-                    </button>
-                  </div>
-                </form>
-              </div>
-              </div>
-              <div className="col-12 col-lg-6">
-              <div className=" d-flex justify-content-center align-items-end mt-3 mt-md-0 image-bottomfix ">
-                <img
-                  src={aboutustwo}
-                  
-                  alt="About Us"
-                  className="letstalkimage"
-                />
-              </div>
-              </div>
+                {/* Submit Button */}
+                <div className="text-center">
+                  <button
+                    className="btn btn-light rounded-pill py-2 px-4"
+                    style={{ backgroundColor: "#034e9f" }}
+                  >
+                    {" "}
+                    SUBMIT{" "}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div className="col-12 col-lg-6 lettalkimagecont position-relative ">
+            <div className="  ">
+              {/* d-flex justify-content-center align-items-end mt-3 mt-md-0 image-bottomfix */}
+              <img src={aboutustwo} alt="About Us" className="letstalkimage position-absolute " />
             </div>
           </div>
         </div>
@@ -609,44 +610,39 @@ const Aboutcontent = () => {
             { name: "Daniel Martinez", role: "Finance", img: profilecommon },
             { name: "Olivia Anderson", role: "Support", img: profilecommon },
             { name: "William Thomas", role: "SEO", img: profilecommon },
-            { name: "Sophia Harris", role: "Sales", img: profilecommon }
-            
+            { name: "Sophia Harris", role: "Sales", img: profilecommon },
           ].map((member, index) => (
             <div
               key={index}
               className="profile-box text-center d-flex flex-column align-items-center justify-content-center"
               onMouseEnter={() => setHoveredIndex(index)}
-            onMouseLeave={() => setHoveredIndex(null)}
+              onMouseLeave={() => setHoveredIndex(null)}
             >
-               <img src={member.img} alt={member.name} className="profile-img" />
-               {hoveredIndex === index ? (
-              <div className="social-icons d-flex gap-4">
-                <FaFacebook />
-                <FaTwitter />
-                <FaInstagram />
-              </div>
-            ) : (
-        <div className="info">
-          <h5>{member.name}</h5>
-          <p>{member.role}</p>
-        </div>
-      )}
+              <img src={member.img} alt={member.name} className="profile-img" />
+              {hoveredIndex === index ? (
+                <div className="social-icons d-flex gap-4">
+                  <FaFacebook />
+                  <FaTwitter />
+                  <FaInstagram />
+                </div>
+              ) : (
+                <div className="info">
+                  <h5>{member.name}</h5>
+                  <p>{member.role}</p>
+                </div>
+              )}
             </div>
-            
           ))}
-          
-
         </div>
 
-        
         <button className="btn rounded-pill join-our-team pb-2">
           JOIN OUR TEAM
         </button>
       </div>
 
-      <div className="enjoyup p-5 " style={{marginTop:"100px"}}>
-        <div className="row">
-          <div className="col-12 col-md-12 ms-7 ">
+      <div className="enjoyup p-5 " style={{ marginTop: "100px" }}>
+        <div className="row ">
+          <div className="col-12 col-md-12 ms-7 enjoyup-text  ">
             <h2
               className="heading-textenjoyup"
               style={{ textAlign: "left", marginTop: "0" }}
@@ -661,14 +657,14 @@ const Aboutcontent = () => {
             </h2>
             <p style={{ color: "white", textAlign: "left", marginTop: "25px" }}>
               T-shirts that keep you moving
-              <div className="row d-flex mt-4 ">
-                <div className="col-4 col-md-5  ">
-                  <button className=" btn rounded-pill shopnow-btn px-4 py-2 ">
+              <div className="row d-flex mt-4                   gap-2 gap-md-3">
+                <div className="col-auto ">
+                  <button className=" btn rounded-pill shopnow-btn responsive-btn">
                     SHOP NOW
                   </button>
                 </div>
-                <div className="col-4 col-md-5 ">
-                  <button className="btn rounded-pill contactus-btn px-4 py-2 ">
+                <div className="col-auto">
+                  <button className="btn rounded-pill contactus-btn responsive-btn ">
                     CONTACT US
                   </button>
                 </div>
@@ -735,7 +731,7 @@ const Aboutcontent = () => {
                       >
                         Hotline
                       </span>
-                      <span className="text-secondary" style={{ color: "#8a8a8a" }}>
+                      <span  style={{ color: "#8a8a8a" }}>
                         19008188
                       </span>
                     </div>
@@ -810,12 +806,12 @@ const Aboutcontent = () => {
                   </div>
                 </div>
               </div>
-              <div className="footersocial row justify-content-between align-items-center text-secondary mt-5 px-4">
+              <div className="footersocial row justify-content-between align-items-center  mt-5 px-4">
                 <div
                   className="footersocial1 col-md-6 d-flex align-items-center gap-3"
                   style={{ display: "flex", gap: "20px", color: "#8a8a8a" }}
                 >
-                  <span style={{ marginTop: "6px" }}>Follow us on </span>
+                  <span className="followuson" style={{ marginTop: "6px" }}>Follow us on </span>
                   <span>
                     <FaTwitter style={{ color: "#8a8a8a", marginTop: "6px" }} />
                   </span>

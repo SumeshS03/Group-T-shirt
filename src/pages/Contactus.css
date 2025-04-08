@@ -9,7 +9,7 @@
     box-shadow: 1px 120px 1px -1px #e1e1e1;
 }
 .call-box{
-    width: 26%;
+    width: 31%;
     background-color: green;
     /* padding: 4%; */
     border-radius: 55px;
@@ -35,8 +35,9 @@
 .contactus-box{
     margin-top: 10%;
 }
+
 .addressboxrow{
-    margin-top: -18%;
+    margin-top: -17%;
 }
 .address-textbox{
     width: 80%;

@@ -78,17 +78,16 @@
 .custom-artworkone{
     background-color: #eeae0c !important;
     width: 100%;
-    height: 70%;
+    height: 96%;
     border-radius: 40px !important;
     margin-top: 5% !important;
 }
 .video-box{
     
     margin-top: -200px;
-    height: 208px;
+    height: 276px;
     z-index: 10;
-    
-    width: 393px;
+    width: 118%;
     border-radius: 40px ;
     margin-bottom: 23px;
     /* background-image: url(../images/service-page1.png); */
@@ -107,9 +106,19 @@
 /* .profilecustomart{
   gap: 100px !important;
 } */
+
+
+.profilecustomart {
+  position: absolute;
+  bottom: 35%;
+  width: 100%;
+}
+
+
+
 .enjoyup {
   position: relative; /* Needed for absolute positioning of the overlay */
-  margin-top: 171px;
+  margin-top: 17%;
   background-image: linear-gradient(to right, rgba(43, 47, 48, 2), rgba(255, 255, 0, 0)),url("../images/service-page5.jpg");
   background-size: cover;
   background-position: center;

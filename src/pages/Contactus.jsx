@@ -111,7 +111,7 @@ const Contactus = () => {
           
 
         </div>
-        <div className="row d-flex flex-column align-item-cemter justify-content-center mt-5 address-textbox">
+        <div className="row d-flex flex-column align-item-cemter justify-content-center mt-3 address-textbox">
           <p style={{color:"white"}}>FULL ENQUIRY</p>
           <h1 className="contactustext" style={{ margin: "0px" }}>
             Any Questions?
@@ -120,14 +120,14 @@ const Contactus = () => {
           <form>
                   {/* First Row: First Name & Last Name */}
                   <div className="row mb-4  ">
-                    <div className="col-md-6">
+                    <div className="col-md-6 p-2 ">
                       <input
                         type="text"
                         className="form-control rounded-pill"
                         placeholder="Name"
                       />
                     </div>
-                    <div className="col-md-6 ">
+                    <div className="col-md-6 p-2 ">
                       <input
                         type="text"
                         className="form-control rounded-pill"
@@ -182,7 +182,7 @@ const Contactus = () => {
 
       <div className="enjoyup p-5 ">
               <div className="row">
-                <div className="col-12 " style={{ padding:"5%"}}>
+                <div className="col-12 enjoyup-text " >
                   <h2
                     className="heading-text"
                     style={{ textAlign: "left", marginTop: "0" }}
@@ -266,8 +266,8 @@ const Contactus = () => {
                     </div>
                     </div>
                   </div>
-            <div className="bg-primary p-5 d-flex justify-content-between align-item-center row">
-              <div className="col-lg-8 d-flex flex-column ps-5 " >
+                  <div className="bg-primary p-5 d-flex justify-content-between align-item-center row">
+              <div className="col-lg-8 enjoyup-text" >
                 <h2
                   className="text-xl font-semibold  mb-3 text-white text-start"
                   style={{ font: "bold", fontWeight: "700" }}
@@ -352,7 +352,7 @@ const Contactus = () => {
                             >
                               Hotline
                             </span>
-                            <span className="text-secondary" style={{ color: "#8a8a8a" }}>
+                            <span  style={{ color: "#8a8a8a" }}>
                               19008188
                             </span>
                           </div>
@@ -427,12 +427,12 @@ const Contactus = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="footersocial row justify-content-between align-items-center text-secondary mt-5 px-4">
+                    <div className="footersocial row justify-content-between align-items-center  mt-5 px-4">
                       <div
                         className="footersocial1 col-md-6 d-flex align-items-center gap-3"
                         style={{ display: "flex", gap: "20px", color: "#8a8a8a" }}
                       >
-                        <span style={{ marginTop: "6px" }}>Follow us on </span>
+                        <span className="followuson" style={{ marginTop: "6px" }}>Follow us on </span>
                         <span>
                           <FaTwitter style={{ color: "#8a8a8a", marginTop: "6px" }} />
                         </span>

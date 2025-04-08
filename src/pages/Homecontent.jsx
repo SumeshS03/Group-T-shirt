@@ -168,6 +168,38 @@ const Homecontent = () => {
       },
     ],
   };
+
+
+
+  const sliderSettingsicons = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    responsive: [
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 576,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+  };
   return (
     <>
       <div>
@@ -312,12 +344,7 @@ const Homecontent = () => {
               <LiaCheckCircle className="circle-check" /> Mix and match
               colors,sizes,and designs
             </p>
-            <button
-              className="btn  mt-4 start-btd-1"
-              style={{ marginTop: "40px" }}
-            >
-              GET STARTED
-            </button>
+            <button className="start-btd ">GET STARTED</button>
           </div>
 
           <div className=" col-lg-6 col-md-12  design-text-2  justify-content-end position-relative hide-on-768 ">
@@ -326,9 +353,9 @@ const Homecontent = () => {
           </div>
         </div>
       </div>
-      <div className="offer-box  d-flex row mt-5 py-5 px-0 justify-content-center ">
+      <div className="offer-box  d-flex row  py-5 px-0 justify-content-center ">
         <div className="col-lg-6">
-          <div className="shopnow d-flex flex-row  align-items-center justify-content-center   ">
+          <div className="shopnow d-flex flex-row  align-items-center justify-content-center position-relative  ">
             <div className="shopnow-one  text-md-start text-center ms-5">
               <h1 className="text-white fw-bold m-0 shopnowpercentage">10% off your</h1>
               <h1 className="text-white fw-bold m-0 shopnowpercentage">first order</h1>
@@ -345,11 +372,11 @@ const Homecontent = () => {
         </div>
         {/* <div className="col-1"></div> */}
         <div className="col-lg-6">
-          <div className="explore d-flex flex-row align-items-center justify-content-center   ">
+          <div className="explore d-flex flex-row align-items-center justify-content-center position-relative   ">
             <div>
               <img className="explore-image" src={tshirtmen1} alt="logo"></img>
             </div>
-            <div className="explore-gapfix ps-3 text-md-start text-center me-5">
+            <div className="explore-gapfix  text-md-start text-center">
               <h1 className="text-white fw-bold m-0 shopnowpercentage">Create your</h1>
               <h1 className="text-white fw-bold m-0 shopnowpercentage">unique style</h1>
               <p className="text-white m-0 shopnowparatext">Free and easy way to bring</p>
@@ -386,7 +413,7 @@ const Homecontent = () => {
       </div>
       <div className="quality-box">
         <div className="servicesbox">
-          <div className="row g-2 d-flex flex-row ">
+          <div className="row  d-flex flex-row px-4 ">
             <div className="box col-lg-3 col-12">
               <div className="box-innersize">
                 <img
@@ -448,7 +475,7 @@ const Homecontent = () => {
               </div>
             </div>
           </div>
-          <div className="row g-2 d-flex flex-row ">
+          <div className="row g-2 d-flex flex-row px-4 ">
             <div className="box col-lg-3 col-12">
               <div className="box-innersize">
                 <img
@@ -512,14 +539,14 @@ const Homecontent = () => {
           </div>
         </div>
         <div className="container py-0 my-5">
-          <div className="row align-items-center ">
+          <div className="row verifyimagebox ">
             {/* Image Section */}
-            <div className="col-lg-6 text-center">
-              <div className="verify-photo-box ">
+            <div className="col-lg-6 text-center position-relative">
+              <div className="verify-photo-box  ">
                 <img
                   src={require("../images/Girl-image.png")}
                   alt="logo"
-                  className="img-fluid"
+                  className=" verify-photo-img position-absolute"
                 />
               </div>
             </div>
@@ -527,13 +554,13 @@ const Homecontent = () => {
             {/* Text Section */}
             <div className="col-lg-6 ">
               <div className="verify-photo-text w-100">
-                <h2 className="heading-text text-left">
+                <h2 className="heading-text text-start">
                   Ok, Let's See{" "}
                   <span style={{ color: "blue" }}>GroupTshirt</span>
                 </h2>
-                <h2 className="heading-text text-left">In Numbers</h2>
+                <h2 className="heading-text text-start">In Numbers</h2>
                 <p
-                  className="text-left text-dark mt-2"
+                  className="text-left text-start mt-2"
                   style={{ fontSize: "17px" }}
                 >
                   Creates a scrolling text or image effect within a webpage. It
@@ -545,27 +572,30 @@ const Homecontent = () => {
                   <div className="col-lg-4 col-12 d-flex flex-column align-items-center mt-2">
                     <div className="first-box bg-warning rounded p-3">
                       <h4
-                        className="text-primary fw-bold designboxhead"
+                        className="text-primary fw-bold designboxhead text-center"
                         style={{ fontSize: "38px" }}
                       >
                         $ 50M
                       </h4>
+                      <div className="text-center">
                       <span
-                        className="text-dark designboxpara"
+                        className="text-dark designboxpara "
                         style={{ fontSize: "18px" }}
                       >
                         printing <br /> sumesh
                       </span>
+                      </div>
                     </div>
                   </div>
                   <div className="col-lg-4 col-12 d-flex flex-column align-items-center mt-2">
                     <div className="first-box bg-primary text-white rounded p-3">
                       <h4
-                        className="fw-bold designboxhead"
+                        className="fw-bold designboxhead text-center"
                         style={{ fontSize: "38px" }}
                       >
                         32M +
                       </h4>
+                      <div className="text-center">
                       <span
                         className="designboxpara"
                         style={{ fontSize: "18px" }}
@@ -574,22 +604,25 @@ const Homecontent = () => {
                         <br />
                         to deliver
                       </span>
+                      </div>
                     </div>
                   </div>
                   <div className="col-lg-4 col-12 d-flex flex-column align-items-center mt-2">
                     <div className="first-box bg-warning rounded p-3">
                       <h4
-                        className="text-primary fw-bold designboxhead"
+                        className="text-primary fw-bold designboxhead text-center"
                         style={{ fontSize: "38px" }}
                       >
                         70M +
                       </h4>
+                      <div className="text-center">
                       <span
                         className="text-dark designboxpara"
                         style={{ fontSize: "18px" }}
                       >
                         sold by customers <br /> through grouptshirt
                       </span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -603,12 +636,15 @@ const Homecontent = () => {
             How we
             <span style={{ color: "blue" }}> work </span>
           </h1>
-          <text
-            style={{ textAlign: "left", color: "#a2a2a2", fontSize: "17px" }}
+         
+
+          <text className="howweworktext"
+            
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, quo!
             Deserunt it is still useful to understand its functionality
           </text>
+         
           <div className="container-fluid d-flex flex-column align-items-center mt-4">
             <div className="your-style row d-flex flex-wrap justify-content-center align-items-center bg-light mt-4 rounded">
               <div className="your-print col-lg-3 col-md-6 col-12 d-flex flex-column align-items-center mb-3 ">
@@ -624,7 +660,7 @@ const Homecontent = () => {
                     }}
                   ></img>
                 </div>
-                <h3 className="yourstyle-box">Your Style</h3>
+                <h3 className="yourstyle-box  ">Your Style</h3>
               </div>
               <div className="your-print col-lg-3 col-md-6 col-12 d-flex flex-column align-items-center mb-3 your-printtwo">
                 <div className="your-tshirt">
@@ -749,8 +785,10 @@ const Homecontent = () => {
       </div>
       <div className="mailbox  mt-4">
         <div className="mailbox-divider container-fluid ">
-          <div className="row w-100 d-flex flex-column flex-md-row align-items-md-start px-4">
-            <div className="text-divider col-lg-6 d-flex flex-column align-items-start justify-content-center p-5">
+          <div className="row w-100 ms-5 ps-4">
+
+          {/* d-flex flex-column flex-md-row align-items-md-start px-5 */}
+            <div className="text-divider col-lg-5 d-flex flex-column align-items-start justify-content-center p-5">
               <h1
                 className="heading-text mt-4 text-white"
                 // style={{
@@ -814,13 +852,13 @@ const Homecontent = () => {
               </div>
             </div>
 
-            <div className="col-12 col-lg-6">
+            <div className="col-12 col-lg-6 position-relative">
                           <div className=" d-flex justify-content-center align-items-end mt-3  image-bottomfix ">
                             <img
                               src={aboutustwo}
                               
                               alt="About Us"
-                              className="letstalkimageone"
+                              className="letstalkimageone position-absolute"
                             />
                           </div>
                           </div>
@@ -840,48 +878,23 @@ const Homecontent = () => {
         <span className="wegottext" style={{marginTop:"0px"}} >
           everyon can wear your brand or message"
         </span>
-        <div className="toolsbox container-fluid mt-3">
-          <div className="row toolsbox bg-white p-3 ">
-            <div class="col-lg-2 d-flex justify-content-center align-items-center bg-white p-2 col-4">
-              <TbBrandElastic /> <span class="  ms-2 elastix-text">Elastic</span>
-            </div>
-            <div class="col-lg-2 d-flex justify-content-center align-items-center bg-white p-2 col-4">
-              <SiAirbnb />{" "}
-              <span class="  ms-2 elastix-text">
-                {" "}
-                airbnb
-              </span>
-            </div>
-            <div class="col-lg-2 d-flex justify-content-center align-items-center bg-white p-2 col-4">
-              <SiAirbnb />{" "}
-              <span class="  ms-2 elastix-text">
-                {" "}
-                Airtable
-              </span>
-            </div>
-            <div class="col-lg-2 d-flex justify-content-center align-items-center bg-white p-2 col-4 ">
-              <SiAirbnb />{" "}
-              <span class="  ms-2 elastix-text">
-                {" "}
-                Framer
-              </span>
-            </div>
-            <div class="col-lg-2 d-flex justify-content-center align-items-center bg-white p-2 col-4 ">
-              <SiAirbnb />{" "}
-              <span class="  ms-2 elastix-text">
-                {" "}
-                freshworks
-              </span>
-            </div>
-            <div class="col-lg-2 d-flex justify-content-center align-items-center bg-white p-2 col-4">
-              <SiAirbnb />{" "}
-              <span class="  ms-2 elastix-text">
-                {" "}
-                Gitlab
-              </span>
-            </div>
+        <div className="toolsbox container-fluid mt-5">
+      <Slider {...sliderSettingsicons}>
+        {[
+          { icon: <TbBrandElastic />, label: "Elastic" },
+          { icon: <SiAirbnb />, label: "Airbnb" },
+          { icon: <SiAirbnb />, label: "Airtable" },
+          { icon: <SiAirbnb />, label: "Framer" },
+          { icon: <SiAirbnb />, label: "Freshworks" },
+          { icon: <SiAirbnb />, label: "Gitlab" },
+        ].map((item, index) => (
+          <div key={index} className="d-flex justify-content-center align-items-center bg-white p-2">
+            {item.icon}
+            <span className="ms-2 elastix-text">{item.label}</span>
           </div>
-        </div>
+        ))}
+      </Slider>
+    </div>
       </div>
       <div className="shipping container-fluid mt-3">
         <div class="row shipping  py-4 justify-content-center text-center">
@@ -1015,7 +1028,7 @@ const Homecontent = () => {
                 >
                   Hotline
                 </span>
-                <span className="text-secondary" style={{ color: "#8a8a8a" }}>
+                <span  style={{ color: "#8a8a8a" }}>
                   19008188
                 </span>
               </div>
@@ -1090,7 +1103,7 @@ const Homecontent = () => {
             </div>
           </div>
         </div>
-        <div className="footersocial row justify-content-between align-items-center text-secondary mt-5 px-4">
+        <div className="footersocial row justify-content-between align-items-center  mt-5 px-4">
           <div
             className="footersocial1 col-md-6 d-flex align-items-center gap-3"
             style={{ display: "flex", gap: "20px", color: "#8a8a8a" }}

@@ -31,9 +31,13 @@
     font-weight: bold;
     margin-top: 58px;
 }
+.mailboxrow{
+    margin-left: 10%;
+}
 
-.letstalkimageone{
-    width: 100%;
+.letstalkimageone {
+    width: 112%;
+    bottom: 0 !important;
 }
 
 .start-btd{
@@ -174,6 +178,7 @@
     
    
     background-color: #f4f4f4;  
+    margin-top: 7% !important;
     
 
     
@@ -186,6 +191,7 @@
     background-size: cover;
     position: relative;
     bottom: 0;
+    padding: 1% !important;
     
   
     
@@ -208,6 +214,7 @@
     position: relative;
     bottom: 0;
     flex: row;
+    padding: 1% !important;
     
    
     
@@ -229,8 +236,26 @@
     background-color: #ffffff;
     box-sizing: border-box;
 }
+.verify-photo-box{
+    height: 100%;
+  width: 100%;
+  position: relative;
+}
+.verify-photo-img {
+   
+    position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 78%; /* Or whatever width you want */
+  height: auto;
+    
+  }
+  .verifyimagebox{
+    margin-top: 10% !important;
+  }
 .servicesbox{
-    width: 80%;
+    width: 83%;
     
     background-color: #ffffff;
     display: flex;
@@ -665,20 +690,19 @@
 
 .explore-image{
    
-    position: relative;
-    width: 49%;
-    left: -20%;
-    /* margin-left: -67px;
-    margin-bottom: 31px;
-    height: 290px;
-    width: 265px; */
+    position: absolute;
+    width: 19%;
+    
+    left: 7%;
+    bottom: 0;
 } 
 .shopnow-image{
     
-    width: 49%;
-    position: relative;
+    width: 19%;
+    position: absolute;
     
-    left: 40%;
+    bottom: 0;
+    right: 10%;
   }
 /* .explore-image {
     height: 210px;
@@ -719,6 +743,9 @@
     
     
 }
+.followuson{
+    font-size: 20px;
+}
 .text-secondary{
     font-size: 25px;
 }
@@ -727,6 +754,9 @@
     text-align: center;
     font-size: 45px;
     color: rgb(162, 162, 162);
+}
+.comment-lines{
+    height: 226px;
 }
 .shippingimagefix{
     width: 31%;
@@ -766,6 +796,11 @@
     border-radius: 24px;
     margin-top: 13px;
 }
+.howweworktext{
+    text-align: center;
+    font-size: 20px;
+    color: #a2a2a2;
+}
 
 .box-innersize{
     padding: 6px;
@@ -793,25 +828,33 @@
         padding-top: 4% !important;
         display: flex !important;
     }
+    .verify-photo-img {
+       
+        width: 103%;
+        
+    }
    
     .shopnow-one{
         margin-right: 180px;
     }
     .shopnow-image{
-        margin-left: -214px;
-        width: 217px;
+        width: 27%;
     }
     .explore-gapfix{
-        margin-right: -24px;
+       margin-left: 14% !important;
         
     }
     .explore-image {
-        width: 217px;
-        left: -1%;
+        width: 27%;
     }
     .servicesbox{
-        width: 88%;
+        width: 95%;
         gap: 40px;
+    }
+    .bortexthead {
+        
+        font-size: 19px;
+        
     }
     
     .yourstyle-box{
@@ -869,7 +912,7 @@
         height: 170px !important;
     }
     .designboxhead{
-        font-size: 20px !important;
+        font-size: 33px !important;
     }
     
   }
@@ -880,6 +923,14 @@
 
     .letstalkimageone{
         display: none !important;
+    }
+    .verify-photo-img {
+       
+        width: 66%;
+        
+    }
+    .verifyimagebox {
+        margin-top: 76% !important;
     }
 
     .bortextone {
@@ -957,19 +1008,20 @@
     height: 210px;
 }
 .explore{
-    margin-top: 20px !important;
-    border-radius: 0% !important;
+    margin-top: 7% !important;
+    border-radius: 60px 60px 60px 60px !important;
 }
 .shopnow{
-    border-radius: 0% !important;
+    border-radius: 60px 60px 60px 60px !important;
 }
 .shopnow-image {
-    margin-left: -164px ;
-    width: 111px !important;
+    width: 17%;
+    right: 21%;
 }
 .explore-image {
-    width: 118px;
-    left: -43%;
+   width: 17%;
+   left: 21%;
+   
 }
 .text-secondary {
     font-size: 20px;
@@ -1003,7 +1055,7 @@
         font-size: 17px;
     }
     .text-secondary {
-        font-size: 20px;
+        font-size: 17px !important;
     }
     .heading-text {
         font-size: 22px !important;
@@ -1031,7 +1083,8 @@
         height: 149px;
     }
     .shopnow-image {
-        margin-left: -150px;
+        width: 30%;
+        right: 9%;
     }
     .bortextone {
         
@@ -1067,18 +1120,19 @@
         height: 166px;
     }
     .explore{
-        margin-top: 20px !important;
-        border-radius: 0% !important;
+        margin-top: 14% !important;
+        border-radius: 30px 30px 30px 30px !important;
     }
     .shopnow{
-        border-radius: 0% !important;
+        border-radius: 30px 30px 30px 30px !important;
     }
     .socilaheader{
         font-size: 17px !important;
     }
     .explore-image {
         
-        left: -13%;
+        left: 2%;
+        width: 30%;
     }
     .combos {
         width: 35px !important;
@@ -1161,11 +1215,11 @@
         margin-left: 8%;
     }
     .shopnow-image {
-        margin-left: -143px;
+        right: 19%;
         width: 95px !important;
     }
     .explore-image {
-        left: -13%;
+        left: 9%;
         width: 95px;
     }
 
@@ -1178,8 +1232,13 @@
     .socialtexts{
         font-size: 10px !important;
     }
+    .explore-gapfix {
+        margin-left: 30% !important;
+    }
 
-    
+    .heading-text {
+        font-size: 20px !important;
+    }
     
     .designboxpara{
         font-size: 15px !important;
@@ -1197,6 +1256,9 @@
     }
     .box{
         height: 25% !important;
+    }
+    .offerboxparatext {
+        font-size: 12px;
     }
 
   }

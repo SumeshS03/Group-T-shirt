@@ -131,12 +131,13 @@ const HomeHeader = () => {
                <input type="text" className="search-box" placeholder="Search..." />
                <FaSearch className="search-icon" />
                </div>
-               <div className='pofile-box'><MdPerson style={{ color: "blue", fontSize: "20px"  }} />
+               <div className='pofile-box'>
+                <MdPerson className='profileicons'  />
                </div>
                <div className='st-line'>
 
               </div>
-              <div className='pofile-box'><FaCartShopping /></div>
+              <div className='pofile-box'><FaCartShopping className='profileicons' /></div>
               </div>
 
 
