@@ -115,7 +115,57 @@
   .enjoyup-text{
     padding-left: 9% !important;
   }
+  .getstarted-btn{
+    font-weight: bold !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease-in-out !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  }
+  .getstarted-btn:hover{
+    transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 
+  }
+  .submit-btn{
+   border: none !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease-in-out !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  }
+  .submit-btn:hover{
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  .join-our-team{
+    border: none !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease-in-out !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  }
+  .join-our-team:hover{
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  .shopnow-btn{
+    border: none !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  }
+  .shopnow-btn:hover{
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  .contactus-btn{
+    border: none !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  }
+  .contactus-btn:hover{
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
 
 
   .profile-box {

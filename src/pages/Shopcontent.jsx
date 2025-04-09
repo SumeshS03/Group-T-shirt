@@ -2,6 +2,8 @@ import React from 'react'
 import "./Shopcontent.css"
 import HomeHeader from '../Layout/HomeHeader'
 import aboutus from "../images/about-us1.png";
+import bluef from "../images/blue-f.png"
+import shopimage from "../images/shopimage.png"
 
 const Shopcontent = () => {
   return (
@@ -22,7 +24,7 @@ const Shopcontent = () => {
         >
           Home - About Us
         </p>
-        <img src={aboutus} className="imagetop"></img>
+        <img src={shopimage} className="imagetopone"></img>
       </div>
     </>
   )

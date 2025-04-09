@@ -37,6 +37,7 @@ import visa from "../images/Visa1.jpg";
 import mastercard1 from "../images/Master1.jpg";
 import phonepay from "../images/Phonepe.jpg";
 import { LiaCheckCircleSolid } from "react-icons/lia";
+import bluef from "../images/blue-f.png"
 
 import { BsTelephoneOutbound } from "react-icons/bs";
 import aboutustwo from "../images/Aboutus2.png";
@@ -114,7 +115,7 @@ const Homecontent = () => {
     },
   ];
   const profilesettings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 3, // Change to 2 or 3 based on screen size
@@ -231,7 +232,7 @@ const Homecontent = () => {
             <p className="print-shirt">
               Print shirts for yourself or your online business
             </p>
-            <button className="start-btd ">GET STARTED</button>
+            <button className="start-btd ">SHOP NOW</button>
           </div>
           <div></div>
         </div>
@@ -361,7 +362,7 @@ const Homecontent = () => {
               <h1 className="text-white fw-bold m-0 shopnowpercentage">first order</h1>
               <p className="text-white m-0 shopnowparatext">Free and easy way to bring</p>
               <p className="text-white m-0 shopnowparatext">your ideas to life</p>
-              <button className="start-btd-1 btn btn-warning mt-4 mb-2 ">
+              <button className="start-btd-1 btn  mt-4 mb-2 ">
                 SHOP NOW
               </button>
             </div>
@@ -413,7 +414,7 @@ const Homecontent = () => {
       </div>
       <div className="quality-box">
         <div className="servicesbox">
-          <div className="row  d-flex flex-row px-4 ">
+          <div className="custom-row row justify-content-between gx-0 gy-4 ">
             <div className="box col-lg-3 col-12">
               <div className="box-innersize">
                 <img
@@ -475,7 +476,7 @@ const Homecontent = () => {
               </div>
             </div>
           </div>
-          <div className="row g-2 d-flex flex-row px-4 ">
+          <div className="custom-row row justify-content-between gx-0 gy-4 ">
             <div className="box col-lg-3 col-12">
               <div className="box-innersize">
                 <img
@@ -1006,6 +1007,13 @@ const Homecontent = () => {
         </div>
       </div>
       <div className="footerone container-fluid py-5">
+        <div className="row align-items-center justify-content-center">
+          <div className=" col-5 d-flex flex-column align-items-center justify-content-center text-white">
+            <img className="img img-fluid footer-img" alt="logo" src={bluef} ></img>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores beatae itaque veniam doloremque.</p>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero ipsa architecto nulla reprehenderit odio aspernatur aperiam esse nam qui expedita.</p>
+          </div>
+        </div>
         <div className="footerdetails row justify-content-center text-white">
           <div className="getintouch col-md-3 mb-4">
             <h4 style={{ color: "white" }}>Get in Touch</h4>
@@ -1150,8 +1158,8 @@ const Homecontent = () => {
           </div>
         </div>
       </div>
-      <div className="footer2">
-        <p style={{ color: "#000000", fontSize: "16px", margin: "0px" }}>
+      <div className="footer2 py-3">
+        <p style={{ color: "#000000", fontSize: "18px", margin: "0px" }}>
           © All Copyright 2025 by Website Design and Build -
           <span style={{ fontWeight: "bold", color: "#000000" }}>
             www.Tabsquareinfotech.com

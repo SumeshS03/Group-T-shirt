@@ -24,7 +24,9 @@
     justify-content: center;
     align-items: center;
 }
-
+.enquiry-box{
+    height: 45px;
+}
 .addressboxpara{
     font-size: 16px;
     margin-bottom: 0;
@@ -42,9 +44,7 @@
 .address-textbox{
     width: 80%;
 }
-.enjoyup{
-    margin-top: 10%px;
-}
+
 .locationinnerround{
     width: 80%;
     border-radius: 50%;
@@ -72,6 +72,30 @@
 .contactuscalltext{
     font-size: 22px;
     color: white;
+}
+.enjoyupcontact{
+    position: relative;
+    margin-top: 17%;
+    background-image: linear-gradient(to right, rgba(43, 47, 48, 2), rgba(255, 255, 0, 0)), url(../images/service-page5.jpg);
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+.send-btn{
+    border: none !important;
+    cursor: pointer !important;
+  transition: all 0.3s ease-in-out !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+}
+.send-btn:hover{
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+.imagetoptwo{
+    position: absolute;
+    left: 74%;
+    width: 182px;
+    margin-top: 12px;
 }
 
 
@@ -140,5 +164,8 @@
     .locationround {
         width: 63px;
         height: 68px;
+    }
+    .enjoyupcontact{
+        margin-top: 30% !important;
     }
   }

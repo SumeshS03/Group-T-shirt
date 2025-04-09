@@ -11,6 +11,7 @@ import shipworldwide from "../images/Shipping-worldwide.png";
 import noordermin from "../images/No-order-minimum.png";
 import highspeed from "../images/High-Speed-Service.png";
 import freetemplate from "../images/Free-Templates.png";
+import bluef from "../images/blue-f.png"
 
 import { TbBrandElastic } from "react-icons/tb";
 import { SiAirbnb } from "react-icons/si";
@@ -167,7 +168,7 @@ const Aboutcontent = () => {
       </div>
       <div className="quality-box">
         <div className="servicesbox">
-          <div className="row g-2 d-flex flex-row ">
+          <div className="custom-row row justify-content-between gx-0 gy-4 ">
             <div className="box col-lg-3 col-12">
               <div className="box-innersize">
                 <img
@@ -229,7 +230,7 @@ const Aboutcontent = () => {
               </div>
             </div>
           </div>
-          <div className="row g-2 d-flex flex-row ">
+          <div className="custom-row row justify-content-between gx-0 gy-4">
             <div className="box col-lg-3 col-12">
               <div className="box-innersize">
                 <img
@@ -291,6 +292,18 @@ const Aboutcontent = () => {
               </div>
             </div>
           </div>
+        </div>
+        <div className="browse-all p-lg-5 mt-5 d-flex justify-content-center flex-column w-100 align-items-center">
+          <div className="p-5">
+        
+        <h2 className="heading-text text-start">
+                  Bring Your Ideas to{" "} <br></br>
+                  <div style={{ color: "white" }} className="text-center">Life in minute!</div>
+                </h2>
+                <p className="text-white">Print shirts for yourself or your online business</p>
+                <button className="btn btn-primary text-white px-4 py-2 rounded-5 getstarted-btn">GET STARTED TODAY</button>
+       
+        </div>
         </div>
         <div className="container py-0 my-5">
           <div className="row verifyimagebox ">
@@ -385,96 +398,101 @@ const Aboutcontent = () => {
           </div>
         </div>
         <div className="we-work-box">
-          <h1 className="heading-textone">
-            How we
-            <span style={{ color: "blue" }}> work </span>
-          </h1>
-          <text
-            style={{ textAlign: "left", color: "#a2a2a2", fontSize: "17px" }}
-          >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, quo!
-            Deserunt it is still useful to understand its functionality
-          </text>
-          <div className="container-fluid d-flex flex-column align-items-center mt-4">
-            <div className="your-style row d-flex flex-wrap justify-content-center align-items-center bg-light mt-4 rounded">
-              <div className="your-print col-lg-3 col-md-6 col-12 d-flex flex-column align-items-center mb-3 ">
-                <div className="your-tshirt">
-                  <img
-                    src={tshirt}
-                    alt="tshirt"
-                    style={{
-                      width: "111px",
-                      height: "111px",
-                      borderRadius: "50%",
-                      border: "2px solid black",
-                    }}
-                  ></img>
+                  <div className="w-80">
+                  <h1 className="heading-textone">
+                    How we
+                    <span style={{ color: "blue" }}> work </span>
+                  </h1>
+                 
+        
+                  <text className="howweworktext"
+                    
+                  >
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, quo!
+                    Deserunt it is still useful to understand its functionality
+                  </text>
+                 
+                  <div className="container-fluid d-flex flex-column align-items-center mt-4">
+                    <div className="your-style row d-flex flex-wrap justify-content-center align-items-center bg-light mt-4 rounded">
+                      <div className="your-print col-lg-3 col-md-6 col-12 d-flex flex-column align-items-center mb-3 ">
+                        <div className="your-tshirt">
+                          <img
+                            src={tshirt}
+                            alt="tshirt"
+                            style={{
+                              width: "111px",
+                              height: "111px",
+                              borderRadius: "50%",
+                              border: "2px solid black",
+                            }}
+                          ></img>
+                        </div>
+                        <h3 className="yourstyle-box  ">Your Style</h3>
+                      </div>
+                      <div className="your-print col-lg-3 col-md-6 col-12 d-flex flex-column align-items-center mb-3 your-printtwo">
+                        <div className="your-tshirt">
+                          <img
+                            src={yourprintone}
+                            alt="tshirt"
+                            style={{
+                              width: "111px",
+                              height: "111px",
+                              borderRadius: "50%",
+                              border: "2px solid black",
+                            }}
+                          ></img>
+                        </div>
+                        <h3
+                          className="yourstyle-box"
+                          style={{ backgroundColor: "#ffd401", color: "blue" }}
+                        >
+                          Your Print
+                        </h3>
+                      </div>
+                      <div className="your-print col-lg-3 col-md-6 col-12 d-flex flex-column align-items-center mb-3 your-printone">
+                        <div className="your-tshirt">
+                          <img
+                            src={quantity}
+                            alt="tshirt"
+                            style={{
+                              width: "111px",
+                              height: "111px",
+                              borderRadius: "50%",
+                              border: "2px solid black",
+                            }}
+                          ></img>
+                        </div>
+                        <h3
+                          className="yourstyle-box"
+                          style={{ backgroundColor: "#ffd401", color: "blue" }}
+                        >
+                          Quantity
+                        </h3>
+                      </div>
+                      <div className="your-print col-lg-3 col-md-6 col-12 d-flex flex-column align-items-center mb-3 your-printone">
+                        <div className="your-tshirt">
+                          <img
+                            src={payment}
+                            alt="tshirt"
+                            style={{
+                              width: "111px",
+                              height: "111px",
+                              borderRadius: "50%",
+                              border: "2px solid black",
+                            }}
+                          ></img>
+                        </div>
+                        <h3
+                          className="yourstyle-box"
+                          style={{ backgroundColor: "#ffd401", color: "blue" }}
+                        >
+                          Payment
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="yourstyle-box">Your Style</h3>
               </div>
-              <div className="your-print col-lg-3 col-md-6 col-12 d-flex flex-column align-items-center mb-3 your-printtwo">
-                <div className="your-tshirt">
-                  <img
-                    src={yourprintone}
-                    alt="tshirt"
-                    style={{
-                      width: "111px",
-                      height: "111px",
-                      borderRadius: "50%",
-                      border: "2px solid black",
-                    }}
-                  ></img>
-                </div>
-                <h3
-                  className="yourstyle-box"
-                  style={{ backgroundColor: "#ffd401", color: "blue" }}
-                >
-                  Your Print
-                </h3>
-              </div>
-              <div className="your-print col-lg-3 col-md-6 col-12 d-flex flex-column align-items-center mb-3 your-printone">
-                <div className="your-tshirt">
-                  <img
-                    src={quantity}
-                    alt="tshirt"
-                    style={{
-                      width: "111px",
-                      height: "111px",
-                      borderRadius: "50%",
-                      border: "2px solid black",
-                    }}
-                  ></img>
-                </div>
-                <h3
-                  className="yourstyle-box"
-                  style={{ backgroundColor: "#ffd401", color: "blue" }}
-                >
-                  Quantity
-                </h3>
-              </div>
-              <div className="your-print col-lg-3 col-md-6 col-12 d-flex flex-column align-items-center mb-3 your-printone">
-                <div className="your-tshirt">
-                  <img
-                    src={payment}
-                    alt="tshirt"
-                    style={{
-                      width: "111px",
-                      height: "111px",
-                      borderRadius: "50%",
-                      border: "2px solid black",
-                    }}
-                  ></img>
-                </div>
-                <h3
-                  className="yourstyle-box"
-                  style={{ backgroundColor: "#ffd401", color: "blue" }}
-                >
-                  Payment
-                </h3>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
       <p
         className="wegottext"
@@ -568,7 +586,7 @@ const Aboutcontent = () => {
                 {/* Submit Button */}
                 <div className="text-center">
                   <button
-                    className="btn btn-light rounded-pill py-2 px-4"
+                    className="btn btn-light rounded-pill py-2 px-5 submit-btn"
                     style={{ backgroundColor: "#034e9f" }}
                   >
                     {" "}
@@ -642,7 +660,7 @@ const Aboutcontent = () => {
 
       <div className="enjoyup p-5 " style={{ marginTop: "100px" }}>
         <div className="row ">
-          <div className="col-12 col-md-12 ms-7 enjoyup-text  ">
+          <div className="col-12 col-md-12 ms-7 enjoyup-text  " style={{paddingBottom:"6%",paddingTop:"6%"}}>
             <h2
               className="heading-textenjoyup"
               style={{ textAlign: "left", marginTop: "0" }}
@@ -659,12 +677,12 @@ const Aboutcontent = () => {
               T-shirts that keep you moving
               <div className="row d-flex mt-4                   gap-2 gap-md-3">
                 <div className="col-auto ">
-                  <button className=" btn rounded-pill shopnow-btn responsive-btn">
+                  <button className=" btn rounded-pill shopnow-btn responsive-btn py-2 px-4">
                     SHOP NOW
                   </button>
                 </div>
                 <div className="col-auto">
-                  <button className="btn rounded-pill contactus-btn responsive-btn ">
+                  <button className="btn rounded-pill contactus-btn responsive-btn py-2 px-4 ">
                     CONTACT US
                   </button>
                 </div>
@@ -709,6 +727,13 @@ const Aboutcontent = () => {
         </div>
       </div>
       <div className="footerone container-fluid py-5">
+              <div className="row align-items-center justify-content-center">
+                <div className=" col-5 d-flex flex-column align-items-center justify-content-center text-white">
+                  <img className="img img-fluid footer-img" alt="logo" src={bluef} ></img>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores beatae itaque veniam doloremque.</p>
+                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero ipsa architecto nulla reprehenderit odio aspernatur aperiam esse nam qui expedita.</p>
+                </div>
+              </div>
               <div className="footerdetails row justify-content-center text-white">
                 <div className="getintouch col-md-3 mb-4">
                   <h4 style={{ color: "white" }}>Get in Touch</h4>
@@ -853,7 +878,7 @@ const Aboutcontent = () => {
                 </div>
               </div>
             </div>
-      <div className="footer2">
+      <div className="footer2 py-3">
         <p style={{ color: "#000000", fontSize: "16px", margin: "0px" }}>
           © All Copyright 2025 by Website Design and Build -
           <span style={{ fontWeight: "bold", color: "#000000" }}>

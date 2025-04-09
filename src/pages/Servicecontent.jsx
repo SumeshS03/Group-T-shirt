@@ -11,6 +11,8 @@ import secpayment from "../images/Secure-payment1.png";
 import cussizestyle from "../images/Custom-SIze-STyle.png";
 import menstshirt from "../images/menst-shirt.jpg";
 import { FaRegArrowAltCircleRight } from "react-icons/fa";
+import bluef from "../images/blue-f.png"
+import serviceimage from "../images/serviceimage.png"
 
 import applepay from "../images/apple.jpg";
 import gpay from "../images/gpay1.jpg";
@@ -68,15 +70,20 @@ const items = [
 
 const Servicecontent = () => {
   const [currentPage, setCurrentPage] = useState(0);
-  const [itemsPerPage, setItemsPerPage] = useState(4);// Number of items to show at a time
+  const [itemsPerPage, setItemsPerPage] = useState(5);// Number of items to show at a time
 
 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 770) {
         setItemsPerPage(1); // Small screen (below 768px) - Show 2 items
-      } else {
-        setItemsPerPage(4); // Large screen - Show 5 items
+      }
+      else if(window.innerWidth < 1025){
+        setItemsPerPage(4);
+      }
+      
+       else {
+        setItemsPerPage(5); // Large screen - Show 5 items
       }
     };
 
@@ -116,7 +123,7 @@ const Servicecontent = () => {
         >
           Home - Service
         </p>
-        <img src={aboutus} className="imagetop"></img>
+        <img src={serviceimage} className="imagetopthree"></img>
       </div>
       <p style={{ marginBottom: "0", color: "#949494", marginTop: "70px" }}>
         ALL THE FEATURES YOU NEED{" "}
@@ -134,8 +141,10 @@ const Servicecontent = () => {
 
       <div className="quality-box">
               <div className="servicesbox">
-                <div className="row g-2 d-flex flex-row ">
-                  <div className="box col-lg-3 col-12">
+
+              
+                <div className=" custom-row row justify-content-between gx-0 gy-4">
+                  <div className="box col-lg-3 col-12  ">
                     <div className="box-innersize">
                       <img
                         src={qualityshirt}
@@ -150,7 +159,7 @@ const Servicecontent = () => {
                       </p>
                     </div>
                   </div>
-                  <div className="box col-lg-3 col-12">
+                  <div className="box col-lg-3 col-12  ">
                     <div className="box-innersize">
                       <img
                         src={outstandquality}
@@ -165,7 +174,7 @@ const Servicecontent = () => {
                       </p>
                     </div>
                   </div>
-                  <div className="box col-lg-3 col-12">
+                  <div className="box col-lg-3 col-12 ">
                     <div className="box-innersize">
                       <img
                         src={secpayment}
@@ -197,6 +206,7 @@ const Servicecontent = () => {
                   </div>
                 </div>
                 
+                
               </div>
               
               
@@ -214,7 +224,7 @@ const Servicecontent = () => {
                   made easy.
                 </span>
               </h2>
-              <button className="btn rounded-pill browse-btn lg-mt-3 mt-md-0">
+              <button className="btn rounded-pill browse-btn lg-mt-3 mt-md-0 px-3">
                 Browse all
               </button>
             </div>
@@ -230,7 +240,7 @@ const Servicecontent = () => {
             </div>
           </div>
         </div>
-        <div className="row   digitalscanpagenation justify-content-center mt-4">
+        <div className="row w-100  digitalscanpagenation justify-content-center mt-4">
           <div className="col-12 text-center d-flex profilesimagepad  ">
             {/* Left Arrow */}
             <button
@@ -280,14 +290,14 @@ const Servicecontent = () => {
           </div>
         </div>
       </div>
-      <div className="container">
-      <div className="verify-photo row ">
-        <div className="col-lg-6 text-center">
-              <div className="verify-photo-box ">
+      <div className="container  graphic-design">
+      <div className=" row verifyimageboxone ">
+        <div className="col-lg-6 text-center position-relative">
+        <div className="verify-photo-box  ">
                 <img
                   src={require("../images/Girl-image.png")}
                   alt="logo"
-                  className="img-fluid"
+                  className=" verify-photo-img position-absolute"
                 />
               </div>
             </div>
@@ -445,6 +455,7 @@ const Servicecontent = () => {
         </div>
       </div>
       </div>
+      <div className="mt-5 mb-5">
       <h2
         className="mt-5"
         style={{ margin: "0px", fontFamily: "bevan", color: "#eeae0c" }}
@@ -459,8 +470,9 @@ const Servicecontent = () => {
       <p className="mb-5">
         Lorem ipsum dhitecto dolor nihilliqram minima dolorem.
       </p>
+      </div>
 
-      <div className=" bg-white my-2 d-flex justify-content-center align-items-center">
+      <div className=" bg-white  d-flex justify-content-center align-items-center">
         
         <div className="row justify-content-center custom-artwork mt-5 rounded-fill ">
           <div className="col-12 rounded-fill custom-artworkone d-flex flex-column justify-content-center align-items-center position-relative ">
@@ -534,7 +546,7 @@ const Servicecontent = () => {
       </div>
       <div className="enjoyup p-5 ">
               <div className="row">
-                <div className="col-12 enjoyup-text " style={{ paddingBottom:"6%"}}>
+                <div className="col-12 enjoyup-text " style={{ paddingBottom:"6%",paddingTop:"6%"}}>
                   <h2
                     className="heading-text"
                     style={{ textAlign: "left", marginTop: "0" }}
@@ -553,7 +565,7 @@ const Servicecontent = () => {
                   <div className="row d-flex mt-4 ">
                     <div className="col" style={{ textAlign: "left" }}>
                       <button
-                        className=" btn rounded-pill shopnow-btn px-4 py-2 "
+                        className=" btn rounded-pill shopnow-btn px-4 py-2 get-started-today "
                         style={{ textAlign: "none" }}
                       >
                         GET STARTED TODAY
@@ -564,10 +576,10 @@ const Servicecontent = () => {
               </div>
             </div>
 
-      <div className="toolsbox container-fluid mt-3">
+      <div className="toolsbox container-fluid mt-3 ">
         <div className="row w-100">
-        <div className="easycustomize col-lg-3 col-6 ">
-          <img src={glow} alt="profile" style={{width:"45px",marginBottom:"20px"}}></img>
+        <div className="easycustomize col-lg-3 col-12 ">
+          <img src={glow} alt="profile" className="toolsicons" style={{width:"45px"}}></img>
           <div className="d-flex flex-column text-start item-center">
             <p className="easytext"
             >
@@ -578,8 +590,8 @@ const Servicecontent = () => {
           </div>
         </div>
        
-        <div className="easycustomize col-lg-3 col-6 ">
-        <img src={leaf} alt="profile" style={{width:"45px",marginBottom:"20px"}}></img>
+        <div className="easycustomize col-lg-3 col-12 ">
+        <img src={leaf} alt="profile" className="toolsicons" style={{width:"45px"}}></img>
           <div className="d-flex flex-column text-start">
             <p
               className="easytext"
@@ -592,8 +604,8 @@ const Servicecontent = () => {
             </p>
           </div>
         </div>
-        <div className="easycustomize col-lg-3 col-6 ">
-        <img src={fastshipping} alt="profile" style={{width:"45px",marginBottom:"20px"}}></img>
+        <div className="easycustomize col-lg-3 col-12 ">
+        <img src={fastshipping} alt="profile" className="toolsicons" style={{width:"45px"}}></img>
           <div className="d-flex flex-column text-start">
             <p
               className="easytext"
@@ -604,8 +616,8 @@ const Servicecontent = () => {
             <p className="easytexttwo">shipping</p>
           </div>
         </div>
-        <div className="easycustomize col-lg-3 col-6 ">
-        <img src={customerhappy} alt="profile" style={{width:"45px",marginBottom:"20px"}}></img>
+        <div className="easycustomize col-lg-3 col-12 ">
+        <img src={customerhappy} alt="profile" className="toolsicons" style={{width:"45px"}}></img>
           <div className="d-flex flex-column text-start">
             <p
               className="easytext"
@@ -636,7 +648,7 @@ const Servicecontent = () => {
               </div>
               <div className="col-lg-4">
                 <button
-                  className="bt  mt-5 p-2 rounded-2 "
+                  className="bt  mt-5 p-2 rounded-2 contact-now-btn "
                   style={{
                     marginRight: "110px",
                     fontWeight: "500",
@@ -682,151 +694,158 @@ const Servicecontent = () => {
         </div>
       </div>
       <div className="footerone container-fluid py-5">
-              <div className="footerdetails row justify-content-center text-white">
-                <div className="getintouch col-md-3 mb-4">
-                  <h4 style={{ color: "white" }}>Get in Touch</h4>
-                  <div className="phonedetail d-flex align-items-center mb-3">
-                    <div style={{ color: "green", fontSize: "24px" }}>
-                      <FiPhoneCall className="text-success fs-4" />
+                    <div className="row align-items-center justify-content-center">
+                      <div className=" col-5 d-flex flex-column align-items-center justify-content-center text-white">
+                        <img className="img img-fluid footer-img" alt="logo" src={bluef} ></img>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores beatae itaque veniam doloremque.</p>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero ipsa architecto nulla reprehenderit odio aspernatur aperiam esse nam qui expedita.</p>
+                      </div>
                     </div>
-                    <div
-                      className="ms-3"
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "flex-start",
-                        marginLeft: "10px",
-                      }}
-                    >
-                      <span
-                        className="d-block fw-bold"
-                        style={{ color: "white", fontSize: "15px" }}
+                    <div className="footerdetails row justify-content-center text-white">
+                      <div className="getintouch col-md-3 mb-4">
+                        <h4 style={{ color: "white" }}>Get in Touch</h4>
+                        <div className="phonedetail d-flex align-items-center mb-3">
+                          <div style={{ color: "green", fontSize: "24px" }}>
+                            <FiPhoneCall className="text-success fs-4" />
+                          </div>
+                          <div
+                            className="ms-3"
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              alignItems: "flex-start",
+                              marginLeft: "10px",
+                            }}
+                          >
+                            <span
+                              className="d-block fw-bold"
+                              style={{ color: "white", fontSize: "15px" }}
+                            >
+                              Hotline
+                            </span>
+                            <span  style={{ color: "#8a8a8a" }}>
+                              19008188
+                            </span>
+                          </div>
+                        </div>
+                        <div className="phonedetail d-flex align-items-center mb-3">
+                          <div style={{ color: "green", fontSize: "24px" }}>
+                            <HiOutlineMailOpen />
+                          </div>
+                          <div
+                            className="ms-3"
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              alignItems: "flex-start",
+                              marginLeft: "10px",
+                            }}
+                          >
+                            <span style={{ color: "white", fontSize: "15px" }}>EMAIL</span>
+                            <span style={{ color: "#8a8a8a" }}>hello@teespace.io</span>
+                          </div>
+                        </div>
+                        <div className="phonedetail">
+                          <div style={{ color: "green", fontSize: "24px" }}>
+                            <IoLocationOutline />
+                          </div>
+                          <div className="address-fix d-flex align-items-start">
+                            <div className="ms-3 d-flex flex-column text-start">
+                              <span style={{ color: "white", fontSize: "15px" }}>
+                                ADDRESS
+                              </span>
+                              <span style={{ color: "#8a8a8a" }}>
+                                3245 Abbot Kinney BLVD-PH
+                              </span>
+                              <span style={{ color: "#8a8a8a" }}>Venice,CA124</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="getintouch col-md-2 mb-4 text-start">
+                        <h4 style={{ color: "white", marginBottom: "7px" }}>Company</h4>
+                        <p style={{ color: "#8a8a8a", marginBottom: "7px" }}>About Us</p>
+                        <p style={{ color: "#8a8a8a", marginBottom: "7px" }}>Our blog</p>
+                        <p style={{ color: "#8a8a8a", marginBottom: "7px" }}>
+                          Start a Return
+                        </p>
+                        <p style={{ color: "#8a8a8a", marginBottom: "7px" }}>Contact Us</p>
+                        <p style={{ color: "#8a8a8a", marginBottom: "7px" }}>
+                          Shipping FAQs
+                        </p>
+                      </div>
+                      <div className="getintouch col-md-2 mb-4 text-start">
+                        <h4 style={{ color: "white" }}>Useful Links</h4>
+                        <p style={{ color: "#8a8a8a", marginBottom: "7px" }}>My Account</p>
+                        <p style={{ color: "#8a8a8a", marginBottom: "7px" }}>Shipping</p>
+                        <p style={{ color: "#8a8a8a", marginBottom: "7px" }}>
+                          Contact & Support
+                        </p>
+                        <p style={{ color: "#8a8a8a", marginBottom: "7px" }}>
+                          All Products
+                        </p>
+                      </div>
+                      <div className="getintouch col-md-3 mb-4 text-start">
+                        <h4 style={{ color: "white" }}>Newsletter</h4>
+                        <p style={{ color: "#8a8a8a", marginBottom: "0px" }}>
+                          Follow our newsletter to stay updated about us
+                        </p>
+                        <div className="emailbox">
+                          Your email address
+                          <span>
+                            <FaArrowRight />
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="footersocial row justify-content-between align-items-center  mt-5 px-4">
+                      <div
+                        className="footersocial1 col-md-6 d-flex align-items-center gap-3"
+                        style={{ display: "flex", gap: "20px", color: "#8a8a8a" }}
                       >
-                        Hotline
-                      </span>
-                      <span  style={{ color: "#8a8a8a" }}>
-                        19008188
-                      </span>
-                    </div>
-                  </div>
-                  <div className="phonedetail d-flex align-items-center mb-3">
-                    <div style={{ color: "green", fontSize: "24px" }}>
-                      <HiOutlineMailOpen />
-                    </div>
-                    <div
-                      className="ms-3"
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "flex-start",
-                        marginLeft: "10px",
-                      }}
-                    >
-                      <span style={{ color: "white", fontSize: "15px" }}>EMAIL</span>
-                      <span style={{ color: "#8a8a8a" }}>hello@teespace.io</span>
-                    </div>
-                  </div>
-                  <div className="phonedetail">
-                    <div style={{ color: "green", fontSize: "24px" }}>
-                      <IoLocationOutline />
-                    </div>
-                    <div className="address-fix d-flex align-items-start">
-                      <div className="ms-3 d-flex flex-column text-start">
-                        <span style={{ color: "white", fontSize: "15px" }}>
-                          ADDRESS
+                        <span className="followuson" style={{ marginTop: "6px" }}>Follow us on </span>
+                        <span>
+                          <FaTwitter style={{ color: "#8a8a8a", marginTop: "6px" }} />
                         </span>
-                        <span style={{ color: "#8a8a8a" }}>
-                          3245 Abbot Kinney BLVD-PH
+                        <span>
+                          <FaFacebookF style={{ color: "#8a8a8a", marginTop: "6px" }} />
                         </span>
-                        <span style={{ color: "#8a8a8a" }}>Venice,CA124</span>
+                        <span>
+                          <FaInstagram style={{ color: "#8a8a8a", marginTop: "6px" }} />
+                        </span>
+                        <span>
+                          <FiYoutube style={{ color: "#8a8a8a", marginTop: "6px" }} />
+                        </span>
+                      </div>
+            
+                      <div className="footersocial1 col-md-6 d-flex justify-content-start gap-2 ">
+                        <img src={amex} style={{ width: "33px", height: "37px" }}></img>
+                        <img
+                          src={applepay}
+                          style={{
+                            width: "33px",
+                            height: "20px",
+                            backgroundColor: "white",
+                          }}
+                        ></img>
+                        <img
+                          src={gpay}
+                          style={{
+                            width: "33px",
+                            height: "20px",
+                            backgroundColor: "white",
+                          }}
+                        ></img>
+                        <img src={visa} style={{ width: "33px", height: "20px" }}></img>
+                        <img
+                          src={mastercard1}
+                          style={{ width: "33px", height: "20px" }}
+                        ></img>
+                        <img src={phonepay} style={{ width: "33px", height: "20px" }}></img>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className="getintouch col-md-2 mb-4 text-start">
-                  <h4 style={{ color: "white", marginBottom: "7px" }}>Company</h4>
-                  <p style={{ color: "#8a8a8a", marginBottom: "7px" }}>About Us</p>
-                  <p style={{ color: "#8a8a8a", marginBottom: "7px" }}>Our blog</p>
-                  <p style={{ color: "#8a8a8a", marginBottom: "7px" }}>
-                    Start a Return
-                  </p>
-                  <p style={{ color: "#8a8a8a", marginBottom: "7px" }}>Contact Us</p>
-                  <p style={{ color: "#8a8a8a", marginBottom: "7px" }}>
-                    Shipping FAQs
-                  </p>
-                </div>
-                <div className="getintouch col-md-2 mb-4 text-start">
-                  <h4 style={{ color: "white" }}>Useful Links</h4>
-                  <p style={{ color: "#8a8a8a", marginBottom: "7px" }}>My Account</p>
-                  <p style={{ color: "#8a8a8a", marginBottom: "7px" }}>Shipping</p>
-                  <p style={{ color: "#8a8a8a", marginBottom: "7px" }}>
-                    Contact & Support
-                  </p>
-                  <p style={{ color: "#8a8a8a", marginBottom: "7px" }}>
-                    All Products
-                  </p>
-                </div>
-                <div className="getintouch col-md-3 mb-4 text-start">
-                  <h4 style={{ color: "white" }}>Newsletter</h4>
-                  <p style={{ color: "#8a8a8a", marginBottom: "0px" }}>
-                    Follow our newsletter to stay updated about us
-                  </p>
-                  <div className="emailbox">
-                    Your email address
-                    <span>
-                      <FaArrowRight />
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className="footersocial row justify-content-between align-items-center  mt-5 px-4">
-                <div
-                  className="footersocial1 col-md-6 d-flex align-items-center gap-3"
-                  style={{ display: "flex", gap: "20px", color: "#8a8a8a" }}
-                >
-                  <span className="followuson" style={{ marginTop: "6px" }}>Follow us on </span>
-                  <span>
-                    <FaTwitter style={{ color: "#8a8a8a", marginTop: "6px" }} />
-                  </span>
-                  <span>
-                    <FaFacebookF style={{ color: "#8a8a8a", marginTop: "6px" }} />
-                  </span>
-                  <span>
-                    <FaInstagram style={{ color: "#8a8a8a", marginTop: "6px" }} />
-                  </span>
-                  <span>
-                    <FiYoutube style={{ color: "#8a8a8a", marginTop: "6px" }} />
-                  </span>
-                </div>
-      
-                <div className="footersocial1 col-md-6 d-flex justify-content-start gap-2 ">
-                  <img src={amex} style={{ width: "33px", height: "37px" }}></img>
-                  <img
-                    src={applepay}
-                    style={{
-                      width: "33px",
-                      height: "20px",
-                      backgroundColor: "white",
-                    }}
-                  ></img>
-                  <img
-                    src={gpay}
-                    style={{
-                      width: "33px",
-                      height: "20px",
-                      backgroundColor: "white",
-                    }}
-                  ></img>
-                  <img src={visa} style={{ width: "33px", height: "20px" }}></img>
-                  <img
-                    src={mastercard1}
-                    style={{ width: "33px", height: "20px" }}
-                  ></img>
-                  <img src={phonepay} style={{ width: "33px", height: "20px" }}></img>
-                </div>
-              </div>
-            </div>
-      <div className="footer2">
+      <div className="footer2 py-2">
         <p style={{ color: "#000000", fontSize: "16px", margin: "0px" }}>
           © All Copyright 2025 by Website Design and Build -
           <span style={{ fontWeight: "bold", color: "#000000" }}>
