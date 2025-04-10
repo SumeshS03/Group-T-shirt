@@ -147,7 +147,7 @@
     
     height: 35px;
     background-color: #ffd401 !important;
-    border: 1px solid #d3d3d3;
+   border: none;
    
     
     font-weight: bold; 
@@ -157,6 +157,7 @@
   transition: all 0.3s ease-in-out;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   color: blue;
+
     
 }
 .start-btd-1:hover{

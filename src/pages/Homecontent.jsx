@@ -362,7 +362,7 @@ const Homecontent = () => {
               <h1 className="text-white fw-bold m-0 shopnowpercentage">first order</h1>
               <p className="text-white m-0 shopnowparatext">Free and easy way to bring</p>
               <p className="text-white m-0 shopnowparatext">your ideas to life</p>
-              <button className="start-btd-1 btn  mt-4 mb-2 ">
+              <button className="start-btd-1  mt-4 mb-2 ">
                 SHOP NOW
               </button>
             </div>
@@ -382,7 +382,7 @@ const Homecontent = () => {
               <h1 className="text-white fw-bold m-0 shopnowpercentage">unique style</h1>
               <p className="text-white m-0 shopnowparatext">Free and easy way to bring</p>
               <p className="text-white m-0 shopnowparatext">your ideas to life</p>
-              <button className="start-btd-1 btn btn-warning mt-4 mb-2">
+              <button className="start-btd-1  mt-4 mb-2">
                 EXPLORE
               </button>
             </div>

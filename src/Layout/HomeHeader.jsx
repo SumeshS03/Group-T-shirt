@@ -14,6 +14,12 @@ import bluef from "../images/blue-f.png"
 import { FaPhoneVolume } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { FaFacebookF } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
+import { IoLogoWhatsapp } from "react-icons/io";
+import { FaWhatsapp } from "react-icons/fa";
+import { FaYoutube } from "react-icons/fa";
 
 
 
@@ -63,22 +69,22 @@ const HomeHeader = () => {
               </ul> 
               </div>
               <div  className="header-insta-icon" >
-              <div className='icon-diver'>
+              <div className='icon-divider'>
               <div className='insta-box'>
-              <FaSquareInstagram style={{ color: "white",width:"100%",height:"100%" }} />
+              <FaInstagram className='insta-icons'  />
 
               </div>
               <div className='insta-box'>
-              <FaFacebookSquare  style={{ color: "white",width:"100%",height:"100%"}}/>
+              <FaFacebookF className='facebook-icon'  />
               </div>
               <div className='insta-box'>
-              <FaTwitterSquare style={{ color: "white",width:"100%",height:"100%" }}/>
+              <FaTwitter className='twitter-icon' />
               </div>
               <div className='insta-box'>
-              <FaWhatsappSquare style={{ color: "white",width:"100%",height:"100%" }}/>
+              <FaWhatsapp className='whatsapp-icon' />
               </div>
               <div className='insta-box'>
-              <FaYoutubeSquare style={{ color: "white",width:"100%",height:"100%" }}/>
+              <FaYoutube className='youtube-icon' />
               </div>
               </div>
               </div>
@@ -178,21 +184,21 @@ const HomeHeader = () => {
         <Link to="/service" onClick={toggleSidebar} className="no-underline-2"  style={{ color: activeLink === "service" ? "#cf9601" : "blue" }}>SERVICE</Link>
         <Link to="/contactus" onClick={toggleSidebar} className="no-underline-2"  style={{ color: activeLink === "contactus" ? "#cf9601" : "blue" }}>CONTACT US</Link>
         <div className='icon-diver'>
-              <div className='insta-box'>
-              <FaSquareInstagram style={{ color: "white",width:"100%",height:"100%" }} />
+        <div className='insta-box'>
+              <FaInstagram className='insta-icons'  />
 
               </div>
               <div className='insta-box'>
-              <FaFacebookSquare  style={{ color: "white",width:"100%",height:"100%"}}/>
+              <FaFacebookF className='facebook-icon'  />
               </div>
               <div className='insta-box'>
-              <FaTwitterSquare style={{ color: "white",width:"100%",height:"100%" }}/>
+              <FaTwitter className='twitter-icon' />
               </div>
               <div className='insta-box'>
-              <FaWhatsappSquare style={{ color: "white",width:"100%",height:"100%" }}/>
+              <FaWhatsapp className='whatsapp-icon' />
               </div>
               <div className='insta-box'>
-              <FaYoutubeSquare style={{ color: "white",width:"100%",height:"100%" }}/>
+              <FaYoutube className='youtube-icon' />
               </div>
               </div>
       </div>

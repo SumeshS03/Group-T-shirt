@@ -41,18 +41,79 @@
 .address{
     display: flex;
     width: 100%;
-    margin-top: 30px;
+    margin-top: 28px;
     gap: 10px;
     /* justify-content: space-between; */
 }
 .insta-box{
     width: 20px;
     height: 20px;
-    background-color: #a3a3a3 ;
+    /* background-color: #a3a3a3 ; */
     /* margin-top: 30px; */
     border-radius: 5px;
 
 }
+.insta-icons{
+    width: 100%;
+    height: 100%;
+    background-color: #a3a3a3;
+    color: white;
+    transition: all 0.3s ease;
+    border-radius: 10%;
+
+}
+.insta-box:hover .insta-icons {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    /* -webkit-background-clip: text; */
+    -webkit-text-fill-color: transparent;
+  }
+
+.facebook-icon{
+    width: 100%;
+    height: 100%;
+    background-color: #a3a3a3;
+    color: white;
+    transition: all 0.3s ease;
+    border-radius: 10%;
+}
+.insta-box:hover .facebook-icon {
+    color: #1877F2;
+  }
+.twitter-icon{
+    width: 100%;
+    height: 100%;
+    background-color: #a3a3a3;
+    color: white;
+    transition: all 0.3s ease;
+    border-radius: 10%;
+}
+.insta-box:hover .twitter-icon {
+    color: #1DA1F2; /* Twitter blue on hover */
+  }
+.whatsapp-icon{
+    width: 100%;
+    height: 100%;
+    background-color: #a3a3a3;
+    color: white;
+    transition: all 0.3s ease;
+    border-radius: 10%;
+}
+.insta-box:hover .whatsapp-icon {
+    color: green; /* Twitter blue on hover */
+  }
+  .youtube-icon{
+    width: 100%;
+    height: 100%;
+    background-color: #a3a3a3;
+    color: white;
+    transition: all 0.3s ease;
+    border-radius: 10%;
+  }
+  .insta-box:hover .youtube-icon{
+    color: red;
+
+  }
+
 .home-text{
     display: flex;
     margin-top: 11PX;
@@ -127,7 +188,7 @@
     display: flex;
     justify-content: space-between;
 } */
-.icon-diver{
+.icon-divider{
     display: flex;
     gap: 10px;
     /* margin-right: 110px; */

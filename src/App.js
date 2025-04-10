@@ -9,6 +9,8 @@ import Servicecontent from './pages/Servicecontent';
 import Contactus from './pages/Contactus';
 import Shopcontent from './pages/Shopcontent';
 
+import Shopcontentproduct from './pages/Shopcontentproduct'
+
 
 
 function App() {
@@ -23,6 +25,7 @@ function App() {
         <Route path="/service" element={<Servicecontent />} />
         <Route path="/contactus" element={<Contactus />}/>
         <Route path="/shop" element={<Shopcontent/>}></Route>
+        <Route path="/shop/product" element={<Shopcontentproduct/>}></Route>
       </Routes>
     </Router>
     </div>
