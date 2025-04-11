@@ -1,6 +1,6 @@
 .choose-category{
     padding: 0 9% 0 9%;
-    position: relative;
+    /* position: relative; */
     background-color: #e9e9e9;
     width: 100%;
    
@@ -33,7 +33,7 @@
     /* position: absolute; */
     /* bottom: -32% !important; */
   left: 0;
-  border-radius: 20px;
+  border-radius: 35px;
   }
 
   .t-shirt-image{
@@ -57,14 +57,13 @@
 .tshirtstyles{
     
     border: 1px solid blue;
-    border-radius: 20px;
+    border-radius: 40px;
     width: 80%;
 }
-.t-shirtstyle-image{
-
-    width: 80px;
-    margin-bottom: 5px;
-    transition: filter 0.3s ease;
+.t-shirtstyle-image {
+  width: 62%;
+  margin-bottom: 5px;
+  transition: filter 0.3s ease;
 }
 .tshirtstylebox{
     height: 180px;
@@ -82,12 +81,245 @@
     background-color: #0066cb;
     
 }
-.box:hover .t-shirtstyle-image{
+.tshirtstylebox:hover .t-shirtstyle-image {
+  filter: brightness(0) saturate(100%) invert(84%) sepia(58%) saturate(2747%) hue-rotate(1deg) brightness(103%) contrast(99%);
+}
+.tshirtstylebox:hover .bortexthead{
     color: #f2b201;
 }
-.box:hover .t-shirtstyle-image{
-    color: #f2b201;
+.verityproduct-box{
+  width: 26%;
+  height: 219px;
+  background-color: #f5f3f4;
+  border: none;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
+.verityproduct-box:hover .bortexthead{
+  color: #f2b201;
+}
+.verityproduct-box:hover .t-shirt-image {
+  filter: brightness(0) saturate(100%) invert(84%) sepia(58%) saturate(2747%) hue-rotate(1deg) brightness(103%) contrast(99%);
+}
+.verityproduct-box:hover{
+  background-color: #0066cb;
+}
+.tshirtstylebox{
+  
+  background-color: #f5f3f4;
+  border: none;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.uplode-text{
+  font-size: 20px;
+}
+.logoaddedtshirt{
+  background-color: white;
+  border: none;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  display: flex;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+  align-items: center;
+  width: 48%;
+}
+
+.t-shirtstyle-logo {
+  width: 100%;
+ 
+  
+}
+.box-inner{
+  padding: 2px;
+}
+.quality-type{
+  width: 80%;
+  padding-right: 13%;
+    padding-left: 15%;
+    background-color: #e9e9e9;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    border-radius: 20px;
+    position: absolute;
+    top: -30%; 
+    z-index: 10;
+}
+.quality-btn {
+  width: 30%;
+  background-color: white;
+  color: black;
+  border: 1px solid #ccc;
+  transition: all 0.3s ease;
+}
+
+.quality-btn.active {
+  background-color: blue;
+  color: white;
+  border-color: blue;
+}
+.quality-types-box{
+  gap: 10%;
+ /* Move halfway above the container */
+}
+.styling-box{
+  margin-top: 8%;
+  background-color: white;
+  border: 1px solid;
+  z-index: 10;
+  z-index: 10;
+  position: relative;
+  
+
+}
+.choose-colour-box{
+  border-right: 1px dotted black;
+}
+.colour-choose-box{
+  width: 74%;
+  border: 1px solid black;
+  padding: 2%;
+  border-radius: 30px;
+  gap: 16%;
+}
+.color-circle {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  cursor: pointer;
+ 
+}
+.color-select-icon{
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 25px;
+  height: 25px; /* subtle soft shadow */
+  border-radius: 50%; /* if you want it round */
+  background-color: white; /* optional: to make shadow visible */
+  padding: 5px; /* optional spacing inside */
+  transition: box-shadow 0.3s ease; /* smooth hover effect */
+
+}
+.color-select-icon:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* slightly stronger on hover */
+}
+.pieces-box{
+  width: 74%;
+  border: 1px solid black;
+  border-radius: 30px;
+  gap: 30%;
+  padding: 2%;
+  padding-left: 10%;
+}
+.print-btn,
+.emposed-btn {
+  width: 30%;
+  padding: 2%;
+  border-radius: 30px;
+  border: 1px solid black;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.3s;
+}
+.print-btn.active,
+.emposed-btn.active {
+  background-color: blue;
+  color: white;
+  border-color: blue;
+}
+.quality-type-select{
+  gap: 8%;
+}
+.size-select-box{
+  width: 48%;
+  border: 1px solid black;
+  border-radius: 30px;
+  gap: 30%;
+  padding: 2%;
+  padding-left: 10%;
+}
+.tshirtchangetext{
+  font-size: 20px;
+  color:#a2a2a2;
+}
+.design-change-box{
+  width: 96%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd; /* light gray border */
+  border-radius: 8px;
+}
+.sent-text-btn{
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 5%;
+  padding-right: 5%;
+  border-radius: 20px;
+  background-color: #e9e9e9;
+  color: #2b2f30;
+  width: 20%;
+}
+.sent-text-btn.active {
+  background-color: blue;
+  color: white;
+}
+.price-calculate{
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 3%;
+  padding-right: 3%;
+  background-color: #e9e9e9;
+  margin-bottom: 25%;
+
+}
+.amount-box{
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 3%;
+  padding-right: 3%;
+  background-color: white;
+  min-height: 40px;
+  border-radius: 30px;
+}
+.gst-box{
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 3%;
+  padding-right: 3%;
+  background-color: white;
+  min-height: 40px;
+  border-radius: 30px;
+}
+.discount-box{
+  
+  background-color: white;
+  min-height: 40px;
+  border-radius: 30px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+}
+.total-amount-box{
+  background-color: #015dc0;
+  min-height: 40px;
+  border-radius: 30px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
 
 
 
@@ -116,7 +348,7 @@
   @media (max-width: 1024px){
     .box {
         
-        height: 176px;
+        height: 193px;
         
     }
   }

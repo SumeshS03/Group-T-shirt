@@ -106,7 +106,7 @@ const HomeHeader = () => {
           
             <div className='home-divider'>
               
-               <Link to="/home" className="no-underline-1" style={{ color: activeLink === "home" ? "#cf9601" : "blue" }}>
+               <Link to="/" className="no-underline-1" style={{ color: activeLink === "home" ? "#cf9601" : "blue" }}>
        
                  HOME 
                </Link>
@@ -178,7 +178,7 @@ const HomeHeader = () => {
           {/* added */}
           <div className={`mobile-sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <div className="close-btn" onClick={toggleSidebar} style={{color:'blue'}}>×</div>
-        <Link to="/home" onClick={toggleSidebar} className="no-underline-1" style={{ color: activeLink === "home" ? "#cf9601" : "blue" }}>HOME</Link>
+        <Link to="/" onClick={toggleSidebar} className="no-underline-1" style={{ color: activeLink === "home" ? "#cf9601" : "blue" }}>HOME</Link>
         <Link to="/aboutus" onClick={toggleSidebar} className="no-underline-2"  style={{ color: activeLink === "aboutus" ? "#cf9601" : "blue" }}>ABOUTUS</Link>
         <Link to="/shop" onClick={toggleSidebar} class="no-underline-2" style={{ color: activeLink === "shop" ? "#cf9601" : "blue" }}>SHOP</Link>
         <Link to="/service" onClick={toggleSidebar} className="no-underline-2"  style={{ color: activeLink === "service" ? "#cf9601" : "blue" }}>SERVICE</Link>

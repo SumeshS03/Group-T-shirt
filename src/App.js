@@ -8,26 +8,23 @@ import Aboutcontent from './pages/Aboutcontent';
 import Servicecontent from './pages/Servicecontent';
 import Contactus from './pages/Contactus';
 import Shopcontent from './pages/Shopcontent';
-
 import Shopcontentproduct from './pages/Shopcontentproduct'
-
 
 
 function App() {
   return (
     <div className="App">
-     <Router>
+     {/* <Router> */}
       <Routes>
-        
-        <Route path="/" element={<Navigate to="/home" />} />
-        <Route path="/home" element={<Homecontent />} />
+        {/* <Route path="/" element={<Navigate to="/home" />} /> */}
+        <Route path="/" element={<Homecontent />} />
         <Route path="/aboutus" element={<Aboutcontent />} />
         <Route path="/service" element={<Servicecontent />} />
         <Route path="/contactus" element={<Contactus />}/>
         <Route path="/shop" element={<Shopcontent/>}></Route>
         <Route path="/shop/product" element={<Shopcontentproduct/>}></Route>
       </Routes>
-    </Router>
+    {/* </Router> */}
     </div>
   );
 }
