@@ -106,7 +106,7 @@ const HomeHeader = () => {
           
             <div className='home-divider'>
               
-               <Link to="/" className="no-underline-1" style={{ color: activeLink === "home" ? "#cf9601" : "blue" }}>
+               <Link to="/home" className="no-underline-1" style={{ color: activeLink === "home" ? "#cf9601" : "blue" }}>
        
                  HOME 
                </Link>

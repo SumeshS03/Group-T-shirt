@@ -56,23 +56,25 @@
 .insta-icons{
     width: 100%;
     height: 100%;
-    background-color: #a3a3a3;
-    color: white;
+   
+    color: gray;
     transition: all 0.3s ease;
     border-radius: 10%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: gray;
 
 }
 .insta-box:hover .insta-icons {
     background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-    /* -webkit-background-clip: text; */
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
 .facebook-icon{
     width: 100%;
     height: 100%;
-    background-color: #a3a3a3;
-    color: white;
+    /* background-color: #a3a3a3; */
+    color: gray;
     transition: all 0.3s ease;
     border-radius: 10%;
 }
@@ -82,8 +84,8 @@
 .twitter-icon{
     width: 100%;
     height: 100%;
-    background-color: #a3a3a3;
-    color: white;
+    /* background-color: #a3a3a3; */
+    color: gray;
     transition: all 0.3s ease;
     border-radius: 10%;
 }
@@ -93,8 +95,8 @@
 .whatsapp-icon{
     width: 100%;
     height: 100%;
-    background-color: #a3a3a3;
-    color: white;
+    /* background-color: #a3a3a3; */
+    color: gray;
     transition: all 0.3s ease;
     border-radius: 10%;
 }
@@ -104,8 +106,8 @@
   .youtube-icon{
     width: 100%;
     height: 100%;
-    background-color: #a3a3a3;
-    color: white;
+    /* background-color: #a3a3a3; */
+    color: gray;
     transition: all 0.3s ease;
     border-radius: 10%;
   }
@@ -382,9 +384,9 @@
         width: 80px;
         height: auto;
     }
-    .logo-img{
+    /* .logo-img{
         height: 130px;
-    }
+    } */
     .address{
         margin-top: 2px;
     }
@@ -440,8 +442,9 @@
 
   @media screen and (max-width: 426px){
     .logo {
-        margin-left: 14px;
-        width: 109px;
+        margin-left: 8px;
+        width: 101px;
+        height: 98%;
     }
     .mobile-sidebar.open {
         left: 63%;
@@ -488,6 +491,22 @@
         margin-right: 0px; 
         
     }
+    .logo {
+        margin-left: 8px;
+        width: 88px;
+        height: 98%;
+    }
+    .header {
+        height: 68px;
+    }
+    .icon-diver {
+       
+        margin-left: 31px;
+    }
+    .divider {
+        padding-top: 0%;
+        padding-left: 32%;
+    }
   }
 
 
@@ -496,13 +515,21 @@
     .mobile-sidebar {
         width: 121px;
     }
+    .logo {
+        margin-left: 8px;
+        width: 84px;
+        height: 98%;
+    }
     .icon-diver {
        
         margin-left: 31px;
     }
+    .header {
+        height: 68px;
+    }
 
     .divider {
-        padding-left: 40%;
+        padding-left: 33%;
     }
     .search-box {
         width: 85px !important;

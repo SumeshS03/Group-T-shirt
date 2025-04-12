@@ -823,6 +823,14 @@
 .box-innersize{
     padding: 6px;
 }
+
+
+
+
+
+
+
+
 @media screen and (max-width: 1024px) {
     .inner-box{
     width: 180px; 
@@ -1044,6 +1052,15 @@
 .text-secondary {
     font-size: 20px;
 }
+.servicesbox {
+    width: 69%;
+    gap: 40px;
+}
+.howweworktext {
+    text-align: center;
+    font-size: 17px;
+    color: #a2a2a2;
+}
 
 
 
@@ -1053,6 +1070,10 @@
   @media screen and (max-width: 426px) {
     .your-printone{
         margin-top: 50px !important;
+    }
+    .get-started {
+        margin-bottom: 50px;
+        margin-top: -116px;
     }
     .your-printtwo{
         margin-top: 50px !important;
@@ -1096,6 +1117,10 @@
         margin: 1px 0;
         font-size: 15px;
     }
+    .home-feed {
+        height: 470px;
+        
+    }
     .box {
         
         height: 149px;
@@ -1105,10 +1130,7 @@
         right: 9%;
     }
     .bortextone {
-        
-        font-size: 9px;
-        
-        
+        font-size: 13px;
     }
     .servicesbox {
        
@@ -1183,13 +1205,18 @@
         font-size: 11px;
         
     }
+    .howweworktext {
+        text-align: center;
+        font-size: 16px;
+        color: #a2a2a2;
+    }
   }
 
 
   @media screen and (max-width: 376px){
     .first-box {
         width: 144px !important;
-        height: 161px !important;
+        height: 126px !important;
     }
     .savingscombostext {
         margin-top: -2px !important;
@@ -1210,10 +1237,15 @@
     .followuson{
         font-size: 14px;
     }
+    .howweworktext {
+        text-align: center;
+        font-size: 14px;
+        color: #a2a2a2;
+    }
    
     
-    .designboxpara{
-        font-size: 16px !important;
+    .designboxpara {
+        font-size: 12px !important;
     }
     .socilaheader{
         font-size: 19px !important;
@@ -1234,7 +1266,7 @@
     }
     .shopnow-image {
         right: 19%;
-        width: 95px !important;
+        width: 105px !important;
     }
     .explore-image {
         left: 9%;
@@ -1262,8 +1294,15 @@
         font-size: 15px !important;
     }
     .box-image {
-        width: 29px;
+        width: 63px;
         margin-bottom: 0px;
+    }
+    .designboxpara {
+        font-size: 12px !important;
+    }
+    .first-box {
+        width: 144px !important;
+        height: 115px !important;
     }
     .bortexthead {
         margin: 1px 0;

@@ -31,6 +31,8 @@ import bluef from "../images/blue-f.png"
 import { FiPhoneCall } from "react-icons/fi";
 import { HiOutlineMailOpen } from "react-icons/hi";
 import { IoLocationOutline } from "react-icons/io5";
+import { FaCircleChevronLeft } from "react-icons/fa6";
+import { FaCircleChevronRight } from "react-icons/fa6";
 
 const Shopcontentproduct = () => {
   const [activeTab, setActiveTab] = useState("product");
@@ -44,6 +46,16 @@ const Shopcontentproduct = () => {
   const [selectedQuality, setSelectedQuality] = useState("Premium");
   const [selectedType, setSelectedType] = useState("Print");
   const [clicked, setClicked] = useState(false);
+  const sliderRef = useRef(null);
+  const cardWidth = 270; // Must match actual width of one card
+
+  const handleScroll = (direction) => {
+    if (direction === "left") {
+      sliderRef.current.scrollBy({ left: -cardWidth, behavior: "smooth" });
+    } else {
+      sliderRef.current.scrollBy({ left: cardWidth, behavior: "smooth" });
+    }
+  };
 
 
 
@@ -60,6 +72,42 @@ const Shopcontentproduct = () => {
     setSelectedNumber(num);
     setShowDropdown(false);
   };
+
+  const productNames = [{
+    src: qualityshirt,
+    name: "Cap"
+  },
+  {
+    src: qualityshirt,
+    name: "t-shirt"
+  },
+{
+  src: qualityshirt,
+    name: "hoodies"
+},
+{
+  src: qualityshirt,
+    name: "hoodies"
+},{
+  src: qualityshirt,
+    name: "hoodies"
+},{
+  src: qualityshirt,
+    name: "hoodies"
+},
+{
+  src: qualityshirt,
+    name: "hoodies"
+},
+{
+  src: qualityshirt,
+    name: "hoodies"
+},
+{
+  src: qualityshirt,
+    name: "hoodies"
+},
+];
 
   return (
     <>
@@ -83,42 +131,42 @@ const Shopcontentproduct = () => {
       </div>
 
       <div className="choose-category  ">
-        <div className="container-fluid">
-          <div className="row">
-            <div className="products-type d-flex">
+        <div className="container-fluid d-flex flex-column justify-content-center align-items-center">
+          <div className="row w-75 gap-2">
+            {/* <div className="products-type "> */}
               <div
-                className={`col-3 product-page ${
+                className={`col-lg-3 col-12 product-page ${
                   activeTab === "product" ? "active-tab" : ""
                 }`}
                 onClick={() => setActiveTab("product")}
               >
-                <h2 className="h4 heading-text">Product Page</h2>
+                <h2 className="h4 heading-text-product">Product Page</h2>
               </div>
               <div
-                className={`col-3 new-design-page ${
+                className={`col-lg-3 col-12 new-design-page ${
                   activeTab === "new" ? "active-tab" : ""
                 }`}
                 onClick={() => setActiveTab("new")}
               >
-                <h2 className="h4 heading-text">New Design Page</h2>
+                <h2 className="h4 heading-text-product">New Design Page</h2>
               </div>
               <div
-                className={`col-3 stock-page ${
+                className={`col-lg-3 col-12 stock-page ${
                   activeTab === "stock" ? "active-tab" : ""
                 }`}
                 onClick={() => setActiveTab("stock")}
               >
-                <h2 className="h4 heading-text">Stock Page</h2>
+                <h2 className="h4 heading-text-product">Stock Page</h2>
               </div>
-            </div>
+            {/* </div> */}
           </div>
 
-          <h1 className="heading-text m-0">
+          <h1 className="heading-text mt-3 mb-3">
             Choose
             <span style={{ color: "#015dc0" }}> Category</span>
           </h1>
-          <div className="w-90 p-2 t-shirtsrowbox ">
-            <div className=" custom-tshirts row justify-content-between gx-0 gy-4">
+          <div className=" p-2 t-shirtsrowbox ">
+            <div className=" custom-tshirts row justify-content-between align-items-center gx-0 gy-4">
               <div className="verityproduct-box col-12 col-md-12 col-lg-3  ">
                 <div className="box-innersize">
                   <img
@@ -199,7 +247,10 @@ const Shopcontentproduct = () => {
         </div>
       </div>
       <div className="container d-flex justify-content-center align-items-center mt-3">
-        <div className=" p-3 tshirtstyles  row justify-content-between  ">
+      <div className="btn bg-primary"  ><FaCircleChevronLeft className="leftarrw-btn" /></div>
+        <div className=" p-3 tshirtstyles  row justify-content-between gap-3 gap-md-3 gap-lg-0  "
+         >
+          
           <div className="tshirtstylebox col-12 col-md-12 col-lg-3 ">
             <div className="box-innersize">
               <img
@@ -211,7 +262,7 @@ const Shopcontentproduct = () => {
               <h2 className="h5 bortexthead">Cups</h2>
             </div>
           </div>
-          <div className="tshirtstylebox col-lg-3 col-12 ">
+          <div className="tshirtstylebox col-lg-3 col-12  ">
             <div className="box-innersize">
               <img
                 src={qualityshirt}
@@ -245,21 +296,24 @@ const Shopcontentproduct = () => {
             </div>
           </div>
         </div>
+        <div className="btn bg-primary" ><FaCircleChevronRight className="rightarrw-btn" /></div>
       </div>
-      <div className="container d-flex justify-content-center align-items-center mt-3 ">
-        <div className="d-flex gap-4">
-          <div className="d-flex align-items-center">
+      <div className="container d-flex justify-content-center align-items-center mt-3  ">
+        <div className="row ">
+        <div className="d-flex gap-4 enter-quatity-box">
+          <div className="d-flex align-items-center col-lg-6 col-12">
             <label className="me-2 mb-0">Enter Quantity:</label>
             <input type="text" className="rounded-5 py-1 px-1 w-50" />
           </div>
-          <div className="d-flex align-items-center">
+          <div className="d-flex align-items-center col-lg-6 col-12">
             <label className="me-2 mb-0">Number of logos:</label>
             <input type="text" className="rounded-5 py-1 px-1 w-25" />
           </div>
         </div>
+        </div>
       </div>
       <div className="container d-flex justify-content-center align-items-center mt-3 mb-0">
-        <div className="w-25 text-white bg-dark p-3 rounded-5 text-center justify-content-between d-flex">
+        <div className="image-uplode-box text-white bg-dark p-3 rounded-5 text-center justify-content-between d-flex ">
           <label className="d-block mb-2 uplode-text">Upload Logo</label>
           <label htmlFor="upload-logo" style={{ cursor: "pointer" }}>
             <MdAddPhotoAlternate size={40} />
@@ -278,8 +332,8 @@ const Shopcontentproduct = () => {
         </div>
       </div>
       <p className="mt-0">Png,Svg Format</p>
-      <div className="container d-flex justify-content-center align-items-center mt-3 mb-3">
-        <div className="w-25 text-center justify-content-between d-flex">
+      <div className="container d-flex justify-content-center align-items-center  logoaddedtshirt-box-con ">
+        <div className="logoaddedtshirt-box text-center justify-content-center align-items-center ">
           <div className="logoaddedtshirt col-12 col-md-12 col-lg-3 ">
             <div className="box-inner">
               <img
@@ -310,7 +364,7 @@ const Shopcontentproduct = () => {
         <div className="quality-type text-center">
           <div>Price Format:</div>
           <div className="row justify-content-center align-items-center">
-            <div className="d-flex justify-content-center align-items-center quality-types-box">
+            <div className=" justify-content-center align-items-center quality-types-box">
             {["Premium", "VFM", "Budget"].map((type) => (
         <button
           key={type}
@@ -327,8 +381,8 @@ const Shopcontentproduct = () => {
         </div>
        
           <div className="row w-100 mt-5">
-          <div className="d-flex justify-content-center align-items-center ">
-            <div className="col-2 p-2 d-flex flex-column choose-colour-box justify-content-center align-items-center">
+          {/* <div className="d-flex justify-content-center align-items-center "> */}
+            <div className="col-lg-3 col-12 p-2 d-flex flex-column choose-colour-box justify-content-center align-items-center">
             
              <label>Choose Colour:</label>
              
@@ -378,7 +432,7 @@ const Shopcontentproduct = () => {
 
             </div>
             
-            <div className="col-2 p-2 d-flex flex-column choose-colour-box align-items-center  ">
+            <div className="col-lg-2 col-12 p-2 d-flex flex-column choose-colour-box align-items-center  ">
             <label>Logo Quatity:</label>
             <div className="pieces-box d-flex   "
             onClick={() => setShowDropdown(!showDropdown)}
@@ -419,7 +473,7 @@ const Shopcontentproduct = () => {
           ))}
         </div>
       )}
-            <div className="col-4 p-2 d-flex flex-column choose-colour-box">
+            <div className="col-lg-4 col-12 p-2 d-flex flex-column choose-colour-box">
             <label>Logo Quatity:</label>
             <div className="d-flex justify-content-center align-items-center quality-type-select">
               <div  className={`btn print-btn ${selectedType === "Print" ? "active" : ""}`}
@@ -428,15 +482,17 @@ const Shopcontentproduct = () => {
         onClick={() => setSelectedType("Emposed")}>Emposed</div>
             </div>
             </div>
-            <div className="col-3">
+            <div className="col-lg-3 col-12 d-flex flex-column align-items-center justify-content-center mb-md-2 ">
+              {/* <div className=" d-flex justify-content-center align-items-center "> */}
               
               
             <label>Size Chart:</label>
-            <div className="d-flex justify-content-center align-items-center">
+            
             <div className="size-select-box d-flex position-relative   "
             style={{ cursor: 'pointer' }}
             
             >
+              <div className="d-flex justify-content-center align-items-center ">
             <span>{selectedSize}</span>
             <div>
              <IoIosArrowDown size={20} color="#555" onClick={() => setShowSizes(!showSizes)}  />
@@ -469,8 +525,9 @@ const Shopcontentproduct = () => {
           )}
             </div>
             </div>
-            </div>
-          </div>
+            {/* </div> */}
+          {/* </div> */}
+        </div>
         </div>
       </div>
       <div className="container w-50 d-flex flex-column justify-content-center align-items-center ">
@@ -479,21 +536,21 @@ const Shopcontentproduct = () => {
         <div className={`sent-text-btn mt-3 ${clicked ? "active" : ""}`}
       onClick={() => setClicked(!clicked)}>Send</div>
       </div>
-      <div className="container w-75 ">
+      <div className="container price-cal-box ">
         <div className="row price-calculate display-flex justify-content-center align-items-center ">
-          <div className="d-flex flex-column col-2 ">
+          <div className="d-flex flex-column col-lg-2 col-12 ">
             <label>Amount:</label>
             <div className="amount-box mt-3">
 
             </div>
           </div>
-          <div className="d-flex flex-column col-2 ">
+          <div className="d-flex flex-column col-lg-2 col-12 ">
             <label>GST Detailes:</label>
             <div className="gst-box mt-3">
 
             </div>
           </div>
-          <div className="d-flex flex-column col-2 justify-content-center align-items-center">
+          <div className="d-flex flex-column col-lg-2 col-12 justify-content-center align-items-center">
             <label>Discount:<strong> 50%</strong></label>
            
             <div className="discount-box mt-3">
@@ -501,7 +558,7 @@ const Shopcontentproduct = () => {
             </div>
           </div>
           <div className="col-1">=</div>
-          <div className="d-flex flex-column col-2 ">
+          <div className="d-flex flex-column col-lg-2 col-12 ">
             <label>Total-Amount:</label>
             <div className="total-amount-box mt-3">
              

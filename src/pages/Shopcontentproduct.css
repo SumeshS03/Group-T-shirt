@@ -6,7 +6,8 @@
    
 }
 .products-type {
-   
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 3%;
@@ -23,6 +24,7 @@
   color: #015dc0;
   cursor: pointer;
   transition: 0.3s;
+  width: 32.3% !important;
 }
 .active-tab {
     background-color: #015dc0;
@@ -59,9 +61,12 @@
     border: 1px solid blue;
     border-radius: 40px;
     width: 80%;
+    /* overflow-x: auto;
+  flex-wrap: nowrap !important;
+  scroll-behavior: smooth; */
 }
 .t-shirtstyle-image {
-  width: 62%;
+  width: 54%;
   margin-bottom: 5px;
   transition: filter 0.3s ease;
 }
@@ -88,7 +93,7 @@
     color: #f2b201;
 }
 .verityproduct-box{
-  width: 26%;
+  width: 19%;
   height: 219px;
   background-color: #f5f3f4;
   border: none;
@@ -166,8 +171,14 @@
   border-color: blue;
 }
 .quality-types-box{
+  display: flex;
+  flex-direction: row;
   gap: 10%;
  /* Move halfway above the container */
+}
+.logoaddedtshirt-box-con{
+  margin-top: 2%;
+  margin-bottom: 3%;
 }
 .styling-box{
   margin-top: 8%;
@@ -220,7 +231,7 @@
 }
 .print-btn,
 .emposed-btn {
-  width: 30%;
+  width: 34%;
   padding: 2%;
   border-radius: 30px;
   border: 1px solid black;
@@ -240,7 +251,7 @@
   gap: 8%;
 }
 .size-select-box{
-  width: 48%;
+  width: 44%;
   border: 1px solid black;
   border-radius: 30px;
   gap: 30%;
@@ -318,6 +329,34 @@
   align-items: center;
   justify-content: center;
 }
+.enter-quatity-box{
+  display: flex;
+}
+.image-uplode-box{
+  width: 25%;
+}
+.logoaddedtshirt-box{
+  width: 30%;
+  display: flex;
+}
+.price-cal-box{
+  width: 75%;
+}
+
+.heading-text-product{
+  margin: 0;
+   
+    font-size: 24px;
+    font-weight: 100;
+    font-family: 'Bevan';
+    margin-top: 10px;
+}
+.leftarrw-btn{
+  font-size: 25px;
+}
+.rightarrw-btn{
+  font-size: 25px;
+}
 
 
 
@@ -327,10 +366,10 @@
   
 
   @media (min-width: 992px) {
-    .custom-tshirts .col-lg-3 {
+    /* .custom-tshirts .col-lg-3 {
       width: 19% !important;
       flex: 0 0 auto !important;
-    }
+    } */
     .tshirtstyles .col-lg-3{
         width: 24% !important;
       flex: 0 0 auto !important;
@@ -343,12 +382,180 @@
         margin-bottom: 1px;
         transition: filter 0.3s ease;
     }
+    .heading-text-product {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 100;
+      font-family: 'Bevan';
+      margin-top: 10px;
+  }
   }
 
-  @media (max-width: 1024px){
-    .box {
-        
-        height: 193px;
-        
+  @media (max-width: 768px){
+    .verityproduct-box{
+      width: 100%;
+      
     }
+    .price-cal-box {
+      width: 26%;
   }
+    .quality-type {
+      
+      top: -25%;
+      
+  }
+  .colour-choose-box {
+    width: 30%;
+    }
+    .pieces-box {
+      width: 30%;
+     
+  }
+  .size-select-box {
+    width: 30%;
+    
+}
+.choose-colour-box {
+  border-right: none;
+}
+.logoaddedtshirt-box-con {
+  margin-top: 2%;
+  margin-bottom: 19% !important;
+}
+.quality-types-box {
+  gap: 10%;
+  display: flex;
+  flex-direction: column;
+}
+    .logoaddedtshirt {
+     
+      width: 65%;
+  }
+    .logoaddedtshirt-box{
+      width: 30%;
+      display: flex;
+      flex-direction: column;
+    }
+    .image-uplode-box {
+      width: 44%;
+  }
+    .enter-quatity-box{
+      flex-direction: column !important;
+    }
+    .product-page,
+.new-design-page,
+.stock-page {
+  
+  width: 100% !important;
+  border-radius: 35px 35px 35px 35px;
+  
+}
+.product-page,
+.new-design-page,
+.stock-page {
+  margin-top: 1% !important;
+ 
+}
+.t-shirtsrowbox {
+  width: 65%;
+}
+
+.t-shirtstyle-image {
+  width: 48%;
+  
+}
+.tshirtstyles {
+  
+  width: 41%;
+}
+   
+  
+  }
+
+  
+  @media (max-width: 426px){
+    .logoaddedtshirt-box-con {
+      margin-top: 2%;
+      margin-bottom: 33% !important;
+  }
+  .quality-btn{
+    width: 61%;
+  }
+  .colour-choose-box {
+    width: 41%;
+}
+.price-cal-box {
+  width: 32%;
+}
+.pieces-box {
+  width: 41%;
+}
+.size-select-box {
+  width: 41%;
+}
+.logoaddedtshirt {
+  width: 100%;
+}
+.image-uplode-box {
+  width: 53%;
+}
+.tshirtchangetext {
+  font-size: 13px;
+  color: #a2a2a2;
+}
+.sent-text-btn {
+ 
+  width: 29%;
+}
+.t-shirtstyle-image {
+  width: 90%;
+}
+.tshirtstylebox {
+  height: 142px;
+}
+  }
+
+
+  @media (max-width: 375px){
+    
+.sent-text-btn {
+  width: 35%;
+}
+.tshirtstylebox {
+  height: 125px;
+}
+.price-cal-box {
+  width: 36%;
+}
+  }
+
+
+  @media (max-width: 320px){
+    .emposed-btn {
+      width: 39%;
+    }
+    .colour-choose-box {
+      width: 54%;
+  }
+  .t-shirtstyle-image {
+    width: 100%;
+}
+.tshirtstylebox {
+  height: 103px;
+}
+.image-uplode-box {
+  width: 68%;
+}
+.quality-btn {
+  width: 67%;
+}
+.price-cal-box {
+  width: 44%;
+}
+.heading-text-product {
+  
+  font-size: 15px;
+ 
+}
+    
+      }

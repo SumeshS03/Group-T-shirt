@@ -117,9 +117,11 @@ const Homecontent = () => {
   const profilesettings = {
     dots: false,
     infinite: true,
-    speed: 500,
+    speed: 1000,
     slidesToShow: 3, // Change to 2 or 3 based on screen size
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
     arrows: true,
     responsive: [
       {
@@ -140,9 +142,9 @@ const Homecontent = () => {
 
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
-    speed: 500,
+    speed: 1000,
     slidesToShow: 5,
     slidesToScroll: 1,
     autoplay: true,
@@ -737,10 +739,10 @@ const Homecontent = () => {
           We provide support for more than 15K+ Businesses.
         </p>
 
-        <div className="comment-box container mt-4">
+        <div className="comment-box container mt-4 p-5">
       <Slider {...profilesettings}>
         {profiles.map((profile, index) => (
-          <div className="col-lg-4 px-2" key={index}>
+          <div className="col-lg-4 px-2 py-2" key={index}>
             <div className="comment-lines">
               <div className="profile-name">
                 <div className="profile-icon">
