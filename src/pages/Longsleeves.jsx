@@ -42,10 +42,9 @@ const Shopcontentproduct = () => {
   // const [selectedColors, setSelectedColors] = useState([]);
 const [showColorList, setShowColorList] = useState(false);
 const colors = ["red", "blue", "green", "yellow", "black", "purple"];
-const [selectedColor, setSelectedColor] = useState(['#ff0000', '#00ff00']);
-
-const [selectedColors, setSelectedColors] = useState([['#ff0000', '#00ff00']]); // 💡 The array you're asking about
-
+const [selectedColor, setSelectedColor] = useState(colors[0]);
+const [selectedColors, setSelectedColors] = useState([]); // 💡 The array you're asking about
+// const [showColorList, setShowColorList] = useState(false);
 const [activeIndex, setActiveIndex] = useState(null);
 
 const addSelectedColor = () => {
@@ -67,14 +66,19 @@ const addSelectedColor = () => {
   const cardWidth = 270; // Must match actual width of one card
 
   const handleColorClick = (color) => {
-    const updatedColors = [...selectedColors];
-    updatedColors[activeIndex] = color;
-    setSelectedColors(updatedColors);
-    setShowColorList(false); // Close the dropdown after selecting a color
+    if (activeIndex !== null) {
+      const updated = [...selectedColors];
+      updated[activeIndex] = color;
+      setSelectedColors(updated);
+      setActiveIndex(null);         // 👈 reset
+      setShowColorList(false);      // 👈 close dropdown
+    }
   };
 
- const handleAddCircle = () => {
-    setSelectedColors([...selectedColors, '#eee']); // Add a new default color slot (light gray)
+  const handleAddCircle = () => {
+    if (selectedColors.length < 2) {
+      setSelectedColors([...selectedColors, ""]);
+    }
   };
 
 
@@ -191,55 +195,11 @@ const addSelectedColor = () => {
   // const activeTab = getActiveTab();
 
 
-  // const [productRows, setProductRows] = useState([]);
+  const [productRows, setProductRows] = useState([]);
 
   const handleAddProduct = () => {
-    setProductRows(prevRows => [...prevRows, { ...defaultRow }]);
+    setProductRows((prevRows) => [...prevRows, {}]); // Add an empty object or any default product data
   };
-
-  const defaultRow = {
-    colors: ['#ff0000', '#00ff00'], // default color options
-    activeColorIndex: 0,
-    showColorList: false,
-    selectedQuantity: 1,
-    showDropdown: false,
-    selectedType: 'Print',
-    selectedSize: 'M',
-    showSizes: false,
-  };
-  
-  const [productRows, setProductRows] = useState([defaultRow]);
-
-
-
-  // const [productRows, setProductRows] = useState([
-  //   {
-  //     colors: ['#ff0000', '#00ff00'], // example colors
-  //     activeColorIndex: 0,
-  //     showColorList: false,
-  //     selectedQuantity: 1,
-  //     showDropdown: false,
-  //     selectedType: 'Print',
-  //     selectedSize: 'M',
-  //     showSizes: false,
-  //   },
-  // ]);
-
-
-  // const handleAddProduct = () => {
-  //   setProductRows([
-  //     ...productRows,
-  //     {
-  //       selectedColors: [],
-  //       selectedNumber: null,
-  //       selectedSize: null,
-  //       selectedType: null,
-  //       showColorList: false,
-  //       showDropdown: false,
-  //       showSizes: false,
-  //     },
-  //   ]);
-  // };
 
 
   
@@ -452,17 +412,15 @@ const addSelectedColor = () => {
             </div>
           </div>
         </div>
-
-
        
-          {/* <div className="row w-100 mt-5 ">
-          
+          <div className="row w-100 mt-5 ">
+          {/* <div className="d-flex justify-content-center align-items-center "> */}
             <div className="col-lg-3 col-12 p-2 d-flex flex-column choose-colour-box justify-content-center align-items-center">
             
              <label className="mb-2">Choose Colour:</label>
              
              <div className="colour-choose-box d-flex align-items-center gap-2 position-relative">
-      
+      {/* Render selected color circles */}
       {selectedColors.map((color, index) => (
   <div
     key={index}
@@ -476,13 +434,13 @@ const addSelectedColor = () => {
       cursor: "pointer"
     }}
     onClick={() => {
-      setActiveIndex(index);   
-      setShowColorList(true);    
+      setActiveIndex(index);     // 👈 track which circle to update
+      setShowColorList(true);    // 👈 show dropdown
     }}
   ></div>
 ))}
 
-      
+      {/* Dropdown trigger */}
       <div
         className="color-select-icon d-flex align-items-center"
         style={{ backgroundColor: "white", cursor: "pointer" }}
@@ -494,7 +452,7 @@ const addSelectedColor = () => {
         />
       </div>
 
-     
+      {/* Color dropdown */}
       {showColorList && (
         <div
           className="color-list position-absolute bg-white p-2 rounded shadow"
@@ -522,20 +480,13 @@ const addSelectedColor = () => {
         </div>
       )}
 
-     
+      {/* Add new color slot */}
       <div style={{ cursor: "pointer" }} onClick={handleAddCircle}>
         <FaPlusCircle size={20} />
       </div>
     </div>
 
             </div>
-
-
-
-
-
-
-
             
             <div className="col-lg-2 col-12 p-2 d-flex flex-column choose-colour-box align-items-center  ">
             <label className="mb-4">Logo Quatity:</label>
@@ -593,7 +544,7 @@ const addSelectedColor = () => {
             </div>
             </div>
             <div className="col-lg-3 col-12 d-flex flex-column align-items-center justify-content-center mb-md-2 ">
-              
+              {/* <div className=" d-flex justify-content-center align-items-center "> */}
               
               
             <label className="mb-3">Size Chart:</label>
@@ -635,235 +586,16 @@ const addSelectedColor = () => {
           )}
             </div>
             </div>
-           
+            {/* </div> */}
+          {/* </div> */}
         </div>
-        </div> */}
-
-
-
-
-
-
-
-
-
-
+        </div>
         {productRows.map((row, index) => (
-  <div key={index} className="row w-100 mt-5 ">
-    
-    {/* Colour Section */}
-    <div className="col-lg-3 col-12 p-2 d-flex flex-column choose-colour-box justify-content-center align-items-center">
-  {/* Label */}
-  <label className="mb-2">Choose Colour:</label>
-
-  <div className="colour-choose-box d-flex align-items-center gap-2 position-relative">
-    {/* Render selected color circles */}
-    {row.colors.map((color, i) => (
-      <div key={i} className="position-relative">
-        {/* Color Circle */}
-        <div
-          className="color-circle"
-          style={{
-            width: "30px",
-            height: "30px",
-            borderRadius: "50%",
-            backgroundColor: color || "#eee",
-            border: "1px solid #ccc",
-            cursor: "pointer",
-          }}
-          onClick={() => {
-            const updatedRows = [...productRows];
-            updatedRows[index].activeColorIndex = i;
-            updatedRows[index].showColorList = true;
-            setProductRows(updatedRows);
-          }}
-        ></div>
-
-        {/* ❌ Remove Button */}
-        {row.colors.length > 1 && (
-          <div
-            className="position-absolute"
-            style={{
-              top: "-6px",
-              right: "-6px",
-              backgroundColor: "white",
-              borderRadius: "50%",
-              width: "16px",
-              height: "16px",
-              fontSize: "12px",
-              color: "red",
-              textAlign: "center",
-              lineHeight: "16px",
-              cursor: "pointer",
-              border: "1px solid #ccc",
-              zIndex: 10,
-            }}
-            onClick={(e) => {
-              e.stopPropagation(); // prevent opening dropdown
-              const updatedRows = [...productRows];
-              updatedRows[index].colors.splice(i, 1);
-              setProductRows(updatedRows);
-            }}
-          >
-            ×
-          </div>
-        )}
-      </div>
-    ))}
-
-    {/* Dropdown Toggle */}
-    <div
-      className="color-select-icon d-flex align-items-center"
-      style={{ backgroundColor: "white", cursor: "pointer" }}
-    >
-      <IoIosArrowDown
-        size={20}
-        color="#555"
-        onClick={() => {
-          const updatedRows = [...productRows];
-          updatedRows[index].showColorList = !row.showColorList;
-          setProductRows(updatedRows);
-        }}
-      />
+  <div key={index} className="row w-100 mt-5 product-row">
+    <div className="col-12 text-center">
+      <p>Product Row {index + 1}</p>
+      {/* You can place your custom product form/inputs here */}
     </div>
-
-    {/* Color Dropdown */}
-    {row.showColorList && (
-      <div
-        className="color-list position-absolute bg-white p-2 rounded shadow"
-        style={{ top: "100%", left: 0, zIndex: 1000, minWidth: "150px" }}
-      >
-        {colors.map((color, i) => (
-          <div
-            key={i}
-            className="color-option d-inline-block m-1"
-            style={{
-              width: "30px",
-              height: "30px",
-              borderRadius: "50%",
-              backgroundColor: color,
-              cursor: "pointer",
-            }}
-            onClick={() => {
-              const updatedRows = [...productRows];
-              updatedRows[index].colors[row.activeColorIndex] = color;
-              updatedRows[index].showColorList = false;
-              setProductRows(updatedRows);
-            }}
-          ></div>
-        ))}
-      </div>
-    )}
-
-    {/* ➕ Add New Color */}
-    <div
-      style={{ cursor: "pointer" }}
-      onClick={() => {
-        if (row.colors.length < 2) {
-          const updatedRows = [...productRows];
-          updatedRows[index].colors.push("#eee");
-          setProductRows(updatedRows);
-        }
-      }}
-    >
-      <FaPlusCircle size={20} />
-    </div>
-  </div>
-</div>
-
-    {/* Quantity Section */}
-    <div className="col-lg-2 col-12 p-2 d-flex flex-column choose-colour-box align-items-center">
-      <label className="mb-4">T-shirt Quantity:</label>
-      <div className="pieces-box d-flex"
-           onClick={() => {
-             const updatedRows = [...productRows];
-             updatedRows[index].showDropdown = !row.showDropdown;
-             setProductRows(updatedRows);
-           }}>
-        <span>{row.selectedQuantity}</span>
-        
-        <IoIosArrowDown size={20} color="#555" />
-        
-      </div>
-      {row.showDropdown && (
-        <div className="dropdown-list position-absolute mt-1"
-             style={{ top: "100%", maxHeight: "200px", overflowY: "auto", width: "100%", border: "1px solid #ccc", borderRadius: "5px", backgroundColor: "#fff", zIndex: 100 }}>
-          {numbers.map((num) => (
-            <div key={num}
-                 onClick={() => {
-                   const updatedRows = [...productRows];
-                   updatedRows[index].selectedQuantity = num;
-                   updatedRows[index].showDropdown = false;
-                   setProductRows(updatedRows);
-                 }}
-                 style={{ padding: "8px", cursor: "pointer", borderBottom: "1px solid #eee" }}>
-              {num}
-            </div>
-          ))}
-        </div>
-      )}
-
-      
-    </div>
-    
-
-    {/* Type Section */}
-    <div className="col-lg-4 col-12 p-2 d-flex flex-column choose-colour-box">
-      <label className="mb-3">Logo Type:</label>
-      <div className="d-flex justify-content-center align-items-center quality-type-select">
-        <div className={`btn print-btn ${row.selectedType === "Print" ? "active" : ""}`}
-             onClick={() => {
-               const updatedRows = [...productRows];
-               updatedRows[index].selectedType = "Print";
-               setProductRows(updatedRows);
-             }}>Print</div>
-        <div className={`btn emposed-btn ${row.selectedType === "Emposed" ? "active" : ""}`}
-             onClick={() => {
-               const updatedRows = [...productRows];
-               updatedRows[index].selectedType = "Emposed";
-               setProductRows(updatedRows);
-             }}>Emposed</div>
-      </div>
-    </div>
-
-    {/* Size Section */}
-    <div className="col-lg-3 col-12 d-flex flex-column align-items-center justify-content-center mb-md-2">
-      <label className="mb-3">Size Chart:</label>
-      <div className="size-select-box d-flex position-relative" style={{ cursor: 'pointer' }}>
-        <div className="d-flex justify-content-center align-items-center">
-          <span>{row.selectedSize}</span>
-          <IoIosArrowDown size={20} color="#555"
-                          onClick={() => {
-                            const updatedRows = [...productRows];
-                            updatedRows[index].showSizes = !row.showSizes;
-                            setProductRows(updatedRows);
-                          }} />
-        </div>
-
-        {row.showSizes && (
-          <div className="position-absolute bg-white rounded shadow mt-1"
-               style={{ top: '100%', left: 0, zIndex: 1000, maxHeight: '200px', overflowY: 'auto', minWidth: '100px' }}>
-            {sizes.map((size) => (
-              <div key={size}
-                   className="px-3 py-2 hover-bg-gray"
-                   style={{
-                     cursor: 'pointer',
-                     backgroundColor: size === row.selectedSize ? '#f0f0f0' : 'transparent'
-                   }}
-                   onClick={() => {
-                     const updatedRows = [...productRows];
-                     updatedRows[index].selectedSize = size;
-                     updatedRows[index].showSizes = false;
-                     setProductRows(updatedRows);
-                   }}>
-                {size}
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
-
   </div>
 ))}
         <div className="row w-100 mt-5 justify-content-center align-items-center mb-4">

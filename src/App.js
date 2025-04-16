@@ -9,6 +9,13 @@ import Servicecontent from './pages/Servicecontent';
 import Contactus from './pages/Contactus';
 import Shopcontent from './pages/Shopcontent';
 import Shopcontentproduct from './pages/Shopcontentproduct'
+import Longsleeves from './pages/Longsleeves'
+import Sweater from './pages/Sweater'
+import Hoodies from './pages/Hoodies'
+import Cups from './pages/Cups'
+import Productpage from './pages/Productpage'
+import Newdesign from './pages/Newdesign'
+import Stockpage from './pages/Stockpage'
 
 
 function App() {
@@ -22,7 +29,15 @@ function App() {
         <Route path="/service" element={<Servicecontent />} />
         <Route path="/contactus" element={<Contactus />}/>
         <Route path="/shop" element={<Shopcontent/>}></Route>
-        <Route path="/shop/product" element={<Shopcontentproduct/>}></Route>
+        <Route path="/tshirts" element={<Shopcontentproduct/>}></Route>
+        <Route path="/longsleeves" element={<Longsleeves/>}></Route>
+        <Route path="/sweater" element={<Sweater/>}></Route>
+        <Route path="/hoodies" element={<Hoodies></Hoodies>}></Route>
+        <Route path='/cups' element={<Cups></Cups>}></Route>
+        <Route path='/product' element={<Productpage></Productpage>}></Route>
+        <Route path='/newdesign' element={<Newdesign></Newdesign>}></Route>
+        <Route path='/stock' element={<Stockpage></Stockpage>}></Route>
+        
       </Routes>
     {/* </Router> */}
     </div>

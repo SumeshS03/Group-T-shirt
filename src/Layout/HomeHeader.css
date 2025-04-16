@@ -465,6 +465,9 @@
         gap: 10px;
         margin-left: 43px;
     }
+    .header {
+        height: 83px;
+    }
   }
 
   @media screen and (max-width: 376px){

@@ -106,27 +106,27 @@ const HomeHeader = () => {
           
             <div className='home-divider'>
               
-               <Link to="/home" className="no-underline-1" style={{ color: activeLink === "home" ? "#cf9601" : "blue" }}>
+               <Link to="/home" className="no-underline-1 fw-bold" style={{ color: activeLink === "home" ? "#cf9601" : "blue" }}>
        
                  HOME 
                </Link>
               
               
               
-               <Link to="/aboutus" className="no-underline-2"  style={{ color: activeLink === "aboutus" ? "#cf9601" : "blue" }}>
+               <Link to="/aboutus" className="no-underline-2 fw-bold"  style={{ color: activeLink === "aboutus" ? "#cf9601" : "blue" }}>
      
                     ABOUTUS 
                </Link>
                
-               <Link to="/shop" class="no-underline-2"  style={{ color: activeLink === "shop" ? "#cf9601" : "blue" }}>
+               <Link to="/shop" class="no-underline-2 fw-bold"  style={{ color: activeLink === "shop" ? "#cf9601" : "blue" }}>
        
                  SHOP 
                </Link>
-               <Link to="/service" className="no-underline-2"  style={{ color: activeLink === "service" ? "#cf9601" : "blue" }}>
+               <Link to="/service" className="no-underline-2 fw-bold"  style={{ color: activeLink === "service" ? "#cf9601" : "blue" }}>
        
                  SERVICE 
                </Link>
-               <Link to="/contactus" className="no-underline-2"  style={{ color: activeLink === "contactus" ? "#cf9601" : "blue" }}>  
+               <Link to="/contactus" className="no-underline-2 fw-bold"  style={{ color: activeLink === "contactus" ? "#cf9601" : "blue" }}>  
                     
                  CONTACT US 
                </Link>

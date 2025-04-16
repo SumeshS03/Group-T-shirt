@@ -40,7 +40,7 @@ const Shopcontent = () => {
     }
   
     if (enteredOtp === '1234') {
-      navigate('/shop/product');
+      navigate('/tshirts');
     } else {
       setShowAlert(true);
       setAlertMessage('Re-enter your OTP');

@@ -365,6 +365,9 @@
   gap: 7rem;
   margin-left: 3rem;
 }
+.imagetopthree {
+  display: none;
+}
 
 }
 
@@ -381,6 +384,7 @@
 .get-started-today{
   font-size: 9px !important;
 }
+
 
 .verifyimageboxone {
   margin-top: 104% !important;

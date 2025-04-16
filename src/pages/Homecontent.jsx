@@ -788,10 +788,10 @@ const Homecontent = () => {
       </div>
       <div className="mailbox  mt-4">
         <div className="mailbox-divider container-fluid ">
-          <div className="row w-100 ms-5 ps-4">
+          <div className="row w-100  ps-md-1 ps-4">
 
           {/* d-flex flex-column flex-md-row align-items-md-start px-5 */}
-            <div className="text-divider col-lg-5 d-flex flex-column align-items-start justify-content-center p-5">
+            <div className="text-divider col-lg-6 d-flex flex-column align-items-start justify-content-center p-5">
               <h1
                 className="heading-text mt-4 text-white"
                 // style={{
@@ -839,18 +839,12 @@ const Homecontent = () => {
                 <input
                   type="email"
                   placeholder="Your email address"
-                  className="mailbox-mailinput"
+                  className="mailbox-mailinput p-3"
                   
                 />
                 <FaCircleArrowRight
                 className="mailbox-arrow"
-                  // style={{
-                  //   marginLeft: "-45px",
-                  //   width: "30px",
-                  //   height: "30px",
-                  //   marginBottom: "2px",
-                  //   color: "#0151c5",
-                  // }}
+                  
                 />
               </div>
             </div>
@@ -1105,12 +1099,19 @@ const Homecontent = () => {
             <p style={{ color: "#8a8a8a", marginBottom: "0px" }}>
               Follow our newsletter to stay updated about us
             </p>
-            <div className="emailbox">
-              Your email address
-              <span>
-                <FaArrowRight />
-              </span>
-            </div>
+            
+    
+            <div className="email-input-container relative inline-block">
+  <input
+    type="email"
+    placeholder="Your email address"
+    className="emailbox pr-10"  // Add right padding for the arrow
+  />
+  <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+    <FaArrowRight />
+  </span>
+</div>
+            
           </div>
         </div>
         <div className="footersocial row justify-content-between align-items-center  mt-5 px-4">

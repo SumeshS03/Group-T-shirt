@@ -32,9 +32,8 @@
   }
   .t-shirtsrowbox{
     border: 1px solid blue;
-    /* position: absolute; */
-    /* bottom: -32% !important; */
-  left: 0;
+    
+  
   border-radius: 35px;
   }
 
@@ -61,9 +60,7 @@
     border: 1px solid blue;
     border-radius: 40px;
     width: 80%;
-    /* overflow-x: auto;
-  flex-wrap: nowrap !important;
-  scroll-behavior: smooth; */
+    
 }
 .t-shirtstyle-image {
   width: 54%;
@@ -89,7 +86,7 @@
 .tshirtstylebox:hover .t-shirtstyle-image {
   filter: brightness(0) saturate(100%) invert(84%) sepia(58%) saturate(2747%) hue-rotate(1deg) brightness(103%) contrast(99%);
 }
-.tshirtstylebox:hover .bortexthead{
+.tshirtstylebox:hover .bortextheadone{
     color: #f2b201;
 }
 .verityproduct-box{
@@ -103,14 +100,21 @@
   align-items: center;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
-.verityproduct-box:hover .bortexthead{
+/* .verityproduct-box:hover .bortexthead{
   color: #f2b201;
 }
 .verityproduct-box:hover .t-shirt-image {
   filter: brightness(0) saturate(100%) invert(84%) sepia(58%) saturate(2747%) hue-rotate(1deg) brightness(103%) contrast(99%);
-}
-.verityproduct-box:hover{
+} */
+
+.selected-box {
   background-color: #0066cb;
+}
+.selected-box .bortexthead {
+  color: #f2b201;
+}
+.selected-box .t-shirt-image {
+  filter: brightness(0) saturate(100%) invert(84%) sepia(58%) saturate(2747%) hue-rotate(1deg) brightness(103%) contrast(99%);
 }
 .tshirtstylebox{
   
@@ -154,8 +158,10 @@
     padding-bottom: 1%;
     border-radius: 20px;
     position: absolute;
-    top: -30%; 
-    z-index: 10;
+    top: 0; 
+    transform: translateY(-50%); /* This does the magic */
+  
+    
 }
 .quality-btn {
   width: 30%;
@@ -184,9 +190,9 @@
   margin-top: 8%;
   background-color: white;
   border: 1px solid;
-  z-index: 10;
-  z-index: 10;
+  
   position: relative;
+ 
   
 
 }
@@ -357,6 +363,64 @@
 .rightarrw-btn{
   font-size: 25px;
 }
+.rightarrw-rouded:hover{
+  background-color: #0060c7;
+}
+.leftarrw-rounded:hover{
+  background-color: #0060c7;
+}
+.bortextheadone{ 
+  margin: 10px 0;
+  color: blue;
+  font-size: 20px;
+  text-align: center;
+  transition: color 0.3s ease-in-out;
+}  
+
+
+.add-product-btn {
+  background-color: white;
+  color: #015dc0;
+  border: 1px solid #015dc0;
+  padding: 5%;
+ 
+ 
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* On active (when clicked) */
+.add-product-btn:active {
+  background-color: #015dc0;
+  color: white;
+}
+.dropdown-list{
+  top: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    width: 26%;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    z-index: 100;
+}
+.sample-btn{
+  padding: 9px;
+  border-radius: 20px;
+  text-align: center;
+  transition: color 0.3s ease-in-out;
+  border: 1px solid #0060c7 ;
+  color: black;
+}
+.sample-btn:active{
+ background-color: #0060c7;
+ color: white;
+}
+.sampleimages{
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+}
 
 
 
@@ -366,10 +430,7 @@
   
 
   @media (min-width: 992px) {
-    /* .custom-tshirts .col-lg-3 {
-      width: 19% !important;
-      flex: 0 0 auto !important;
-    } */
+    
     .tshirtstyles .col-lg-3{
         width: 24% !important;
       flex: 0 0 auto !important;
@@ -378,10 +439,10 @@
 
   @media (max-width: 1024px){
     .t-shirt-image {
-        width: 70px;
-        margin-bottom: 1px;
-        transition: filter 0.3s ease;
-    }
+      width: 100px;
+      margin-bottom: 1px;
+      transition: filter 0.3s ease;
+  }
     .heading-text-product {
       margin: 0;
       font-size: 18px;
@@ -399,11 +460,11 @@
     .price-cal-box {
       width: 26%;
   }
-    .quality-type {
+    /* .quality-type {
       
       top: -25%;
       
-  }
+  } */
   .colour-choose-box {
     width: 30%;
     }
@@ -482,7 +543,7 @@
     width: 61%;
   }
   .colour-choose-box {
-    width: 41%;
+    width: 55%;
 }
 .price-cal-box {
   width: 32%;

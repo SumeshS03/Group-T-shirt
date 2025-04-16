@@ -34,6 +34,7 @@ import { HiOutlineMailOpen } from "react-icons/hi";
 import { IoLocationOutline } from "react-icons/io5";
 import { FaCircleChevronLeft } from "react-icons/fa6";
 import { FaCircleChevronRight } from "react-icons/fa6";
+import sampleimages from "../images/grouptshirtone.png"
 
 const Shopcontentproduct = () => {
   const [activeTab, setActiveTab] = useState("product");
@@ -65,6 +66,7 @@ const addSelectedColor = () => {
   const [clicked, setClicked] = useState(false);
   const sliderRef = useRef(null);
   const cardWidth = 270; // Must match actual width of one card
+  const [showSamples, setShowSamples] = useState(false);
 
   const handleColorClick = (color) => {
     const updatedColors = [...selectedColors];
@@ -384,26 +386,35 @@ const addSelectedColor = () => {
         </div>
         </div>
       </div>
-      <div className="container d-flex justify-content-center align-items-center mt-3 mb-0">
-        <div className="image-uplode-box text-white bg-dark p-3 rounded-5 text-center justify-content-between d-flex ">
-          <label className="d-block mb-2 uplode-text">Upload Logo</label>
-          <label htmlFor="upload-logo" style={{ cursor: "pointer" }}>
-            <MdAddPhotoAlternate size={40} />
-          </label>
-          <input
-            type="file"
-            id="upload-logo"
-            accept="image/*"
-            style={{ display: "none" }}
-            onChange={(e) => {
-              const file = e.target.files[0];
-              console.log("Selected file:", file);
-              // you can preview or handle file upload here
-            }}
-          />
+
+
+      <div className="container d-flex justify-content-center align-items-center mt-3 sample-image-box">
+        <div className="row justify-content-center align-items-center">
+          <div col-4>
+            <button className="sample-btn"
+            onClick={() => setShowSamples(!showSamples)}>Sample-Design</button>
+             {showSamples && (
+    <div className="sample-images mt-3 d-flex gap-2">
+      {/* Example Images */}
+      <img
+        src={sampleimages}
+        alt="Design 1"
+        className="img-fluid sampleimages"
+        // style={{ width: "70px", height: "70px", objectFit: "cover" }}
+      />
+      <img
+        src={sampleimages}
+        alt="Design 2"
+        className="img-fluid sampleimages"
+        // style={{ width: "50px", height: "50px", objectFit: "cover" }}
+      />
+    </div>
+  )}
+          </div>
         </div>
       </div>
-      <p className="mt-0">Png,Svg Format</p>
+      
+      
       <div className="container d-flex justify-content-center align-items-center  logoaddedtshirt-box-con ">
         <div className="logoaddedtshirt-box text-center justify-content-center align-items-center ">
           <div className="logoaddedtshirt col-12 col-md-12 col-lg-3 ">
