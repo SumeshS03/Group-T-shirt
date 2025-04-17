@@ -1,21 +1,16 @@
 import React, { useRef, useState,useEffect } from "react";
+
 import HomeHeader from "../Layout/HomeHeader";
 import shopimage from "../images/shopimage.png";
 import "./Shopcontentproduct.css";
-import { MdAddPhotoAlternate } from "react-icons/md";
-import { IoIosArrowDown } from "react-icons/io";
-import { FaPlusCircle } from "react-icons/fa";
+import "./Stockpage.css"
+
 import { useLocation,useNavigate } from "react-router-dom";
 
-import tshirt from "../images/yourstyle.png";
-import yourprintone from "../images/yourprint.png";
-import quantity from "../images/yourquantity.jpg";
-import payment from "../images/payment.jpg";
+
 
 import qualityshirt from "../images/Premium-Quality.png";
-import outstandquality from "../images/Outstanding-Quality1.png";
-import secpayment from "../images/Secure-payment1.png";
-import cussizestyle from "../images/Custom-SIze-STyle.png";
+
 
 import amex from "../images/amex.png";
 import applepay from "../images/apple.jpg";
@@ -32,174 +27,30 @@ import bluef from "../images/blue-f.png"
 import { FiPhoneCall } from "react-icons/fi";
 import { HiOutlineMailOpen } from "react-icons/hi";
 import { IoLocationOutline } from "react-icons/io5";
-import { FaCircleChevronLeft } from "react-icons/fa6";
-import { FaCircleChevronRight } from "react-icons/fa6";
+
 
 const Shopcontentproduct = () => {
   const [activeTab, setActiveTab] = useState("product");
-  const [showColors, setShowColors] = useState(false);
-  // const [showColorList, setShowColorList] = useState(colors[0]);
-  // const [selectedColors, setSelectedColors] = useState([]);
-const [showColorList, setShowColorList] = useState(false);
-const colors = ["red", "blue", "green", "yellow", "black", "purple"];
-const [selectedColor, setSelectedColor] = useState(colors[0]);
-const [selectedColors, setSelectedColors] = useState([]); // 💡 The array you're asking about
-// const [showColorList, setShowColorList] = useState(false);
-
-const addSelectedColor = () => {
-  if (
-    selectedColors.length < 2 &&
-    !selectedColors.includes(selectedColor)
-  ) {
-    setSelectedColors([...selectedColors, selectedColor]);
-  }
-};
-  const [selectedNumber, setSelectedNumber] = useState(10);
-  const [showDropdown, setShowDropdown] = useState(false);
-  const [showSizes, setShowSizes] = useState(false);
-  const [selectedSize, setSelectedSize] = useState('XXL');
-  const [selectedQuality, setSelectedQuality] = useState("Premium");
-  const [selectedType, setSelectedType] = useState("Print");
-  const [clicked, setClicked] = useState(false);
-  const sliderRef = useRef(null);
-  const cardWidth = 270; // Must match actual width of one card
-
-  const handleColorClick = (color) => {
-    const index = selectedColors.findIndex((c) => c === "");
-    if (index !== -1) {
-      const updated = [...selectedColors];
-      updated[index] = color;
-      setSelectedColors(updated);
-    }
-    setShowColorList(false);
-  };
-
-  const handleAddCircle = () => {
-    if (selectedColors.length < 2) {
-      setSelectedColors([...selectedColors, ""]);
-    }
-  };
-
-
-  const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL', '5XL'];
-
-
-  const numbers = Array.from({ length: 2000 }, (_, i) => i + 10);
-
-  // const [colors] = useState([
-  //   '#ff0000', '#00ff00', '#0000ff', '#ffff00',
-  //   '#ff00ff', '#00ffff', '#ffffff', '#000000'
-  // ]);
-  const handleSelect = (num) => {
-    setSelectedNumber(num);
-    setShowDropdown(false);
-  };
-
-  const tshirtItems = [
-    { id: 1, image: qualityshirt, title: "Normal T-Shirts" },
-    { id: 2, image: qualityshirt, title: "Full Color T-Shirts" },
-    { id: 3, image: qualityshirt, title: "Line T-Shirts" },
-    { id: 4, image: qualityshirt, title: "Double Line T-Shirts" },
-    { id: 5, image: qualityshirt, title: "Single Line T-Shirts" }, // Add more items as needed
-    { id: 6, image: qualityshirt, title: "Striped T-Shirts" },
-    { id: 7, image: qualityshirt, title: "T-shirts" },
-    { id: 8, image: qualityshirt, title: "Oversize T-Shirts" },
-  ];
-
-  const [currentPage, setCurrentPage] = useState(0);
-  
-  const [itemsPerPage, setItemsPerPage] = useState(window.innerWidth <= 768 ? 1 : 4);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setItemsPerPage(window.innerWidth <= 768 ? 1 : 4);
-    };
-  
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  // 
-  
-
-  const visibleItems = tshirtItems.slice(
-    currentPage,
-    currentPage + itemsPerPage
-  );
-
-  const canGoNext = currentPage < tshirtItems.length - itemsPerPage;
-  const canGoPrev = currentPage > 0;
-
-
-
-
-
   const location = useLocation();
   const navigate = useNavigate();
 
-  const items = [
-    { title: "T-Shirts", path: "/tshirts" },
-    { title: "Long Sleeves", path: "/longsleeves" },
-    { title: "Sweater", path: "/sweater" },
-    { title: "Hoodies", path: "/hoodies" },
-    { title: "Cups", path: "/cups" },
+    useEffect(() => {
+      // Set activeTab based on current path
+      if (location.pathname === "/product") setActiveTab("product");
+      else if (location.pathname === "/newdesign") setActiveTab("new");
+      else if (location.pathname === "/stock") setActiveTab("stock");
+    }, [location.pathname]);
+
+  const products = [
+    { id: 1, image: qualityshirt, label: "Sleeve", price: 299, quantity: 12 },
+    { id: 2, image: qualityshirt, label: "Full Sleeve", price: 349, quantity: 8 },
+    { id: 3, image: qualityshirt, label: "Round Neck", price: 279, quantity: 15 },
+    { id: 4, image: qualityshirt, label: "V Neck", price: 319, quantity: 5 },
+    { id: 5, image: shopimage, label: "V Neck", price: 319, quantity: 6 },
+    { id: 6, image: shopimage, label: "V Neck", price: 319, quantity: 7 },
   ];
 
-  const pathToTitleMap = {
-    "/tshirts": "T-Shirts",
-    "/longsleeves": "Long Sleeves",
-    "/sweater": "Sweater",
-    "/hoodies": "Hoodies",
-    "/cups": "Cups",
  
-  };
-
-  const currentPath = location.pathname;
-  const selectedBox = pathToTitleMap[currentPath] || "T-Shirts";
-  
-
-  const handleClick = (item) => {
-    navigate(item.path);
-  };
-
-  // const handleTabClick = (tab, path) => {
-  //   setActiveTab(tab);
-  //   navigate(path);
-  // };
-
-
-
-  // useEffect(() => {
-  //   if (location.pathname === "/product") setActiveTab("product");
-  //   else if (location.pathname === "/newdesign") setActiveTab("new");
-  //   else if (location.pathname === "/stock") setActiveTab("stock");
-  // }, [location.pathname]);
-
-
-  useEffect(() => {
-    // Set activeTab based on current path
-    if (location.pathname === "/product") setActiveTab("product");
-    else if (location.pathname === "/newdesign") setActiveTab("new");
-    else if (location.pathname === "/stock") setActiveTab("stock");
-  }, [location.pathname]);
-
-
-  // const getActiveTab = () => {
-  //   if (location.pathname === "/product") return "product";
-  //   if (location.pathname === "/newdesign") return "new";
-  //   if (location.pathname === "/stock") return "stock";
-  //   return "";
-  // };
-
-  // const activeTab = getActiveTab();
-  
-
-
-
-  
-  
-  
-
   return (
     <>
       <div>
@@ -223,7 +74,7 @@ const addSelectedColor = () => {
 
       <div className="choose-category  ">
         <div className="container-fluid d-flex flex-column justify-content-center align-items-center">
-          <div className="row w-75 gap-2">
+          <div className="row w-75 gap-2 pb-5">
             {/* <div className="products-type "> */}
               <div
                  className={`col-lg-3 col-12 product-page 
@@ -258,36 +109,49 @@ const addSelectedColor = () => {
             {/* </div> */}
           </div>
 
-          <h1 className="heading-text mt-3 mb-3">
-            Choose
-            <span style={{ color: "#015dc0" }}> Category</span>
-          </h1>
-          <div className="p-2 t-shirtsrowbox">
-      <div className="custom-tshirts row justify-content-between align-items-center gx-0 gy-4">
-        {items.map((item, idx) => (
-          <div
-            key={idx}
-            className={`verityproduct-box col-12 col-md-12 col-lg-3 ${
-              selectedBox === item.title ? "selected-box" : ""
-            }`}
-            onClick={() => handleClick(item)}
-            style={{ cursor: "pointer" }}
-          >
-            <div className="box-innersize">
-              <img
-                src={qualityshirt}
-                alt={item.title}
-                className="t-shirt-image img-fluid"
-              />
-              <h2 className="h5 bortexthead">{item.title}</h2>
-              <p className="tshirtstext">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, quo! Deserunt
-              </p>
-            </div>
-          </div>
-        ))}
+          
+          
+        </div>
       </div>
-    </div>
+
+      <div className="container  justify-content-center align-items-center mt-5">
+        <div className="row   pt-2 product-row">
+          <h1 className="h4 text-start">T-shirts</h1>
+          <div className="container ">
+  <div className="product-slider-container">
+    {products.map((item, index) => (
+      <div key={index} className="product-card text-center">
+        <div className="product-image">
+          <img src={item.image} alt={`product-img-${index}`} />
+        </div>
+
+        <div className="d-flex justify-content-between">
+          <div>
+            <h6 className="mt-2 text-start">{item.label}</h6>
+            <p className="text-start fw-semibold price-tag">₹ {item.price}</p>
+          </div>
+          <div>
+            <h6 className="mt-2 text-start">Quantity Available</h6>
+            <input
+              type="text"
+              value={item.quantity}
+              readOnly
+              className="form-control quantity-input"
+            />
+          </div>
+        </div>
+
+        <button
+          className="rounded-5 showdetail-btn mt-2"
+          onClick={() => navigate(`/product/${item.id}`)}
+        >
+          Show Detail
+        </button>
+      </div>
+    ))}
+  </div>
+</div>
+          
         </div>
       </div>
       
@@ -499,6 +363,7 @@ const addSelectedColor = () => {
                 </span>
               </p>
             </div>
+           
     </>
   );
 };

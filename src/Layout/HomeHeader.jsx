@@ -28,6 +28,8 @@ import { FaBars } from 'react-icons/fa';
 const HomeHeader = () => {
   const location = useLocation(); // Get current URL
   const [activeLink, setActiveLink] = useState("");
+  const currentPath = location.pathname;
+  const isShopActive = ["/shop", "/tshirts", "/product", "/newdesign", "/stock"].includes(currentPath);
   
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -118,7 +120,7 @@ const HomeHeader = () => {
                     ABOUTUS 
                </Link>
                
-               <Link to="/shop" class="no-underline-2 fw-bold"  style={{ color: activeLink === "shop" ? "#cf9601" : "blue" }}>
+               <Link to="/shop" class="no-underline-2 fw-bold"  style={{ color: isShopActive ? "#cf9601" : "blue" }}>
        
                  SHOP 
                </Link>

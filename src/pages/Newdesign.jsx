@@ -57,6 +57,8 @@ const addSelectedColor = () => {
     setSelectedColors([...selectedColors, selectedColor]);
   }
 };
+
+  const [selectedCategory, setSelectedCategory] = useState("T-Shirts");
   const [selectedNumber, setSelectedNumber] = useState(10);
   const [showDropdown, setShowDropdown] = useState(false);
   const [showSizes, setShowSizes] = useState(false);
@@ -153,13 +155,42 @@ const addSelectedColor = () => {
  
   };
 
-  const currentPath = location.pathname;
-  const selectedBox = pathToTitleMap[currentPath] || "T-Shirts";
+
+  const allProducts = [
+    { id: 1, title: "Tee 1", category: "T-Shirts", image: qualityshirt },
+    { id: 2, title: "Tee 2", category: "T-Shirts", image: qualityshirt },
+    { id: 3, title: "Long Sleeve 1", category: "Long Sleeves", image: qualityshirt },
+    { id: 4, title: "Hoodie 1", category: "Hoodies", image: qualityshirt },
+    { id: 5, title: "Sweater 1", category: "Sweater", image: qualityshirt },
+    { id: 6, title: "Cup 1", category: "Cups", image: qualityshirt },
+    // Add more sample items
+  ];
+
+  // const currentPath = location.pathname;
+  // const selectedBox = pathToTitleMap[currentPath] || "T-Shirts";
+
+
+
+
+  
+  // const filteredItems = allProducts.filter(item => item.category === selectedCategory);
+  // const startIndex = currentPage * itemsPerPage;
+  // const endIndex = startIndex + itemsPerPage;
+  // const visibleItems = filteredItems.slice(startIndex, endIndex);
   
 
+  // const handleClick = (item) => {
+  //   navigate(item.path);
+  // };
+
+
+
   const handleClick = (item) => {
-    navigate(item.path);
+    setSelectedCategory(item.title);
+    setCurrentPage(0); // reset to first page on new category
   };
+
+  const selectedBox = selectedCategory;
 
   // const handleTabClick = (tab, path) => {
   //   setActiveTab(tab);
@@ -315,7 +346,7 @@ const addSelectedColor = () => {
             <span style={{ color: "#015dc0" }}> Category</span>
           </h1>
           <div className="p-2 t-shirtsrowbox">
-      <div className="custom-tshirts row justify-content-between align-items-center gx-0 gy-4">
+          <div className="custom-tshirts row justify-content-between align-items-center gx-0 gy-4">
         {items.map((item, idx) => (
           <div
             key={idx}
@@ -350,20 +381,20 @@ const addSelectedColor = () => {
         <FaCircleChevronLeft className="leftarrw-btn" />
       </div>
       
-      <div className="p-3 tshirtstyles row  gap-3 gap-md-3 gap-lg-2">
-        {visibleItems.map((item) => (
-          <div key={item.id} className="tshirtstylebox col-12 col-md-12 col-lg-3">
-            <div className="box-innersize">
-              <img
-                src={item.image}
-                alt="Premium Quality"
-                className="t-shirtstyle-image"
-              />
-              <h2 className="h5 bortextheadone">{item.title}</h2>
+      <div className="p-3 tshirtstyles row gap-3 gap-md-3 gap-lg-2">
+          {visibleItems.map((item) => (
+            <div key={item.id} className="tshirtstylebox col-12 col-md-12 col-lg-3">
+              <div className="box-innersize">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="t-shirtstyle-image"
+                />
+                <h2 className="h5 bortextheadone">{item.title}</h2>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
 
       <div 
         className={`btn rounded-5 rightarrw-rouded  ${!canGoNext ? "disabled" : ""}`}
@@ -386,8 +417,6 @@ const addSelectedColor = () => {
         </div>
         </div>
       </div>
-
-
       <div className="container d-flex justify-content-center align-items-center mt-3 sample-image-box">
         <div className="row justify-content-center align-items-center">
           <div col-4>
@@ -413,26 +442,24 @@ const addSelectedColor = () => {
           </div>
         </div>
       </div>
-      
-      
       <div className="container d-flex justify-content-center align-items-center  logoaddedtshirt-box-con ">
         <div className="logoaddedtshirt-box text-center justify-content-center align-items-center ">
-          <div className="logoaddedtshirt col-12 col-md-12 col-lg-3 ">
+          <div className="newdesign-uplode col-12 col-md-12 col-lg-3 ">
             <div className="box-inner">
               <img
-                src={qualityshirt}
-                alt="Premium Quality"
+                src={""}
+                // alt="Premium Quality"
                 className="t-shirtstyle-logo"
                 style={{}}
               />
             </div>
           </div>
 
-          <div className="logoaddedtshirt col-12 col-md-12 col-lg-3 ">
+          <div className="newdesign-uplode col-12 col-md-12 col-lg-3 ">
             <div className="box-inner">
               <img
-                src={qualityshirt}
-                alt="Premium Quality"
+                src={""}
+                // alt="Premium Quality"
                 className="t-shirtstyle-logo"
                 style={{}}
               />

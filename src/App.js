@@ -16,6 +16,7 @@ import Cups from './pages/Cups'
 import Productpage from './pages/Productpage'
 import Newdesign from './pages/Newdesign'
 import Stockpage from './pages/Stockpage'
+import Productdetail from './pages/Productdetail';
 
 
 function App() {
@@ -29,12 +30,13 @@ function App() {
         <Route path="/service" element={<Servicecontent />} />
         <Route path="/contactus" element={<Contactus />}/>
         <Route path="/shop" element={<Shopcontent/>}></Route>
-        <Route path="/tshirts" element={<Shopcontentproduct/>}></Route>
-        <Route path="/longsleeves" element={<Longsleeves/>}></Route>
+        <Route path="/product" element={<Shopcontentproduct/>}></Route>
+        <Route path="/product/:id" element={<Productdetail />} />
+        {/* <Route path="/longsleeves" element={<Longsleeves/>}></Route>
         <Route path="/sweater" element={<Sweater/>}></Route>
         <Route path="/hoodies" element={<Hoodies></Hoodies>}></Route>
-        <Route path='/cups' element={<Cups></Cups>}></Route>
-        <Route path='/product' element={<Productpage></Productpage>}></Route>
+        <Route path='/cups' element={<Cups></Cups>}></Route> */}
+        {/* <Route path='/product' element={<Productpage></Productpage>}></Route> */}
         <Route path='/newdesign' element={<Newdesign></Newdesign>}></Route>
         <Route path='/stock' element={<Stockpage></Stockpage>}></Route>
         
