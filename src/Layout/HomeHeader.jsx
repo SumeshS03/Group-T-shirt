@@ -13,13 +13,14 @@ import { FaCartShopping } from "react-icons/fa6";
 import bluef from "../images/blue-f.png"
 import { FaPhoneVolume } from "react-icons/fa6";
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import { FaFacebookF } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { FaWhatsapp } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -28,8 +29,9 @@ import { FaBars } from 'react-icons/fa';
 const HomeHeader = () => {
   const location = useLocation(); // Get current URL
   const [activeLink, setActiveLink] = useState("");
+  const navigate = useNavigate();
   const currentPath = location.pathname;
-  const isShopActive = ["/shop", "/tshirts", "/product", "/newdesign", "/stock"].includes(currentPath);
+  const isShopActive = ["/shop", "/tshirts", "/product", "/newdesign", "/stock" ,"/product/:id","/product"].includes(currentPath);
   
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -146,7 +148,8 @@ const HomeHeader = () => {
                <div className='st-line'>
 
               </div>
-              <div className='pofile-box'><FaCartShopping className='profileicons' /></div>
+              <div className='pofile-box'><FaCartShopping className='profileicons' 
+              onClick={() => navigate("/cart")}/></div>
               </div>
 
 

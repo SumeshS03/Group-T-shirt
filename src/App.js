@@ -17,6 +17,7 @@ import Productpage from './pages/Productpage'
 import Newdesign from './pages/Newdesign'
 import Stockpage from './pages/Stockpage'
 import Productdetail from './pages/Productdetail';
+import Cartpage from './pages/Cartpage';
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
         <Route path="/shop" element={<Shopcontent/>}></Route>
         <Route path="/product" element={<Shopcontentproduct/>}></Route>
         <Route path="/product/:id" element={<Productdetail />} />
+        <Route path="/cart/:id" element={<Cartpage></Cartpage>}></Route>
         {/* <Route path="/longsleeves" element={<Longsleeves/>}></Route>
         <Route path="/sweater" element={<Sweater/>}></Route>
         <Route path="/hoodies" element={<Hoodies></Hoodies>}></Route>

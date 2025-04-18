@@ -27,19 +27,23 @@
   .buynow-btn{
     border-radius: 10px;
     border: 1px solid blue;
+   
+    background-color: blue;
+  color: white;
+  transition: all 0.3s ease;
   }
   .addtocart-btn{
     border-radius: 10px;
     border: 1px solid blue;
-  }
-  .addtocart-btn:active {
-    background-color: #015dc0;
-  }
-  .buynow-btn:active {
-    background-color: #015dc0;
+   
+    background-color: blue;
     color: white;
+  transition: all 0.3s ease;
   }
-  .active-state {
-    background-color: #015dc0;
-    color: white;
+
+
+
+  .active-btn {
+    background-color: transparent;
+    color: black;
   }

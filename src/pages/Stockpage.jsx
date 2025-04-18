@@ -27,6 +27,8 @@ import bluef from "../images/blue-f.png"
 import { FiPhoneCall } from "react-icons/fi";
 import { HiOutlineMailOpen } from "react-icons/hi";
 import { IoLocationOutline } from "react-icons/io5";
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
 
 const Shopcontentproduct = () => {
@@ -41,14 +43,33 @@ const Shopcontentproduct = () => {
       else if (location.pathname === "/stock") setActiveTab("stock");
     }, [location.pathname]);
 
-  const products = [
-    { id: 1, image: qualityshirt, label: "Sleeve", price: 299, quantity: 12 },
-    { id: 2, image: qualityshirt, label: "Full Sleeve", price: 349, quantity: 8 },
-    { id: 3, image: qualityshirt, label: "Round Neck", price: 279, quantity: 15 },
-    { id: 4, image: qualityshirt, label: "V Neck", price: 319, quantity: 5 },
-    { id: 5, image: shopimage, label: "V Neck", price: 319, quantity: 6 },
-    { id: 6, image: shopimage, label: "V Neck", price: 319, quantity: 7 },
-  ];
+const products = [
+            { id: 1, image: qualityshirt, label: "Sleeve", price: 299,sizes: {S: 5,M: 4,L: 4,X: 2,XL: 1} },
+            { id: 2, image: qualityshirt, label: "Full Sleeve", price: 349,sizes: {S: 5,M: 3,L: 1,X: 2,XL: 1} },
+            { id: 3, image: qualityshirt, label: "Round Neck", price: 279,sizes: {S: 2,M: 3,L: 4,X: 2,XL: 1} },
+            { id: 4, image: qualityshirt, label: "V Neck", price: 319,sizes: {S: 5,M: 3,L: 1,X: 2,XL: 1} },
+            { id: 5, image: shopimage, label: "V Neck", price: 319,sizes: {S: 5,M: 15,L: 4,X: 2,XL: 1} },
+            { id: 6, image: shopimage, label: "V Neck", price: 319,sizes: {S: 5,M: 3,L: 4,X: 41,XL: 1} },
+ ];
+
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 4,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
 
  
   return (
@@ -114,46 +135,82 @@ const Shopcontentproduct = () => {
         </div>
       </div>
 
-      <div className="container  justify-content-center align-items-center mt-5">
-        <div className="row   pt-2 product-row">
-          <h1 className="h4 text-start">T-shirts</h1>
-          <div className="container ">
-  <div className="product-slider-container">
-    {products.map((item, index) => (
-      <div key={index} className="product-card text-center">
-        <div className="product-image">
-          <img src={item.image} alt={`product-img-${index}`} />
-        </div>
+      <div className="container mt-5">
+    <h1 className="h4 text-start">T-shirts</h1>
+    <div className="product-slider-container">
+      <Carousel responsive={responsive} infinite={false} arrows={true}>
+        {products.map((item, index) => (
+          <div key={index} className="product-card text-center p-2">
+            <div className="product-image">
+              <img src={item.image} alt={`product-img-${index}`} />
+            </div>
 
-        <div className="d-flex justify-content-between">
-          <div>
-            <h6 className="mt-2 text-start">{item.label}</h6>
-            <p className="text-start fw-semibold price-tag">₹ {item.price}</p>
-          </div>
-          <div>
-            <h6 className="mt-2 text-start">Quantity Available</h6>
-            <input
-              type="text"
-              value={item.quantity}
-              readOnly
-              className="form-control quantity-input"
-            />
-          </div>
-        </div>
+            <div className="d-flex justify-content-between">
+              <div>
+                <h6 className="mt-2 text-start">{item.label}</h6>
+                <p className="text-start fw-semibold price-tag">₹ {item.price}</p>
+              </div>
+              <div>
+                <h6 className="mt-2 text-start">Quantity Available</h6>
+                <input
+                  type="text"
+                  value={Object.values(item.sizes).reduce((sum, qty) => sum + qty, 0)}
+                  readOnly
+                  className="form-control quantity-input"
+                />
+              </div>
+            </div>
 
-        <button
-          className="rounded-5 showdetail-btn mt-2"
-          onClick={() => navigate(`/product/${item.id}`)}
-        >
-          Show Detail
-        </button>
-      </div>
-    ))}
+            <button
+              className="rounded-5 showdetail-btn mt-2"
+              onClick={() => navigate(`/product/${item.id}`)}
+            >
+              Show Detail
+            </button>
+          </div>
+        ))}
+      </Carousel>
+    </div>
   </div>
-</div>
-          
-        </div>
-      </div>
+
+
+  <div className="container mt-5">
+    <h1 className="h4 text-start">Jackets</h1>
+    <div className="product-slider-container">
+      <Carousel responsive={responsive} infinite={false} arrows={true}>
+        {products.map((item, index) => (
+          <div key={index} className="product-card text-center p-2">
+            <div className="product-image">
+              <img src={item.image} alt={`product-img-${index}`} />
+            </div>
+
+            <div className="d-flex justify-content-between">
+              <div>
+                <h6 className="mt-2 text-start">{item.label}</h6>
+                <p className="text-start fw-semibold price-tag">₹ {item.price}</p>
+              </div>
+              <div>
+                <h6 className="mt-2 text-start">Quantity Available</h6>
+                <input
+                  type="text"
+                  value={Object.values(item.sizes).reduce((sum, qty) => sum + qty, 0)}
+                  readOnly
+                  className="form-control quantity-input"
+                />
+              </div>
+            </div>
+
+            <button
+              className="rounded-5 showdetail-btn mt-2"
+              onClick={() => navigate(`/product/${item.id}`)}
+            >
+              Show Detail
+            </button>
+          </div>
+        ))}
+      </Carousel>
+    </div>
+  </div>
       
       
       

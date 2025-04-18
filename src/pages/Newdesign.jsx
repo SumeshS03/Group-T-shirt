@@ -82,7 +82,7 @@ const addSelectedColor = () => {
   };
 
 
-  const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL', '5XL'];
+  const sizes = ['S', 'M', 'L', 'XL', 'XXL', '3XL','4XL'];
 
 
   const numbers = Array.from({ length: 2000 }, (_, i) => i + 10);
@@ -443,7 +443,7 @@ const addSelectedColor = () => {
         </div>
       </div>
       <div className="container d-flex justify-content-center align-items-center  logoaddedtshirt-box-con ">
-        <div className="logoaddedtshirt-box text-center justify-content-center align-items-center ">
+        <div className="logoaddedtshirt-box text-center justify-content-center align-items-center gap-3 ">
           <div className="newdesign-uplode col-12 col-md-12 col-lg-3 ">
             <div className="box-inner">
               <img
@@ -493,189 +493,7 @@ const addSelectedColor = () => {
 
 
        
-          {/* <div className="row w-100 mt-5 ">
-          
-            <div className="col-lg-3 col-12 p-2 d-flex flex-column choose-colour-box justify-content-center align-items-center">
-            
-             <label className="mb-2">Choose Colour:</label>
-             
-             <div className="colour-choose-box d-flex align-items-center gap-2 position-relative">
-      
-      {selectedColors.map((color, index) => (
-  <div
-    key={index}
-    className="color-circle"
-    style={{
-      width: "30px",
-      height: "30px",
-      borderRadius: "50%",
-      backgroundColor: color || "#eee",
-      border: "1px solid #ccc",
-      cursor: "pointer"
-    }}
-    onClick={() => {
-      setActiveIndex(index);   
-      setShowColorList(true);    
-    }}
-  ></div>
-))}
-
-      
-      <div
-        className="color-select-icon d-flex align-items-center"
-        style={{ backgroundColor: "white", cursor: "pointer" }}
-      >
-        <IoIosArrowDown
-          size={20}
-          color="#555"
-          onClick={() => setShowColorList(!showColorList)}
-        />
-      </div>
-
-     
-      {showColorList && (
-        <div
-          className="color-list position-absolute bg-white p-2 rounded shadow"
-          style={{
-            top: "100%",
-            left: 0,
-            zIndex: 1000,
-            minWidth: "150px"
-          }}
-        >
-          {colors.map((color, index) => (
-            <div
-              key={index}
-              className="color-option d-inline-block m-1"
-              style={{
-                width: "30px",
-                height: "30px",
-                borderRadius: "50%",
-                backgroundColor: color,
-                cursor: "pointer"
-              }}
-              onClick={() => handleColorClick(color)}
-            ></div>
-          ))}
-        </div>
-      )}
-
-     
-      <div style={{ cursor: "pointer" }} onClick={handleAddCircle}>
-        <FaPlusCircle size={20} />
-      </div>
-    </div>
-
-            </div>
-
-
-
-
-
-
-
-            
-            <div className="col-lg-2 col-12 p-2 d-flex flex-column choose-colour-box align-items-center  ">
-            <label className="mb-4">Logo Quatity:</label>
-            <div className="pieces-box d-flex   "
-            onClick={() => setShowDropdown(!showDropdown)}
-            >
-            <span>{selectedNumber}</span>
-            
-            <div>
-             <IoIosArrowDown size={20} color="#555"  />
-             </div>
-             
-             
-            </div>
-            
-            
-            </div>
-            {showDropdown && (
-        <div
-          className="dropdown-list position-absolute mt-1"
-          style={{
-            top: "100%",
-            maxHeight: "200px",
-            overflowY: "auto",
-            width: "100%",
-            border: "1px solid #ccc",
-            borderRadius: "5px",
-            backgroundColor: "#fff",
-            zIndex: 100,
-          }}
-        >
-          {numbers.map((num) => (
-            <div
-              key={num}
-              onClick={() => handleSelect(num)}
-              style={{
-                padding: "8px",
-                cursor: "pointer",
-                borderBottom: "1px solid #eee",
-              }}
-            >
-              {num}
-            </div>
-          ))}
-        </div>
-      )}
-          
-            <div className="col-lg-4 col-12 p-2 d-flex flex-column choose-colour-box">
-            <label className="mb-3">Logo Quatity:</label>
-            <div className="d-flex justify-content-center align-items-center quality-type-select">
-              <div  className={`btn print-btn ${selectedType === "Print" ? "active" : ""}`}
-        onClick={() => setSelectedType("Print")}>Print</div>
-              <div  className={`btn emposed-btn ${selectedType === "Emposed" ? "active" : ""}`}
-        onClick={() => setSelectedType("Emposed")}>Emposed</div>
-            </div>
-            </div>
-            <div className="col-lg-3 col-12 d-flex flex-column align-items-center justify-content-center mb-md-2 ">
-              
-              
-              
-            <label className="mb-3">Size Chart:</label>
-            
-            <div className="size-select-box d-flex position-relative   "
-            style={{ cursor: 'pointer' }}
-            
-            >
-              <div className="d-flex justify-content-center align-items-center ">
-            <span>{selectedSize}</span>
-            <div>
-             <IoIosArrowDown size={20} color="#555" onClick={() => setShowSizes(!showSizes)}  />
-             </div>
-             {showSizes && (
-            <div className="position-absolute bg-white rounded shadow mt-1"
-                 style={{
-                   top: '100%',
-                   left: 0,
-                   zIndex: 1000,
-                   maxHeight: '200px',
-                   overflowY: 'auto',
-                   minWidth: '100px'
-                 }}>
-              {sizes.map((size) => (
-                <div key={size}
-                     className="px-3 py-2 hover-bg-gray"
-                     style={{
-                       cursor: 'pointer',
-                       backgroundColor: size === selectedSize ? '#f0f0f0' : 'transparent'
-                     }}
-                     onClick={() => {
-                       setSelectedSize(size);
-                       setShowSizes(false);
-                     }}>
-                  {size}
-                </div>
-              ))}
-            </div>
-          )}
-            </div>
-            </div>
-           
-        </div>
-        </div> */}
+  
 
 
 
@@ -690,7 +508,7 @@ const addSelectedColor = () => {
   <div key={index} className="row w-100 mt-5 ">
     
     {/* Colour Section */}
-    <div className="col-lg-3 col-12 p-2 d-flex flex-column choose-colour-box justify-content-center align-items-center">
+    <div className="col-lg-6 col-12 p-2 d-flex flex-column choose-colour-box justify-content-center align-items-center">
   {/* Label */}
   <label className="mb-2">Choose Colour:</label>
 
@@ -702,8 +520,8 @@ const addSelectedColor = () => {
         <div
           className="color-circle"
           style={{
-            width: "30px",
-            height: "30px",
+            width: "24px",
+            height: "24px",
             borderRadius: "50%",
             backgroundColor: color || "#eee",
             border: "1px solid #ccc",
@@ -776,8 +594,8 @@ const addSelectedColor = () => {
             key={i}
             className="color-option d-inline-block m-1"
             style={{
-              width: "30px",
-              height: "30px",
+              width: "24px",
+              height: "24px",
               borderRadius: "50%",
               backgroundColor: color,
               cursor: "pointer",
@@ -810,45 +628,64 @@ const addSelectedColor = () => {
 </div>
 
     {/* Quantity Section */}
-    <div className="col-lg-2 col-12 p-2 d-flex flex-column choose-colour-box align-items-center">
-      <label className="mb-4">T-shirt Quantity:</label>
-      <div className="pieces-box d-flex"
-           onClick={() => {
-             const updatedRows = [...productRows];
-             updatedRows[index].showDropdown = !row.showDropdown;
-             setProductRows(updatedRows);
-           }}>
-        <span>{row.selectedQuantity}</span>
-        
-        <IoIosArrowDown size={20} color="#555" />
-        
-      </div>
-      {row.showDropdown && (
-        <div className="dropdown-list position-absolute mt-1"
-             style={{ top: "100%", maxHeight: "200px", overflowY: "auto", width: "100%", border: "1px solid #ccc", borderRadius: "5px", backgroundColor: "#fff", zIndex: 100 }}>
-          {numbers.map((num) => (
-            <div key={num}
-                 onClick={() => {
-                   const updatedRows = [...productRows];
-                   updatedRows[index].selectedQuantity = num;
-                   updatedRows[index].showDropdown = false;
-                   setProductRows(updatedRows);
-                 }}
-                 style={{ padding: "8px", cursor: "pointer", borderBottom: "1px solid #eee" }}>
-              {num}
-            </div>
-          ))}
-        </div>
-      )}
-
-      
+    <div className="col-lg-6 col-12 p-2 d-flex flex-column choose-colour-box align-items-center">
+  <label className="mb-4">T-shirt Quantity:</label>
+  <div
+    className="position-relative w-100 d-flex flex-column align-items-center"
+  >
+    <div
+      className="pieces-box d-flex justify-content-between align-items-center  px-2 py-1 border rounded-5"
+      onClick={() => {
+        const updatedRows = [...productRows];
+        updatedRows[index].showDropdown = !row.showDropdown;
+        setProductRows(updatedRows);
+      }}
+    >
+      <span>{row.selectedQuantity}</span>
+      <IoIosArrowDown size={20} color="#555" />
     </div>
-    
+
+    {row.showDropdown && (
+      <div
+        className="dropdown-list position-absolute mt-1"
+        style={{
+          top: "100%",
+          maxHeight: "200px",
+          overflowY: "auto",
+          width: "100%",
+          border: "1px solid #ccc",
+          borderRadius: "5px",
+          backgroundColor: "#fff",
+          zIndex: 100,
+        }}
+      >
+        {numbers.map((num) => (
+          <div
+            key={num}
+            onClick={() => {
+              const updatedRows = [...productRows];
+              updatedRows[index].selectedQuantity = num;
+              updatedRows[index].showDropdown = false;
+              setProductRows(updatedRows);
+            }}
+            style={{
+              padding: "8px",
+              cursor: "pointer",
+              borderBottom: "1px solid #eee",
+            }}
+          >
+            {num}
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+</div>
 
     {/* Type Section */}
-    <div className="col-lg-4 col-12 p-2 d-flex flex-column choose-colour-box">
+    <div className="col-lg-6 col-12 p-2 d-flex flex-column choose-colour-box justify-content-center ">
       <label className="mb-3">Logo Type:</label>
-      <div className="d-flex justify-content-center align-items-center quality-type-select">
+      <div className="d-flex justify-content-center align-items-center quality-type-select mb-5">
         <div className={`btn print-btn ${row.selectedType === "Print" ? "active" : ""}`}
              onClick={() => {
                const updatedRows = [...productRows];
@@ -862,12 +699,63 @@ const addSelectedColor = () => {
                setProductRows(updatedRows);
              }}>Emposed</div>
       </div>
+      <div className="container w-100 d-flex flex-column justify-content-center align-items-center ">
+        <p className="tshirtchangetext mb-5">Tshirt any change in add design</p>
+        <textarea className="design-change-box"></textarea>
+        
+      </div>
     </div>
 
     {/* Size Section */}
-    <div className="col-lg-3 col-12 d-flex flex-column align-items-center justify-content-center mb-md-2">
+    <div className="col-lg-6 col-12 d-flex flex-column align-items-center justify-content-center mb-md-2">
       <label className="mb-3">Size Chart:</label>
-      <div className="size-select-box d-flex position-relative" style={{ cursor: 'pointer' }}>
+
+     
+
+      <table className="table table-bordered w-100 text-center">
+    <thead>
+      <tr>
+        <th>Size</th>
+        <th className="w-50">Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      {sizes.map((size) => (
+        <tr key={size}>
+          <td>{size}</td>
+          <td>
+            <input
+              type="number"
+              min="0"
+              className="form-control"
+              value={
+                row.sizeQuantities?.[size] === 0 || row.sizeQuantities?.[size]
+                  ? row.sizeQuantities[size]
+                  : ""
+              }
+              onChange={(e) => {
+                const updatedRows = [...productRows];
+
+                // ✅ Make sure sizeQuantities object exists
+                if (!updatedRows[index].sizeQuantities) {
+                  updatedRows[index].sizeQuantities = {};
+                }
+
+                const inputValue = e.target.value;
+                updatedRows[index].sizeQuantities[size] = inputValue === "" ? "" : parseInt(inputValue) || 0;
+                setProductRows(updatedRows);
+              }}
+            />
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+      
+
+
+
+      {/* <div className="size-select-box d-flex position-relative" style={{ cursor: 'pointer' }}>
         <div className="d-flex justify-content-center align-items-center">
           <span>{row.selectedSize}</span>
           <IoIosArrowDown size={20} color="#555"
@@ -899,24 +787,30 @@ const addSelectedColor = () => {
             ))}
           </div>
         )}
-      </div>
+      </div> */}
     </div>
 
   </div>
 ))}
-        <div className="row w-100 mt-5 justify-content-center align-items-center mb-4">
-          <div className="col-lg-2 col-12">
-          <button className=" rounded-4  add-product-btn fw-bold" onClick={handleAddProduct}>Add Product</button>
-          </div>
-          
-        </div>
+        
       </div>
-      <div className="container w-50 d-flex flex-column justify-content-center align-items-center ">
-        <p className="tshirtchangetext">Tshirt any change in add design</p>
-        <textarea className="design-change-box"></textarea>
-        <div className={`sent-text-btn mt-3 ${clicked ? "active" : ""}`}
+
+      <div className="container w-100 d-flex flex-column justify-content-center align-items-center ">
+      <div className={`sent-text-btn mt-3 ${clicked ? "active" : ""}`}
       onClick={() => setClicked(!clicked)}>Send</div>
       </div>
+
+
+
+
+
+
+      {/* <div className="container w-50 d-flex flex-column justify-content-center align-items-center ">
+        <p className="tshirtchangetext">Tshirt any change in add design</p>
+        <textarea className="design-change-box"></textarea>
+        
+      </div> */}
+
       <div className="container price-cal-box ">
         <div className="row price-calculate display-flex justify-content-center align-items-center ">
           <div className="d-flex flex-column col-lg-2 col-12 ">

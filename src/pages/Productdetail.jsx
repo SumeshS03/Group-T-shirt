@@ -5,8 +5,11 @@ import HomeHeader from "../Layout/HomeHeader";
 import shopimage from "../images/shopimage.png";
 import { useLocation,useNavigate } from "react-router-dom";
 import "./Productdetail.css"
+// import { useCart } from "../context/CartContext";
 
 const Productdetail = () => {
+
+   const [selectedSize, setSelectedSize] = useState("");
 
     const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState("product");
@@ -22,16 +25,29 @@ const Productdetail = () => {
           else if (location.pathname === "/stock") setActiveTab("stock");
         }, [location.pathname]);
 
+   const [activeButton, setActiveButton] = useState("");
+
+   const handleCartClick = () => {
+    setActiveButton("cart");
+    navigate(`/cart/${product.id}`);
+  };
+
+  const handleSizeChange = (e) => {
+    setSelectedSize(e.target.value);
+  };
+
+    
+
     
 
     const products = [
-        { id: 1, image: qualityshirt, label: "Sleeve", price: 299, quantity: 12 },
-        { id: 2, image: qualityshirt, label: "Full Sleeve", price: 349, quantity: 8 },
-        { id: 3, image: qualityshirt, label: "Round Neck", price: 279, quantity: 15 },
-        { id: 4, image: qualityshirt, label: "V Neck", price: 319, quantity: 5 },
-        { id: 5, image: shopimage, label: "V Neck", price: 319, quantity: 6 },
-        { id: 6, image: shopimage, label: "V Neck", price: 319, quantity: 7 },
-      ];
+                { id: 1, image: qualityshirt, label: "Sleeve", price: 299,sizes: {S: 5,M: 4,L: 4,X: 2,XL: 1} },
+                { id: 2, image: qualityshirt, label: "Full Sleeve", price: 349,sizes: {S: 5,M: 3,L: 1,X: 2,XL: 1} },
+                { id: 3, image: qualityshirt, label: "Round Neck", price: 279,sizes: {S: 2,M: 3,L: 4,X: 2,XL: 1} },
+                { id: 4, image: qualityshirt, label: "V Neck", price: 319,sizes: {S: 5,M: 3,L: 1,X: 2,XL: 1} },
+                { id: 5, image: shopimage, label: "V Neck", price: 319,sizes: {S: 5,M: 15,L: 4,X: 2,XL: 1} },
+                { id: 6, image: shopimage, label: "V Neck", price: 319,sizes: {S: 5,M: 3,L: 4,X: 41,XL: 1} },
+              ];
 
   // You can fetch the product by ID or use local data
   const product = products.find((p) => p.id === parseInt(id));
@@ -116,14 +132,49 @@ const Productdetail = () => {
        </div>
        <div className="col-lg-5 col-12 ">
         <h2 className="text-start">{product.label}</h2>
+        <p className="text-start">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non atque quasi alias eveniet consequuntur dolor.</p>
         <p className="text-start">Price: ₹{product.price}</p>
-        <p className="text-start">Quantity Available: {product.quantity}</p>
+        <div>
+                <h6 className="mt-2 text-start">Quantity Available</h6>
+                <input
+                  type="text"
+                  value={Object.values(product.sizes).reduce((sum, qty) => sum + qty, 0)}
+                  readOnly
+                  className="form-control quantity-input"
+                />
+              </div>
+        <div className="d-flex align-items-center gap-3 mt-3">
+  <div className="fw-bold">Size</div>
+  <select className="form-select w-auto" onChange={handleSizeChange}>
+    <option value="">Select</option>
+    {Object.keys(product.sizes).map((size) => (
+            <option key={size} value={size}>
+              {size}
+            </option>
+          ))}
+  </select>
+
+   {/* Show size-wise quantity when selected */}
+   {selectedSize && (
+          <div>
+            <span className="fw-semibold">
+              Available: {product.sizes[selectedSize]}
+            </span>
+          </div>
+        )}
+</div>
         <div className="d-flex">
           
         </div>
-        <div className="d-flex cart-box">
-            <button className="btn col-lg-3 buynow-btn">Buy Now</button>
-            <button className="btn col-lg-5 addtocart-btn">Add to Cart</button>
+        <div className="d-flex cart-box mt-5">
+            <button  className={`btn col-lg-3 buynow-btn ${
+          activeButton === "buy" ? "active-btn" : ""
+        }`}
+        onClick={() => setActiveButton("buy")}>Buy Now</button>
+            <button className={`btn col-lg-5 addtocart-btn ${
+          activeButton === "cart" ? "active-btn" : ""
+        }`}
+        onClick={handleCartClick}>Add to Cart</button>
         </div>
       </div>
 
