@@ -5,11 +5,13 @@ import HomeHeader from "../Layout/HomeHeader";
 import shopimage from "../images/shopimage.png";
 import { useLocation,useNavigate } from "react-router-dom";
 import "./Productdetail.css"
+import { useCart } from "./CartContext";
 // import { useCart } from "../context/CartContext";
 
 const Productdetail = () => {
 
    const [selectedSize, setSelectedSize] = useState("");
+   
 
     const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState("product");
@@ -27,7 +29,20 @@ const Productdetail = () => {
 
    const [activeButton, setActiveButton] = useState("");
 
+  //  const { addToCart } = useCart();
+
    const handleCartClick = () => {
+
+    // if (!selectedSize) {
+    //   alert("Please select a size before adding to cart.");
+    //   return;
+    // }
+
+    // addToCart(product, selectedSize);
+    // setActiveButton("cart");
+
+
+    
     setActiveButton("cart");
     navigate(`/cart/${product.id}`);
   };
@@ -36,6 +51,50 @@ const Productdetail = () => {
     setSelectedSize(e.target.value);
   };
 
+
+  const [showOptions, setShowOptions] = useState(false);
+  const [showOptionsone, setShowOptionsone] = useState(false);
+  const [showOptionsthree, setShowOptionsthree] = useState(false);
+  const [secondlogo, setsecondlogo]=useState(false);
+
+  const toggleOptions = () => {
+    setShowOptions(!showOptions);
+  };
+  const polytoggle = () => {
+    setShowOptionsone(!showOptionsone)
+  };
+  const polycottoggle = () => {
+    setShowOptionsthree(!showOptionsthree)
+  };
+
+  const [uploadedImage, setUploadedImage] = useState('');
+
+  const handleImageUpload = (e) =>{
+    const file = e.target.files[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      console.log("Selected image URL:", imageUrl);
+  
+      // You can also store it in state to display it:
+      setUploadedImage(imageUrl);
+    }
+  }
+
+  const [uploadedImagetwo, setUploadedImagetwo] = useState('');
+  const handleImageUploadtwo = (e) =>{
+    const file = e.target.files[0];
+    if (file) {
+      const imageUrltwo = URL.createObjectURL(file);
+      console.log("Selected image URL:", imageUrltwo);
+  
+      // You can also store it in state to display it:
+      setUploadedImagetwo(imageUrltwo);
+    }
+  }
+
+  const showsecondlogoadd = () =>{
+      setsecondlogo(!secondlogo)
+  }
     
 
     
@@ -52,7 +111,7 @@ const Productdetail = () => {
   // You can fetch the product by ID or use local data
   const product = products.find((p) => p.id === parseInt(id));
 
-  if (!product) return <h2>Product not found</h2>;
+  // if (!product) return <h2>Product not found</h2>;
 
   return (
     <>
@@ -183,6 +242,221 @@ const Productdetail = () => {
       
       
     </div>
+    <div className="container mt-5">
+      <div className="row ">
+        <label className="fs-5 col-4">Enter Quantity required:</label>
+        <div className="col-3">
+          <input 
+          type="number"
+          // min='0'
+          className="form-control"
+          placeholder="Enter quantity"
+          ></input>
+        </div>
+      </div>
+      <div className="row mt-2 ">
+        <label className="fs-5 col-4">How many Logos to add:</label>
+        <div className="col-3">
+          <input 
+          type="number"
+          // min='0'
+          className="form-control"
+          placeholder="Enter quantity"
+          ></input>
+        </div>
+      </div>
+      <div className="row mt-2 ">
+        <label className="fs-5 col-4 ">Pocket Required:</label>
+        <div className="col-1 d-flex justify-content-center align-items-center gap-3">
+         
+          <div>
+         <input type="radio" id="yes1" name="option" />
+         <label htmlFor="yes1">Yes</label>
+         </div>
+         <div>
+         <input type="radio" id="yes1" name="option" />
+         <label htmlFor="yes1">No</label>
+         </div>
+        </div>
+      </div>
+      <div className="row mt-2 ">
+        <label className="fs-5 col-4">Choose Your Option:</label>
+        <div className="col-2 ">
+          <div className="cotton-dropdown">
+          <label onClick={polycottoggle} className="dropdown-label">Cotton</label>
+          <select className="form-select mt-2">
+        <option value="">option </option>
+        <option value="printed">option 1</option>
+        <option value="embroidered">option 2</option>
+        <option value="embroidered">option 3</option>
+        <option value="embroidered">option 4</option>
+        <option value="embroidered">option 5</option>
+        <option value="embroidered">option 6</option>
+        <option value="embroidered">option 7</option>
+  </select>
+          </div>
+          <div>
+            
+          </div>
+        </div>
+        <div className="col-2">
+          <div className="cotton-dropdown">
+          <label onClick={polytoggle} className="dropdown-label">Polyester</label>
+          <select className="form-select mt-2">
+        <option value="">option </option>
+        <option value="printed">option 1</option>
+        <option value="embroidered">option 2</option>
+        <option value="embroidered">option 3</option>
+        <option value="embroidered">option 4</option>
+        <option value="embroidered">option 5</option>
+        <option value="embroidered">option 6</option>
+        <option value="embroidered">option 7</option>
+  </select>
+          </div>
+          <div>
+            
+          </div>
+        </div>
+        <div className="col-2">
+          <div className="cotton-dropdown">
+          <label onClick={toggleOptions} className="dropdown-label">Poly Cotton</label>
+          <select className="form-select mt-2">
+        <option value="">option 1</option>
+        <option value="printed">option 2</option>
+        <option value="embroidered">option 3</option>
+        <option value="embroidered">option 4</option>
+        <option value="embroidered">option 5</option>
+        <option value="embroidered">option 6</option>
+        <option value="embroidered">option 7</option>
+        <option value="embroidered">option 8</option>
+  </select>
+          </div>
+          <div>
+            
+          </div>
+        </div>
+      </div>
+      <div className="row mt-2">
+        <label className="fs-5 col-4">Delivery Date:</label>
+        <div className="col-3">
+          <input 
+          type="date"
+          // min='0'
+          className="form-control"
+          placeholder="Enter quantity"
+          ></input>
+        </div>
+      </div>
+      <div className="row mt-2">
+        <label className="fs-5 col-4">Choose Colour:</label>
+        <div className="col-3">
+          {/* <input 
+          type="date"
+          // min='0'
+          className="form-control"
+          placeholder="Enter quantity"
+          ></input> */}
+        </div>
+      </div>
+      <div className="row mt-2">
+        <label className="fs-5 col-4">Logo:</label>
+        <div className="col-2">
+        <label className="form-label">Logo Type</label>
+        <select className="form-select">
+        <option value="">Select Type</option>
+        <option value="printed">Printed</option>
+        <option value="embroidered">Emposed</option>
+  </select>
+        </div>
+        <div className="col-2">
+        <label className="form-label">Logo Position</label>
+        <select className="form-select">
+        <option value="">left Chest</option>
+        <option value="printed">Right Chest</option>
+        <option value="embroidered">Left Sleeve</option>
+        <option value="embroidered">Right Sleeve</option>
+        <option value="embroidered">Front Center</option>
+        <option value="embroidered">Back Top</option>
+        <option value="embroidered">Back Center</option>
+        <option value="embroidered">On Pocket</option>
+  </select>
+        </div>
+        <div className="col-2">
+          <input 
+          type="file"
+          accept="image/*"
+          className="form-control"
+          onChange={handleImageUpload}
+          />
+          
+        </div>
+        {uploadedImage && (
+          <>
+          <img src={uploadedImage} alt="Uploaded preview" className="uploded-img p-2  col-2" 
+   />
+   <button className="btn btn-primary col-1  text-center add-logo-btn" onClick={showsecondlogoadd}>Add Logo</button>
+   <div className="col-1">
+    
+   </div>
+   </>
+  
+  
+   
+)}
+
+ {secondlogo && (
+  <div className="'row mt-2 d-flex ">
+    
+    <label className="fs-5 col-4">Logo:</label>
+    <div className="col-2">
+        <label className="form-label">Logo Type</label>
+        <select className="form-select">
+        <option value="">Select Type</option>
+        <option value="printed">Printed</option>
+        <option value="embroidered">Embroidered</option>
+  </select>
+        </div>
+
+        <div className="col-2">
+        <label className="form-label">Logo Position</label>
+        <select className="form-select">
+        <option value="">left Chest</option>
+        <option value="printed">Right Chest</option>
+        <option value="embroidered">Left Sleeve</option>
+        <option value="embroidered">Right Sleeve</option>
+        <option value="embroidered">Front Center</option>
+        <option value="embroidered">Back Top</option>
+        <option value="embroidered">Back Center</option>
+        <option value="embroidered">On Pocket</option>
+  </select>
+        </div>
+    <div className="col-2 ms-3">
+          <input 
+          type="file"
+          accept="image/*"
+          className="form-control"
+          onChange={handleImageUploadtwo}
+          />
+          
+        </div>
+        {uploadedImagetwo && (
+          <>
+          <img src={uploadedImagetwo} alt="Uploaded preview" className="uploded-img p-2  col-2" 
+   />
+   {/* <button className="btn btn-primary col-1  text-center " onClick={showsecondlogoadd}>Add Logo</button> */}
+   </>
+  
+  
+   
+)}
+  </div>
+   )}
+
+      </div>
+      
+    </div>
+    
+    
     </>
   )
 }

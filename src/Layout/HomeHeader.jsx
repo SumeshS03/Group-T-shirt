@@ -21,6 +21,7 @@ import { IoLogoWhatsapp } from "react-icons/io";
 import { FaWhatsapp } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 
 
@@ -31,7 +32,10 @@ const HomeHeader = () => {
   const [activeLink, setActiveLink] = useState("");
   const navigate = useNavigate();
   const currentPath = location.pathname;
-  const isShopActive = ["/shop", "/tshirts", "/product", "/newdesign", "/stock" ,"/product/:id","/product"].includes(currentPath);
+  const { id } = useParams();
+  const isShopActive =
+  ["/shop", "/tshirts", "/product", "/newdesign", "/stock"].includes(currentPath) ||
+  currentPath.startsWith("/productdetail/");
   
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -143,7 +147,10 @@ const HomeHeader = () => {
                <FaSearch className="search-icon" />
                </div>
                <div className='pofile-box'>
-                <MdPerson className='profileicons'  />
+                <MdPerson className='profileicons'
+
+                onClick={() => navigate("/profile")} />
+                 
                </div>
                <div className='st-line'>
 
@@ -158,7 +165,7 @@ const HomeHeader = () => {
                <input type="text" className="search-box" placeholder="Search..." />
                <FaSearch className="search-icon" />
                </div>
-               <div className='pofile-box'><MdPerson style={{ color: "blue", fontSize: "20px"  }} />
+               <div className='pofile-box'><MdPerson style={{ color: "blue", fontSize: "20px"  }} onClick={() => navigate("/profile")}/>
                </div>
                <div className='st-line'>
 

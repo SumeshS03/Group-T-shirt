@@ -244,6 +244,24 @@ const addSelectedColor = () => {
   const [productRows, setProductRows] = useState([defaultRow]);
 
 
+  const [visibleSizeCount, setVisibleSizeCount] = useState(1);
+  const [sizeQuantities, setSizeQuantities] = useState({});
+
+
+  const handleAddSize = () => {
+    if (visibleSizeCount < sizes.length) {
+      setVisibleSizeCount(visibleSizeCount + 1);
+    }
+  };
+
+  const handleChange = (size, value) => {
+    setSizeQuantities((prev) => ({
+      ...prev,
+      [size]: value === "" ? "" : parseInt(value) || 0,
+    }));
+  };
+
+
 
   // const [productRows, setProductRows] = useState([
   //   {
@@ -720,7 +738,7 @@ const addSelectedColor = () => {
       </tr>
     </thead>
     <tbody>
-      {sizes.map((size) => (
+      {/* {sizes.map((size) => (
         <tr key={size}>
           <td>{size}</td>
           <td>
@@ -748,9 +766,39 @@ const addSelectedColor = () => {
             />
           </td>
         </tr>
+      ))} */}
+      {sizes.slice(0, visibleSizeCount).map((size) =>(
+        <tr key={size}>
+          <td>{size}</td>
+          <td>
+            <input
+            type="number"
+            min='0'
+            className="form-control"
+            value={
+              sizeQuantities[size] === 0 || sizeQuantities[size]
+                ? sizeQuantities[size]
+                : ""
+            }
+            onChange={(e) => handleChange(size, e.target.value)}
+            
+            
+            
+            ></input>
+          </td>
+        </tr>
+
       ))}
+      
     </tbody>
+    
   </table>
+  {visibleSizeCount < sizes.length &&(
+    <button className="btn rounded-5 add-size-btn" onClick={handleAddSize}>
+    Add Size
+  </button>
+  )}
+  {/* <button className="btn rounded-5 add-size-btn">Add Size</button> */}
       
 
 
@@ -795,6 +843,9 @@ const addSelectedColor = () => {
         
       </div>
 
+      
+      
+      
       <div className="container w-100 d-flex flex-column justify-content-center align-items-center ">
       <div className={`sent-text-btn mt-3 ${clicked ? "active" : ""}`}
       onClick={() => setClicked(!clicked)}>Send</div>

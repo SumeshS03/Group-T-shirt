@@ -1,6 +1,7 @@
 .product-imageful{
     /* height: 60%; */
-    height: 450px;
+    /* height: 450px; */
+    height: 372px;
     width: 100%;
     background-color: bisque;
     overflow: hidden;
@@ -47,3 +48,44 @@
     background-color: transparent;
     color: black;
   }
+
+  .dropdown-listone {
+    top: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    width: 67%;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    z-index: 100;
+    list-style: none;
+    padding-left: 0;
+}
+.cotton-dropdown {
+  position: relative;
+  width: 200px;
+  cursor: pointer;
+}
+
+.dropdown-label {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.dropdown-list li {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.dropdown-list li:hover {
+  background-color: #f2f2f2;
+}
+
+.uploded-img{
+  width: 80px;
+}
+.add-logo-btn{
+  height: 30px;
+}

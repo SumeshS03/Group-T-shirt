@@ -163,7 +163,7 @@ const products = [
 
             <button
               className="rounded-5 showdetail-btn mt-2"
-              onClick={() => navigate(`/product/${item.id}`)}
+              onClick={() => navigate(`/productdetail/${item.id}`)}
             >
               Show Detail
             </button>
@@ -202,7 +202,7 @@ const products = [
 
             <button
               className="rounded-5 showdetail-btn mt-2"
-              onClick={() => navigate(`/product/${item.id}`)}
+              onClick={() => navigate(`/productdetail/${item.id}`)}
             >
               Show Detail
             </button>

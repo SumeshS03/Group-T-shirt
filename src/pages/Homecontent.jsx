@@ -63,6 +63,7 @@ import { FaInstagram } from "react-icons/fa6";
 import { FiYoutube } from "react-icons/fi";
 import { useState, useEffect } from "react";
 import { ReactTyped } from "react-typed";
+import { useNavigate } from "react-router-dom";
 
 const Homecontent = () => {
   // {
@@ -76,6 +77,7 @@ const Homecontent = () => {
 
   //     return () => clearInterval(interval); // Cleanup function
   //   }, []);
+  const navigate = useNavigate();
   const profiles = [
     {
       name: "Cristian L.",
@@ -234,7 +236,7 @@ const Homecontent = () => {
             <p className="print-shirt">
               Print shirts for yourself or your online business
             </p>
-            <button className="start-btd ">SHOP NOW</button>
+            <button className="start-btd "  onClick={() => navigate("/shop")}  >Buy Now</button>
           </div>
           <div></div>
         </div>
@@ -347,7 +349,7 @@ const Homecontent = () => {
               <LiaCheckCircle className="circle-check" /> Mix and match
               colors,sizes,and designs
             </p>
-            <button className="start-btd ">GET STARTED</button>
+            <button className="start-btd " onClick={() => navigate('/product')}>GET STARTED</button>
           </div>
 
           <div className=" col-lg-6 col-md-12  design-text-2  justify-content-end position-relative hide-on-768 ">
@@ -360,11 +362,11 @@ const Homecontent = () => {
         <div className="col-lg-6">
           <div className="shopnow d-flex flex-row  align-items-center justify-content-center position-relative  ">
             <div className="shopnow-one  text-md-start text-center ms-5">
-              <h1 className="text-white fw-bold m-0 shopnowpercentage">10% off your</h1>
-              <h1 className="text-white fw-bold m-0 shopnowpercentage">first order</h1>
-              <p className="text-white m-0 shopnowparatext">Free and easy way to bring</p>
-              <p className="text-white m-0 shopnowparatext">your ideas to life</p>
-              <button className="start-btd-1  mt-4 mb-2 ">
+              <h1 className="text-white fw-bold m-0 shopnowpercentage ">Last Minute </h1>
+              <h1 className="text-white fw-bold m-0 shopnowpercentage">Need?</h1>
+              <p className="text-white m-0 shopnowparatext">Choose from our</p>
+              <p className="text-white m-0 shopnowparatext fw-bold">Ready Stock</p>
+              <button className="start-btd-1  mt-4 mb-2 " onClick={() => navigate('/stock')}>
                 SHOP NOW
               </button>
             </div>
@@ -380,11 +382,11 @@ const Homecontent = () => {
               <img className="explore-image" src={tshirtmen1} alt="logo"></img>
             </div>
             <div className="explore-gapfix  text-md-start text-center">
-              <h1 className="text-white fw-bold m-0 shopnowpercentage">Create your</h1>
-              <h1 className="text-white fw-bold m-0 shopnowpercentage">unique style</h1>
-              <p className="text-white m-0 shopnowparatext">Free and easy way to bring</p>
-              <p className="text-white m-0 shopnowparatext">your ideas to life</p>
-              <button className="start-btd-1  mt-4 mb-2">
+              <h1 className="text-white fw-bold m-0 shopnowpercentage">Want a different</h1>
+              <h1 className="text-white fw-bold m-0 shopnowpercentage">design </h1>
+              <p className="text-white m-0 shopnowparatext">Upload design of</p>
+              <p className="text-white m-0 shopnowparatext">your choice</p>
+              <button className="start-btd-1  mt-4 mb-2" onClick={() => navigate('/newdesign')}>
                 EXPLORE
               </button>
             </div>

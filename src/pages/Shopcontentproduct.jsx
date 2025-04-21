@@ -38,8 +38,7 @@ import { FaCircleChevronRight } from "react-icons/fa6";
 const Shopcontentproduct = () => {
   const [activeTab, setActiveTab] = useState("product");
   const [showColors, setShowColors] = useState(false);
-  // const [showColorList, setShowColorList] = useState(colors[0]);
-  // const [selectedColors, setSelectedColors] = useState([]);
+ 
 const [showColorList, setShowColorList] = useState(false);
 const colors = ["red", "blue", "green", "yellow", "black", "purple"];
 const [selectedColor, setSelectedColor] = useState(['#ff0000', '#00ff00']);
@@ -80,15 +79,12 @@ const addSelectedColor = () => {
   };
 
 
-  const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL', '5XL'];
+  const sizes = [ 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL', '5XL'];
 
 
   const numbers = Array.from({ length: 2000 }, (_, i) => i + 10);
 
-  // const [colors] = useState([
-  //   '#ff0000', '#00ff00', '#0000ff', '#ffff00',
-  //   '#ff00ff', '#00ffff', '#ffffff', '#000000'
-  // ]);
+  
   const handleSelect = (num) => {
     setSelectedNumber(num);
     setShowDropdown(false);
@@ -164,22 +160,7 @@ const addSelectedColor = () => {
     // Add more sample items
   ];
 
-  // const currentPath = location.pathname;
-  // const selectedBox = pathToTitleMap[currentPath] || "T-Shirts";
-
-
-
-
-  
-  // const filteredItems = allProducts.filter(item => item.category === selectedCategory);
-  // const startIndex = currentPage * itemsPerPage;
-  // const endIndex = startIndex + itemsPerPage;
-  // const visibleItems = filteredItems.slice(startIndex, endIndex);
-  
-
-  // const handleClick = (item) => {
-  //   navigate(item.path);
-  // };
+ 
 
 
 
@@ -190,18 +171,7 @@ const addSelectedColor = () => {
 
   const selectedBox = selectedCategory;
 
-  // const handleTabClick = (tab, path) => {
-  //   setActiveTab(tab);
-  //   navigate(path);
-  // };
 
-
-
-  // useEffect(() => {
-  //   if (location.pathname === "/product") setActiveTab("product");
-  //   else if (location.pathname === "/newdesign") setActiveTab("new");
-  //   else if (location.pathname === "/stock") setActiveTab("stock");
-  // }, [location.pathname]);
 
 
   useEffect(() => {
@@ -212,17 +182,7 @@ const addSelectedColor = () => {
   }, [location.pathname]);
 
 
-  // const getActiveTab = () => {
-  //   if (location.pathname === "/product") return "product";
-  //   if (location.pathname === "/newdesign") return "new";
-  //   if (location.pathname === "/stock") return "stock";
-  //   return "";
-  // };
 
-  // const activeTab = getActiveTab();
-
-
-  // const [productRows, setProductRows] = useState([]);
 
   const handleAddProduct = () => {
     setProductRows(prevRows => [...prevRows, { ...defaultRow }]);
@@ -243,34 +203,27 @@ const addSelectedColor = () => {
 
 
 
-  // const [productRows, setProductRows] = useState([
-  //   {
-  //     colors: ['#ff0000', '#00ff00'], // example colors
-  //     activeColorIndex: 0,
-  //     showColorList: false,
-  //     selectedQuantity: 1,
-  //     showDropdown: false,
-  //     selectedType: 'Print',
-  //     selectedSize: 'M',
-  //     showSizes: false,
-  //   },
-  // ]);
 
 
-  // const handleAddProduct = () => {
-  //   setProductRows([
-  //     ...productRows,
-  //     {
-  //       selectedColors: [],
-  //       selectedNumber: null,
-  //       selectedSize: null,
-  //       selectedType: null,
-  //       showColorList: false,
-  //       showDropdown: false,
-  //       showSizes: false,
-  //     },
-  //   ]);
-  // };
+
+
+  const [visibleSizeCount, setVisibleSizeCount] = useState(1);
+  const [sizeQuantities, setSizeQuantities] = useState({});
+
+
+  const handleAddSize = () => {
+    if (visibleSizeCount < sizes.length) {
+      setVisibleSizeCount(visibleSizeCount + 1);
+    }
+  };
+
+  const handleChange = (size, value) => {
+    setSizeQuantities((prev) => ({
+      ...prev,
+      [size]: value === "" ? "" : parseInt(value) || 0,
+    }));
+  };
+  
 
 
   
@@ -462,454 +415,308 @@ const addSelectedColor = () => {
       </div>
       
       <div
-        className="container w-75 d-flex flex-column justify-content-center align-items-center  position-relative styling-box "
-        style={{ minHeight: "150px", paddingTop: "80px" }}
-      >
-        <div className="quality-type text-center">
-          <div>Price Format:</div>
-          <div className="row justify-content-center align-items-center">
-            <div className=" justify-content-center align-items-center quality-types-box">
-            {["Premium", "VFM", "Budget"].map((type) => (
-        <button
-          key={type}
-          className={`btn rounded-5 quality-btn ${
-            selectedQuality === type ? "active" : ""
-          }`}
-          onClick={() => setSelectedQuality(type)}
-        >
-          {type}
-        </button>
-      ))}
+              className="container w-75 d-flex flex-column justify-content-center align-items-center  position-relative styling-box "
+              style={{ minHeight: "150px", paddingTop: "80px" }}
+            >
+              <div className="quality-type text-center">
+                <div>Price Format:</div>
+                <div className="row justify-content-center align-items-center">
+                  <div className=" justify-content-center align-items-center quality-types-box">
+                  {["Premium", "VFM", "Budget"].map((type) => (
+              <button
+                key={type}
+                className={`btn rounded-5 quality-btn ${
+                  selectedQuality === type ? "active" : ""
+                }`}
+                onClick={() => setSelectedQuality(type)}
+              >
+                {type}
+              </button>
+            ))}
+                  </div>
+                </div>
+              </div>
+      
+      
+             
+        
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+              {productRows.map((row, index) => (
+        <div key={index} className="row w-100 mt-5 ">
+          
+          {/* Colour Section */}
+          <div className="col-lg-6 col-12 p-2 d-flex flex-column choose-colour-box justify-content-center align-items-center">
+        {/* Label */}
+        <label className="mb-2">Choose Colour:</label>
+      
+        <div className="colour-choose-box d-flex align-items-center gap-2 position-relative">
+          {/* Render selected color circles */}
+          {row.colors.map((color, i) => (
+            <div key={i} className="position-relative">
+              {/* Color Circle */}
+              <div
+                className="color-circle"
+                style={{
+                  width: "24px",
+                  height: "24px",
+                  borderRadius: "50%",
+                  backgroundColor: color || "#eee",
+                  border: "1px solid #ccc",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  const updatedRows = [...productRows];
+                  updatedRows[index].activeColorIndex = i;
+                  updatedRows[index].showColorList = true;
+                  setProductRows(updatedRows);
+                }}
+              ></div>
+      
+              {/* ❌ Remove Button */}
+              {row.colors.length > 1 && (
+                <div
+                  className="position-absolute"
+                  style={{
+                    top: "-6px",
+                    right: "-6px",
+                    backgroundColor: "white",
+                    borderRadius: "50%",
+                    width: "16px",
+                    height: "16px",
+                    fontSize: "12px",
+                    color: "red",
+                    textAlign: "center",
+                    lineHeight: "16px",
+                    cursor: "pointer",
+                    border: "1px solid #ccc",
+                    zIndex: 10,
+                  }}
+                  onClick={(e) => {
+                    e.stopPropagation(); // prevent opening dropdown
+                    const updatedRows = [...productRows];
+                    updatedRows[index].colors.splice(i, 1);
+                    setProductRows(updatedRows);
+                  }}
+                >
+                  ×
+                </div>
+              )}
             </div>
+          ))}
+      
+          {/* Dropdown Toggle */}
+          <div
+            className="color-select-icon d-flex align-items-center"
+            style={{ backgroundColor: "white", cursor: "pointer" }}
+          >
+            <IoIosArrowDown
+              size={20}
+              color="#555"
+              onClick={() => {
+                const updatedRows = [...productRows];
+                updatedRows[index].showColorList = !row.showColorList;
+                setProductRows(updatedRows);
+              }}
+            />
+          </div>
+      
+          {/* Color Dropdown */}
+          {row.showColorList && (
+            <div
+              className="color-list position-absolute bg-white p-2 rounded shadow"
+              style={{ top: "100%", left: 0, zIndex: 1000, minWidth: "150px" }}
+            >
+              {colors.map((color, i) => (
+                <div
+                  key={i}
+                  className="color-option d-inline-block m-1"
+                  style={{
+                    width: "24px",
+                    height: "24px",
+                    borderRadius: "50%",
+                    backgroundColor: color,
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    const updatedRows = [...productRows];
+                    updatedRows[index].colors[row.activeColorIndex] = color;
+                    updatedRows[index].showColorList = false;
+                    setProductRows(updatedRows);
+                  }}
+                ></div>
+              ))}
+            </div>
+          )}
+      
+          {/* ➕ Add New Color */}
+          <div
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              if (row.colors.length < 2) {
+                const updatedRows = [...productRows];
+                updatedRows[index].colors.push("#eee");
+                setProductRows(updatedRows);
+              }
+            }}
+          >
+            <FaPlusCircle size={20} />
           </div>
         </div>
-
-
-       
-          {/* <div className="row w-100 mt-5 ">
-          
-            <div className="col-lg-3 col-12 p-2 d-flex flex-column choose-colour-box justify-content-center align-items-center">
-            
-             <label className="mb-2">Choose Colour:</label>
-             
-             <div className="colour-choose-box d-flex align-items-center gap-2 position-relative">
-      
-      {selectedColors.map((color, index) => (
-  <div
-    key={index}
-    className="color-circle"
-    style={{
-      width: "30px",
-      height: "30px",
-      borderRadius: "50%",
-      backgroundColor: color || "#eee",
-      border: "1px solid #ccc",
-      cursor: "pointer"
-    }}
-    onClick={() => {
-      setActiveIndex(index);   
-      setShowColorList(true);    
-    }}
-  ></div>
-))}
-
-      
-      <div
-        className="color-select-icon d-flex align-items-center"
-        style={{ backgroundColor: "white", cursor: "pointer" }}
-      >
-        <IoIosArrowDown
-          size={20}
-          color="#555"
-          onClick={() => setShowColorList(!showColorList)}
-        />
       </div>
-
-     
-      {showColorList && (
+      
+          {/* Quantity Section */}
+          <div className="col-lg-6 col-12 p-2 d-flex flex-column choose-colour-box align-items-center">
+        <label className="mb-4">T-shirt Quantity:</label>
         <div
-          className="color-list position-absolute bg-white p-2 rounded shadow"
-          style={{
-            top: "100%",
-            left: 0,
-            zIndex: 1000,
-            minWidth: "150px"
-          }}
+          className="position-relative w-100 d-flex flex-column align-items-center"
         >
-          {colors.map((color, index) => (
+          <div
+            className="pieces-box d-flex justify-content-between align-items-center  px-2 py-1 border rounded-5"
+            onClick={() => {
+              const updatedRows = [...productRows];
+              updatedRows[index].showDropdown = !row.showDropdown;
+              setProductRows(updatedRows);
+            }}
+          >
+            <span>{row.selectedQuantity}</span>
+            <IoIosArrowDown size={20} color="#555" />
+          </div>
+      
+          {row.showDropdown && (
             <div
-              key={index}
-              className="color-option d-inline-block m-1"
+              className="dropdown-list position-absolute mt-1"
               style={{
-                width: "30px",
-                height: "30px",
-                borderRadius: "50%",
-                backgroundColor: color,
-                cursor: "pointer"
-              }}
-              onClick={() => handleColorClick(color)}
-            ></div>
-          ))}
-        </div>
-      )}
-
-     
-      <div style={{ cursor: "pointer" }} onClick={handleAddCircle}>
-        <FaPlusCircle size={20} />
-      </div>
-    </div>
-
-            </div>
-
-
-
-
-
-
-
-            
-            <div className="col-lg-2 col-12 p-2 d-flex flex-column choose-colour-box align-items-center  ">
-            <label className="mb-4">Logo Quatity:</label>
-            <div className="pieces-box d-flex   "
-            onClick={() => setShowDropdown(!showDropdown)}
-            >
-            <span>{selectedNumber}</span>
-            
-            <div>
-             <IoIosArrowDown size={20} color="#555"  />
-             </div>
-             
-             
-            </div>
-            
-            
-            </div>
-            {showDropdown && (
-        <div
-          className="dropdown-list position-absolute mt-1"
-          style={{
-            top: "100%",
-            maxHeight: "200px",
-            overflowY: "auto",
-            width: "100%",
-            border: "1px solid #ccc",
-            borderRadius: "5px",
-            backgroundColor: "#fff",
-            zIndex: 100,
-          }}
-        >
-          {numbers.map((num) => (
-            <div
-              key={num}
-              onClick={() => handleSelect(num)}
-              style={{
-                padding: "8px",
-                cursor: "pointer",
-                borderBottom: "1px solid #eee",
+                top: "100%",
+                maxHeight: "200px",
+                overflowY: "auto",
+                width: "100%",
+                border: "1px solid #ccc",
+                borderRadius: "5px",
+                backgroundColor: "#fff",
+                zIndex: 100,
               }}
             >
-              {num}
-            </div>
-          ))}
-        </div>
-      )}
-          
-            <div className="col-lg-4 col-12 p-2 d-flex flex-column choose-colour-box">
-            <label className="mb-3">Logo Quatity:</label>
-            <div className="d-flex justify-content-center align-items-center quality-type-select">
-              <div  className={`btn print-btn ${selectedType === "Print" ? "active" : ""}`}
-        onClick={() => setSelectedType("Print")}>Print</div>
-              <div  className={`btn emposed-btn ${selectedType === "Emposed" ? "active" : ""}`}
-        onClick={() => setSelectedType("Emposed")}>Emposed</div>
-            </div>
-            </div>
-            <div className="col-lg-3 col-12 d-flex flex-column align-items-center justify-content-center mb-md-2 ">
-              
-              
-              
-            <label className="mb-3">Size Chart:</label>
-            
-            <div className="size-select-box d-flex position-relative   "
-            style={{ cursor: 'pointer' }}
-            
-            >
-              <div className="d-flex justify-content-center align-items-center ">
-            <span>{selectedSize}</span>
-            <div>
-             <IoIosArrowDown size={20} color="#555" onClick={() => setShowSizes(!showSizes)}  />
-             </div>
-             {showSizes && (
-            <div className="position-absolute bg-white rounded shadow mt-1"
-                 style={{
-                   top: '100%',
-                   left: 0,
-                   zIndex: 1000,
-                   maxHeight: '200px',
-                   overflowY: 'auto',
-                   minWidth: '100px'
-                 }}>
-              {sizes.map((size) => (
-                <div key={size}
-                     className="px-3 py-2 hover-bg-gray"
-                     style={{
-                       cursor: 'pointer',
-                       backgroundColor: size === selectedSize ? '#f0f0f0' : 'transparent'
-                     }}
-                     onClick={() => {
-                       setSelectedSize(size);
-                       setShowSizes(false);
-                     }}>
-                  {size}
+              {numbers.map((num) => (
+                <div
+                  key={num}
+                  onClick={() => {
+                    const updatedRows = [...productRows];
+                    updatedRows[index].selectedQuantity = num;
+                    updatedRows[index].showDropdown = false;
+                    setProductRows(updatedRows);
+                  }}
+                  style={{
+                    padding: "8px",
+                    cursor: "pointer",
+                    borderBottom: "1px solid #eee",
+                  }}
+                >
+                  {num}
                 </div>
               ))}
             </div>
           )}
-            </div>
-            </div>
-           
         </div>
-        </div> */}
-
-
-
-
-
-
-
-
-
-
-        {productRows.map((row, index) => (
-  <div key={index} className="row w-100 mt-5 ">
-    
-    {/* Colour Section */}
-    <div className="col-lg-3 col-12 p-2 d-flex flex-column choose-colour-box justify-content-center align-items-center">
-  {/* Label */}
-  <label className="mb-2">Choose Colour:</label>
-
-  <div className="colour-choose-box d-flex align-items-center gap-2 position-relative">
-    {/* Render selected color circles */}
-    {row.colors.map((color, i) => (
-      <div key={i} className="position-relative">
-        {/* Color Circle */}
-        <div
-          className="color-circle"
-          style={{
-            width: "30px",
-            height: "30px",
-            borderRadius: "50%",
-            backgroundColor: color || "#eee",
-            border: "1px solid #ccc",
-            cursor: "pointer",
-          }}
-          onClick={() => {
-            const updatedRows = [...productRows];
-            updatedRows[index].activeColorIndex = i;
-            updatedRows[index].showColorList = true;
-            setProductRows(updatedRows);
-          }}
-        ></div>
-
-        {/* ❌ Remove Button */}
-        {row.colors.length > 1 && (
-          <div
-            className="position-absolute"
-            style={{
-              top: "-6px",
-              right: "-6px",
-              backgroundColor: "white",
-              borderRadius: "50%",
-              width: "16px",
-              height: "16px",
-              fontSize: "12px",
-              color: "red",
-              textAlign: "center",
-              lineHeight: "16px",
-              cursor: "pointer",
-              border: "1px solid #ccc",
-              zIndex: 10,
-            }}
-            onClick={(e) => {
-              e.stopPropagation(); // prevent opening dropdown
-              const updatedRows = [...productRows];
-              updatedRows[index].colors.splice(i, 1);
-              setProductRows(updatedRows);
-            }}
-          >
-            ×
-          </div>
-        )}
       </div>
-    ))}
-
-    {/* Dropdown Toggle */}
-    <div
-      className="color-select-icon d-flex align-items-center"
-      style={{ backgroundColor: "white", cursor: "pointer" }}
-    >
-      <IoIosArrowDown
-        size={20}
-        color="#555"
-        onClick={() => {
-          const updatedRows = [...productRows];
-          updatedRows[index].showColorList = !row.showColorList;
-          setProductRows(updatedRows);
-        }}
-      />
-    </div>
-
-    {/* Color Dropdown */}
-    {row.showColorList && (
-      <div
-        className="color-list position-absolute bg-white p-2 rounded shadow"
-        style={{ top: "100%", left: 0, zIndex: 1000, minWidth: "150px" }}
-      >
-        {colors.map((color, i) => (
-          <div
-            key={i}
-            className="color-option d-inline-block m-1"
-            style={{
-              width: "30px",
-              height: "30px",
-              borderRadius: "50%",
-              backgroundColor: color,
-              cursor: "pointer",
-            }}
-            onClick={() => {
-              const updatedRows = [...productRows];
-              updatedRows[index].colors[row.activeColorIndex] = color;
-              updatedRows[index].showColorList = false;
-              setProductRows(updatedRows);
-            }}
-          ></div>
-        ))}
-      </div>
-    )}
-
-    {/* ➕ Add New Color */}
-    <div
-      style={{ cursor: "pointer" }}
-      onClick={() => {
-        if (row.colors.length < 2) {
-          const updatedRows = [...productRows];
-          updatedRows[index].colors.push("#eee");
-          setProductRows(updatedRows);
-        }
-      }}
-    >
-      <FaPlusCircle size={20} />
-    </div>
-  </div>
-</div>
-
-    {/* Quantity Section */}
-    <div className="col-lg-2 col-12 p-2 d-flex flex-column choose-colour-box align-items-center">
-      <label className="mb-4">T-shirt Quantity:</label>
-      <div className="pieces-box d-flex"
-           onClick={() => {
-             const updatedRows = [...productRows];
-             updatedRows[index].showDropdown = !row.showDropdown;
-             setProductRows(updatedRows);
-           }}>
-        <span>{row.selectedQuantity}</span>
-        
-        <IoIosArrowDown size={20} color="#555" />
-        
-      </div>
-      {row.showDropdown && (
-        <div className="dropdown-list position-absolute mt-1"
-             style={{ top: "100%", maxHeight: "200px", overflowY: "auto", width: "100%", border: "1px solid #ccc", borderRadius: "5px", backgroundColor: "#fff", zIndex: 100 }}>
-          {numbers.map((num) => (
-            <div key={num}
-                 onClick={() => {
-                   const updatedRows = [...productRows];
-                   updatedRows[index].selectedQuantity = num;
-                   updatedRows[index].showDropdown = false;
-                   setProductRows(updatedRows);
-                 }}
-                 style={{ padding: "8px", cursor: "pointer", borderBottom: "1px solid #eee" }}>
-              {num}
-            </div>
-          ))}
-        </div>
-      )}
-
       
-    </div>
-    
-
-    {/* Type Section */}
-    <div className="col-lg-4 col-12 p-2 d-flex flex-column choose-colour-box">
-      <label className="mb-3">Logo Type:</label>
-      <div className="d-flex justify-content-center align-items-center quality-type-select">
-        <div className={`btn print-btn ${row.selectedType === "Print" ? "active" : ""}`}
-             onClick={() => {
-               const updatedRows = [...productRows];
-               updatedRows[index].selectedType = "Print";
-               setProductRows(updatedRows);
-             }}>Print</div>
-        <div className={`btn emposed-btn ${row.selectedType === "Emposed" ? "active" : ""}`}
-             onClick={() => {
-               const updatedRows = [...productRows];
-               updatedRows[index].selectedType = "Emposed";
-               setProductRows(updatedRows);
-             }}>Emposed</div>
-      </div>
-    </div>
-
-    {/* Size Section */}
-    <div className="col-lg-3 col-12 d-flex flex-column align-items-center justify-content-center mb-md-2">
-      <label className="mb-3">Size Chart:</label>
-      <div className="size-select-box d-flex position-relative" style={{ cursor: 'pointer' }}>
-        <div className="d-flex justify-content-center align-items-center">
-          <span>{row.selectedSize}</span>
-          <IoIosArrowDown size={20} color="#555"
-                          onClick={() => {
-                            const updatedRows = [...productRows];
-                            updatedRows[index].showSizes = !row.showSizes;
-                            setProductRows(updatedRows);
-                          }} />
-        </div>
-
-        {row.showSizes && (
-          <div className="position-absolute bg-white rounded shadow mt-1"
-               style={{ top: '100%', left: 0, zIndex: 1000, maxHeight: '200px', overflowY: 'auto', minWidth: '100px' }}>
-            {sizes.map((size) => (
-              <div key={size}
-                   className="px-3 py-2 hover-bg-gray"
-                   style={{
-                     cursor: 'pointer',
-                     backgroundColor: size === row.selectedSize ? '#f0f0f0' : 'transparent'
-                   }}
+          {/* Type Section */}
+          <div className="col-lg-6 col-12 p-2 d-flex flex-column choose-colour-box justify-content-center ">
+            <label className="mb-3">Logo Type:</label>
+            <div className="d-flex justify-content-center align-items-center quality-type-select mb-5">
+              <div className={`btn print-btn ${row.selectedType === "Print" ? "active" : ""}`}
                    onClick={() => {
                      const updatedRows = [...productRows];
-                     updatedRows[index].selectedSize = size;
-                     updatedRows[index].showSizes = false;
+                     updatedRows[index].selectedType = "Print";
                      setProductRows(updatedRows);
-                   }}>
-                {size}
-              </div>
-            ))}
+                   }}>Print</div>
+              <div className={`btn emposed-btn ${row.selectedType === "Emposed" ? "active" : ""}`}
+                   onClick={() => {
+                     const updatedRows = [...productRows];
+                     updatedRows[index].selectedType = "Emposed";
+                     setProductRows(updatedRows);
+                   }}>Emposed</div>
+            </div>
+            <div className="container w-100 d-flex flex-column justify-content-center align-items-center ">
+              <p className="tshirtchangetext mb-5">Tshirt any change in add design</p>
+              <textarea className="design-change-box"></textarea>
+              
+            </div>
           </div>
-        )}
-      </div>
-    </div>
-
-  </div>
-))}
-        <div className="row w-100 mt-5 justify-content-center align-items-center mb-4">
-          <div className="col-lg-2 col-12">
-          <button className=" rounded-4  add-product-btn fw-bold" onClick={handleAddProduct}>Add Product</button>
-          </div>
+      
+          {/* Size Section */}
+          <div className="col-lg-6 col-12 d-flex flex-column align-items-center justify-content-center mb-md-2">
+            <label className="mb-3">Size Chart:</label>
+      
+           
+      
+            <table className="table table-bordered w-100 text-center">
+          <thead>
+            <tr>
+              <th>Size</th>
+              <th className="w-50">Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
           
+            {sizes.slice(0, visibleSizeCount).map((size) =>(
+              <tr key={size}>
+                <td>{size}</td>
+                <td>
+                  <input
+                  type="number"
+                  min='0'
+                  className="form-control"
+                  value={
+                    sizeQuantities[size] === 0 || sizeQuantities[size]
+                      ? sizeQuantities[size]
+                      : ""
+                  }
+                  onChange={(e) => handleChange(size, e.target.value)}
+                  
+                  
+                  
+                  ></input>
+                </td>
+              </tr>
+      
+            ))}
+            
+          </tbody>
+          
+        </table>
+        {visibleSizeCount < sizes.length &&(
+          <button className="btn rounded-5 add-size-btn" onClick={handleAddSize}>
+          Add Size
+        </button>
+        )}
+       
+          </div>
+      
         </div>
-      </div>
+      ))}
+              
+            </div>
+      
       <div className="container w-50 d-flex flex-column justify-content-center align-items-center ">
-        <p className="tshirtchangetext">Tshirt any change in add design</p>
-        <textarea className="design-change-box"></textarea>
+        {/* <p className="tshirtchangetext">Tshirt any change in add design</p>
+        <textarea className="design-change-box"></textarea> */}
         <div className={`sent-text-btn mt-3 ${clicked ? "active" : ""}`}
       onClick={() => setClicked(!clicked)}>Send</div>
       </div>
+
+
+
+
+      
       <div className="container price-cal-box ">
         <div className="row price-calculate display-flex justify-content-center align-items-center ">
           <div className="d-flex flex-column col-lg-2 col-12 ">
