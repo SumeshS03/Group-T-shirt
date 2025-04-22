@@ -533,57 +533,50 @@ const addSelectedColor = () => {
   <div className="colour-choose-box d-flex align-items-center gap-2 position-relative">
     {/* Render selected color circles */}
     {row.colors.map((color, i) => (
-      <div key={i} className="position-relative">
-        {/* Color Circle */}
-        <div
-          className="color-circle"
-          style={{
-            width: "24px",
-            height: "24px",
-            borderRadius: "50%",
-            backgroundColor: color || "#eee",
-            border: "1px solid #ccc",
-            cursor: "pointer",
-          }}
-          onClick={() => {
-            const updatedRows = [...productRows];
-            updatedRows[index].activeColorIndex = i;
-            updatedRows[index].showColorList = true;
-            setProductRows(updatedRows);
-          }}
-        ></div>
+  <div key={i} className="position-relative">
+    {/* Color Circle Input */}
+    <input 
+      type="color"
+      value={color}
+      className="w-10 h-10 border-0 p-0 cursor-pointer circle-color-picker"
+      onChange={(e) => {
+        const updatedRows = [...productRows];
+        updatedRows[index].colors[i] = e.target.value;
+        setProductRows(updatedRows);
+      }}
+    />
 
-        {/* ❌ Remove Button */}
-        {row.colors.length > 1 && (
-          <div
-            className="position-absolute"
-            style={{
-              top: "-6px",
-              right: "-6px",
-              backgroundColor: "white",
-              borderRadius: "50%",
-              width: "16px",
-              height: "16px",
-              fontSize: "12px",
-              color: "red",
-              textAlign: "center",
-              lineHeight: "16px",
-              cursor: "pointer",
-              border: "1px solid #ccc",
-              zIndex: 10,
-            }}
-            onClick={(e) => {
-              e.stopPropagation(); // prevent opening dropdown
-              const updatedRows = [...productRows];
-              updatedRows[index].colors.splice(i, 1);
-              setProductRows(updatedRows);
-            }}
-          >
-            ×
-          </div>
-        )}
+    {/* ❌ Remove Color Button */}
+    {row.colors.length > 1 && (
+      <div
+        className="position-absolute"
+        style={{
+          top: "-6px",
+          right: "-6px",
+          backgroundColor: "white",
+          borderRadius: "50%",
+          width: "16px",
+          height: "16px",
+          fontSize: "12px",
+          color: "red",
+          textAlign: "center",
+          lineHeight: "16px",
+          cursor: "pointer",
+          border: "1px solid #ccc",
+          zIndex: 10,
+        }}
+        onClick={(e) => {
+          e.stopPropagation();
+          const updatedRows = [...productRows];
+          updatedRows[index].colors.splice(i, 1);
+          setProductRows(updatedRows);
+        }}
+      >
+        ×
       </div>
-    ))}
+    )}
+  </div>
+))}
 
     {/* Dropdown Toggle */}
     <div

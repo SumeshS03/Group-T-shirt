@@ -1,7 +1,7 @@
 .product-imageful{
     /* height: 60%; */
     /* height: 450px; */
-    height: 372px;
+    height: 281px;
     width: 100%;
     background-color: bisque;
     overflow: hidden;
@@ -88,4 +88,27 @@
 }
 .add-logo-btn{
   height: 30px;
+}
+
+.chooseoption-box{
+  border: 1px solid blue;
+  border-radius: 20px;
+}
+
+.table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse; /* ensures no double lines */
+}
+th, td {
+  padding: 8px;
+  text-align: center;
+}
+
+.productdetail-image{
+  height: 100px;
+  width: 110px;
+  /* border: 1px solid blue; */
+}
+.productdetail-image:active{
+  border: 1px solid blue;
 }

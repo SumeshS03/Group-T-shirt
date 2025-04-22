@@ -196,6 +196,15 @@
   
 
 }
+
+.circle-color-picker {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  
+ 
+  cursor: pointer;
+}
 /* .choose-colour-box{
   border-right: 1px dotted black;
 } */
