@@ -8,11 +8,16 @@ import "./Productdetail.css"
 import { useCart } from "./CartContext";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import Button from 'react-bootstrap/Button';
 // import { useCart } from "../context/CartContext";
 
 const Productdetail = () => {
 
    const [selectedSize, setSelectedSize] = useState("");
+   const [color, setColor] = useState("#ff0000");
+   const [enteredQty, setEnteredQty] = useState('');
+   const [quantityError, setQuantityError] = useState('');
+  
    
 
     const navigate = useNavigate();
@@ -30,6 +35,9 @@ const Productdetail = () => {
         }, [location.pathname]);
 
    const [activeButton, setActiveButton] = useState("");
+
+
+
 
   //  const { addToCart } = useCart();
 
@@ -113,17 +121,42 @@ const Productdetail = () => {
   const [halfSleeve, setHalfSleeve] = useState({});
   const [fullSleeve, setFullSleeve] = useState({});
 
-  const handleInputChange = (type, sizeLabel, value) => {
-    const setter = type === 'half' ? setHalfSleeve : setFullSleeve;
-    setter(prev => ({
-      ...prev,
-      [sizeLabel]: parseInt(value, 10) || 0,
-    }));
+  const handleInputChange = (type, label, value) => {
+    const val = parseInt(value, 10);
+    const safeVal = isNaN(val) ? 0 : val;
+  
+    if (type === "half") {
+      setHalfSleeve((prev) => ({ ...prev, [label]: safeVal }));
+    } else {
+      setFullSleeve((prev) => ({ ...prev, [label]: safeVal }));
+    }
   };
 
   const totalHalf = Object.values(halfSleeve).reduce((sum, qty) => sum + qty, 0);
   const totalFull = Object.values(fullSleeve).reduce((sum, qty) => sum + qty, 0);
   const grandTotal = totalHalf + totalFull;
+
+  const [quantities, setQuantities] = useState(
+    sizes.map(() => ({ half: 0, full: 0 }))
+  );
+
+  const handleQuantityChange = (index, type, value) => {
+    const updated = [...quantities];
+    updated[index][type] = Number(value);
+    setQuantities(updated);
+  };
+
+
+  useEffect(() => {
+    
+    if((enteredQty && parseInt(enteredQty) !== grandTotal) || (!enteredQty ==grandTotal) )  {
+      setQuantityError("Entered quantity does not match the grand total.");
+    } else {
+      setQuantityError('');
+    }
+  }, [enteredQty, grandTotal]);
+
+
   
     
 
@@ -154,25 +187,14 @@ const Productdetail = () => {
   : 0;
 
   const sizeWiseStock = product.sizes;
+
+  
   
 
 
   if (!product) return <h2>Product not found</h2>;
 
-  const handleInputChangeone = (type, size, value) => {
-  const intVal = parseInt(value, 10);
-
-  if (isNaN(intVal) || intVal < 0) return;
-
-  const maxQty = product.sizes[size] || 0;
-  const safeValue = Math.min(intVal, maxQty);
-
-  if (type === 'half') {
-    setHalfSleeve((prev) => ({ ...prev, [size]: safeValue }));
-  } else {
-    setFullSleeve((prev) => ({ ...prev, [size]: safeValue }));
-  }
-};
+  
 
 
 
@@ -315,57 +337,14 @@ const responsive = {
        <div className="col-lg-5 col-12 ">
         <h2 className="text-start">{product.label}</h2>
         <p className="text-start">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non atque quasi alias eveniet consequuntur dolor.</p>
-        <p className="text-start">Price: ₹{product.price}</p>
-        <div>
-                <h6 className="mt-2 text-start">Quantity Available</h6>
-                <input
-                  type="text"
-                  value={Object.values(product.sizes).reduce((sum, qty) => sum + qty, 0)}
-                  readOnly
-                  className="form-control quantity-input"
-                />
-              </div>
-        <div className="d-flex align-items-center gap-3 mt-3">
-  <div className="fw-bold">Size</div>
-  <select className="form-select w-auto" onChange={handleSizeChange}>
-    <option value="">Select</option>
-    {Object.keys(product.sizes).map((size) => (
-            <option key={size} value={size}>
-              {size}
-            </option>
-          ))}
-  </select>
-
-   {/* Show size-wise quantity when selected */}
-   
-
-
-
-
-          <div>
-            <span className="fw-semibold">
-              Available: {product.sizes[selectedSize]}
-            </span>
-          </div>
-
-
-
-     
-</div>
-        <div className="d-flex">
-          
-        </div>
-        {/* <div className="d-flex cart-box mt-5">
-            <button  className={`btn col-lg-3 buynow-btn ${
-          activeButton === "buy" ? "active-btn" : ""
-        }`}
-        onClick={() => setActiveButton("buy")}>Buy Now</button>
-            <button className={`btn col-lg-5 addtocart-btn ${
-          activeButton === "cart" ? "active-btn" : ""
-        }`}
-        onClick={handleCartClick}>Add to Cart</button>
-        </div> */}
+        <p className="text-start">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non atque quasi alias eveniet consequuntur dolor.</p>
+        <h2 className="text-xl font-bold mb-2 h5">About this item</h2>
+        <li className="text-start"><strong>Type:</strong> Cotton Round Neck T-Shirt – Soft and breathable fabric</li>
+        <li className="text-start"><strong>Fit:</strong> Regular Fit – Comfortable for daily wear</li>
+        <li className="text-start"><strong>Fabric:</strong> 100% Pure Cotton – Durable and skin-friendly</li>
+        <li className="text-start"><strong>Design:</strong> Printed Graphic – Stylish and trendy look</li>
       </div>
+
 
       
       </div>  
@@ -374,37 +353,27 @@ const responsive = {
     </div>
     <div className="container mt-5">
       <div className="row ">
-        <label className="fs-5 col-3 text-start">Enter Quantity required:</label>
-        <div className="col-2">
+        <label className="fs-5 col-lg-3 text-start">Enter Quantity required:</label>
+        <div className="col-lg-2">
           <input 
           type="number"
           
           className="form-control"
           placeholder="Enter quantity"
           min="1"
-          value={quantity}
-          max={totalAvailable}
-          onChange={(e) => {
-            const val = parseInt(e.target.value);
-            if (!isNaN(val)) {
-              if (val <= totalAvailable) {
-                setQuantity(val);
-              } else {
-                // Optional: set to max if they type more
-                setQuantity(totalAvailable);
-              }
-            } else {
-              setQuantity('');
-            }
-          }}
+          value={enteredQty}
+          onChange={(e) => setEnteredQty(e.target.value)}
+
+          
+         
 
           
           
           
           ></input>
         </div>
-        <label className="fs-5 col-3">How many Logos to add:</label>
-        <div className="col-2">
+        <label className="fs-5 col-lg-4 text-start">How many Logos to add:</label>
+        <div className="col-lg-2">
           <input 
           type="number"
           // min='0'
@@ -431,7 +400,7 @@ const responsive = {
       <div className="row mt-2 pt-2 pb-2 chooseoption-box   ">
         
         <label className="fs-5 col-3 text-start">Choose Your Option:</label>
-        <div className="col-2 ">
+        <div className="col-lg-2 ">
           <div className="cotton-dropdown">
           <label onClick={polycottoggle} className="dropdown-label">Cotton</label>
           <select className="form-select mt-2">
@@ -449,7 +418,7 @@ const responsive = {
             
           </div>
         </div>
-        <div className="col-2">
+        <div className="col-lg-2">
           <div className="cotton-dropdown">
           <label onClick={polytoggle} className="dropdown-label">Polyester</label>
           <select className="form-select mt-2">
@@ -467,7 +436,7 @@ const responsive = {
             
           </div>
         </div>
-        <div className="col-2">
+        <div className="col-lg-2">
           <div className="cotton-dropdown">
           <label onClick={toggleOptions} className="dropdown-label">Poly Cotton</label>
           <select className="form-select mt-2">
@@ -490,8 +459,8 @@ const responsive = {
 
 
       <div className="row mt-2">
-        <label className="fs-5 col-3 text-start">Delivery Date:</label>
-        <div className="col-3">
+        <label className="fs-5 col-lg-3 text-start">Delivery Date:</label>
+        <div className="col-lg-3">
           <input 
           type="date"
           // min='0'
@@ -501,22 +470,16 @@ const responsive = {
         </div>
       </div>
       <div className="row mt-2">
-        <label className="fs-5 col-3 text-start">Choose Colour:</label>
-        <div className="col-3">
-          <input type="text"
-          className="form-control"
-          placeholder="Enter Colour"></input>
-          {/* <input 
-          type="date"
-          // min='0'
-          className="form-control"
-          placeholder="Enter quantity"
-          ></input> */}
+        <label className="fs-5 col-lg-3 text-start">Choose Colour:</label>
+        <div className="col-lg-3">
+        <input  type="color" id="favcolor" name="favcolor" value={color} onChange={(e) => setColor(e.target.value)}
+        className="form-control-color rounded-color"></input>
+        
         </div>
       </div>
       <div className="row mt-2 pt-2 pb-2 chooseoption-box ">
         <label className="fs-5 col-3 text-start">Logo:</label>
-        <div className="col-2">
+        <div className="col-lg-2">
         <label className="form-label">Logo Type</label>
         <select className="form-select">
         <option value="">Select Type</option>
@@ -524,7 +487,7 @@ const responsive = {
         <option value="embroidered">Emposed</option>
   </select>
         </div>
-        <div className="col-2">
+        <div className="col-lg-2">
         <label className="form-label">Logo Position</label>
         <select className="form-select">
         <option value="">left Chest</option>
@@ -537,7 +500,7 @@ const responsive = {
         <option value="embroidered">On Pocket</option>
   </select>
         </div>
-        <div className="col-2">
+        <div className="col-lg-2">
           <input 
           type="file"
           accept="image/*"
@@ -546,11 +509,14 @@ const responsive = {
           />
           
         </div>
+        <div>
         {uploadedImage && (
           <>
-          <img src={uploadedImage} alt="Uploaded preview" className="uploded-img p-2  col-2" 
+          
+          <img src={uploadedImage} alt="Uploaded preview" className="uploded-img p-2  col-lg-2 rounded-5" 
    />
-   <button className="btn btn-primary col-1  text-center add-logo-btn" onClick={showsecondlogoadd}>Add Logo</button>
+   
+   <Button className=" col-lg-1  text-center " onClick={showsecondlogoadd}>Add Logo</Button>
    <div className="col-1">
     
    </div>
@@ -559,12 +525,13 @@ const responsive = {
   
    
 )}
+</div>
 
  {secondlogo && (
-  <div className="'row mt-2 d-flex ">
+  <div className="'row mt-2 second-logo-box">
     
-    <label className="fs-5 col-3 text-start">Logo:</label>
-    <div className="col-2">
+    <label className="fs-5 col-12 col-lg-3 text-start">Logo:</label>
+    <div className="col-12 col-sm-6 col-lg-2">
         <label className="form-label">Logo Type</label>
         <select className="form-select">
         <option value="">Select Type</option>
@@ -573,7 +540,7 @@ const responsive = {
   </select>
         </div>
 
-        <div className="col-2">
+        <div className="col-lg-2">
         <label className="form-label">Logo Position</label>
         <select className="form-select">
         <option value="">left Chest</option>
@@ -586,7 +553,7 @@ const responsive = {
         <option value="embroidered">On Pocket</option>
   </select>
         </div>
-    <div className="col-2 ms-3">
+    <div className="col-lg-2 ms-3">
           <input 
           type="file"
           accept="image/*"
@@ -595,16 +562,20 @@ const responsive = {
           />
           
         </div>
+        <div>
         {uploadedImagetwo && (
           <>
-          <img src={uploadedImagetwo} alt="Uploaded preview" className="uploded-img p-2  col-2" 
+        
+          <img src={uploadedImagetwo} alt="Uploaded preview" className="uploded-img p-2  col-lg-2 rounded-5" 
    />
+   
    {/* <button className="btn btn-primary col-1  text-center " onClick={showsecondlogoadd}>Add Logo</button> */}
    </>
   
   
    
 )}
+</div>
   </div>
    )}
 
@@ -613,7 +584,8 @@ const responsive = {
     </div>
 
     <div className="container mt-5 d-flex justify-content-center align-items-center ">
-    <table className="table table-bordered text-center w-50">
+      <div className="custom-scroll-x">
+    <table className="table table-bordered text-center w-100">
       <thead>
         <tr>
           <th>Size</th>
@@ -637,11 +609,11 @@ const responsive = {
   type="number"
   className="form-control"
   min="0"
-  max={product.sizes[label] || 0}
   value={halfSleeve[label] || ''}
-  onChange={(e) =>
-    handleInputChangeone('half', label, e.target.value)
-  }
+  onChange={(e) => handleInputChange("half", label, e.target.value)}
+  
+  
+  
 />
             </td>
             <td>
@@ -649,11 +621,10 @@ const responsive = {
   type="number"
   className="form-control"
   min="0"
-  max={product.sizes[label] || 0}
   value={fullSleeve[label] || ''}
-  onChange={(e) =>
-    handleInputChangeone('full', label, e.target.value)
-  }
+  onChange={(e) => handleInputChange("full", label, e.target.value)}
+  
+  
 />
             </td>
           </tr>
@@ -691,26 +662,35 @@ const responsive = {
             />
           </td>
         </tr>
+        <tr>
+    <td colSpan="4">
+      {quantityError && (
+        <div className="text-danger fw-bold mt-2">{quantityError}</div>
+      )}
+    </td>
+  </tr>
+        
       </tbody>
     </table>
+    </div>
 
     </div>
     <textarea className="w-50" placeholder="Remark"></textarea>
 
     <div className="container w-50 mt-5">
       <div className="row">
-      <div className="col-2">
+      <div className="col-lg-2">
       <label className="fw-bold">Amount:</label>
     </div>
-    <div className="col-3">
+    <div className="col-lg-3">
       <input type="text" className="form-control" readOnly />
     </div>
       </div>
       <div className="row mt-2">
-      <div className="col-2">
+      <div className="col-lg-2">
       <label className="fw-bold">Total:</label>
     </div>
-    <div className="col-3">
+    <div className="col-lg-3">
       <input type="text" className="form-control" readOnly />
     </div>
       </div>
@@ -718,14 +698,14 @@ const responsive = {
 
       
     </div>
-    <div className="container w-50">
+    <div className="container w-50 ">
 
-    <div className="d-flex cart-box mt-5">
-            <button  className={`btn col-lg-3 buynow-btn ${
+    <div className=" cart-box mt-5 gap-2 row">
+            <button  className={`btn  buynow-btn col-lg-2 col-12  ${
           activeButton === "buy" ? "active-btn" : ""
         }`}
         onClick={() => setActiveButton("buy")}>Buy Now</button>
-            <button className={`btn col-lg-5 addtocart-btn ${
+            <button className={`btn  addtocart-btn col-lg-3 col-12 ${
           activeButton === "cart" ? "active-btn" : ""
         }`}
         onClick={handleCartClick}>Add to Cart</button>

@@ -112,3 +112,31 @@ th, td {
 .productdetail-image:active{
   border: 1px solid blue;
 }
+.second-logo-box{
+  display: flex !important;
+}
+
+.custom-scroll-x {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.custom-scroll-x table {
+  min-width: 600px; /* Set a min-width to enable scrolling */
+}
+
+.rounded-color {
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+
+@media (max-width: 768px){
+  .second-logo-box{
+    flex-direction: column !important;
+  }
+}

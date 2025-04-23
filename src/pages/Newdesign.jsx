@@ -322,10 +322,18 @@ const addSelectedColor = () => {
         <img src={shopimage} className="imagetopone"></img>
       </div>
 
+      {/* <div className="container p-5 mt-5 mb-5">
+
+      </div> */}
+
+
+
+      
+
       <div className="choose-category  ">
         <div className="container-fluid d-flex flex-column justify-content-center align-items-center">
-          <div className="row w-75 gap-2">
-            {/* <div className="products-type "> */}
+          <div className="row w-75 gap-2 mb-5">
+          
               <div
                  className={`col-lg-3 col-12 product-page 
 
@@ -356,14 +364,18 @@ const addSelectedColor = () => {
               >
                 <h2 className="h4 heading-text-product">Stock Page</h2>
               </div>
-            {/* </div> */}
+            
           </div>
 
-          <h1 className="heading-text mt-3 mb-3">
+
+
+          {/* old design */}
+
+          {/* <h1 className="heading-text mt-3 mb-3">
             Choose
             <span style={{ color: "#015dc0" }}> Category</span>
-          </h1>
-          <div className="p-2 t-shirtsrowbox">
+          </h1> */}
+          {/* <div className="p-2 t-shirtsrowbox">
           <div className="custom-tshirts row justify-content-between align-items-center gx-0 gy-4">
         {items.map((item, idx) => (
           <div
@@ -388,10 +400,10 @@ const addSelectedColor = () => {
           </div>
         ))}
       </div>
-    </div>
+    </div> */}
         </div>
       </div>
-      <div className="container d-flex justify-content-center align-items-center mt-3">
+      {/* <div className="container d-flex justify-content-center align-items-center mt-3">
       <div 
        className={`btn  rounded-5 leftarrw-rounded  ${!canGoPrev ? "disabled" : ""}`}
        onClick={() => canGoPrev && setCurrentPage((prev) => prev - 1)}
@@ -420,8 +432,8 @@ const addSelectedColor = () => {
       >
         <FaCircleChevronRight className="rightarrw-btn" />
       </div>
-    </div>
-      <div className="container d-flex justify-content-center align-items-center mt-3  ">
+    </div> */}
+      {/* <div className="container d-flex justify-content-center align-items-center mt-3  ">
         <div className="row ">
         <div className="d-flex gap-4 enter-quatity-box">
           <div className="d-flex align-items-center col-lg-6 col-12">
@@ -434,33 +446,33 @@ const addSelectedColor = () => {
           </div>
         </div>
         </div>
-      </div>
-      <div className="container d-flex justify-content-center align-items-center mt-3 sample-image-box">
+      </div> */}
+      {/* <div className="container d-flex justify-content-center align-items-center mt-3 sample-image-box">
         <div className="row justify-content-center align-items-center">
           <div col-4>
             <button className="sample-btn"
             onClick={() => setShowSamples(!showSamples)}>Sample-Design</button>
              {showSamples && (
     <div className="sample-images mt-3 d-flex gap-2">
-      {/* Example Images */}
+     
       <img
         src={sampleimages}
         alt="Design 1"
         className="img-fluid sampleimages"
-        // style={{ width: "70px", height: "70px", objectFit: "cover" }}
+       
       />
       <img
         src={sampleimages}
         alt="Design 2"
         className="img-fluid sampleimages"
-        // style={{ width: "50px", height: "50px", objectFit: "cover" }}
+       
       />
     </div>
   )}
           </div>
         </div>
-      </div>
-      <div className="container d-flex justify-content-center align-items-center  logoaddedtshirt-box-con ">
+      </div> */}
+      {/* <div className="container d-flex justify-content-center align-items-center  logoaddedtshirt-box-con ">
         <div className="logoaddedtshirt-box text-center justify-content-center align-items-center gap-3 ">
           <div className="newdesign-uplode col-12 col-md-12 col-lg-3 ">
             <div className="box-inner">
@@ -484,9 +496,9 @@ const addSelectedColor = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       
-      <div
+      {/* <div
         className="container w-75 d-flex flex-column justify-content-center align-items-center  position-relative styling-box "
         style={{ minHeight: "150px", paddingTop: "80px" }}
       >
@@ -525,16 +537,16 @@ const addSelectedColor = () => {
         {productRows.map((row, index) => (
   <div key={index} className="row w-100 mt-5 ">
     
-    {/* Colour Section */}
+   
     <div className="col-lg-6 col-12 p-2 d-flex flex-column choose-colour-box justify-content-center align-items-center">
-  {/* Label */}
+ 
   <label className="mb-2">Choose Colour:</label>
 
   <div className="colour-choose-box d-flex align-items-center gap-2 position-relative">
-    {/* Render selected color circles */}
+    
     {row.colors.map((color, i) => (
   <div key={i} className="position-relative">
-    {/* Color Circle Input */}
+   
     <input 
       type="color"
       value={color}
@@ -546,7 +558,7 @@ const addSelectedColor = () => {
       }}
     />
 
-    {/* ❌ Remove Color Button */}
+    
     {row.colors.length > 1 && (
       <div
         className="position-absolute"
@@ -578,7 +590,7 @@ const addSelectedColor = () => {
   </div>
 ))}
 
-    {/* Dropdown Toggle */}
+    
     <div
       className="color-select-icon d-flex align-items-center"
       style={{ backgroundColor: "white", cursor: "pointer" }}
@@ -594,7 +606,7 @@ const addSelectedColor = () => {
       />
     </div>
 
-    {/* Color Dropdown */}
+    
     {row.showColorList && (
       <div
         className="color-list position-absolute bg-white p-2 rounded shadow"
@@ -622,7 +634,7 @@ const addSelectedColor = () => {
       </div>
     )}
 
-    {/* ➕ Add New Color */}
+   
     <div
       style={{ cursor: "pointer" }}
       onClick={() => {
@@ -638,7 +650,7 @@ const addSelectedColor = () => {
   </div>
 </div>
 
-    {/* Quantity Section */}
+    
     <div className="col-lg-6 col-12 p-2 d-flex flex-column choose-colour-box align-items-center">
   <label className="mb-4">T-shirt Quantity:</label>
   <div
@@ -693,7 +705,7 @@ const addSelectedColor = () => {
   </div>
 </div>
 
-    {/* Type Section */}
+    
     <div className="col-lg-6 col-12 p-2 d-flex flex-column choose-colour-box justify-content-center ">
       <label className="mb-3">Logo Type:</label>
       <div className="d-flex justify-content-center align-items-center quality-type-select mb-5">
@@ -717,7 +729,7 @@ const addSelectedColor = () => {
       </div>
     </div>
 
-    {/* Size Section */}
+   
     <div className="col-lg-6 col-12 d-flex flex-column align-items-center justify-content-center mb-md-2">
       <label className="mb-3">Size Chart:</label>
 
@@ -731,35 +743,7 @@ const addSelectedColor = () => {
       </tr>
     </thead>
     <tbody>
-      {/* {sizes.map((size) => (
-        <tr key={size}>
-          <td>{size}</td>
-          <td>
-            <input
-              type="number"
-              min="0"
-              className="form-control"
-              value={
-                row.sizeQuantities?.[size] === 0 || row.sizeQuantities?.[size]
-                  ? row.sizeQuantities[size]
-                  : ""
-              }
-              onChange={(e) => {
-                const updatedRows = [...productRows];
-
-                // ✅ Make sure sizeQuantities object exists
-                if (!updatedRows[index].sizeQuantities) {
-                  updatedRows[index].sizeQuantities = {};
-                }
-
-                const inputValue = e.target.value;
-                updatedRows[index].sizeQuantities[size] = inputValue === "" ? "" : parseInt(inputValue) || 0;
-                setProductRows(updatedRows);
-              }}
-            />
-          </td>
-        </tr>
-      ))} */}
+      
       {sizes.slice(0, visibleSizeCount).map((size) =>(
         <tr key={size}>
           <td>{size}</td>
@@ -791,71 +775,35 @@ const addSelectedColor = () => {
     Add Size
   </button>
   )}
-  {/* <button className="btn rounded-5 add-size-btn">Add Size</button> */}
+  
       
 
 
 
-      {/* <div className="size-select-box d-flex position-relative" style={{ cursor: 'pointer' }}>
-        <div className="d-flex justify-content-center align-items-center">
-          <span>{row.selectedSize}</span>
-          <IoIosArrowDown size={20} color="#555"
-                          onClick={() => {
-                            const updatedRows = [...productRows];
-                            updatedRows[index].showSizes = !row.showSizes;
-                            setProductRows(updatedRows);
-                          }} />
-        </div>
-
-        {row.showSizes && (
-          <div className="position-absolute bg-white rounded shadow mt-1"
-               style={{ top: '100%', left: 0, zIndex: 1000, maxHeight: '200px', overflowY: 'auto', minWidth: '100px' }}>
-            {sizes.map((size) => (
-              <div key={size}
-                   className="px-3 py-2 hover-bg-gray"
-                   style={{
-                     cursor: 'pointer',
-                     backgroundColor: size === row.selectedSize ? '#f0f0f0' : 'transparent'
-                   }}
-                   onClick={() => {
-                     const updatedRows = [...productRows];
-                     updatedRows[index].selectedSize = size;
-                     updatedRows[index].showSizes = false;
-                     setProductRows(updatedRows);
-                   }}>
-                {size}
-              </div>
-            ))}
-          </div>
-        )}
-      </div> */}
+      
     </div>
 
   </div>
 ))}
         
-      </div>
-
-      
-      
-      
-      <div className="container w-100 d-flex flex-column justify-content-center align-items-center ">
-      <div className={`sent-text-btn mt-3 ${clicked ? "active" : ""}`}
-      onClick={() => setClicked(!clicked)}>Send</div>
-      </div>
-
-
-
-
-
-
-      {/* <div className="container w-50 d-flex flex-column justify-content-center align-items-center ">
-        <p className="tshirtchangetext">Tshirt any change in add design</p>
-        <textarea className="design-change-box"></textarea>
-        
       </div> */}
 
-      <div className="container price-cal-box ">
+      
+      
+      
+      {/* <div className="container w-100 d-flex flex-column justify-content-center align-items-center ">
+      <div className={`sent-text-btn mt-3 ${clicked ? "active" : ""}`}
+      onClick={() => setClicked(!clicked)}>Send</div>
+      </div> */}
+
+
+
+
+
+
+      
+
+      {/* <div className="container price-cal-box ">
         <div className="row price-calculate display-flex justify-content-center align-items-center ">
           <div className="d-flex flex-column col-lg-2 col-12 ">
             <label>Amount:</label>
@@ -887,7 +835,9 @@ const addSelectedColor = () => {
         </div>
 
 
-      </div>
+      </div> */}
+
+
       <div className="social container-fluid  ">
               <div class="row justify-content-center">
                 <div className="sociladivider   d-flex justify-content-around text-white">

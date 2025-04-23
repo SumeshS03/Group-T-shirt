@@ -22,6 +22,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
@@ -30,6 +31,7 @@ import { FaBars } from 'react-icons/fa';
 const HomeHeader = () => {
   const location = useLocation(); // Get current URL
   const [activeLink, setActiveLink] = useState("");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const navigate = useNavigate();
   const currentPath = location.pathname;
   const { id } = useParams();
@@ -126,10 +128,20 @@ const HomeHeader = () => {
                     ABOUTUS 
                </Link>
                
-               <Link to="/shop" class="no-underline-2 fw-bold"  style={{ color: isShopActive ? "#cf9601" : "blue" }}>
-       
-                 SHOP 
-               </Link>
+               <div className="dropdown" onMouseEnter={() => setDropdownOpen(true)} onMouseLeave={() => setDropdownOpen(false)} >
+  <span
+    className="dropdown-toggle fw-bold"
+    style={{ color: isShopActive ? "#cf9601" : "blue", cursor: "pointer" }}
+    
+  >
+    SHOP
+  </span>
+  <ul className={`dropdown-menu ${dropdownOpen ? "show" : ""}`}>
+    <li><Link className="dropdown-item" to="/product">Products</Link></li>
+    <li><Link className="dropdown-item" to="/stock">Stock</Link></li>
+    <li><Link className="dropdown-item" to="/newdesign">New Design</Link></li>
+  </ul>
+</div>
                <Link to="/service" className="no-underline-2 fw-bold"  style={{ color: activeLink === "service" ? "#cf9601" : "blue" }}>
        
                  SERVICE 

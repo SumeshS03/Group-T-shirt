@@ -20,6 +20,7 @@ import Productdetail from './pages/Productdetail';
 import Cartpage from './pages/Cartpage';
 import  { CartProvider }  from './pages/CartContext';
 import Profile from './pages/Profile'
+import Stockdetail from './pages/Stockdetail'
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         <Route path="/shop" element={<Shopcontent/>}></Route>
         <Route path="/product" element={<Shopcontentproduct/>}></Route>
         <Route path="/productdetail/:id" element={<Productdetail />} />
+        <Route path="/Stockdetail/:id" element={<Stockdetail></Stockdetail>}></Route>
         <Route path="/cart/:id" element={<Cartpage></Cartpage>}></Route>
         <Route path='/profile' element={<Profile></Profile>}></Route>
         {/* <Route path="/cart/:id"  element={<CartProvider></CartProvider>}></Route> */}

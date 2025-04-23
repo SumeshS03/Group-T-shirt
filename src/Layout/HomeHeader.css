@@ -169,7 +169,7 @@
     width: 223px;
     height: 176px;
     background-color: white;
-    margin-left: 100px;
+    margin-left: 61px;
     border-radius: 0px 0px 10px 10px;
     /* padding: 15px; */
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
@@ -283,6 +283,13 @@
 }
 .header{
     position: relative;
+}
+.dropdown-menu[data-bs-popper] {
+    top: 100%;
+    left: 0;
+    margin-top: var(--bs-dropdown-spacer);
+    border: #004e99 1px solid;
+    background: #00a0ff;
 }
 
 @media screen and (max-width: 1280px) {
