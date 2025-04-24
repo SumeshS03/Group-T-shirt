@@ -35,6 +35,10 @@ import { IoLocationOutline } from "react-icons/io5";
 import { FaCircleChevronLeft } from "react-icons/fa6";
 import { FaCircleChevronRight } from "react-icons/fa6";
 import sampleimages from "../images/grouptshirtone.png"
+import { RiUpload2Fill } from "react-icons/ri";
+import "./Newdesign.css"
+import Button from 'react-bootstrap/Button';
+
 
 const Shopcontentproduct = () => {
   const [activeTab, setActiveTab] = useState("product");
@@ -291,8 +295,13 @@ const addSelectedColor = () => {
   //     },
   //   ]);
   // };
-
-
+ const [previewImage, setPreviewImage] = useState(null);
+ const handleImageChange= (e) =>{
+  const file= e.target.files[0];
+  if(file){
+    setPreviewImage(URL.createObjectURL(file));
+  }
+ }
   
 
 
@@ -403,6 +412,68 @@ const addSelectedColor = () => {
     </div> */}
         </div>
       </div>
+
+      <h1 className="mt-5 ">
+              <span className="heading-text">Please Insert</span>
+              <span className="heading-text-two" style={{ margin: "0px" }}>
+                {" "}
+                Your Design
+              </span>
+            </h1>
+
+            <div className="container d-flex justify-content-center align-items-center mt-5">
+          <div className="upload-newdeisgn-box text-center">
+            <label className="upload-button">
+          <RiUpload2Fill className="uplode-icon" />
+          <span>Upload File</span>
+          <input type="file" accept="image/*" onChange={handleImageChange} style={{ display: "none" }} />
+        </label>
+        {previewImage && (
+        <div className="mt-3">
+          <img src={previewImage} alt="Preview" className="preview-image" />
+        </div>
+      )}
+      </div>
+    </div>
+    <div className="container d-flex flex-column justify-content-center align-items-center mt-5 w-50 enter-quality-box">
+      <h1 className="h4">Enter Quantity Required</h1>
+      <input
+      type="text"
+      className="Enter-Quantity-Required mt-2"
+      ></input>
+    </div>
+
+    <div className="container d-flex flex-column justify-content-center align-items-center mt-5 w-50 enter-quality-box">
+      <h1 className="h4">Enter Contact Details</h1>
+      <input
+      type="text"
+      className="Enter-Quantity-Required mt-2 w-50"
+      placeholder="Name"
+      ></input>
+       <input
+      type="text"
+      className="Enter-Quantity-Required mt-2 w-50"
+      placeholder="Phone Number"
+      ></input>
+       <input
+      type="text"
+      className="Enter-Quantity-Required mt-2 w-50"
+      placeholder="Name"
+      ></input>
+      
+    </div>
+
+    <Button className="mb-4 new-sent-btn">Send</Button>
+    
+
+
+
+
+
+
+
+
+
       {/* <div className="container d-flex justify-content-center align-items-center mt-3">
       <div 
        className={`btn  rounded-5 leftarrw-rounded  ${!canGoPrev ? "disabled" : ""}`}
