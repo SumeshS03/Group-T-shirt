@@ -30,6 +30,7 @@ import { IoLocationOutline } from "react-icons/io5";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Button from 'react-bootstrap/Button';
+import Hoodiesone from "../images/Hoodie1.png"
 
 
 const Shopcontentproduct = () => {
@@ -45,7 +46,7 @@ const Shopcontentproduct = () => {
     }, [location.pathname]);
 
 const products = [
-                { id: 1, image: qualityshirt,sizes: {XS:2,S: 5,M: 4,L: 4,X: 2,XL: 1,'2XL': 3, '3XL': 2, '4XL': 1, '5XL': 0} },
+                { id: 1, image: Hoodiesone,sizes: {XS:2,S: 5,M: 4,L: 4,X: 2,XL: 1,'2XL': 3, '3XL': 2, '4XL': 1, '5XL': 0} },
                 { id: 2, image: qualityshirt,sizes: {XS:2,S: 5,M: 3,L: 1,X: 2,XL: 1,'2XL': 3, '3XL': 2, '4XL': 1, '5XL': 0} },
                 { id: 3, image: qualityshirt,sizes: {XS:2,S: 2,M: 3,L: 4,X: 2,XL: 1,'2XL': 3, '3XL': 2, '4XL': 1, '5XL': 0} },
                 { id: 4, image: qualityshirt,sizes: {XS:2,S: 5,M: 3,L: 1,X: 2,XL: 1,'2XL': 3, '3XL': 2, '4XL': 1, '5XL': 0} },

@@ -34,6 +34,7 @@ import { HiOutlineMailOpen } from "react-icons/hi";
 import { IoLocationOutline } from "react-icons/io5";
 import { FaCircleChevronLeft } from "react-icons/fa6";
 import { FaCircleChevronRight } from "react-icons/fa6";
+import Hoodiesone from "../images/Hoodie1.png"
 
 const Shopcontentproduct = () => {
   const [activeTab, setActiveTab] = useState("product");
@@ -93,7 +94,7 @@ const addSelectedColor = () => {
   };
 
   const tshirtItems = [
-    { id: 1, image: qualityshirt, title: "Normal T-Shirts" },
+    { id: 1, image: Hoodiesone, title: "Normal T-Shirts" },
     { id: 2, image: qualityshirt, title: "Full Color T-Shirts" },
     { id: 3, image: qualityshirt, title: "Line T-Shirts" },
     { id: 4, image: qualityshirt, title: "Double Line T-Shirts" },

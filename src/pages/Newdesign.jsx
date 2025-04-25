@@ -43,8 +43,7 @@ import Button from 'react-bootstrap/Button';
 const Shopcontentproduct = () => {
   const [activeTab, setActiveTab] = useState("product");
   const [showColors, setShowColors] = useState(false);
-  // const [showColorList, setShowColorList] = useState(colors[0]);
-  // const [selectedColors, setSelectedColors] = useState([]);
+
 const [showColorList, setShowColorList] = useState(false);
 const colors = ["red", "blue", "green", "yellow", "black", "purple"];
 const [selectedColor, setSelectedColor] = useState(['#ff0000', '#00ff00']);
@@ -91,10 +90,7 @@ const addSelectedColor = () => {
 
   const numbers = Array.from({ length: 2000 }, (_, i) => i + 10);
 
-  // const [colors] = useState([
-  //   '#ff0000', '#00ff00', '#0000ff', '#ffff00',
-  //   '#ff00ff', '#00ffff', '#ffffff', '#000000'
-  // ]);
+
   const handleSelect = (num) => {
     setSelectedNumber(num);
     setShowDropdown(false);
@@ -170,22 +166,7 @@ const addSelectedColor = () => {
     // Add more sample items
   ];
 
-  // const currentPath = location.pathname;
-  // const selectedBox = pathToTitleMap[currentPath] || "T-Shirts";
-
-
-
-
-  
-  // const filteredItems = allProducts.filter(item => item.category === selectedCategory);
-  // const startIndex = currentPage * itemsPerPage;
-  // const endIndex = startIndex + itemsPerPage;
-  // const visibleItems = filteredItems.slice(startIndex, endIndex);
-  
-
-  // const handleClick = (item) => {
-  //   navigate(item.path);
-  // };
+ 
 
 
 
@@ -196,18 +177,11 @@ const addSelectedColor = () => {
 
   const selectedBox = selectedCategory;
 
-  // const handleTabClick = (tab, path) => {
-  //   setActiveTab(tab);
-  //   navigate(path);
-  // };
+  
 
 
 
-  // useEffect(() => {
-  //   if (location.pathname === "/product") setActiveTab("product");
-  //   else if (location.pathname === "/newdesign") setActiveTab("new");
-  //   else if (location.pathname === "/stock") setActiveTab("stock");
-  // }, [location.pathname]);
+ 
 
 
   useEffect(() => {
@@ -218,17 +192,7 @@ const addSelectedColor = () => {
   }, [location.pathname]);
 
 
-  // const getActiveTab = () => {
-  //   if (location.pathname === "/product") return "product";
-  //   if (location.pathname === "/newdesign") return "new";
-  //   if (location.pathname === "/stock") return "stock";
-  //   return "";
-  // };
-
-  // const activeTab = getActiveTab();
-
-
-  // const [productRows, setProductRows] = useState([]);
+ 
 
   const handleAddProduct = () => {
     setProductRows(prevRows => [...prevRows, { ...defaultRow }]);
@@ -246,6 +210,12 @@ const addSelectedColor = () => {
   };
   
   const [productRows, setProductRows] = useState([defaultRow]);
+  const [quantity, setQuantity] = useState('');
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [address, setAddress] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState({});
 
 
   const [visibleSizeCount, setVisibleSizeCount] = useState(1);
@@ -265,36 +235,47 @@ const addSelectedColor = () => {
     }));
   };
 
+  const validate = () => {
+    const newErrors = {};
+    if (!previewImage) newErrors.previewImage = 'Please upload an image';
+    if (!quantity) {
+      newErrors.quantity = 'Quantity is required';
+    } else if (isNaN(quantity)) {
+      newErrors.quantity = 'Quantity must be a number';
+    } else if (parseInt(quantity) <= 15) {
+      newErrors.quantity = 'Quantity must be greater than 15';
+    }
+    if (isNaN(quantity)) newErrors.quantity = 'Quantity must be a number';
+    if (!name) newErrors.name = 'Name is required';
+    if (!phone) newErrors.phone = 'Phone number is required';
+    if (!/^\d{10}$/.test(phone)) newErrors.phone = 'Phone number must be 10 digits';
+    if (!address) newErrors.address = 'Address is required';
+    return newErrors;
+  };
+
+  
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // console.log("test");
+    
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      setSubmitted(false);
+    } else {
+      setErrors({});
+      console.log({ previewImage, quantity, name, phone, address });
+      setSubmitted(true);
+    }
+  };
 
 
-  // const [productRows, setProductRows] = useState([
-  //   {
-  //     colors: ['#ff0000', '#00ff00'], // example colors
-  //     activeColorIndex: 0,
-  //     showColorList: false,
-  //     selectedQuantity: 1,
-  //     showDropdown: false,
-  //     selectedType: 'Print',
-  //     selectedSize: 'M',
-  //     showSizes: false,
-  //   },
-  // ]);
+
+ 
 
 
-  // const handleAddProduct = () => {
-  //   setProductRows([
-  //     ...productRows,
-  //     {
-  //       selectedColors: [],
-  //       selectedNumber: null,
-  //       selectedSize: null,
-  //       selectedType: null,
-  //       showColorList: false,
-  //       showDropdown: false,
-  //       showSizes: false,
-  //     },
-  //   ]);
-  // };
+ 
  const [previewImage, setPreviewImage] = useState(null);
  const handleImageChange= (e) =>{
   const file= e.target.files[0];
@@ -306,8 +287,7 @@ const addSelectedColor = () => {
 
 
 
-  
-  
+    
   
 
   return (
@@ -421,49 +401,89 @@ const addSelectedColor = () => {
               </span>
             </h1>
 
-            <div className="container d-flex justify-content-center align-items-center mt-5">
-          <div className="upload-newdeisgn-box text-center">
-            <label className="upload-button">
-          <RiUpload2Fill className="uplode-icon" />
-          <span>Upload File</span>
-          <input type="file" accept="image/*" onChange={handleImageChange} style={{ display: "none" }} />
-        </label>
-        {previewImage && (
-        <div className="mt-3">
-          <img src={previewImage} alt="Preview" className="preview-image" />
+            <form onSubmit={handleSubmit}>
+      <div className="container d-flex justify-content-center align-items-center mt-5">
+        <div className="upload-newdeisgn-box text-center">
+          <label className="upload-button">
+            <RiUpload2Fill className="uplode-icon" />
+            <span>Upload File</span>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              style={{ display: 'none' }}
+            />
+          </label>
+          {previewImage && (
+            <div className="mt-3">
+              <img src={previewImage} alt="Preview" className="preview-image" />
+            </div>
+          )}
+          {errors.previewImage && <div className="text-danger mt-2">{errors.previewImage}</div>}
+        </div>
+      </div>
+
+      <div className="container d-flex flex-column justify-content-center align-items-center mt-5 w-50 enter-quality-box">
+        <h1 className="h4">Enter Quantity Required</h1>
+        <input
+          type="number"
+          className="Enter-Quantity-Required mt-2"
+          value={quantity}
+          onChange={(e) => {
+            const value = e.target.value;
+            setQuantity(value);
+          }}
+        />
+        {errors.quantity && <div className="text-danger mt-2">{errors.quantity}</div>}
+      </div>
+
+      <div className="container d-flex flex-column justify-content-center align-items-center mt-5 w-50 enter-quality-box">
+        <h1 className="h4">Enter Contact Details</h1>
+        <input
+          type="text"
+          className="Enter-Quantity-Required mt-2 w-50"
+          placeholder="Name"
+          value={name}
+          onChange={(e) => {
+            const value = e.target.value;
+            if (/^[a-zA-Z\s]*$/.test(value)) {
+              setName(value);
+            }
+          }}
+        />
+        {errors.name && <div className="text-danger mt-2">{errors.name}</div>}
+
+        <input
+          type="text"
+          className="Enter-Quantity-Required mt-2 w-50"
+          placeholder="Phone Number"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+        />
+        {errors.phone && <div className="text-danger mt-2">{errors.phone}</div>}
+
+        <input
+          type="text"
+          className="Enter-Quantity-Required mt-2 w-50"
+          placeholder="Address"
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+        />
+        {errors.address && <div className="text-danger mt-2">{errors.address}</div>}
+      </div>
+
+      <div className="d-flex justify-content-center mt-4">
+        <Button type="submit" className="mb-4 new-sent-btn">
+          Send
+        </Button>
+      </div>
+
+      {submitted && (
+        <div className="text-success text-center mb-4">
+          <strong>*You will get a call from our production team</strong>
         </div>
       )}
-      </div>
-    </div>
-    <div className="container d-flex flex-column justify-content-center align-items-center mt-5 w-50 enter-quality-box">
-      <h1 className="h4">Enter Quantity Required</h1>
-      <input
-      type="text"
-      className="Enter-Quantity-Required mt-2"
-      ></input>
-    </div>
-
-    <div className="container d-flex flex-column justify-content-center align-items-center mt-5 w-50 enter-quality-box">
-      <h1 className="h4">Enter Contact Details</h1>
-      <input
-      type="text"
-      className="Enter-Quantity-Required mt-2 w-50"
-      placeholder="Name"
-      ></input>
-       <input
-      type="text"
-      className="Enter-Quantity-Required mt-2 w-50"
-      placeholder="Phone Number"
-      ></input>
-       <input
-      type="text"
-      className="Enter-Quantity-Required mt-2 w-50"
-      placeholder="Name"
-      ></input>
-      
-    </div>
-
-    <Button className="mb-4 new-sent-btn">Send</Button>
+    </form>
     
 
 

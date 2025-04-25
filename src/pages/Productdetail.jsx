@@ -162,14 +162,14 @@ const Productdetail = () => {
   };
 
 
-  useEffect(() => {
+  // useEffect(() => {
     
-    if((enteredQty && parseInt(enteredQty) !== grandTotal) || (!enteredQty ==grandTotal) )  {
-      setQuantityError("Entered quantity does not match the grand total.");
-    } else {
-      setQuantityError('');
-    }
-  }, [enteredQty, grandTotal]);
+  //   if((enteredQty && parseInt(enteredQty) !== grandTotal) || (!enteredQty ==grandTotal) )  {
+  //     setQuantityError("Entered quantity does not match the grand total.");
+  //   } else {
+  //     setQuantityError('');
+  //   }
+  // }, [enteredQty, grandTotal]);
 
 
   
@@ -185,15 +185,105 @@ const Productdetail = () => {
                 { id: 5, image: shopimage,imageone:shopimage,imagetwo:qualityshirt, label: "V Neck", price: 319,sizes: {XS:2,S: 5,M: 15,L: 4,X: 2,XL: 1,'2XL': 3, '3XL': 2, '4XL': 1, '5XL': 0} },
                 { id: 6, image: shopimage,imageone:shopimage,imagetwo:qualityshirt, label: "V Neck", price: 319,sizes: {XS:2,S: 5,M: 3,L: 4,X: 41,XL: 1,'2XL': 3, '3XL': 2, '4XL': 1, '5XL': 0} },
               ];
-    const [quantity, setQuantity] = useState('');
+    // const [quantity, setQuantity] = useState('');
+    const [logoCount, setLogoCount] = useState(0);
+    const [visibleLogos, setVisibleLogos] = useState(1);
+    const [uploadedImages, setUploadedImages] = useState({});
+    const [remark, setRemark] = useState('');
+    const [qtyError, setQtyError] = useState('');
+    const [formErrors, setFormErrors] = useState({});
+    const [pocketRequired, setPocketRequired] = useState('');
+    const [deliveryDate, setDeliveryDate] = useState('');
+    const [selectedCotton, setSelectedCotton] = useState('');
+    const [selectedPolyester, setSelectedPolyester] = useState('');
+    const [selectedPolyCotton, setSelectedPolyCotton] = useState('');
+    const [logoType, setLogoType] = useState('');
+    const [logoPosition, setLogoPosition] = useState('');
+
+    // const handleLogoCountChange = (e) => {
+    //   const value = parseInt(e.target.value, 10);
+    //   setLogoCount(value > 0 ? value : 0);
+    //   setVisibleLogos(1); // Reset to show the first one
+    // };
+
+    // const handleSubmit = (e) => {
+    //   e.preventDefault();
+    //   // Collect form data and process it
+    //   console.log('Form Submitted');
+    //   console.log('Remark:', remark);
+    // };
+
+   
+
+    // console.log("Component rendered");
+
+    console.log("render")
+
+    const handleSubmit = (e) => {
+      console.log("render")
+      e.preventDefault();
+      const newErrors = {};
+      console.log("test")
+    
+      // Quantity validation
+      if (!enteredQty) {
+        newErrors.enteredQty = 'Quantity is required';
+      } else if (isNaN(enteredQty)) {
+        newErrors.enteredQty = 'Quantity must be a number';
+      } else if (parseInt(enteredQty) < 15) {
+        newErrors.enteredQty = 'Minimum quantity should be 15';
+        console.log(enteredQty)
+      }
+    
+      // Logo count validation
+      if (!logoCount) {
+        newErrors.logoCount = 'Logo count is required';
+      } else if (isNaN(logoCount)) {
+        newErrors.logoCount = 'Logo count must be a number';
+      } else if (parseInt(logoCount) < 1) {
+        newErrors.logoCount = 'Logo count must be at least 1';
+      }
+    
+      // Pocket required validation
+      if (!pocketRequired) {
+        newErrors.pocketRequired = 'Pocket selection is required';
+      }
+    
+      // Delivery date validation
+      if (!deliveryDate) {
+        newErrors.deliveryDate = 'Delivery date is required';
+      }
+    
+      // Quantity match validation
+      if (parseInt(enteredQty) !== grandTotal) {
+        newErrors.quantityMatch = 'Total quantities must match entered quantity';
+      }
+    
+      setFormErrors(newErrors);
+    
+      if (Object.keys(newErrors).length === 0) {
+        const formData = {
+          
+          quantity: enteredQty,
+          logoCount: logoCount,
+          pocketRequired: pocketRequired,
+          deliveryDate: deliveryDate,
+          halfSleeveQuantities: halfSleeve,
+          fullSleeveQuantities: fullSleeve,
+          totalHalfSleeve: totalHalf,
+          totalFullSleeve: totalFull,
+          grandTotal: grandTotal,
+          remark: remark,
+          logoTwo: uploadedImagetwo,
+         
+        };
+        console.log('Form submitted:', formData);
+      }
+    };
+    
     
 
-    // const totalAvailable = products.reduce((total, product) => {
-    //             return total + Object.values(product.sizes).reduce((sum, qty) => sum + qty, 0);
-                
-    //           }, 0);
-    // console.log("Available stock:", totalAvailable);
-  // You can fetch the product by ID or use local data
+
   const product = products.find((p) => p.id === parseInt(id));
   const [selectedImage, setSelectedImage] = useState(product.image);
   
@@ -209,6 +299,7 @@ const Productdetail = () => {
 
   if (!product) return <h2>Product not found</h2>;
 
+  
   
 
 
@@ -366,48 +457,65 @@ const responsive = {
       
       
     </div>
+<form onSubmit={handleSubmit}>
     <div className="container mt-5">
-      <div className="row ">
-        <label className="fs-6 fw-bold col-2 d-flex align-items-center justify-content-center">Enter Quantity required:</label>
-        <div className="col-lg-2">
-          <input 
-          type="number"
-          
-          className="form-control"
-          placeholder="Enter quantity"
-          min="1"
-          value={enteredQty}
-          onChange={(e) => setEnteredQty(e.target.value)}
+      <div className="row mb-4 ">
+      <label className="fs-6 fw-bold col-2 d-flex align-items-center justify-content-center">Enter Quantity required:</label>
+<div className="col-lg-2">
+  <input
+    type="number"
+    min="15"
+    className={`form-control ${formErrors.enteredQty ? 'is-invalid' : ''}`}
+    placeholder="Enter quantity"
+    value={enteredQty}
+    onChange={(e) => setEnteredQty(e.target.value)}
+  />
+  {formErrors.enteredQty && (
+  <div className="text-danger mt-1">{formErrors.enteredQty}</div>
+)}
+</div>
 
-          
-         
-
-          
-          
-          
-          ></input>
-        </div>
         <label className="fs-6 fw-bold col-2 d-flex align-items-center justify-content-center">How many Logos to add:</label>
         <div className="col-lg-2">
           <input 
           type="number"
-          // min='0'
-          className="form-control"
+          min='1'
+        
+           className={`form-control ${formErrors.logoCount ? 'is-invalid' : ''}`}
           placeholder="Enter quantity"
+          value={logoCount}
+          onChange={(e) => setLogoCount(e.target.value)}
           ></input>
+          {formErrors.logoCount && (
+          <div className="text-danger mt-1">{formErrors.logoCount}</div>
+          )}
         </div>
+        
         <label className="fs-6 fw-bold col-2 d-flex align-items-center justify-content-center">Pocket Required:</label>
+        
         <div className="col-1 d-flex justify-content-center align-items-center gap-3">
+        {formErrors.pocketRequired && (
+       <div className="text-danger mt-1">{formErrors.pocketRequired}</div>
+        )}
          
           <div>
-         <input type="radio" id="yes1" name="option" />
-         <label htmlFor="yes1">Yes</label>
+          <input type="radio" id="yes" name="pocketRequired" value="yes"
+          checked={pocketRequired === 'yes'}
+          onChange={(e) => setPocketRequired(e.target.value)} />
+          <label htmlFor="yes">Yes</label>
          </div>
          <div>
-         <input type="radio" id="yes1" name="option" />
-         <label htmlFor="yes1">No</label>
+         <input type="radio" id="no" name="pocketRequired" value="no"
+         checked={pocketRequired === 'no'}
+         onChange={(e) => setPocketRequired(e.target.value)} />
+        <label htmlFor="no">No</label>
          </div>
+         
         </div>
+         {formErrors.pocketRequired && (
+        <div className="text-danger mt-1">{formErrors.pocketRequired}</div>
+          )}
+       
       </div>
       
       {/* <div className="row mt-2 ">
@@ -425,15 +533,19 @@ const responsive = {
         </div>
       </div> */}
 
-      <div className="row mt-2">
+      <div className="row mt-2 mb-4">
         <label className="fs-6 fw-bold col-2 text-end ">Delivery Date:</label>
         <div className="col-lg-2">
           <input 
           type="date"
           // min='0'
           className="form-control"
-          placeholder="Enter quantity"
+          value={deliveryDate}
+          onChange={(e) => setDeliveryDate(e.target.value)}
           ></input>
+          {formErrors.deliveryDate && (
+         <div className="text-danger mt-1">{formErrors.deliveryDate}</div>
+          )}
         </div>
         <label className="fs-6 fw-bold col-2 text-end">Choose Colour:</label>
         <div className="col-lg-3 d-flex flex-column align-items-start">
@@ -442,15 +554,8 @@ const responsive = {
         
         </div>
       </div>
-      {/* <div className="row mt-2">
-        <label className="fs-6 fw-bold col-2 d-flex align-items-center justify-content-center">Choose Colour:</label>
-        <div className="col-lg-3 d-flex flex-column align-items-start">
-        <input  type="color" id="favcolor" name="favcolor" value={color} onChange={(e) => setColor(e.target.value)}
-        className="form-control-color rounded-color"></input>
-        
-        </div>
-      </div> */}
-      <div className="row mt-2 pt-2 pb-2 chooseoption-box   ">
+      
+      <div className="row mt-2 pt-2 pb-4 chooseoption-box mb-4   ">
         <div>
         
         <label className="fs-6 fw-bold  d-flex align-items-center justify-content-center text-center mb-3">Choose Your Option:</label>
@@ -458,7 +563,7 @@ const responsive = {
         <div className="d-flex justify-content-evenly">
         <div className="col-lg-2 ">
           <div className="cotton-dropdown">
-          <label onClick={polycottoggle} className="dropdown-label w-100 fw-bold fs-6">Cotton</label>
+          <label onClick={polycottoggle} className="dropdown-label w-100 fw-bold fs-6 mb-2">Cotton</label>
           <select className="form-select mt-2">
         <option value="">option </option>
         <option value="printed">option 1</option>
@@ -476,7 +581,7 @@ const responsive = {
         </div>
         <div className="col-lg-2">
           <div className="cotton-dropdown">
-          <label onClick={polytoggle} className="dropdown-label w-100 fw-bold fs-6">Polyester</label>
+          <label onClick={polytoggle} className="dropdown-label w-100 fw-bold fs-6 mb-2">Polyester</label>
           <select className="form-select mt-2">
         <option value="">option </option>
         <option value="printed">option 1</option>
@@ -494,7 +599,7 @@ const responsive = {
         </div>
         <div className="col-lg-2">
           <div className="cotton-dropdown">
-          <label onClick={toggleOptions} className="dropdown-label w-100 fw-bold fs-6">Poly Cotton</label>
+          <label onClick={toggleOptions} className="dropdown-label w-100 fw-bold fs-6 mb-2">Poly Cotton</label>
           <select className="form-select mt-2">
         <option value="">option 1</option>
         <option value="printed">option 2</option>
@@ -516,7 +621,7 @@ const responsive = {
 
 
       
-      <div className="row mt-2 pt-2 pb-2 chooseoption-box ">
+      <div className="row mt-2 pt-2 pb-4 chooseoption-box ">
         <div>
         <label className=" fs-6 fw-bold  d-flex align-items-center justify-content-center text-center mb-3">Logo:</label>
         </div>
@@ -631,6 +736,7 @@ const responsive = {
       </div>
       
     </div>
+    
 
     <div className="container mt-5 d-flex justify-content-center align-items-center ">
       <div className="custom-scroll-x">
@@ -713,9 +819,9 @@ const responsive = {
         </tr>
         <tr>
     <td colSpan="4">
-      {quantityError && (
-        <div className="text-danger fw-bold mt-2">{quantityError}</div>
-      )}
+    {formErrors.quantityMatch && (
+  <div className="text-danger fw-bold mt-2">{formErrors.quantityMatch}</div>
+)}
     </td>
   </tr>
         
@@ -724,7 +830,21 @@ const responsive = {
     </div>
 
     </div>
-    <textarea className="w-50" placeholder="Remark"></textarea>
+    <div className="d-flex justify-content-center mt-4">
+    <textarea
+      className="form-control w-50"
+      placeholder="Remark"
+      rows="4"
+      value={remark}
+      onChange={(e) => setRemark(e.target.value)}
+    ></textarea>
+  </div>
+  <div className="d-flex justify-content-center mt-4">
+  <button type="submit" className="btn btn-primary px-5" >
+  Submit
+</button>
+  </div>
+</form>
 
     <div className="container w-50 mt-5">
       <div className="row">
