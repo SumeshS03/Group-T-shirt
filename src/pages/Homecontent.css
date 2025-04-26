@@ -451,13 +451,13 @@
     margin-bottom: 220px;
 }
 .comment-box{
-    width: 75%;
+    /* width: 75%; */
     /* height: 134px; */
     background-color: white;
     display: flex;
     margin-top: 22px;
     gap: 15px;
-    margin-left: 60px;
+    /* margin-left: 60px; */
 
 }
 .comment-lines{
@@ -540,7 +540,7 @@
 .text-divider{
     display: flex;
     flex-direction: column;
-    width: 50%;
+    /* width: 50%; */
 
 }
 .wegottext{
@@ -568,7 +568,7 @@
     margin-top: 20px;
 }
 .shipping{
-    width: 82%;
+    /* width: 82%; */
     display: flex;
     /* margin-top: 95px; */
     background-color: #efefef;
@@ -578,8 +578,8 @@
     /* padding-bottom: 40px; */
 }
 .shippingdivider{
-    width: 15%;
-    height: 150px;
+    /* width: 15%; */
+    /* height: 150px; */
     background-color: #efefef;
     display: flex;
     flex-direction: column;
@@ -916,9 +916,9 @@
         top: -87px;
         left: 1%;
     }
-    .shippingdivider{
+    /* .shippingdivider{
         width: 16%;
-    }
+    } */
     
     .emailbox{
         width: 200px;
@@ -933,7 +933,7 @@
 
     }
     .comment-box{
-        width: 89%;
+        /* width: 89%; */
     }
     
     .verify-photo-image {
@@ -991,6 +991,12 @@
         
         font-size: 33px;
         
+    }
+    .shippingimagefix {
+        width: 11%;
+        height: 50%;
+        color: green;
+        margin-top: 20px;
     }
     .heading-text-two{
         font-size: 33px !important;

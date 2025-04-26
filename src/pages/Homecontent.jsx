@@ -896,7 +896,7 @@ const Homecontent = () => {
     </div>
       </div>
       <div className="shipping container-fluid mt-3">
-        <div class="row shipping  py-4 justify-content-center text-center">
+        <div class="row w-75  py-4 justify-content-center text-center">
           {/* <div
           style={{
             width: "100%",
@@ -906,7 +906,7 @@ const Homecontent = () => {
             marginTop:"10px"
           }}
         > */}
-          <div className="shippingdivider col-md-3 d-flex flex-column align-items-center">
+          <div className="shippingdivider col-lg-3 d-flex flex-column align-items-center">
             <img
             className="shippingimagefix"
               src={worldwideshipping}
@@ -930,7 +930,7 @@ const Homecontent = () => {
             </text>
             <text className="shippingtextfixone">Get free shipping over $65.</text>
           </div>
-          <div className="shippingdivider col-md-3 d-flex flex-column align-items-center">
+          <div className="shippingdivider col-lg-3 d-flex flex-column align-items-center">
             <img
               src={returnicon}
               className="shippingimagefix"
@@ -942,7 +942,7 @@ const Homecontent = () => {
             </text>
             <text className="shippingtextfixone">Within 30 days for an exchange</text>
           </div>
-          <div className="shippingdivider col-md-3 d-flex flex-column align-items-center">
+          <div className="shippingdivider col-lg-3 d-flex flex-column align-items-center">
             <img
               src={onlinesupport}
               className="shippingimagefix"
@@ -955,7 +955,7 @@ const Homecontent = () => {
             </text>
             <text className="shippingtextfixone">Top notch customer service.</text>
           </div>
-          <div className="shippingdivider col-md-3 d-flex flex-column align-items-center">
+          <div className="shippingdivider col-lg-3 d-flex flex-column align-items-center">
             <img
               src={flexiblepayment}
               className="shippingimagefix"

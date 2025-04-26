@@ -3,7 +3,7 @@
     /* height: 450px; */
     height: 281px;
     width: 100%;
-    background-color: bisque;
+    /* background-color: bisque; */
     overflow: hidden;
     position: relative;
 }
@@ -105,7 +105,7 @@ th, td {
 }
 
 .productdetail-image{
-  height: 100px;
+  /* height: 100px; */
   width: 110px;
   /* border: 1px solid blue; */
 }
@@ -133,10 +133,16 @@ th, td {
   border-radius: 50%;
   cursor: pointer;
 }
+.selectmaterial-box{
+  display: flex;
+}
 
 
 @media (max-width: 768px){
   .second-logo-box{
     flex-direction: column !important;
+  }
+  .cotton-dropdown{
+    width: 100%;
   }
 }
