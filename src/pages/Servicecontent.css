@@ -2,7 +2,7 @@
     gap: 20rem;
     margin-left: 12rem;
   }
-.browse-all{
+  .browse-all{
     background-color: #3a3e40 !important;
     background-image: url("../images/about-us3.png");
     /* background: no-repeat; */
@@ -11,6 +11,17 @@
     background-size: cover; /* Ensures image covers the entire div */
     background-position: center;
 }
+/* .browse-all {
+  background-color: #3a3e40 !important;
+  background-image: url("../images/about-us3.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  padding-bottom: 50px; 
+}  */
+
+
 .browse-btn{
     color: blue !important;
     background-color: white !important;
@@ -140,7 +151,7 @@
   color: black !important;
 }
 .easycustomize{
-  width: 30%;
+  /* width: 30%; */
   background-color: white;
   display: flex;
   justify-content: center;
@@ -149,9 +160,16 @@
 }
 
 
-.digitalscanpagenation{
+/* .digitalscanpagenation{
   margin-bottom: -111px;
-  /* margin-left: 14% !important; */
+ 
+} */
+
+.digitalscanpagenation {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .verify-photo{
   margin-top: 10% !important;
@@ -161,7 +179,7 @@
   margin-bottom: -140px;
   color: #eaa606;
   border: 3px solid white;
-  border-radius: 50%;
+  
 }
 .outterimage-border{
   width: 110px;
@@ -181,7 +199,7 @@
   font-size: 15px;
 }
 .profileimagesizing{
-  min-width: 200px;
+  /* width: 200px; */
 }
 .videoimage{
   width: 100%;
@@ -259,7 +277,20 @@
     width: 303px;
     margin-top: 0px;
 }
+.carousel-wrapper{
+  bottom: -50px;
+  transform: translate(-50%);
+}
 
+/* .profilesimagepad {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 250px; 
+  overflow: hidden;
+} */
 
 
 

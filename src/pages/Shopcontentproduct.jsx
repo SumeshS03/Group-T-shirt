@@ -5,7 +5,7 @@ import shopimage from "../images/shopimage.png";
 import "./Shopcontentproduct.css";
 import "./Stockpage.css"
 
-import { useLocation,useNavigate } from "react-router-dom";
+import { Await, useLocation,useNavigate } from "react-router-dom";
 
 
 
@@ -35,12 +35,14 @@ import Hoodie from "../images/Hoodie.png"
 import Hoodiethree from "../images/Hoodie3.png"
 import tshirttwo from "../images/Tshirt2.png"
 import fullsleeveone from "../images/Full-Sleeve1.png"
+import axios from 'axios';
 
 
 const Shopcontentproduct = () => {
   const [activeTab, setActiveTab] = useState("product");
   const location = useLocation();
   const navigate = useNavigate();
+  const [productsData, setProductsData] = useState([]);
 
     useEffect(() => {
       // Set activeTab based on current path
@@ -77,7 +79,32 @@ const products = [
     },
   };
 
+  const [imageUrl, setImageUrl] = useState(null);
+  const [categoryData, setCategoryData] = useState(null);
+  const [productData, setProductData] = useState(null);
+
  
+  const targetCategoryName = 'Collared Tshirts';
+
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get('https://gts.selfietoons.com/api/products/single/products-by-category', {
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDYxNzNlODU4OWE2ZmQyNWFlZGZjZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0NTgzMjA0NSwiZXhwIjoxNzQ1OTE4NDQ1fQ.kLWgITzAtBWx41TohX-ihz7XKDRD0UgI1nd-CHFznYc`
+          }
+        });
+        setProductsData(response.data);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+  
+    fetchProducts();
+  }, []);
+
+
   return (
     <>
       <div>
@@ -154,13 +181,7 @@ const products = [
 
             
 
-            {/* <Button
-              href="#"
-              className="mt-2"
-              onClick={() => navigate(`/productdetail/${item.id}`)}
-            >
-              Buy Now
-            </Button> */}
+          
           </div>
         ))}
       </Carousel>
@@ -181,18 +202,48 @@ const products = [
 
             
 
-            {/* <Button
-              href="#"
-              className="mt-2"
-              onClick={() => navigate(`/productdetail/${item.id}`)}
-            >
-              Buy Now
-            </Button> */}
+            
           </div>
         ))}
       </Carousel>
     </div>
   </div>
+
+
+  <div className="container mt-5">
+      {productsData.map((categoryItem, catIndex) => (
+        <div key={catIndex} className="mb-5">
+          <h2 className="h4 text-start mb-3">{categoryItem.category}</h2>
+
+          {categoryItem.products.length > 0 ? (
+            <div className="product-slider-container">
+              <Carousel responsive={responsive} infinite={false} arrows={true}>
+                {categoryItem.products.map((product, prodIndex) => (
+                  <div key={prodIndex} className="product-card text-center p-2">
+                    <div
+                      className="product-image"
+                      onClick={() => navigate(`/productdetail/${product._id}`)}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      <img
+                        src={`https://gts.selfietoons.com/${product.images[0]}`}
+                        alt={`product-img-${prodIndex}`}
+                        style={{ width: '100%', height: '200px', objectFit: 'cover' }}
+                      />
+                    </div>
+                    
+                  </div>
+                ))}
+              </Carousel>
+            </div>
+          ) : (
+            <p>No products available in this category.</p>
+          )}
+        </div>
+      ))}
+    </div>
+
+  
       
       
       

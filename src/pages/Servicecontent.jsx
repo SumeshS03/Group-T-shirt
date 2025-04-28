@@ -53,6 +53,11 @@ import leaf from "../images/service-page9.png"
 import fastshipping from "../images/fastshipping.png"
 import customerhappy from "../images/customerhappy.png"
 import videoimage from "../images/service-page1.png"
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules'; // for arrows and pagination
+
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 
 const items = [
@@ -67,6 +72,26 @@ const items = [
   { id: 9, image: aboutus, title: "Printing Service" },
   { id: 10, image: aboutus, title: "Printing Service" },
 ];
+
+
+const responsive = {
+  superLargeDesktop: {
+    breakpoint: { max: 4000, min: 1200 },
+    items: 5
+  },
+  desktop: {
+    breakpoint: { max: 1200, min: 992 },
+    items: 4
+  },
+  tablet: {
+    breakpoint: { max: 992, min: 760 },
+    items: 3
+  },
+  mobile: {
+    breakpoint: { max: 768, min: 0 },
+    items: 1
+  }
+};
 
 const Servicecontent = () => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -101,6 +126,7 @@ const Servicecontent = () => {
       setCurrentPage(currentPage + 1);
     }
   };
+  
 
   const prevPage = () => {
     if (currentPage > 0) {
@@ -109,6 +135,7 @@ const Servicecontent = () => {
   };
 
   return (
+    
     <>
       <div>
         <HomeHeader />
@@ -211,7 +238,7 @@ const Servicecontent = () => {
               
               
             </div>
-      <div className="browse-all p-lg-5 mt-5 d-flex justify-content-center flex-column">
+      {/* <div className="browse-all p-lg-5 mt-5 d-flex justify-content-center flex-column position-relative">
         <div className="row w-100">
           <div className="col-12 text-center ">
             <div className="d-flex  col-12 custom-gap ">
@@ -243,9 +270,87 @@ const Servicecontent = () => {
         <div className="row w-100  digitalscanpagenation justify-content-center mt-4">
         
           <div className="col-12 gap-3 text-center d-flex profilesimagepad  ">
-            {/* Left Arrow */}
+          
             <button
               className="btn"
+              onClick={prevPage}
+              disabled={currentPage === 0}
+            >
+              <FaCircleArrowLeft className="pagination-button" size={40} />
+            </button>
+            
+
+            
+          
+            
+      {visibleItems.map((item) => (
+        <div key={item.id} className="d-flex flex-column align-items-center profileimagesizing" style={{ color: "white" }}>
+          <div className="w-100 border border-2 border-secondary rounded-4 overflow-hidden">
+            <img
+              className="bg-white w-100"
+              style={{ height: "200px" }}
+              src={item.image}
+              alt="Quality Shirt"
+            />
+            <p
+              className="text-center bg-dark text-blue py-3 m-0 bg-white d-flex align-items-center justify-content-center gap-2"
+              style={{ color: "blue", fontSize: "20px" }}
+            >
+              {item.title}{" "}
+              <FaRegArrowAltCircleRight size={20} style={{ color: "gray" }} />
+            </p>
+          </div>
+        </div>
+      ))}
+   
+
+            
+            <button
+              className="btn"
+              onClick={nextPage}
+              disabled={currentPage === totalPages - 1}
+            >
+              <FaCircleArrowRight className="pagination-button" size={40} />
+            </button>
+          </div>
+        </div>
+      </div> */}
+
+<div className="browse-all p-lg-5 mt-5 d-flex justify-content-center flex-column">
+        <div className="row w-100">
+          <div className="col-12 text-center ">
+            <div className="d-flex  col-12 custom-gap ">
+              <h2 className="photoboxheader"
+                style={{ margin: "0px", fontFamily: "bevan", color: "#eeae0c" }}
+              >
+                <span>T-shirt printing </span>
+                <span style={{ margin: "0px", color: "blue" }}>
+                  {" "}
+                  made easy.
+                </span>
+              </h2>
+              <button className="btn rounded-pill browse-btn lg-mt-3 mt-md-0 px-3">
+                Browse all
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="row w-100">
+          <div className="col-12 text-center d-flex">
+            <div
+              className="d-flex  col-12 custom-gap  "
+              style={{ color: "white" }}
+            >
+              <p>Let us show you how your product come to life</p>
+            </div>
+          </div>
+        </div>
+        <div className="row w-100  digitalscanpagenation justify-content-center mt-4">
+        
+          {/* <div className="col-12 gap-3 text-center d-flex profilesimagepad  "> */}
+            {/* Left Arrow */}
+            <button
+              className="btn col-1"
               onClick={prevPage}
               disabled={currentPage === 0}
             >
@@ -263,13 +368,13 @@ const Servicecontent = () => {
                 <div className="w-100 border border-2 border-secondary rounded-4 overflow-hidden">
                   <img
                     className="bg-white w-100"
-                    style={{ height: "200px", objectFit: "cover" }}
+                    style={{ height: "200px" }}
                     src={item.image}
                     alt="Quality Shirt"
                   />
                   <p
                     className="text-center bg-dark text-blue py-3 m-0 bg-white d-flex align-items-center justify-content-center gap-2"
-                    style={{ color: "blue", fontSize: "20px" }}
+                    style={{ color: "blue", fontSize: "18px" }}
                   >
                     {item.title}{" "}
                     <FaRegArrowAltCircleRight
@@ -283,15 +388,69 @@ const Servicecontent = () => {
 
             {/* Right Arrow */}
             <button
-              className="btn"
+              className="btn col-1"
               onClick={nextPage}
               disabled={currentPage === totalPages - 1}
             >
               <FaCircleArrowRight className="pagination-button" size={40} />
             </button>
-          </div>
+          {/* </div> */}
         </div>
       </div>
+      
+
+{/* <div className="browse-all p-lg-5 mt-5 d-flex justify-content-center flex-column position-relative">
+  <div className="row w-100">
+    <div className="col-12 text-center">
+      <div className="d-flex col-12 custom-gap">
+        <h2 className="photoboxheader" style={{ margin: "0px", fontFamily: "bevan", color: "#eeae0c" }}>
+          <span>T-shirt printing </span>
+          <span style={{ margin: "0px", color: "blue" }}> made easy.</span>
+        </h2>
+        <button className="btn rounded-pill browse-btn lg-mt-3 mt-md-0 px-3">Browse all</button>
+      </div>
+    </div>
+  </div>
+  <div className="row w-100">
+    <div className="col-12 text-center d-flex">
+      <div className="d-flex col-12 custom-gap" style={{ color: "white" }}>
+        <p>Let us show you how your product come to life</p>
+      </div>
+    </div>
+  </div>
+  <div className="row w-100 digitalscanpagenation justify-content-center mt-4">
+    <div className="col-12 gap-3 text-center d-flex profilesimagepad">
+      <button
+        className="btn pagination-button left"
+        onClick={prevPage}
+        disabled={currentPage === 0}
+      >
+        <FaCircleArrowLeft size={40} />
+      </button>
+
+      {visibleItems.map((item) => (
+        <div key={item.id} className="d-flex flex-column align-items-center profileimagesizing" style={{ color: "white" }}>
+          <div className="w-100 border border-2 border-secondary rounded-4 overflow-hidden">
+            <img className="bg-white w-100" src={item.image} alt="Quality Shirt" />
+            <p className="text-center bg-dark text-blue py-3 m-0 bg-white d-flex align-items-center justify-content-center gap-2" style={{ color: "blue", fontSize: "20px" }}>
+              {item.title} <FaRegArrowAltCircleRight size={20} style={{ color: "gray" }} />
+            </p>
+          </div>
+        </div>
+      ))}
+
+      <button
+        className="btn pagination-button right"
+        onClick={nextPage}
+        disabled={currentPage === totalPages - 1}
+      >
+        <FaCircleArrowRight size={40} />
+      </button>
+    </div>
+  </div>
+</div> */}
+
+
       <div className="container  graphic-design">
       <div className=" row verifyimageboxone ">
         <div className="col-lg-6 text-center position-relative">

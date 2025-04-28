@@ -33,11 +33,12 @@ import tshirtthree from "../images/tshirt3.png"
 import tshirtfour from "../images/tshirt4.png"
 import fullsleeveone from "../images/Full-Sleeve1.png"
 import fullsleevethree from "../images/Full-Sleve3.png"
+import axios from 'axios';
 
 const Productdetail = () => {
 
    const [selectedSize, setSelectedSize] = useState("");
-   const [color, setColor] = useState("#ff0000");
+   const [color, setColor] = useState("#e6194b");
    const [enteredQty, setEnteredQty] = useState('');
    const [quantityError, setQuantityError] = useState('');
   
@@ -62,18 +63,10 @@ const Productdetail = () => {
 
 
 
-  //  const { addToCart } = useCart();
-
+ 
    const handleCartClick = () => {
 
-    // if (!selectedSize) {
-    //   alert("Please select a size before adding to cart.");
-    //   return;
-    // }
-
-    // addToCart(product, selectedSize);
-    // setActiveButton("cart");
-
+   
 
     
     setActiveButton("cart");
@@ -108,7 +101,7 @@ const Productdetail = () => {
       const imageUrl = URL.createObjectURL(file);
       console.log("Selected image URL:", imageUrl);
   
-      // You can also store it in state to display it:
+     
       setUploadedImage(imageUrl);
     }
   }
@@ -120,7 +113,7 @@ const Productdetail = () => {
       const imageUrltwo = URL.createObjectURL(file);
       console.log("Selected image URL:", imageUrltwo);
   
-      // You can also store it in state to display it:
+    
       setUploadedImagetwo(imageUrltwo);
     }
     
@@ -171,14 +164,7 @@ const Productdetail = () => {
   };
 
 
-  // useEffect(() => {
-    
-  //   if((enteredQty && parseInt(enteredQty) !== grandTotal) || (!enteredQty ==grandTotal) )  {
-  //     setQuantityError("Entered quantity does not match the grand total.");
-  //   } else {
-  //     setQuantityError('');
-  //   }
-  // }, [enteredQty, grandTotal]);
+
 
 
   
@@ -194,7 +180,7 @@ const Productdetail = () => {
                    { id: 5, image: shopimage,imageone:shopimage,imagetwo:qualityshirt, label: "V Neck", price: 319,sizes: {XS:2,S: 5,M: 15,L: 4,X: 2,XL: 1,'2XL': 3, '3XL': 2, '4XL': 1, '5XL': 0} },
                    { id: 6, image: shopimage,imageone:shopimage,imagetwo:qualityshirt, label: "V Neck", price: 319,sizes: {XS:2,S: 5,M: 3,L: 4,X: 41,XL: 1,'2XL': 3, '3XL': 2, '4XL': 1, '5XL': 0} },
                  ];
-    // const [quantity, setQuantity] = useState('');
+   
     const [logoCount, setLogoCount] = useState(0);
     const [visibleLogos, setVisibleLogos] = useState(1);
     const [uploadedImages, setUploadedImages] = useState({});
@@ -211,6 +197,23 @@ const Productdetail = () => {
     const [logoPosition, setLogoPosition] = useState('');
     const [logoPositionTwo, setLogoPositionTwo] = useState('')
     const [selectedoptions, setSelectedoptions] = useState('');
+    const [colorTouched, setColorTouched] = useState(false);
+     const [productsData, setProductsData] = useState([]);
+
+
+    const sizesone = [
+      { label: 'XS', chest: 34 },
+      { label: 'S', chest: 36 },
+      { label: 'M', chest: 38 },
+      { label: 'L', chest: 40 },
+      { label: 'XL', chest: 42 },
+      { label: '2XL', chest: 44 },
+      { label: '3XL', chest: 46 },
+      { label: '4XL', chest: 48 },
+      { label: 'sXL', chest: 50 },
+      
+
+    ];
     
    
 
@@ -271,8 +274,8 @@ const Productdetail = () => {
       if (!deliveryDate) {
         newErrors.deliveryDate = 'Delivery date is required';
       }
-      if (!color){
-        newErrors.color ="Choose color"
+      if (!colorTouched) {
+        newErrors.color = "Choose color";
       }
       if (!uploadedImage) {
         newErrors.uploadedImage = "Upload logo";
@@ -293,9 +296,7 @@ const Productdetail = () => {
       if (Object.keys(newErrors).length === 1){
 
       }
-      // if(!newErrors){
-      //   newErrors.
-      // }
+     
     
       setFormErrors(newErrors);
     
@@ -326,6 +327,23 @@ const Productdetail = () => {
       }
     };
     
+
+    useEffect(() => {
+      const fetchProducts = async () => {
+        try {
+          const response = await axios.get('https://gts.selfietoons.com/api/products/single/products-by-category', {
+            headers: {
+              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDYxNzNlODU4OWE2ZmQyNWFlZGZjZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0NTgzMjA0NSwiZXhwIjoxNzQ1OTE4NDQ1fQ.kLWgITzAtBWx41TohX-ihz7XKDRD0UgI1nd-CHFznYc`
+            }
+          });
+          setProductsData(response.data);
+        } catch (error) {
+          console.error('Error fetching products:', error);
+        }
+      };
+    
+      fetchProducts();
+    }, []);
     
   
    
@@ -481,11 +499,36 @@ const responsive = {
         <h2 className="text-start">{product.label}</h2>
         <p className="text-start">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non atque quasi alias eveniet consequuntur dolor.</p>
         <p className="text-start">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non atque quasi alias eveniet consequuntur dolor.</p>
+        <p className="text-start">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non atque quasi alias eveniet consequuntur dolor.</p>
+        
         <h2 className="text-xl font-bold mb-2 h5">About this item</h2>
         <li className="text-start"><strong>Type:</strong> Cotton Round Neck T-Shirt – Soft and breathable fabric</li>
         <li className="text-start"><strong>Fit:</strong> Regular Fit – Comfortable for daily wear</li>
         <li className="text-start"><strong>Fabric:</strong> 100% Pure Cotton – Durable and skin-friendly</li>
         <li className="text-start"><strong>Design:</strong> Printed Graphic – Stylish and trendy look</li>
+
+        <div className="mt-5" style={{ margin: '20px' }}>
+      <table style={{ borderCollapse: 'collapse', width: '100%' }}>
+        <thead>
+          <tr>
+            {sizesone.map((size, index) => (
+              <th key={index} style={{ border: '1px solid black', padding: '8px' }}>
+                {size.label}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            {sizesone.map((size, index) => (
+              <td key={index} style={{ border: '1px solid black', padding: '8px', textAlign: 'center' }}>
+                {size.chest}"
+              </td>
+            ))}
+          </tr>
+        </tbody>
+      </table>
+    </div>
       </div>
 
 
@@ -497,7 +540,7 @@ const responsive = {
 <form onSubmit={handleSubmit}>
     <div className="container mt-5">
       <div className="row mb-4 ">
-      <label className="fs-6 fw-bold col-lg-2 d-flex align-items-center justify-content-center mb-md-3">Enter Quantity required:</label>
+      <label className="fs-6 fw-bold col-lg-2  mb-md-3">Enter Quantity required:</label>
       <div className="col-lg-2">
   <input
     type="number"
@@ -508,12 +551,14 @@ const responsive = {
     onChange={(e) => setEnteredQty(e.target.value)}
     onBlur={() => validateQuantity()}
   />
+ 
   {formErrors.enteredQty && (
     <div className="text-danger mt-1">{formErrors.enteredQty}</div>
   )}
+ 
 </div>
 
-        <label className="fs-6 fw-bold col-lg-2 d-flex align-items-center justify-content-center mt-lg-0 mb-md-3 mt-md-3">How many Logos to add:</label>
+        <label className="fs-6 fw-bold col-lg-2  mt-lg-0 mb-md-3 mt-md-3">How many Logos to add:</label>
         <div className="col-lg-2">
           <input 
           type="number"
@@ -529,7 +574,7 @@ const responsive = {
           )}
         </div>
         
-        <label className="fs-6 fw-bold col-lg-2 d-flex align-items-center justify-content-center mt-lg-0 mt-3 mb-md-3">Pocket Required:</label>
+        <label className="fs-6 fw-bold col-lg-2  mt-lg-0 mt-3 mb-md-3">Pocket Required:</label>
         
         <div className="col-lg-1 d-flex justify-content-center gap-3 mt-lg-0">
         
@@ -587,10 +632,14 @@ const responsive = {
         </div>
         <label className="fs-6 fw-bold col-lg-2 text-lg-end mt-lg-0 mt-3">Choose Colour:</label>
         <div className="col-lg-1 d-flex align-items-lg-start align-items-center justify-content-lg-start justify-content-center mt-lg-0 mt-3 ">
-        <input  type="color" id="favcolor" name="favcolor" value={color} onChange={(e) => setColor(e.target.value)}
+        <input  type="color" id="favcolor" name="favcolor" value={color} onChange={(e) => {
+    setColor(e.target.value);
+    setColorTouched(true); // Mark as touched when user selects color
+  }}
         className="form-control-color rounded-color"></input>
         
         </div>
+        {formErrors.color && <div className="text-danger">{formErrors.color}</div>}
       </div>
       
       <div className="row mt-2 pt-2 pb-4 chooseoption-box mb-4   ">
