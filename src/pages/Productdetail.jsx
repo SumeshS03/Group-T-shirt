@@ -34,6 +34,7 @@ import tshirtfour from "../images/tshirt4.png"
 import fullsleeveone from "../images/Full-Sleeve1.png"
 import fullsleevethree from "../images/Full-Sleve3.png"
 import axios from 'axios';
+import { Form, Row, Col, FloatingLabel} from 'react-bootstrap';
 
 const Productdetail = () => {
 
@@ -60,7 +61,12 @@ const Productdetail = () => {
 
    const [activeButton, setActiveButton] = useState("");
 
+  //new fuction
+  
 
+
+
+  //end
 
 
  
@@ -224,18 +230,30 @@ const Productdetail = () => {
     };
 
    // DELETE THIS UNUSED FUNCTION
-const validateQuantity = () => {
+// const validateQuantity = () => {
+//   const newErrors = {};
+//   if (!enteredQty) {
+//     newErrors.enteredQty = 'Quantity Must Be 15 or More';
+//   } else if (isNaN(enteredQty)) {
+//     newErrors.enteredQty = 'Quantity must be a number';
+//   } else if (parseInt(enteredQty) < 15) {
+//     newErrors.enteredQty = 'Minimum quantity should be 15';
+//   }
+//   setFormErrors(prevErrors => ({ ...prevErrors, ...newErrors }));
+// };
+const handleBlur = () => {
   const newErrors = {};
+
   if (!enteredQty) {
-    newErrors.enteredQty = 'Quantity Must Be 15 or More';
+    newErrors.enteredQty = 'Quantity must be entered';
   } else if (isNaN(enteredQty)) {
     newErrors.enteredQty = 'Quantity must be a number';
   } else if (parseInt(enteredQty) < 15) {
     newErrors.enteredQty = 'Minimum quantity should be 15';
   }
-  setFormErrors(prevErrors => ({ ...prevErrors, ...newErrors }));
-};
 
+  setFormErrors(newErrors);
+};
 
     console.log("render")
 
@@ -247,21 +265,11 @@ const validateQuantity = () => {
 
 
 
-      // const validateQuantity = () => {
-      //   const newErrors = {};
-      //   if (!enteredQty) {
-      //     newErrors.enteredQty = 'Quantity Must Be 15 or More';
-      //   } else if (isNaN(enteredQty)) {
-      //     newErrors.enteredQty = 'Quantity must be a number';
-      //   } else if (parseInt(enteredQty) < 15) {
-      //     newErrors.enteredQty = 'Minimum quantity should be 15';
-      //   }
-      //   setFormErrors(prevErrors => ({ ...prevErrors, ...newErrors }));
-      // };
+     
     
-      // Quantity validation
+      //Quantity validation
       // if (!enteredQty) {
-      //   newErrors.enteredQty = 'Quantity Must Be 15 or More';
+      //   newErrors.enteredQty = 'Quantity must be entered';
       // } else if (isNaN(enteredQty)) {
       //   newErrors.enteredQty = 'Quantity must be a number';
       // } else if (parseInt(enteredQty) < 15) {
@@ -768,80 +776,77 @@ const responsive = {
 
 <form onSubmit={handleSubmit}>
     <div className="container mt-5">
-      <div className="row mb-4 ">
-      <label className="fs-6 fw-bold col-lg-2  mb-md-3">Enter Quantity required:</label>
-      <div className="col-lg-2">
-  <input
-    type="number"
-    min="15"
-    className={`form-control ${formErrors.enteredQty ? 'is-invalid' : ''}`}
-    placeholder="Enter Quantity"
-    value={enteredQty}
-    onChange={(e) => setEnteredQty(e.target.value)}
-    onBlur={() => validateQuantity()}
-  />
- 
-  {formErrors.enteredQty && (
-    <div className="text-danger mt-1">{formErrors.enteredQty}</div>
-  )}
- 
+    <div className="row mb-4">
+  <label className="fs-6 fw-bold col-lg-2 mb-md-3">Enter Quantity required:</label>
+  <div className="col-lg-2">
+    <input
+      type="number"
+      min="15"
+      className={`form-control ${formErrors.enteredQty ? 'is-invalid' : ''}`}
+      placeholder="Enter Quantity"
+      value={enteredQty}
+      onChange={(e) => {
+        setEnteredQty(e.target.value);
+        if (formErrors.enteredQty && parseInt(e.target.value) >= 15) {
+          setFormErrors((prev) => ({ ...prev, enteredQty: '' }));
+        }
+      }}
+      onBlur={handleBlur}
+    />
+    {formErrors.enteredQty && (
+      <div className="text-danger mt-1">{formErrors.enteredQty}</div>
+    )}
+  </div>
+
+  <label className="fs-6 fw-bold col-lg-2 mt-lg-0 mb-md-3 mt-md-3">How many Logos to add:</label>
+  <div className="col-lg-2">
+    <input
+      type="number"
+      min="1"
+      className={`form-control ${formErrors.logoCount ? 'is-invalid' : ''}`}
+      placeholder="Enter quantity"
+      value={logoCount}
+      onChange={(e) => setLogoCount(e.target.value)}
+    />
+    {formErrors.logoCount && (
+      <div className="text-danger mt-1">{formErrors.logoCount}</div>
+    )}
+  </div>
+
+  <label className="fs-6 fw-bold col-lg-2 mt-lg-0 mt-3 mb-md-3">Pocket Required:</label>
+  <div className="col-lg-2">
+    <div className="d-flex gap-3">
+      <div>
+        <input
+          type="radio"
+          id="yes"
+          name="pocketRequired"
+          value="yes"
+          checked={pocketRequired === 'yes'}
+          onChange={(e) => setPocketRequired(e.target.value)}
+        />
+        <label htmlFor="yes">Yes</label>
+      </div>
+      <div>
+        <input
+          type="radio"
+          id="no"
+          name="pocketRequired"
+          value="no"
+          checked={pocketRequired === 'no'}
+          onChange={(e) => setPocketRequired(e.target.value)}
+        />
+        <label htmlFor="no">No</label>
+      </div>
+    </div>
+    {formErrors.pocketRequired && (
+      <div className="text-danger mt-1">{formErrors.pocketRequired}</div>
+    )}
+  </div>
 </div>
 
-        <label className="fs-6 fw-bold col-lg-2  mt-lg-0 mb-md-3 mt-md-3">How many Logos to add:</label>
-        <div className="col-lg-2">
-          <input 
-          type="number"
-          min='1'
-        
-           className={`form-control ${formErrors.logoCount ? 'is-invalid' : ''}`}
-          placeholder="Enter quantity"
-          value={logoCount}
-          onChange={(e) => setLogoCount(e.target.value)}
-          ></input>
-          {formErrors.logoCount && (
-          <div className="text-danger mt-1">{formErrors.logoCount}</div>
-          )}
-        </div>
-        
-        <label className="fs-6 fw-bold col-lg-2  mt-lg-0 mt-3 mb-md-3">Pocket Required:</label>
-        
-        <div className="col-lg-1 d-flex justify-content-center gap-3 mt-lg-0">
-        
-         
-          <div>
-          <input type="radio" id="yes" name="pocketRequired" value="yes"
-          checked={pocketRequired === 'yes'}
-          onChange={(e) => setPocketRequired(e.target.value)} />
-          <label htmlFor="yes">Yes</label>
-         </div>
-         <div>
-         <input type="radio" id="no" name="pocketRequired" value="no"
-         checked={pocketRequired === 'no'}
-         onChange={(e) => setPocketRequired(e.target.value)} />
-        <label htmlFor="no">No</label>
-         </div>
-         
-        </div>
-         {formErrors.pocketRequired && (
-        <div className="text-danger mt-1">{formErrors.pocketRequired}</div>
-          )}
-       
-      </div>
       
-      {/* <div className="row mt-2 ">
-        <label className="fs-6 fw-bold col-2 d-flex align-items-center justify-content-center">Pocket Required:</label>
-        <div className="col-1 d-flex justify-content-center align-items-center gap-3">
-         
-          <div>
-         <input type="radio" id="yes1" name="option" />
-         <label htmlFor="yes1">Yes</label>
-         </div>
-         <div>
-         <input type="radio" id="yes1" name="option" />
-         <label htmlFor="yes1">No</label>
-         </div>
-        </div>
-      </div> */}
+      
 
       <div className="row mt-2 mb-4">
         <label className="fs-6 fw-bold col-lg-2 text-lg-end mb-md-3 ">Delivery Date:</label>
@@ -863,7 +868,7 @@ const responsive = {
         <div className="col-lg-1 d-flex align-items-lg-start align-items-center justify-content-lg-start justify-content-center mt-lg-0 mt-3 ">
         <input  type="color" id="favcolor" name="favcolor" value={color} onChange={(e) => {
     setColor(e.target.value);
-    setColorTouched(true); // Mark as touched when user selects color
+    setColorTouched(true); 
   }}
         className="form-control-color rounded-color"></input>
         
@@ -1030,7 +1035,7 @@ const responsive = {
  {secondlogo && (
   <div className="">
     
-    {/* <label className="fs-5 col-12 col-lg-3 text-start">Logo:</label> */}
+    
     <div className="row d-flex  justify-content-evenly">
     <div className="col-12 col-sm-6 col-lg-2">
         <label className="form-label">Logo Type</label>
@@ -1078,7 +1083,7 @@ const responsive = {
           <img src={uploadedImagetwo} alt="Uploaded preview" className="uploded-img p-2  col-lg-2 rounded-5" 
    />
    
-   {/* <button className="btn btn-primary col-1  text-center " onClick={showsecondlogoadd}>Add Logo</button> */}
+  
    </>
   
   
@@ -1206,6 +1211,12 @@ const responsive = {
     </div>
   )}
 </form>
+
+
+
+
+
+
 
     <div className="container w-50 mt-5">
       <div className="row">
