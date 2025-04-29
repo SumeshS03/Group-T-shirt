@@ -92,7 +92,7 @@ const products = [
       try {
         const response = await axios.get('https://gts.selfietoons.com/api/products/single/products-by-category', {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDYxNzNlODU4OWE2ZmQyNWFlZGZjZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0NTgzMjA0NSwiZXhwIjoxNzQ1OTE4NDQ1fQ.kLWgITzAtBWx41TohX-ihz7XKDRD0UgI1nd-CHFznYc`
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTA1ZjNmOTc3Mzc1ODkzNzFkODI5YSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0NTkyODc2NSwiZXhwIjoxNzQ2MDE1MTY1fQ.Gl8NaXNYq9O9gYJAzV42FhSrYeg7Ul83m2TdTbDgQmE`
           }
         });
         setProductsData(response.data);
@@ -168,7 +168,7 @@ const products = [
         </div>
       </div>
 
-      <div className="container mt-5">
+      {/* <div className="container mt-5">
     <h1 className="h4 text-start">T-shirts</h1>
     <div className="product-slider-container">
       <Carousel responsive={responsive} infinite={false} arrows={true}>
@@ -186,10 +186,10 @@ const products = [
         ))}
       </Carousel>
     </div>
-  </div>
+  </div> */}
 
 
-  <div className="container mt-5">
+  {/* <div className="container mt-5">
     <h1 className="h4 text-start">Jackets</h1>
     <div className="product-slider-container">
       <Carousel responsive={responsive} infinite={false} arrows={true}>
@@ -207,7 +207,7 @@ const products = [
         ))}
       </Carousel>
     </div>
-  </div>
+  </div> */}
 
 
   <div className="container mt-5">
@@ -252,40 +252,40 @@ const products = [
       
       
       
-      <div className="social container-fluid  ">
-              <div class="row justify-content-center">
-                <div className="sociladivider   d-flex justify-content-around text-white">
-                  <div className="d-flex align-items-center justify-content-center socialone col-2 ">
-                    <h1
-                      className="socilaheader"
-                      style={{ margin: "0", color: "white", fontSize: "25px" }}
-                    >
-                      f
-                    </h1>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-center socialone col-2">
-                    <text className="socialtexts" style={{ color: "white" }}>
-                      Twitter
-                    </text>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-center socialone col-2">
-                    <text className="socialtexts" style={{ color: "white" }}>
-                      Instagram
-                    </text>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-center socialone col-2">
-                    <text className="socialtexts" style={{ color: "white" }}>
-                      Youtube
-                    </text>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-center socialone col-2">
-                    <text className="socialtexts" style={{ color: "white" }}>
-                      Pinterest
-                    </text>
-                  </div>
-                </div>
-              </div>
+    <div className="social container-fluid  ">
+        <div class="row justify-content-center">
+          <div className="sociladivider   d-flex justify-content-around text-white">
+            <div className="d-flex align-items-center justify-content-center socialone col-2 ">
+              <text
+                className="socialtexts"
+                style={{ color: "white"}}
+              >
+                Facebook
+              </text>
             </div>
+            <div className="d-flex align-items-center justify-content-center socialone col-2">
+              <text className="socialtexts" style={{ color: "white" }}>
+                Twitter
+              </text>
+            </div>
+            <div className="d-flex align-items-center justify-content-center socialone col-2">
+              <text className="socialtexts" style={{ color: "white" }}>
+                Instagram
+              </text>
+            </div>
+            <div className="d-flex align-items-center justify-content-center socialone col-2">
+              <text className="socialtexts" style={{ color: "white" }}>
+                Youtube
+              </text>
+            </div>
+            <div className="d-flex align-items-center justify-content-center socialone col-2">
+              <text className="socialtexts" style={{ color: "white" }}>
+                Pinterest
+              </text>
+            </div>
+          </div>
+        </div>
+      </div>
             <div className="footerone container-fluid py-5">
         <div className="row align-items-center justify-content-center">
           <div className=" col-5 d-flex flex-column align-items-center justify-content-center text-white">

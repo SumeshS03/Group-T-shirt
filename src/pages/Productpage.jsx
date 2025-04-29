@@ -914,39 +914,39 @@ const addSelectedColor = () => {
 
       </div>
       <div className="social container-fluid  ">
-              <div class="row justify-content-center">
-                <div className="sociladivider   d-flex justify-content-around text-white">
-                  <div className="d-flex align-items-center justify-content-center socialone col-2 ">
-                    <h1
-                      className="socilaheader"
-                      style={{ margin: "0", color: "white", fontSize: "25px" }}
-                    >
-                      f
-                    </h1>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-center socialone col-2">
-                    <text className="socialtexts" style={{ color: "white" }}>
-                      Twitter
-                    </text>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-center socialone col-2">
-                    <text className="socialtexts" style={{ color: "white" }}>
-                      Instagram
-                    </text>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-center socialone col-2">
-                    <text className="socialtexts" style={{ color: "white" }}>
-                      Youtube
-                    </text>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-center socialone col-2">
-                    <text className="socialtexts" style={{ color: "white" }}>
-                      Pinterest
-                    </text>
-                  </div>
-                </div>
-              </div>
+        <div class="row justify-content-center">
+          <div className="sociladivider   d-flex justify-content-around text-white">
+            <div className="d-flex align-items-center justify-content-center socialone col-2 ">
+              <text
+                className="socialtexts"
+                style={{ color: "white"}}
+              >
+                Facebook
+              </text>
             </div>
+            <div className="d-flex align-items-center justify-content-center socialone col-2">
+              <text className="socialtexts" style={{ color: "white" }}>
+                Twitter
+              </text>
+            </div>
+            <div className="d-flex align-items-center justify-content-center socialone col-2">
+              <text className="socialtexts" style={{ color: "white" }}>
+                Instagram
+              </text>
+            </div>
+            <div className="d-flex align-items-center justify-content-center socialone col-2">
+              <text className="socialtexts" style={{ color: "white" }}>
+                Youtube
+              </text>
+            </div>
+            <div className="d-flex align-items-center justify-content-center socialone col-2">
+              <text className="socialtexts" style={{ color: "white" }}>
+                Pinterest
+              </text>
+            </div>
+          </div>
+        </div>
+      </div>
             <div className="footerone container-fluid py-5">
         <div className="row align-items-center justify-content-center">
           <div className=" col-5 d-flex flex-column align-items-center justify-content-center text-white">

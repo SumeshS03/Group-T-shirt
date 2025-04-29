@@ -108,9 +108,15 @@ th, td {
   /* height: 100px; */
   width: 110px;
   /* border: 1px solid blue; */
+  border: 1px solid transparent;
+  transition: border 0.3s ease;
+  border-radius: 8px;
+  padding: 4px;
+  cursor: pointer;
 }
-.productdetail-image:active{
-  border: 1px solid blue;
+.productdetail-image:hover{
+  border: 2px solid blue;
+  background-color: #f8f9fa;
 }
 .second-logo-box{
   display: flex !important;
@@ -144,5 +150,17 @@ th, td {
   }
   .cotton-dropdown{
     width: 100%;
+  }
+}
+
+
+
+@media (max-width: 376px) {
+  .responsive-table-container {
+    overflow-x: auto;
+  }
+
+  .responsive-table {
+    min-width: 600px;
   }
 }

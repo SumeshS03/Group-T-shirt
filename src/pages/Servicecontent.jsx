@@ -820,16 +820,16 @@ const Servicecontent = () => {
                 </button>
               </div>
             </div>
-      <div className="social container-fluid  ">
+            <div className="social container-fluid  ">
         <div class="row justify-content-center">
           <div className="sociladivider   d-flex justify-content-around text-white">
             <div className="d-flex align-items-center justify-content-center socialone col-2 ">
-              <h1
-                className="socilaheader"
-                style={{ margin: "0", color: "white", fontSize: "25px" }}
+              <text
+                className="socialtexts"
+                style={{ color: "white"}}
               >
-                f
-              </h1>
+                Facebook
+              </text>
             </div>
             <div className="d-flex align-items-center justify-content-center socialone col-2">
               <text className="socialtexts" style={{ color: "white" }}>

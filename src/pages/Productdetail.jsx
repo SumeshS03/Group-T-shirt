@@ -172,14 +172,14 @@ const Productdetail = () => {
 
     
 
-   const products = [
-                   { id: 1, image: Hoodiesone,imageone:Hoodie,imagetwo:Hoodiethree, label: "Sleeve", price: 299,sizes: {XS:2,S: 5,M: 4,L: 4,X: 2,XL: 1,'2XL': 3, '3XL': 2, '4XL': 1, '5XL': 0} },
-                   { id: 2, image: tshirttwo,imageone:tshirtthree,imagetwo:tshirtfour, label: "Full Sleeve", price: 349,sizes: {XS:2,S: 5,M: 3,L: 1,X: 2,XL: 1,'2XL': 3, '3XL': 2, '4XL': 1, '5XL': 0} },
-                   { id: 3, image: fullsleeveone,imageone:fullsleevethree,imagetwo:qualityshirt, label: "Round Neck", price: 279,sizes: {XS:2,S: 2,M: 3,L: 4,X: 2,XL: 1,'2XL': 3, '3XL': 2, '4XL': 1, '5XL': 0} },
-                   { id: 4, image: qualityshirt,imageone:shopimage,imagetwo:qualityshirt, label: "V Neck", price: 319,sizes: {XS:2,S: 5,M: 3,L: 1,X: 2,XL: 1,'2XL': 3, '3XL': 2, '4XL': 1, '5XL': 0} },
-                   { id: 5, image: shopimage,imageone:shopimage,imagetwo:qualityshirt, label: "V Neck", price: 319,sizes: {XS:2,S: 5,M: 15,L: 4,X: 2,XL: 1,'2XL': 3, '3XL': 2, '4XL': 1, '5XL': 0} },
-                   { id: 6, image: shopimage,imageone:shopimage,imagetwo:qualityshirt, label: "V Neck", price: 319,sizes: {XS:2,S: 5,M: 3,L: 4,X: 41,XL: 1,'2XL': 3, '3XL': 2, '4XL': 1, '5XL': 0} },
-                 ];
+  //  const products = [
+  //                  { id: 1, image: Hoodiesone,imageone:Hoodie,imagetwo:Hoodiethree, label: "Sleeve", price: 299,sizes: {XS:2,S: 5,M: 4,L: 4,X: 2,XL: 1,'2XL': 3, '3XL': 2, '4XL': 1, '5XL': 0} },
+  //                  { id: 2, image: tshirttwo,imageone:tshirtthree,imagetwo:tshirtfour, label: "Full Sleeve", price: 349,sizes: {XS:2,S: 5,M: 3,L: 1,X: 2,XL: 1,'2XL': 3, '3XL': 2, '4XL': 1, '5XL': 0} },
+  //                  { id: 3, image: fullsleeveone,imageone:fullsleevethree,imagetwo:qualityshirt, label: "Round Neck", price: 279,sizes: {XS:2,S: 2,M: 3,L: 4,X: 2,XL: 1,'2XL': 3, '3XL': 2, '4XL': 1, '5XL': 0} },
+  //                  { id: 4, image: qualityshirt,imageone:shopimage,imagetwo:qualityshirt, label: "V Neck", price: 319,sizes: {XS:2,S: 5,M: 3,L: 1,X: 2,XL: 1,'2XL': 3, '3XL': 2, '4XL': 1, '5XL': 0} },
+  //                  { id: 5, image: shopimage,imageone:shopimage,imagetwo:qualityshirt, label: "V Neck", price: 319,sizes: {XS:2,S: 5,M: 15,L: 4,X: 2,XL: 1,'2XL': 3, '3XL': 2, '4XL': 1, '5XL': 0} },
+  //                  { id: 6, image: shopimage,imageone:shopimage,imagetwo:qualityshirt, label: "V Neck", price: 319,sizes: {XS:2,S: 5,M: 3,L: 4,X: 41,XL: 1,'2XL': 3, '3XL': 2, '4XL': 1, '5XL': 0} },
+  //                ];
    
     const [logoCount, setLogoCount] = useState(0);
     const [visibleLogos, setVisibleLogos] = useState(1);
@@ -210,7 +210,7 @@ const Productdetail = () => {
       { label: '2XL', chest: 44 },
       { label: '3XL', chest: 46 },
       { label: '4XL', chest: 48 },
-      { label: 'sXL', chest: 50 },
+      { label: '5XL', chest: 50 },
       
 
     ];
@@ -223,17 +223,19 @@ const Productdetail = () => {
       return today.toISOString().split('T')[0];
     };
 
-    const validateQuantity = () => {
-      const newErrors = {};
-      if (!enteredQty) {
-        newErrors.enteredQty = 'Quantity Must Be 15 or More';
-      } else if (isNaN(enteredQty)) {
-        newErrors.enteredQty = 'Quantity must be a number';
-      } else if (parseInt(enteredQty) < 15) {
-        newErrors.enteredQty = 'Minimum quantity should be 15';
-      }
-      setFormErrors(prevErrors => ({ ...prevErrors, ...newErrors }));
-    };
+   // DELETE THIS UNUSED FUNCTION
+const validateQuantity = () => {
+  const newErrors = {};
+  if (!enteredQty) {
+    newErrors.enteredQty = 'Quantity Must Be 15 or More';
+  } else if (isNaN(enteredQty)) {
+    newErrors.enteredQty = 'Quantity must be a number';
+  } else if (parseInt(enteredQty) < 15) {
+    newErrors.enteredQty = 'Minimum quantity should be 15';
+  }
+  setFormErrors(prevErrors => ({ ...prevErrors, ...newErrors }));
+};
+
 
     console.log("render")
 
@@ -242,15 +244,29 @@ const Productdetail = () => {
       e.preventDefault();
       const newErrors = {};
       console.log("test")
+
+
+
+      // const validateQuantity = () => {
+      //   const newErrors = {};
+      //   if (!enteredQty) {
+      //     newErrors.enteredQty = 'Quantity Must Be 15 or More';
+      //   } else if (isNaN(enteredQty)) {
+      //     newErrors.enteredQty = 'Quantity must be a number';
+      //   } else if (parseInt(enteredQty) < 15) {
+      //     newErrors.enteredQty = 'Minimum quantity should be 15';
+      //   }
+      //   setFormErrors(prevErrors => ({ ...prevErrors, ...newErrors }));
+      // };
     
       // Quantity validation
-      if (!enteredQty) {
-        newErrors.enteredQty = 'Quantity Must Be 15 or More';
-      } else if (isNaN(enteredQty)) {
-        newErrors.enteredQty = 'Quantity must be a number';
-      } else if (parseInt(enteredQty) < 15) {
-        newErrors.enteredQty = 'Minimum quantity should be 15';
-      }
+      // if (!enteredQty) {
+      //   newErrors.enteredQty = 'Quantity Must Be 15 or More';
+      // } else if (isNaN(enteredQty)) {
+      //   newErrors.enteredQty = 'Quantity must be a number';
+      // } else if (parseInt(enteredQty) < 15) {
+      //   newErrors.enteredQty = 'Minimum quantity should be 15';
+      // }
     
       // Logo count validation
       if (!logoCount) {
@@ -321,6 +337,7 @@ const Productdetail = () => {
           logoTwo: uploadedImagetwo,
           logo: uploadedImage,
           SelectedItem:selectedCotton || selectedPolyester || selectedPolyCotton,
+          productid: productdetail?._id,
          
         };
         console.log('Form submitted:', formData);
@@ -328,43 +345,68 @@ const Productdetail = () => {
     };
     
 
+    
+    const [productdetail, setProductdetail] = useState(null);
+    
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [hoverImage, setHoverImage] = useState(null);
+    
+    const [hoveredImage, setHoveredImage] = useState(null);
+    
+
     useEffect(() => {
-      const fetchProducts = async () => {
+      const fetchProduct = async () => {
         try {
           const response = await axios.get('https://gts.selfietoons.com/api/products/single/products-by-category', {
             headers: {
-              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDYxNzNlODU4OWE2ZmQyNWFlZGZjZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0NTgzMjA0NSwiZXhwIjoxNzQ1OTE4NDQ1fQ.kLWgITzAtBWx41TohX-ihz7XKDRD0UgI1nd-CHFznYc`
-            }
+              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTA1ZjNmOTc3Mzc1ODkzNzFkODI5YSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0NTkyODc2NSwiZXhwIjoxNzQ2MDE1MTY1fQ.Gl8NaXNYq9O9gYJAzV42FhSrYeg7Ul83m2TdTbDgQmE`,
+            },
           });
-          setProductsData(response.data);
+  
+          // Flatten all products from all categories (like your home layout)
+          const allProducts = response.data.flatMap(cat => cat.products);
+          setProductsData(allProducts);
+          const foundProduct = allProducts.find((p) => p._id === id);
+  
+          if (foundProduct) {
+            setProductdetail(foundProduct);
+            setSelectedImage(`https://gts.selfietoons.com/${foundProduct.images[0]}`);
+          }
         } catch (error) {
-          console.error('Error fetching products:', error);
+          console.error('Failed to fetch product:', error);
         }
       };
+  
+      fetchProduct();
+    }, [id]);
+  
     
-      fetchProducts();
-    }, []);
     
   
-   
 
-  const product = products.find((p) => p.id === parseInt(id));
-  const [selectedImage, setSelectedImage] = useState(product.image);
-  
-  const totalAvailable = product
-  ? Object.values(product.sizes).reduce((sum, qty) => sum + qty, 0)
-  : 0;
+  const product = productdetail;
 
-  const sizeWiseStock = product.sizes;
+  // const product = products.find((p) => p.id === parseInt(id));
+  
+  // const productone = productsData.find((p) => p._id === id);
+  // productsData.forEach((p) => console.log(p._id));
+
+  // const [selectedImage, setSelectedImage] = useState(product.image);
+  
+  // const totalAvailable = product
+  // ? Object.values(product.sizes).reduce((sum, qty) => sum + qty, 0)
+  // : 0;
+
+  // const sizeWiseStock = product.sizes;
 
   
-  
+  if (!productdetail) return <p>Loading...</p>;
 
 
   if (!product) return <h2>Product not found</h2>;
 
-  
-  
+
+
 
 
 
@@ -455,11 +497,150 @@ const responsive = {
         </div>
       </div>
 
+      {/* <div className="container mt-5">
+  <div className="d-flex productpage-box row">
+    <div className="col-lg-5 col-12">
+      
+      {productdetail ? (
+        <div className="product-imageful">
+          <img
+            src={selectedImage || `https://gts.selfietoons.com/${productdetail?.images?.[0]}`}
+            alt={productdetail?.name}
+            onClick={() => setSelectedImage(`https://gts.selfietoons.com/${productdetail?.images?.[0]}`)}
+            className="img-fluid"
+          />
+        </div>
+      ) : (
+        <p>Loading product image...</p>  
+      )}
+    </div>
+  </div>
+</div> */}
+
+    
+
+      <div className="container mt-5">
+  <div className="d-flex productpage-box row">
+  <div className="col-lg-5 col-12">
+  {productdetail ? (
+    <>
+      {/* Main image display */}
+      <div className="product-imageful">
+        <img
+          src={
+            hoveredImage ||
+            selectedImage ||
+            `https://gts.selfietoons.com/${productdetail?.images?.[0]}`
+          }
+          alt={productdetail?.name}
+          className="img-fluid"
+        />
+      </div>
+
+      {/* Thumbnail image (image[1]) */}
+      <div className="d-flex mt-4 gap-4 w-100 align-items-start">
+        <div
+          className="productdetail-image"
+          onMouseEnter={() =>
+            setHoveredImage(`https://gts.selfietoons.com/${productdetail?.images?.[1]}`)
+          }
+          onMouseLeave={() => setHoveredImage(null)}
+          // onClick={() =>
+          //   setSelectedImage(`https://gts.selfietoons.com/${productdetail?.images?.[1]}`)
+          // }
+          style={{
+            border:
+              selectedImage ===
+              `https://gts.selfietoons.com/${productdetail?.images?.[1]}`
+                ? '2px solid blue'
+                : '2px solid transparent',
+            borderRadius: '8px',
+            padding: '4px',
+          }}
+        >
+          <img
+            src={`https://gts.selfietoons.com/${productdetail?.images?.[1]}`}
+            alt="Second"
+            className="img-fluid"
+            style={{ cursor: 'pointer' }}
+          />
+        </div>
+      </div>
+    </>
+  ) : (
+    <p>Loading product images...</p>
+  )}
+</div>
+
+
+    <div className="col-lg-5 col-12">
+     
+      {productdetail ? (
+        <>
+          <h2 className="text-start">{productdetail?.name}</h2>
+          <p className="text-start">{productdetail?.description}</p>
+
+          <p className="text-start"><strong>Price:</strong> ₹{productdetail?.price}</p>
+          <p className="text-start"><strong>Color:</strong> {productdetail?.color}</p>
+          <p className="text-start"><strong>Material:</strong> {productdetail?.material}</p>
+          <p className="text-start"><strong>Brand:</strong> {productdetail?.brand}</p>
+          <p className="text-start"><strong>Weight:</strong> {productdetail?.weight}</p>
+
+          <h2 className="text-xl font-bold mb-2 h5">About this item</h2>
+          <ul className="text-start">
+            <li><strong>Type:</strong> Comfortable Cotton T-Shirt</li>
+            <li><strong>Fit:</strong> Regular Fit – Comfortable for daily wear</li>
+            <li><strong>Fabric:</strong> 100% Pure Cotton – Durable and skin-friendly</li>
+            <li><strong>Design:</strong> Printed Graphic – Stylish and trendy look</li>
+          </ul>
+
+          
+          <div className="responsive-table-container mt-5">
+  <table className="responsive-table table table-bordered text-center">
+    <thead>
+      <tr>
+        {sizesone.length > 0 ? (
+          sizesone.map((size, index) => (
+            <th key={index} style={{ padding: '8px' }}>
+              {size.label}
+            </th>
+          ))
+        ) : (
+          <th>No sizes available</th>
+        )}
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        {sizesone.length > 0 ? (
+          sizesone.map((size, index) => (
+            <td key={index} style={{ padding: '8px' }}>
+              {size.chest ? `${size.chest}"` : 'N/A'}
+            </td>
+          ))
+        ) : (
+          <td>No chest data available</td>
+        )}
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+        </>
+      ) : (
+        <p>Loading product details...</p> 
+      )}
+    </div>
+  </div>
+</div>
 
 
 
 
-    <div className="container mt-5">
+
+
+    {/* <div className="container mt-5">
       <div className="d-flex productpage-box row ">
         <div className="col-lg-5 col-12">
         <div className="product-imageful">
@@ -536,7 +717,55 @@ const responsive = {
       </div>  
       
       
-    </div>
+    </div> */}
+
+
+{/* <div className="container mt-5">
+      <div className="d-flex productpage-box row">
+        <div className="col-lg-5 col-12">
+          <div className="product-imageful">
+            <img src={selectedImage} alt={productdetail.name} className="img-fluid" />
+          </div>
+
+          <div className="d-flex mt-4 gap-4 w-100 align-items-start">
+            {productdetail.images.map((img, index) => (
+              <div
+                key={index}
+                className="productdetail-image"
+                onClick={() => setSelectedImage(`https://gts.selfietoons.com/${img}`)}
+                style={{
+                  border: selectedImage.endsWith(img) ? '2px solid blue' : '2px solid transparent',
+                  borderRadius: '8px',
+                  padding: '4px',
+                }}
+              >
+                <img
+                  src={`https://gts.selfietoons.com/${img}`}
+                  alt={`product-thumb-${index}`}
+                  className="img-fluid"
+                  style={{ cursor: 'pointer' }}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="col-lg-5 col-12">
+          <h2 className="text-start">{productdetail.name}</h2>
+          <p className="text-start">{productdetail.description}</p>
+
+          <h2 className="text-xl font-bold mb-2 h5">About this item</h2>
+          <ul>
+            <li className="text-start"><strong>Material:</strong> {productdetail.material}</li>
+            <li className="text-start"><strong>Weight:</strong> {productdetail.weight}</li>
+            <li className="text-start"><strong>Brand:</strong> {productdetail.brand}</li>
+          </ul>
+        </div>
+      </div>
+    </div> */}
+
+
+
 <form onSubmit={handleSubmit}>
     <div className="container mt-5">
       <div className="row mb-4 ">
@@ -1014,39 +1243,39 @@ const responsive = {
     </div>
 
     <div className="social container-fluid  ">
-              <div class="row justify-content-center">
-                <div className="sociladivider   d-flex justify-content-around text-white">
-                  <div className="d-flex align-items-center justify-content-center socialone col-2 ">
-                    <h1
-                      className="socilaheader"
-                      style={{ margin: "0", color: "white", fontSize: "25px" }}
-                    >
-                      f
-                    </h1>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-center socialone col-2">
-                    <text className="socialtexts" style={{ color: "white" }}>
-                      Twitter
-                    </text>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-center socialone col-2">
-                    <text className="socialtexts" style={{ color: "white" }}>
-                      Instagram
-                    </text>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-center socialone col-2">
-                    <text className="socialtexts" style={{ color: "white" }}>
-                      Youtube
-                    </text>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-center socialone col-2">
-                    <text className="socialtexts" style={{ color: "white" }}>
-                      Pinterest
-                    </text>
-                  </div>
-                </div>
-              </div>
+        <div class="row justify-content-center">
+          <div className="sociladivider   d-flex justify-content-around text-white">
+            <div className="d-flex align-items-center justify-content-center socialone col-2 ">
+              <text
+                className="socialtexts"
+                style={{ color: "white"}}
+              >
+                Facebook
+              </text>
             </div>
+            <div className="d-flex align-items-center justify-content-center socialone col-2">
+              <text className="socialtexts" style={{ color: "white" }}>
+                Twitter
+              </text>
+            </div>
+            <div className="d-flex align-items-center justify-content-center socialone col-2">
+              <text className="socialtexts" style={{ color: "white" }}>
+                Instagram
+              </text>
+            </div>
+            <div className="d-flex align-items-center justify-content-center socialone col-2">
+              <text className="socialtexts" style={{ color: "white" }}>
+                Youtube
+              </text>
+            </div>
+            <div className="d-flex align-items-center justify-content-center socialone col-2">
+              <text className="socialtexts" style={{ color: "white" }}>
+                Pinterest
+              </text>
+            </div>
+          </div>
+        </div>
+      </div>
 
     <div className="footerone container-fluid py-5">
             <div className="row align-items-center justify-content-center">

@@ -423,60 +423,74 @@ const addSelectedColor = () => {
         </div>
       </div>
 
-      <div className="container d-flex flex-column justify-content-center align-items-center mt-5 w-50 enter-quality-box">
-        <h1 className="h4">Enter Quantity Required</h1>
-        <input
-          type="number"
-          className="Enter-Quantity-Required mt-2"
-          value={quantity}
-          onChange={(e) => {
-            const value = e.target.value;
-            setQuantity(value);
-          }}
-        />
-        {errors.quantity && <div className="text-danger mt-2">{errors.quantity}</div>}
-      </div>
+      <div className="container mt-5">
+  <div className="row justify-content-center">
+    <div className="col-12 col-sm-10 col-md-8 col-lg-6 enter-quality-box text-center">
+      <h1 className="h5 mb-3">Enter Quantity Required</h1>
+      <input
+        type="number"
+        className="form-control mb-2"
+        value={quantity}
+        onChange={(e) => setQuantity(e.target.value)}
+        placeholder="Enter quantity"
+      />
+      {errors.quantity && <div className="text-danger">{errors.quantity}</div>}
+    </div>
+  </div>
+</div>
 
-      <div className="container d-flex flex-column justify-content-center align-items-center mt-5 w-50 enter-quality-box">
-        <h1 className="h4">Enter Contact Details</h1>
-        <input
-          type="text"
-          className="Enter-Quantity-Required mt-2 w-50"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => {
-            const value = e.target.value;
-            if (/^[a-zA-Z\s]*$/.test(value)) {
-              setName(value);
-            }
-          }}
-        />
-        {errors.name && <div className="text-danger mt-2">{errors.name}</div>}
 
-        <input
-          type="text"
-          className="Enter-Quantity-Required mt-2 w-50"
-          placeholder="Phone Number"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-        />
-        {errors.phone && <div className="text-danger mt-2">{errors.phone}</div>}
+<div className="container mt-5">
+  <div className="row justify-content-center">
+    <div className="col-12 col-sm-10 col-md-8 col-lg-6 enter-quality-box text-center">
+      <h1 className="h5 mb-4">Enter Contact Details</h1>
 
-        <input
-          type="text"
-          className="Enter-Quantity-Required mt-2 w-50"
-          placeholder="Address"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-        />
-        {errors.address && <div className="text-danger mt-2">{errors.address}</div>}
-      </div>
+      <input
+        type="text"
+        className="form-control mb-3"
+        placeholder="Name"
+        value={name}
+        onChange={(e) => {
+          const value = e.target.value;
+          if (/^[a-zA-Z\s]*$/.test(value)) {
+            setName(value);
+          }
+        }}
+      />
+      {errors.name && <div className="text-danger mb-3">{errors.name}</div>}
 
-      <div className="d-flex justify-content-center mt-4">
-        <Button type="submit" className="mb-4 new-sent-btn">
-          Send
-        </Button>
-      </div>
+      <input
+        type="text"
+        className="form-control mb-3"
+        placeholder="Phone Number"
+        value={phone}
+        onChange={(e) => setPhone(e.target.value)}
+      />
+      {errors.phone && <div className="text-danger mb-3">{errors.phone}</div>}
+
+      <input
+        type="text"
+        className="form-control mb-3"
+        placeholder="Address"
+        value={address}
+        onChange={(e) => setAddress(e.target.value)}
+      />
+      {errors.address && <div className="text-danger">{errors.address}</div>}
+    </div>
+  </div>
+</div>
+
+
+<div className="container">
+  <div className="row justify-content-center mt-4">
+    <div className="col-12 col-sm-6 text-center">
+      <Button type="submit" className="w-100 btn btn-primary new-sent-btn">
+        Send
+      </Button>
+    </div>
+  </div>
+</div>
+
 
       {submitted && (
         <div className="text-success text-center mb-4">
@@ -929,40 +943,40 @@ const addSelectedColor = () => {
       </div> */}
 
 
-      <div className="social container-fluid  ">
-              <div class="row justify-content-center">
-                <div className="sociladivider   d-flex justify-content-around text-white">
-                  <div className="d-flex align-items-center justify-content-center socialone col-2 ">
-                    <h1
-                      className="socilaheader"
-                      style={{ margin: "0", color: "white", fontSize: "25px" }}
-                    >
-                      f
-                    </h1>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-center socialone col-2">
-                    <text className="socialtexts" style={{ color: "white" }}>
-                      Twitter
-                    </text>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-center socialone col-2">
-                    <text className="socialtexts" style={{ color: "white" }}>
-                      Instagram
-                    </text>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-center socialone col-2">
-                    <text className="socialtexts" style={{ color: "white" }}>
-                      Youtube
-                    </text>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-center socialone col-2">
-                    <text className="socialtexts" style={{ color: "white" }}>
-                      Pinterest
-                    </text>
-                  </div>
-                </div>
-              </div>
+<div className="social container-fluid  ">
+        <div class="row justify-content-center">
+          <div className="sociladivider   d-flex justify-content-around text-white">
+            <div className="d-flex align-items-center justify-content-center socialone col-2 ">
+              <text
+                className="socialtexts"
+                style={{ color: "white"}}
+              >
+                Facebook
+              </text>
             </div>
+            <div className="d-flex align-items-center justify-content-center socialone col-2">
+              <text className="socialtexts" style={{ color: "white" }}>
+                Twitter
+              </text>
+            </div>
+            <div className="d-flex align-items-center justify-content-center socialone col-2">
+              <text className="socialtexts" style={{ color: "white" }}>
+                Instagram
+              </text>
+            </div>
+            <div className="d-flex align-items-center justify-content-center socialone col-2">
+              <text className="socialtexts" style={{ color: "white" }}>
+                Youtube
+              </text>
+            </div>
+            <div className="d-flex align-items-center justify-content-center socialone col-2">
+              <text className="socialtexts" style={{ color: "white" }}>
+                Pinterest
+              </text>
+            </div>
+          </div>
+        </div>
+      </div>
             <div className="footerone container-fluid py-5">
         <div className="row align-items-center justify-content-center">
           <div className=" col-5 d-flex flex-column align-items-center justify-content-center text-white">

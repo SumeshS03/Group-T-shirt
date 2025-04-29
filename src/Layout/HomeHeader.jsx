@@ -204,7 +204,20 @@ const HomeHeader = () => {
         <div className="close-btn" onClick={toggleSidebar} style={{color:'blue'}}>×</div>
         <Link to="/" onClick={toggleSidebar} className="no-underline-1" style={{ color: activeLink === "home" ? "#cf9601" : "blue" }}>HOME</Link>
         <Link to="/aboutus" onClick={toggleSidebar} className="no-underline-2"  style={{ color: activeLink === "aboutus" ? "#cf9601" : "blue" }}>ABOUTUS</Link>
-        <Link to="/shop" onClick={toggleSidebar} class="no-underline-2" style={{ color: activeLink === "shop" ? "#cf9601" : "blue" }}>SHOP</Link>
+        <div className="dropdown" onMouseEnter={() => setDropdownOpen(true)} onMouseLeave={() => setDropdownOpen(false)} >
+  <span
+    className="dropdown-toggle fw-bold"
+    style={{ color: isShopActive ? "#cf9601" : "blue", cursor: "pointer" }}
+    
+  >
+    SHOP
+  </span>
+  <ul className={`dropdown-menu ${dropdownOpen ? "show" : ""}`}>
+    <li><Link className="dropdown-item" to="/product">Products</Link></li>
+    <li><Link className="dropdown-item" to="/stock">Stock</Link></li>
+    <li><Link className="dropdown-item" to="/newdesign">New Design</Link></li>
+  </ul>
+</div>
         <Link to="/service" onClick={toggleSidebar} className="no-underline-2"  style={{ color: activeLink === "service" ? "#cf9601" : "blue" }}>SERVICE</Link>
         <Link to="/contactus" onClick={toggleSidebar} className="no-underline-2"  style={{ color: activeLink === "contactus" ? "#cf9601" : "blue" }}>CONTACT US</Link>
         <div className='icon-diver'>
