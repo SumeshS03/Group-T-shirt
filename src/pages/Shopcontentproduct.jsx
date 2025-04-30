@@ -92,7 +92,7 @@ const products = [
       try {
         const response = await axios.get('https://gts.selfietoons.com/api/products/single/products-by-category', {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTA1ZjNmOTc3Mzc1ODkzNzFkODI5YSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0NTkyODc2NSwiZXhwIjoxNzQ2MDE1MTY1fQ.Gl8NaXNYq9O9gYJAzV42FhSrYeg7Ul83m2TdTbDgQmE`
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTA1ZjNmOTc3Mzc1ODkzNzFkODI5YSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0NTk5MDM3OSwiZXhwIjoxNzQ2MDc2Nzc5fQ.A3EHXDY4ABwLQ4HEHuBAUeDfeWJEbvYTaojMbxS4PHA`
           }
         });
         setProductsData(response.data);

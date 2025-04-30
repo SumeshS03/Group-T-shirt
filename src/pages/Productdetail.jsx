@@ -101,16 +101,22 @@ const Productdetail = () => {
 
   const [uploadedImage, setUploadedImage] = useState('');
 
-  const handleImageUpload = (e) =>{
+  const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       console.log("Selected image URL:", imageUrl);
   
-     
       setUploadedImage(imageUrl);
+  
+      // ✅ Clear the error for uploadedImage
+      setFormErrors((prev) => {
+        const updated = { ...prev };
+        delete updated.uploadedImage;
+        return updated;
+      });
     }
-  }
+  };
 
   const [uploadedImagetwo, setUploadedImagetwo] = useState('');
   const handleImageUploadtwo = (e) =>{
@@ -121,6 +127,7 @@ const Productdetail = () => {
   
     
       setUploadedImagetwo(imageUrltwo);
+      
     }
     
   }
@@ -153,6 +160,8 @@ const Productdetail = () => {
     } else {
       setFullSleeve((prev) => ({ ...prev, [label]: safeVal }));
     }
+
+    setFormErrors((prev) => ({ ...prev, quantityMatch: '' }))
   };
 
   const totalHalf = Object.values(halfSleeve).reduce((sum, qty) => sum + qty, 0);
@@ -187,7 +196,7 @@ const Productdetail = () => {
   //                  { id: 6, image: shopimage,imageone:shopimage,imagetwo:qualityshirt, label: "V Neck", price: 319,sizes: {XS:2,S: 5,M: 3,L: 4,X: 41,XL: 1,'2XL': 3, '3XL': 2, '4XL': 1, '5XL': 0} },
   //                ];
    
-    const [logoCount, setLogoCount] = useState(0);
+    const [logoCount, setLogoCount] = useState(1);
     const [visibleLogos, setVisibleLogos] = useState(1);
     const [uploadedImages, setUploadedImages] = useState({});
     const [remark, setRemark] = useState('');
@@ -205,6 +214,90 @@ const Productdetail = () => {
     const [selectedoptions, setSelectedoptions] = useState('');
     const [colorTouched, setColorTouched] = useState(false);
      const [productsData, setProductsData] = useState([]);
+     const [hasSubmitted, setHasSubmitted] = useState(false);
+    
+     const [logos, setLogos] = useState([
+      { type: '', position: '', image: '' } // 👈 one row initially
+    ]);
+
+
+    // const handleLogoCountChange = (e) => {
+    //   const count = parseInt(e.target.value) || 1;
+    //   setLogoCount(count);
+    
+    //   const updatedLogos = [...logos];
+    
+    //   // Expand or trim the logos array
+    //   if (count > updatedLogos.length) {
+    //     while (updatedLogos.length < count) {
+    //       updatedLogos.push({ type: '', position: '', image: '' });
+    //     }
+    //   } else {
+    //     updatedLogos.length = count;
+    //   }
+    
+    //   setLogos(updatedLogos);
+    
+    //   // Optional: Clear error
+    //   setFormErrors((prev) => ({ ...prev, logoCount: '' }));
+    // };
+    
+
+    const handleLogoCountChange = (e) => {
+      const count = parseInt(e.target.value, 10);
+      setLogoCount(count);
+    
+      const updatedLogos = Array.from({ length: count }, (_, index) => {
+        return logos[index] || { type: '', position: '', image: null };
+      });
+    
+      setLogos(updatedLogos);
+    };
+    
+    
+
+    const handleLogoChange = (index, field, value) => {
+      const updatedLogos = [...logos];
+      updatedLogos[index][field] = value;
+      setLogos(updatedLogos);
+    
+      // Clear individual error if corrected
+      const updatedErrors = { ...formErrors };
+      if (field === 'type' && value) {
+        delete updatedErrors[`logoType_${index}`];
+      }
+      if (field === 'position' && value) {
+        delete updatedErrors[`logoPosition_${index}`];
+      }
+    
+      setFormErrors(updatedErrors);
+    };
+    
+    
+    
+
+    const handleLogoImageUpload = (index, file) => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const updatedLogos = [...logos];
+        updatedLogos[index].image = reader.result;
+        setLogos(updatedLogos);
+    
+        // Clear error if image uploaded
+        const updatedErrors = { ...formErrors };
+        if (file) {
+          delete updatedErrors[`logoImage_${index}`];
+        }
+        setFormErrors(updatedErrors);
+      };
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    };
+    
+    
+    
+    
 
 
     const sizesone = [
@@ -254,105 +347,158 @@ const handleBlur = () => {
 
   setFormErrors(newErrors);
 };
+const [showSuccess, setShowSuccess] = useState(false);
+useEffect(() => {
+  if (hasSubmitted) {
+    if (Object.keys(formErrors).length === 0) {
+      setShowSuccess(true);
+    } else {
+      setShowSuccess(false);
+    }
+  }
+}, [formErrors, hasSubmitted]);
+
+
+
+const handleLogoCountBlur = () => {
+  const newErrors = { ...formErrors }; 
+
+  if (!logoCount) {
+    newErrors.logoCount = 'Logo count is required';
+  } else if (isNaN(logoCount)) {
+    newErrors.logoCount = 'Logo count must be a number';
+  } else if (parseInt(logoCount) < 1 || parseInt(logoCount) > 4) {
+    newErrors.logoCount = 'Logo count must be between 1 and 4';
+  } else {
+    
+    delete newErrors.logoCount;
+  }
+
+  setFormErrors(newErrors);
+};
+
 
     console.log("render")
 
     const handleSubmit = (e) => {
-      console.log("render")
       e.preventDefault();
       const newErrors = {};
-      console.log("test")
-
-
-
-     
     
-      //Quantity validation
-      // if (!enteredQty) {
-      //   newErrors.enteredQty = 'Quantity must be entered';
-      // } else if (isNaN(enteredQty)) {
-      //   newErrors.enteredQty = 'Quantity must be a number';
-      // } else if (parseInt(enteredQty) < 15) {
-      //   newErrors.enteredQty = 'Minimum quantity should be 15';
-      // }
-    
-      // Logo count validation
-      if (!logoCount) {
-        newErrors.logoCount = 'Logo count is required';
-      } else if (isNaN(logoCount)) {
-        newErrors.logoCount = 'Logo count must be a number';
-      } else if (parseInt(logoCount) < 1) {
-        newErrors.logoCount = 'Logo count must be at least 1';
+      // validations
+      if (!enteredQty) {
+        newErrors.enteredQty = 'Quantity must be entered';
       }
-    
-      // Pocket required validation
       if (!pocketRequired) {
         newErrors.pocketRequired = 'Pocket selection is required';
       }
-
-      if(!logoPosition){
-        newErrors.logoPosition='Select the logo position'
-      }
-    
-      // Delivery date validation
+      // if (!logoPosition) {
+      //   newErrors.logoPosition = 'Select the logo position';
+      // }
       if (!deliveryDate) {
         newErrors.deliveryDate = 'Delivery date is required';
       }
       if (!colorTouched) {
-        newErrors.color = "Choose color";
+        newErrors.color = 'Choose color';
       }
-      if (!uploadedImage) {
-        newErrors.uploadedImage = "Upload logo";
-      }
-      
+      // if (!uploadedImage) {
+      //   newErrors.uploadedImage = 'Upload logo';
+      // }
       if (!selectedCotton && !selectedPolyester && !selectedPolyCotton) {
-        newErrors.selectedoptions = "Please select at least one option.";
+        newErrors.selectedoptions = 'Please select at least one option.';
       }
-      if(!logoType){
-        newErrors.logoType = 'Select Logo Type'
-      }
-    
-      // Quantity match validation
+      // if (!logoType) {
+      //   newErrors.logoType = 'Select Logo Type';
+      // }
       if (parseInt(enteredQty) !== grandTotal) {
         newErrors.quantityMatch = 'Total quantities must match entered quantity';
       }
 
-      if (Object.keys(newErrors).length === 1){
-
-      }
-     
+      logos.forEach((logo, index) => {
+        if (!logo.type) {
+          newErrors[`logoType_${index}`] = `Select Logo Type for logo ${index + 1}`;
+        }
+        if (!logo.position) {
+          newErrors[`logoPosition_${index}`] = `Select Logo Position for logo ${index + 1}`;
+        }
+        if (!logo.image) {
+          newErrors[`logoImage_${index}`] = `Upload logo image for logo ${index + 1}`;
+        }
+      });
     
       setFormErrors(newErrors);
+      setHasSubmitted(true); // ✅ always true on submit
     
-      if (Object.keys(newErrors).length === 0) {
-        const formData = {
+      // if (Object.keys(newErrors).length === 0) {
+       
+      //   const formData = {
+      //     quantity: enteredQty,
+      //     logoCount: logoCount,
+      //     logoPosition: logoPosition,
+      //     logoPositionTwo: logoPositionTwo,
+      //     logoType: logoType,
+      //     logotypetwo: logotypetwo,
+      //     pocketRequired: pocketRequired,
+      //     deliveryDate: deliveryDate,
+      //     color: color,
+      //     halfSleeveQuantities: halfSleeve,
+      //     fullSleeveQuantities: fullSleeve,
+      //     totalHalfSleeve: totalHalf,
+      //     totalFullSleeve: totalFull,
+      //     grandTotal: grandTotal,
+      //     remark: remark,
+      //     logoTwo: uploadedImagetwo,
+      //     logo: uploadedImage,
+      //     SelectedItem: selectedCotton || selectedPolyester || selectedPolyCotton,
+      //     productid: productdetail?._id,
           
+      //   };
+    
+      //   console.log('Form submitted:', formData);
+      // }
+      if (Object.keys(newErrors).length === 0) {
+        const logoDetails = logos.map((logo, index) => {
+          console.log(`Logo ${index + 1}:`);
+          console.log(`  Type: ${logo.type}`);
+          console.log(`  Position: ${logo.position}`);
+          console.log(`  Image:`, logo.image);
+      
+          return {
+            type: logo.type,
+            position: logo.position,
+            image: logo.image,
+          };
+        });
+      
+        const formData = {
           quantity: enteredQty,
           logoCount: logoCount,
-          logoPosition: logoPosition,
-          logoPositionTwo: logoPositionTwo,
-          logoType: logoType,
-          logotypetwo: logotypetwo,
+          // logoPosition: logoPosition,
+          // logoPositionTwo: logoPositionTwo,
+          // logoType: logoType,
+          // logotypetwo: logotypetwo,
           pocketRequired: pocketRequired,
           deliveryDate: deliveryDate,
-          color:color,
+          color: color,
           halfSleeveQuantities: halfSleeve,
           fullSleeveQuantities: fullSleeve,
           totalHalfSleeve: totalHalf,
           totalFullSleeve: totalFull,
           grandTotal: grandTotal,
           remark: remark,
-          logoTwo: uploadedImagetwo,
-          logo: uploadedImage,
-          SelectedItem:selectedCotton || selectedPolyester || selectedPolyCotton,
+          // logoTwo: uploadedImagetwo,
+          // logo: uploadedImage,
+          SelectedItem: selectedCotton || selectedPolyester || selectedPolyCotton,
           productid: productdetail?._id,
-         
+          logos: logoDetails, // ✅ include processed logo details here
         };
+      
         console.log('Form submitted:', formData);
       }
+      
     };
     
-
+    
+  
     
     const [productdetail, setProductdetail] = useState(null);
     
@@ -360,6 +506,8 @@ const handleBlur = () => {
     const [hoverImage, setHoverImage] = useState(null);
     
     const [hoveredImage, setHoveredImage] = useState(null);
+
+   
     
 
     useEffect(() => {
@@ -367,7 +515,7 @@ const handleBlur = () => {
         try {
           const response = await axios.get('https://gts.selfietoons.com/api/products/single/products-by-category', {
             headers: {
-              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTA1ZjNmOTc3Mzc1ODkzNzFkODI5YSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0NTkyODc2NSwiZXhwIjoxNzQ2MDE1MTY1fQ.Gl8NaXNYq9O9gYJAzV42FhSrYeg7Ul83m2TdTbDgQmE`,
+              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTA1ZjNmOTc3Mzc1ODkzNzFkODI5YSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0NTk5MDM3OSwiZXhwIjoxNzQ2MDc2Nzc5fQ.A3EHXDY4ABwLQ4HEHuBAUeDfeWJEbvYTaojMbxS4PHA`,
             },
           });
   
@@ -505,25 +653,7 @@ const responsive = {
         </div>
       </div>
 
-      {/* <div className="container mt-5">
-  <div className="d-flex productpage-box row">
-    <div className="col-lg-5 col-12">
-      
-      {productdetail ? (
-        <div className="product-imageful">
-          <img
-            src={selectedImage || `https://gts.selfietoons.com/${productdetail?.images?.[0]}`}
-            alt={productdetail?.name}
-            onClick={() => setSelectedImage(`https://gts.selfietoons.com/${productdetail?.images?.[0]}`)}
-            className="img-fluid"
-          />
-        </div>
-      ) : (
-        <p>Loading product image...</p>  
-      )}
-    </div>
-  </div>
-</div> */}
+    
 
     
 
@@ -588,6 +718,7 @@ const responsive = {
           <h2 className="text-start">{productdetail?.name}</h2>
           <p className="text-start">{productdetail?.description}</p>
 
+          <p className="text-start"><strong>Price:</strong> ₹{productdetail?.price}</p>
           <p className="text-start"><strong>Price:</strong> ₹{productdetail?.price}</p>
           <p className="text-start"><strong>Color:</strong> {productdetail?.color}</p>
           <p className="text-start"><strong>Material:</strong> {productdetail?.material}</p>
@@ -803,10 +934,15 @@ const responsive = {
     <input
       type="number"
       min="1"
+      max="4"
       className={`form-control ${formErrors.logoCount ? 'is-invalid' : ''}`}
       placeholder="Enter quantity"
       value={logoCount}
-      onChange={(e) => setLogoCount(e.target.value)}
+
+     
+      // onChange={(e) => setLogoCount(e.target.value)}
+      onChange={handleLogoCountChange}
+      onBlur={handleLogoCountBlur}
     />
     {formErrors.logoCount && (
       <div className="text-danger mt-1">{formErrors.logoCount}</div>
@@ -823,7 +959,10 @@ const responsive = {
           name="pocketRequired"
           value="yes"
           checked={pocketRequired === 'yes'}
-          onChange={(e) => setPocketRequired(e.target.value)}
+          onChange={(e) => {
+            setPocketRequired(e.target.value);
+            setFormErrors((prev) => ({ ...prev, pocketRequired: '' }));
+          }}
         />
         <label htmlFor="yes">Yes</label>
       </div>
@@ -834,7 +973,10 @@ const responsive = {
           name="pocketRequired"
           value="no"
           checked={pocketRequired === 'no'}
-          onChange={(e) => setPocketRequired(e.target.value)}
+          onChange={(e) => {
+            setPocketRequired(e.target.value);
+            setFormErrors((prev) => ({ ...prev, pocketRequired: '' }));
+          }}
         />
         <label htmlFor="no">No</label>
       </div>
@@ -853,12 +995,17 @@ const responsive = {
         <div className="col-lg-2 mb-md-3">
           <input 
           type="date"
-          // min='0'
+         
           className={`form-control ${formErrors.deliveryDate ? 'is-invalid' : ''}`}
           value={deliveryDate}
           required
           min={getMinDate()}
-          onChange={(e) => setDeliveryDate(e.target.value)}
+          onChange={(e) => {
+            setDeliveryDate(e.target.value);
+      
+            
+            setFormErrors((prev) => ({ ...prev, deliveryDate: '' }));
+          }}
           ></input>
           {formErrors.deliveryDate && (
          <div className="text-danger mt-1">{formErrors.deliveryDate}</div>
@@ -866,10 +1013,14 @@ const responsive = {
         </div>
         <label className="fs-6 fw-bold col-lg-2 text-lg-end mt-lg-0 mt-3">Choose Colour:</label>
         <div className="col-lg-1 d-flex align-items-lg-start align-items-center justify-content-lg-start justify-content-center mt-lg-0 mt-3 ">
-        <input  type="color" id="favcolor" name="favcolor" value={color} onChange={(e) => {
-    setColor(e.target.value);
-    setColorTouched(true); 
-  }}
+        <input  type="color" id="favcolor" name="favcolor" value={color} 
+        onChange={(e) => {
+          setColor(e.target.value);
+          setColorTouched(true);
+    
+          
+          setFormErrors((prev) => ({ ...prev, color: '' }));
+        }}
         className="form-control-color rounded-color"></input>
         
         </div>
@@ -887,9 +1038,13 @@ const responsive = {
           <label onClick={polycottoggle} className="dropdown-label w-100 fw-bold fs-6 mb-2">Cotton</label>
           <select className="form-select mt-2"
           value={selectedCotton}
-          onChange={(e)=>{setSelectedCotton(e.target.value);
+          onChange={(e) => {
+            setSelectedCotton(e.target.value);
             setSelectedPolyester("");
             setSelectedPolyCotton("");
+        
+            // Clear material selection error
+            setFormErrors((prev) => ({ ...prev, selectedoptions: '' }));
           }}>
             
         <option value="">option </option>
@@ -915,6 +1070,8 @@ const responsive = {
             setSelectedPolyester(e.target.value);
             setSelectedCotton("");
             setSelectedPolyCotton("");
+          
+            setFormErrors((prev) => ({ ...prev, selectedoptions: '' }));
           }} >
         <option value="">option </option>
         <option value="Poly-cotton">Poly-cotton</option>
@@ -938,6 +1095,8 @@ const responsive = {
             setSelectedPolyCotton(e.target.value);
             setSelectedCotton("");
             setSelectedPolyester("");
+          
+            setFormErrors((prev) => ({ ...prev, selectedoptions: '' }));
           }}>
         <option value="">option</option>
         <option value="Ring-Spun Poly-Cotton">Ring-Spun</option>
@@ -959,17 +1118,20 @@ const responsive = {
 
 
       
-      <div className="row mt-2 pt-2 pb-4 chooseoption-box ">
+      {/* <div className="row mt-2 pt-2 pb-4 chooseoption-box ">
         <div>
         <label className=" fs-6 fw-bold  d-flex align-items-center justify-content-center text-center mb-3">Logo:</label>
         </div>
+
+
         <div className="row d-flex  justify-content-evenly">
         <div className="col-lg-2">
         <label className="dropdown-label w-100 fw-bold fs-6 mb-3">Logo Type</label>
         <select className="form-select"
         value={logoType}
-        onChange={(e) =>
-          setLogoType(e.target.value)
+        onChange={(e) =>{
+          setLogoType(e.target.value);
+        setFormErrors((prev)=>({...prev,logoType:''}))}
         }>
         <option value="">Select Type</option>
         <option value="printed">Printed</option>
@@ -984,7 +1146,9 @@ const responsive = {
         <label className="dropdown-label w-100 fw-bold fs-6 mb-3">Logo Position</label>
         <select className="form-select"
         value={logoPosition}
-        onChange={(e)=>setLogoPosition(e.target.value)}>
+        onChange={(e)=>{setLogoPosition(e.target.value);
+          setFormErrors((prev)=>({...prev,logoPosition:''}))
+        }}>
         <option value="">Select</option>
         <option value="left Chest">left Chest</option>
         <option value="Right Chest">Right Chest</option>
@@ -1014,7 +1178,7 @@ const responsive = {
           
         </div>
         </div>
-        <div>
+<div>
         {uploadedImage && (
           <>
           
@@ -1092,6 +1256,86 @@ const responsive = {
 </div>
   </div>
    )}
+
+      </div> */}
+
+      <div className="row mt-2 pt-2 pb-4 chooseoption-box ">
+      <div>
+        <label className=" fs-6 fw-bold  d-flex align-items-center justify-content-center text-center mb-3">Logo:</label>
+        </div>
+        {logos.map((logo, index) => (
+  <div key={index} className="mb-4">
+    <div className="row d-flex justify-content-evenly">
+      {/* Logo Type */}
+      <div className="col-lg-2">
+        <label className="form-label fw-bold">Logo Type</label>
+        <select
+          className="form-select"
+          value={logo.type}
+          onChange={(e) => handleLogoChange(index, 'type', e.target.value)}
+        >
+          <option value="">Select Type</option>
+          <option value="printed">Printed</option>
+          <option value="embroidered">Embroidered</option>
+        </select>
+        {formErrors[`logoType_${index}`] && (
+          <div className="text-danger">{formErrors[`logoType_${index}`]}</div>
+        )}
+      </div>
+
+      {/* Logo Position */}
+      <div className="col-lg-2">
+        <label className="form-label fw-bold">Logo Position</label>
+        <select
+          className="form-select"
+          value={logo.position}
+          onChange={(e) => handleLogoChange(index, 'position', e.target.value)}
+        >
+          <option value="">Select</option>
+          <option value="left Chest">Left Chest</option>
+          <option value="Right Chest">Right Chest</option>
+          <option value="Left Sleeve">Left Sleeve</option>
+          <option value="Right Sleeve">Right Sleeve</option>
+          <option value="Front Center">Front Center</option>
+          <option value="Back Top">Back Top</option>
+          <option value="Back Center">Back Center</option>
+          <option value="On Pocket">On Pocket</option>
+        </select>
+        {formErrors[`logoPosition_${index}`] && (
+          <div className="text-danger">{formErrors[`logoPosition_${index}`]}</div>
+        )}
+      </div>
+
+      {/* Upload Logo */}
+      <div className="col-lg-2">
+        <label className="form-label fw-bold">Upload Logo</label>
+        <input
+          type="file"
+          accept="image/*"
+          className="form-control"
+          onChange={(e) => handleLogoImageUpload(index, e.target.files[0])}
+        />
+        {formErrors[`logoImage_${index}`] && (
+          <div className="text-danger">{formErrors[`logoImage_${index}`]}</div>
+        )}
+      </div>
+    </div>
+
+    {/* Image Preview */}
+    {logo.image && (
+      <div className="row mt-2">
+        <div className="col-lg-12 d-flex justify-content-center">
+          <img
+            src={logo.image}
+            alt={`Logo ${index + 1}`}
+            style={{ width: '200px', height: '200px', objectFit: 'contain' }}
+            className="rounded-4 border"
+          />
+        </div>
+      </div>
+    )}
+  </div>
+))}
 
       </div>
       
@@ -1205,12 +1449,23 @@ const responsive = {
 </button>
 
   </div>
-  {Object.keys(formErrors).length >= 1  && (
-    <div className="text-danger mt-2">
-      Enter required field
-    </div>
-  )}
+  {hasSubmitted && !showSuccess && (
+  <div className="text-danger mt-2">
+    Enter required fields and submit
+  </div>
+)}
+
+{hasSubmitted && showSuccess && (
+  <div className="text-success mt-2">
+    Check amount
+  </div>
+)}
 </form>
+
+
+
+
+
 
 
 
@@ -1463,3 +1718,79 @@ const responsive = {
 }
 
 export default Productdetail
+
+
+
+
+{/* {logos.map((logo, index) => (
+  <div key={index} className="mb-4">
+    <div className="row justify-content-evenly">
+      <div className="col-lg-2">
+        <label className="form-label">Logo Type</label>
+        <select
+          className={`form-select ${formErrors[index]?.type ? 'is-invalid' : ''}`}
+          value={logo.type}
+          onChange={(e) => handleLogoChange(index, 'type', e.target.value)}
+        >
+          <option value="">Select Type</option>
+          <option value="printed">Printed</option>
+          <option value="embroidered">Embroidered</option>
+        </select>
+        {formErrors[index]?.type && (
+          <div className="text-danger mt-1">{formErrors[index].type}</div>
+        )}
+      </div>
+
+      <div className="col-lg-2">
+        <label className="form-label">Logo Position</label>
+        <select
+          className={`form-select ${formErrors[index]?.position ? 'is-invalid' : ''}`}
+          value={logo.position}
+          onChange={(e) => handleLogoChange(index, 'position', e.target.value)}
+        >
+          <option value="">Select</option>
+          <option value="left Chest">Left Chest</option>
+          <option value="Right Chest">Right Chest</option>
+          <option value="Left Sleeve">Left Sleeve</option>
+          <option value="Right Sleeve">Right Sleeve</option>
+          <option value="Front Center">Front Center</option>
+          <option value="Back Top">Back Top</option>
+          <option value="Back Center">Back Center</option>
+          <option value="On Pocket">On Pocket</option>
+        </select>
+        {formErrors[index]?.position && (
+          <div className="text-danger mt-1">{formErrors[index].position}</div>
+        )}
+      </div>
+
+      <div className="col-lg-2">
+        <label className="form-label">Upload Logo</label>
+        <input
+          type="file"
+          accept="image/*"
+          className={`form-control ${formErrors[index]?.image ? 'is-invalid' : ''}`}
+          onChange={(e) =>
+            handleLogoImageUpload(index, e.target.files[0])
+          }
+        />
+        {formErrors[index]?.image && (
+          <div className="text-danger mt-1">{formErrors[index].image}</div>
+        )}
+      </div>
+    </div>
+
+    
+    {logo.image && (
+      <div className="row justify-content-center mt-3">
+        <div className="col-lg-2">
+          <img
+            src={logo.image}
+            alt={`Logo ${index + 1}`}
+            style={{ width: '200px', height: '200px', objectFit: 'contain' }}
+            className="border rounded"
+          />
+        </div>
+      </div>
+    )}
+  </div>
+))} */}

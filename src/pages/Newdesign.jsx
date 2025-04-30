@@ -228,15 +228,52 @@ const addSelectedColor = () => {
     }
   };
 
-  const handleChange = (size, value) => {
-    setSizeQuantities((prev) => ({
-      ...prev,
-      [size]: value === "" ? "" : parseInt(value) || 0,
-    }));
+  // const handleChange = (size, value) => {
+  //   setSizeQuantities((prev) => ({
+  //     ...prev,
+  //     [size]: value === "" ? "" : parseInt(value) || 0,
+  //   }));
+  // };
+
+  const handleChange = (field) => (e) => {
+    setFormData((prev) => ({ ...prev, [field]: e.target.value }));
+    setErrors((prev) => ({ ...prev, [field]: undefined }));
   };
+
+  const [formData, setFormData] = useState({
+    previewImage: '',
+    quantity: '',
+    name: '',
+    phone: '',
+    address: ''
+  });
+
+
+
+
+  // const validate = () => {
+  //   const newErrors = {};
+  //   if (!previewImage) newErrors.previewImage = 'Please upload an image';
+  //   if (!quantity) {
+  //     newErrors.quantity = 'Quantity is required';
+  //   } else if (isNaN(quantity)) {
+  //     newErrors.quantity = 'Quantity must be a number';
+  //   } else if (parseInt(quantity) <= 15) {
+  //     newErrors.quantity = 'Quantity must be greater than 15';
+  //   }
+  //   if (isNaN(quantity)) newErrors.quantity = 'Quantity must be a number';
+  //   if (!name) newErrors.name = 'Name is required';
+  //   if (!phone) newErrors.phone = 'Phone number is required';
+  //   if (!/^\d{10}$/.test(phone)) newErrors.phone = 'Phone number must be 10 digits';
+  //   if (!address) newErrors.address = 'Address is required';
+  //   return newErrors;
+  // };
+
 
   const validate = () => {
     const newErrors = {};
+    const { previewImage, quantity, name, phone, address } = formData;
+  
     if (!previewImage) newErrors.previewImage = 'Please upload an image';
     if (!quantity) {
       newErrors.quantity = 'Quantity is required';
@@ -245,30 +282,55 @@ const addSelectedColor = () => {
     } else if (parseInt(quantity) <= 15) {
       newErrors.quantity = 'Quantity must be greater than 15';
     }
-    if (isNaN(quantity)) newErrors.quantity = 'Quantity must be a number';
+  
     if (!name) newErrors.name = 'Name is required';
-    if (!phone) newErrors.phone = 'Phone number is required';
-    if (!/^\d{10}$/.test(phone)) newErrors.phone = 'Phone number must be 10 digits';
+    if (!phone) {
+      newErrors.phone = 'Phone number is required';
+    } else if (!/^\d{10}$/.test(phone)) {
+      newErrors.phone = 'Phone number must be 10 digits';
+    }
+  
     if (!address) newErrors.address = 'Address is required';
+  
     return newErrors;
   };
+  
 
   
 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   // console.log("test");
+    
+  //   const validationErrors = validate();
+  //   if (Object.keys(validationErrors).length > 0) {
+  //     setErrors(validationErrors);
+  //     setSubmitted(false);
+  //   } else {
+  //     setErrors({});
+  //     console.log({ previewImage, quantity, name, phone, address });
+  //     setSubmitted(true);
+  //   }
+  // };
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log("test");
-    
     const validationErrors = validate();
+  
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       setSubmitted(false);
     } else {
       setErrors({});
-      console.log({ previewImage, quantity, name, phone, address });
       setSubmitted(true);
+      console.log('Form submitted:', formData);
     }
   };
+
+
+
+  
 
 
 
@@ -277,12 +339,23 @@ const addSelectedColor = () => {
 
  
  const [previewImage, setPreviewImage] = useState(null);
- const handleImageChange= (e) =>{
-  const file= e.target.files[0];
-  if(file){
+ const handleImageChange = (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    setFormData((prev) => ({
+      ...prev,
+      previewImage: file,
+    }));
     setPreviewImage(URL.createObjectURL(file));
+
+    // Clear error if previously set
+    setErrors((prev) => {
+      const { previewImage, ...rest } = prev;
+      return rest;
+    });
   }
- }
+};
+
   
 
 
@@ -401,7 +474,7 @@ const addSelectedColor = () => {
               </span>
             </h1>
 
-            <form onSubmit={handleSubmit}>
+            {/* <form onSubmit={handleSubmit}>
       <div className="container d-flex justify-content-center align-items-center mt-5">
         <div className="upload-newdeisgn-box text-center">
           <label className="upload-button">
@@ -431,7 +504,7 @@ const addSelectedColor = () => {
         type="number"
         className="form-control mb-2"
         value={quantity}
-        onChange={(e) => setQuantity(e.target.value)}
+        onChange={(e) => {setQuantity(e.target.value)}}
         placeholder="Enter quantity"
       />
       {errors.quantity && <div className="text-danger">{errors.quantity}</div>}
@@ -491,6 +564,95 @@ const addSelectedColor = () => {
   </div>
 </div>
 
+
+      {submitted && (
+        <div className="text-success text-center mb-4">
+          <strong>*You will get a call from our production team</strong>
+        </div>
+      )}
+    </form> */}
+
+<form onSubmit={handleSubmit}>
+      <div className="container d-flex justify-content-center align-items-center mt-5">
+        <div className="upload-newdeisgn-box text-center">
+          <label className="upload-button">
+            <RiUpload2Fill className="uplode-icon" />
+            <span>Upload File</span>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              style={{ display: 'none' }}
+            />
+          </label>
+          {previewImage && (
+            <div className="mt-3">
+              <img src={previewImage} alt="Preview" className="preview-image" />
+            </div>
+          )}
+          {errors.previewImage && <div className="text-danger mt-2">{errors.previewImage}</div>}
+        </div>
+      </div>
+
+      <div className="container mt-5">
+        <div className="row justify-content-center">
+          <div className="col-12 col-sm-10 col-md-8 col-lg-6 enter-quality-box text-center">
+            <h1 className="h5 mb-3">Enter Quantity Required</h1>
+            <input
+              type="number"
+              className="form-control mb-2"
+              value={formData.quantity}
+              onChange={handleChange('quantity')}
+              placeholder="Enter quantity"
+            />
+            {errors.quantity && <div className="text-danger">{errors.quantity}</div>}
+          </div>
+        </div>
+      </div>
+
+      <div className="container mt-5">
+        <div className="row justify-content-center">
+          <div className="col-12 col-sm-10 col-md-8 col-lg-6 enter-quality-box text-center">
+            <h1 className="h5 mb-4">Enter Contact Details</h1>
+            <input
+              type="text"
+              className="form-control mb-3"
+              placeholder="Name"
+              value={formData.name}
+              onChange={handleChange('name')}
+            />
+            {errors.name && <div className="text-danger mb-3">{errors.name}</div>}
+
+            <input
+              type="text"
+              className="form-control mb-3"
+              placeholder="Phone Number"
+              value={formData.phone}
+              onChange={handleChange('phone')}
+            />
+            {errors.phone && <div className="text-danger mb-3">{errors.phone}</div>}
+
+            <input
+              type="text"
+              className="form-control mb-3"
+              placeholder="Address"
+              value={formData.address}
+              onChange={handleChange('address')}
+            />
+            {errors.address && <div className="text-danger">{errors.address}</div>}
+          </div>
+        </div>
+      </div>
+
+      <div className="container">
+        <div className="row justify-content-center mt-4">
+          <div className="col-12 col-sm-6 text-center">
+            <Button type="submit" className="w-100 btn btn-primary new-sent-btn">
+              Send
+            </Button>
+          </div>
+        </div>
+      </div>
 
       {submitted && (
         <div className="text-success text-center mb-4">
