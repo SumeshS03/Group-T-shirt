@@ -170,6 +170,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  bottom: -109px;
 }
 .verify-photo{
   margin-top: 10% !important;
@@ -282,6 +283,16 @@
   transform: translate(-50%);
 }
 
+.profile-boxes{
+  position: relative;
+  top: 50%;
+  transform: translateY(68%);
+}
+.custom-grid-row .col-lg-2 {
+  flex: 0 0 auto;
+  width: 19.666667%;
+}
+
 /* .profilesimagepad {
   position: relative;
   display: flex;
@@ -310,6 +321,11 @@
   
   margin-top: 9% !important;
 }
+.profileimagesizing{
+  width: 190px;
+}
+
+
 
 
 .outterimage-border {
@@ -329,14 +345,24 @@
 .enjoyup{
   margin-top: 25% !important;
 }
+.custom-grid-row .col-lg-2 {
+  flex: 0 0 auto;
+  width: 24.666667%;
 }
 
-@media (min-width: 992px) {
-  .custom-row .col-lg-3 {
-    width: 24% !important;
-    flex: 0 0 auto !important;
-  }
+
 }
+
+@media (max-width: 992px) {
+  .custom-grid-row .col-lg-2 {
+    flex: 0 0 auto;
+    width: 98.666667%;
+}
+}
+
+
+ 
+
 
 
 
@@ -412,6 +438,11 @@
   margin-bottom: -67px;
   
 }
+.profile-boxes {
+  position: relative;
+  top: 50%;
+  transform: translateY(37%);
+}
 .get-started-today{
   font-size: 9px !important;
 }
@@ -420,13 +451,10 @@
 .verifyimageboxone {
   margin-top: 104% !important;
 }
-.photoboxheader{
-  
-  font-size: 16px;
+.photoboxheader {
+  font-size: 21px !important;
 }
-.browse-btn{
-  margin-top: 0% !important;
-}
+
 .custom-gap {
   gap: 3rem;
   margin-left: 0rem;
@@ -460,9 +488,7 @@
   width: 82px;
   height: 76px;
 }
-.browse-btn{
-  padding: 0 !important;
-}
+
   
 }
 @media (max-width: 376px) {
@@ -478,9 +504,7 @@
   bottom: -114%;
   
 }
-.browse-btn{
-  padding: 0 !important;
-}
+
   .custom-artwork {
     width: 86% !important;
     height: 286px !important;
@@ -504,9 +528,7 @@
 @media (max-width: 320px) {
 
   
-  .browse-btn{
-    padding: 0 !important;
-  }
+ 
   
   .enjoyup {
     margin-top: 168%;

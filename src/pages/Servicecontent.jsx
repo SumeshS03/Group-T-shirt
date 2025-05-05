@@ -77,10 +77,10 @@ const items = [
 const responsive = {
   superLargeDesktop: {
     breakpoint: { max: 4000, min: 1200 },
-    items: 5
+    items: 4
   },
   desktop: {
-    breakpoint: { max: 1200, min: 992 },
+    breakpoint: { max: 1024, min: 992 },
     items: 4
   },
   tablet: {
@@ -316,7 +316,7 @@ const Servicecontent = () => {
         </div>
       </div> */}
 
-<div className="browse-all p-lg-5 mt-5 d-flex justify-content-center flex-column">
+{/* <div className="browse-all p-lg-5 mt-5 d-flex justify-content-center flex-column">
         <div className="row w-100">
           <div className="col-12 text-center ">
             <div className="d-flex  col-12 custom-gap ">
@@ -347,8 +347,7 @@ const Servicecontent = () => {
         </div>
         <div className="row w-100  digitalscanpagenation justify-content-center mt-4">
         
-          {/* <div className="col-12 gap-3 text-center d-flex profilesimagepad  "> */}
-            {/* Left Arrow */}
+         
             <button
               className="btn col-1"
               onClick={prevPage}
@@ -358,7 +357,7 @@ const Servicecontent = () => {
             </button>
             
 
-            {/* Items */}
+         
             {visibleItems.map((item) => (
               <div
                 key={item.id}
@@ -386,7 +385,7 @@ const Servicecontent = () => {
               </div>
             ))}
 
-            {/* Right Arrow */}
+            
             <button
               className="btn col-1"
               onClick={nextPage}
@@ -394,9 +393,105 @@ const Servicecontent = () => {
             >
               <FaCircleArrowRight className="pagination-button" size={40} />
             </button>
-          {/* </div> */}
+          
+        </div>
+      </div> */}
+
+
+<div className="container-fluid browse-all py-5 mt-5 d-flex flex-column align-items-center">
+<div className="row w-100 mt-sm-3">
+    <div className="col-12 text-center">
+      <div className="d-flex flex-column flex-md-row align-items-center justify-content-center gap-3">
+        <h2
+          className="photoboxheader mb-0"
+          style={{ fontFamily: "bevan", color: "#eeae0c" }}
+        >
+          <span>T-shirt printing </span>
+          <span style={{ color: "blue" }}>made easy.</span>
+        </h2>
+        <button className="btn rounded-pill browse-btn mt-3 mt-md-0 px-4 py-2  fs-6 fs-md-5">
+  Browse all
+</button>
+
+      </div>
+    </div>
+  </div>
+
+  <div className="row w-100 mt-3">
+    <div className="col-12 text-center">
+      <p style={{ color: "white" }}>
+        Let us show you how your product comes to life
+      </p>
+    </div>
+  </div>
+
+  <div className="w-100 mt-4 profile-boxes px-2 px-md-4"
+ >
+  <div className="row align-items-center">
+    
+    {/* Left Arrow Button */}
+    <div className="col-auto d-flex align-items-center justify-content-center p-0">
+      <button
+        className="btn p-0 border-0"
+        onClick={prevPage}
+        disabled={currentPage === 0}
+       style={{ boxShadow: "none" }}
+      >
+        <FaCircleArrowLeft size={40} style={{ color: "yellow" }} />
+      </button>
+    </div>
+
+    {/* Items */}
+    <div className="col">
+  <div className="row justify-content-between custom-grid-row">
+    {visibleItems.map((item) => (
+      <div
+        key={item.id}
+        className="col-12 col-lg-2 d-flex flex-column align-items-center"
+        style={{ color: "white" }}
+      >
+        <div className="w-100 border border-2 border-secondary rounded-4 overflow-hidden">
+          <img
+            className="bg-white w-100"
+            style={{ height: "200px", objectFit: "cover" }}
+            src={item.image}
+            alt="Quality Shirt"
+          />
+          <p
+            className="text-center bg-white py-3 m-0 d-flex align-items-center justify-content-center gap-2"
+            style={{ color: "blue", fontSize: "18px" }}
+          >
+            {item.title}
+            <FaRegArrowAltCircleRight size={20} style={{ color: "gray" }} />
+          </p>
         </div>
       </div>
+    ))}
+  </div>
+</div>
+
+
+
+    {/* Right Arrow Button */}
+    <div className="col-auto d-flex align-items-center justify-content-center p-0">
+      <button
+        className="btn p-0 border-0"
+        onClick={nextPage}
+        disabled={currentPage === totalPages - 1}
+        style={{  boxShadow: "none" }}
+      >
+        <FaCircleArrowRight size={40} style={{ color: "yellow" }} />
+      </button>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+</div>
+
       
 
 {/* <div className="browse-all p-lg-5 mt-5 d-flex justify-content-center flex-column position-relative">

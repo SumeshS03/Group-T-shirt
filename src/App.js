@@ -21,6 +21,7 @@ import Cartpage from './pages/Cartpage';
 import  { CartProvider }  from './pages/CartContext';
 import Profile from './pages/Profile'
 import Stockdetail from './pages/Stockdetail'
+import Register from './pages/Register';
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
         {/* <Route path='/product' element={<Productpage></Productpage>}></Route> */}
         <Route path='/newdesign' element={<Newdesign></Newdesign>}></Route>
         <Route path='/stock' element={<Stockpage></Stockpage>}></Route>
+        <Route path='/register' element={<Register></Register>}></Route>
         
       </Routes>
     {/* </Router> */}

@@ -28,6 +28,10 @@
     margin: 0 auto; 
     text-align: center;
     font: bold !important;
+    display: flex;
+    align-items: center;     /* vertical centering */
+    justify-content: center; /* horizontal centering */
+    text-align: center;  
     
 }
 .otp-input {
@@ -64,13 +68,13 @@
     height: 100%; /* Make sure the full height is visible */
   }
   .otp-box{
-    gap: 7% !important;
+    gap: 1% !important;
   }
 
 
 @media (max-width: 1024px) {
     .otp-box {
-        gap: 3% !important;
+        gap: 1% !important;
     }
 }
 
@@ -79,7 +83,7 @@
         margin-top: 2% !important;
     }
     .otp-box {
-        gap: 7% !important;
+        gap: 1% !important;
     }
     .otp-verify-box{
         margin-top: 2% !important;

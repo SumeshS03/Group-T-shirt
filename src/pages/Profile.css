@@ -1,0 +1,37 @@
+.otp-input {
+    width: 50px;               /* adjust width */
+    height: 50px;              /* adjust height */
+    text-align: center;        /* center text horizontally */
+    font-size: 1.5rem;         /* larger font for better visibility */
+    border-radius: 20px;       /* rounded corners */
+    display: flex;
+    align-items: center;       /* vertical centering */
+    justify-content: center;   /* horizontal centering */
+    margin: 0 5px;             /* spacing between OTP boxes */
+  }
+  
+  .custom-alert {
+    color: red;
+    font-weight: bold;
+  }
+
+  .custom-disabled-btn:disabled {
+    color: #ffffff !important;       /* Force white text */
+    background-color: #1677ff !important;  /* Keep the blue background */
+    opacity: 0.6;                     /* Slight transparency to indicate it's disabled */
+    cursor: not-allowed;
+  }
+
+
+  .ant-form-item-label > label {
+    display: block;
+    text-align: center;
+    width: 100%;
+  }
+
+
+  .form-label-center {
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+  }
