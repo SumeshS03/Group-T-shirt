@@ -70,14 +70,7 @@ const Productdetail = () => {
 
 
  
-   const handleCartClick = () => {
-
-   
-
-    
-    setActiveButton("cart");
-    navigate(`/cart/${product.id}`);
-  };
+  
 
   const handleSizeChange = (e) => {
     setSelectedSize(e.target.value);
@@ -215,6 +208,8 @@ const Productdetail = () => {
     const [colorTouched, setColorTouched] = useState(false);
      const [productsData, setProductsData] = useState([]);
      const [hasSubmitted, setHasSubmitted] = useState(false);
+     const [showRequiredError, setShowRequiredError] = useState(false);
+     const [showErrorMessage, setShowErrorMessage] = useState(false);
     
      const [logos, setLogos] = useState([
       { type: '', position: '', image: '' } // 👈 one row initially
@@ -348,15 +343,17 @@ const handleBlur = () => {
   setFormErrors(newErrors);
 };
 const [showSuccess, setShowSuccess] = useState(false);
-useEffect(() => {
-  if (hasSubmitted) {
-    if (Object.keys(formErrors).length === 0) {
-      setShowSuccess(true);
-    } else {
-      setShowSuccess(false);
-    }
-  }
-}, [formErrors, hasSubmitted]);
+// useEffect(() => {
+//   if (hasSubmitted) {
+//     if (Object.keys(formErrors).length === 0) {
+//       setShowSuccess(true);
+//     } else {
+//       setShowSuccess(false);
+//     }
+    
+      
+//   }
+// }, [formErrors, hasSubmitted]);
 
 
 
@@ -380,124 +377,366 @@ const handleLogoCountBlur = () => {
 
     console.log("render")
 
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      const newErrors = {};
+    // const handleSubmit = (e) => {
+    //   e.preventDefault();
+    //   const newErrors = {};
+    //   setHasSubmitted(true);
     
-      // validations
-      if (!enteredQty) {
-        newErrors.enteredQty = 'Quantity must be entered';
-      }
-      if (!pocketRequired) {
-        newErrors.pocketRequired = 'Pocket selection is required';
-      }
-      // if (!logoPosition) {
-      //   newErrors.logoPosition = 'Select the logo position';
-      // }
-      if (!deliveryDate) {
-        newErrors.deliveryDate = 'Delivery date is required';
-      }
-      if (!colorTouched) {
-        newErrors.color = 'Choose color';
-      }
-      // if (!uploadedImage) {
-      //   newErrors.uploadedImage = 'Upload logo';
-      // }
-      if (!selectedCotton && !selectedPolyester && !selectedPolyCotton) {
-        newErrors.selectedoptions = 'Please select at least one option.';
-      }
-      // if (!logoType) {
-      //   newErrors.logoType = 'Select Logo Type';
-      // }
-      if (parseInt(enteredQty) !== grandTotal) {
-        newErrors.quantityMatch = 'Total quantities must match entered quantity';
-      }
+      
+    //   if (!enteredQty) {
+    //     newErrors.enteredQty = 'Quantity must be entered';
+    //   }
+    //   if (!pocketRequired) {
+    //     newErrors.pocketRequired = 'Pocket selection is required';
+    //   }
+      
+    //   if (!deliveryDate) {
+    //     newErrors.deliveryDate = 'Delivery date is required';
+    //   }
+    //   if (!colorTouched) {
+    //     newErrors.color = 'Choose color';
+    //   }
+      
+    //   if (!selectedCotton && !selectedPolyester && !selectedPolyCotton) {
+    //     newErrors.selectedoptions = 'Please select at least one option.';
+    //   }
+      
+    //   if (parseInt(enteredQty) !== grandTotal) {
+    //     newErrors.quantityMatch = 'Total quantities must match entered quantity';
+    //   }
 
+    //   logos.forEach((logo, index) => {
+    //     if (!logo.type) {
+    //       newErrors[`logoType_${index}`] = `Select Logo Type for logo ${index + 1}`;
+    //     }
+    //     if (!logo.position) {
+    //       newErrors[`logoPosition_${index}`] = `Select Logo Position for logo ${index + 1}`;
+    //     }
+    //     if (!logo.image) {
+    //       newErrors[`logoImage_${index}`] = `Upload logo image for logo ${index + 1}`;
+    //     }
+    //   });
+      
+    //   setFormErrors(newErrors);
+    //   setHasSubmitted(true); 
+
+    
+    
+     
+    //   if (Object.keys(newErrors).length === 0) {
+    //     setShowSuccess(true);
+      
+    //     const logoDetails = logos.map((logo, index) => {
+    //       console.log(`Logo ${index + 1}:`);
+    //       console.log(`  Type: ${logo.type}`);
+    //       console.log(`  Position: ${logo.position}`);
+    //       console.log(`  Image:`, logo.image);
+      
+    //       return {
+    //         type: logo.type,
+    //         position: logo.position,
+    //         image: logo.image,
+    //       };
+    //     });
+      
+    //     const formData = {
+    //       quantity: enteredQty,
+    //       logoCount: logoCount,
+    //       pocketRequired: pocketRequired,
+    //       deliveryDate: deliveryDate,
+    //       color: color,
+    //       halfSleeveQuantities: halfSleeve,
+    //       fullSleeveQuantities: fullSleeve,
+    //       totalHalfSleeve: totalHalf,
+    //       totalFullSleeve: totalFull,
+    //       grandTotal: grandTotal,
+    //       remark: remark,
+    //       SelectedItem: selectedCotton || selectedPolyester || selectedPolyCotton,
+    //       productid: productdetail?._id,
+    //       logos: logoDetails, 
+    //     };
+      
+    //     console.log('Form submitted:', formData);
+    //   } else {
+    //     setShowSuccess(false);
+    //   }
+      
+    // };
+
+
+    //new
+    // const handleSubmit = (e) => {
+    //   e.preventDefault();
+    //   const newErrors = {};
+      
+    
+    //   if (!enteredQty) {
+    //     newErrors.enteredQty = 'Quantity must be entered';
+    //   }
+    //   if (!pocketRequired) {
+    //     newErrors.pocketRequired = 'Pocket selection is required';
+    //   }
+    
+    //   if (!deliveryDate) {
+    //     newErrors.deliveryDate = 'Delivery date is required';
+    //   }
+    //   if (!colorTouched) {
+    //     newErrors.color = 'Choose color';
+    //   }
+    
+    //   if (!selectedCotton && !selectedPolyester && !selectedPolyCotton) {
+    //     newErrors.selectedoptions = 'Please select at least one option.';
+    //   }
+    
+    //   if (parseInt(enteredQty) !== grandTotal) {
+    //     newErrors.quantityMatch = 'Total quantities must match entered quantity';
+    //   }
+    
+    //   logos.forEach((logo, index) => {
+    //     if (!logo.type) {
+    //       newErrors[`logoType_${index}`] = `Select Logo Type for logo ${index + 1}`;
+    //     }
+    //     if (!logo.position) {
+    //       newErrors[`logoPosition_${index}`] = `Select Logo Position for logo ${index + 1}`;
+    //     }
+    //     if (!logo.image) {
+    //       newErrors[`logoImage_${index}`] = `Upload logo image for logo ${index + 1}`;
+    //     }
+    //   });
+    
+    //   setFormErrors(newErrors);
+    
+    //   const noErrors = Object.keys(newErrors).length === 0;
+    //   setShowSuccess(noErrors); 
+    //   setHasSubmitted(true);
+    //   if (noErrors) {
+    //     const logoDetails = logos.map((logo, index) => ({
+    //       type: logo.type,
+    //       position: logo.position,
+    //       image: logo.image,
+    //     }));
+    
+    //     const formData = {
+    //       quantity: enteredQty,
+    //       logoCount: logoCount,
+    //       pocketRequired: pocketRequired,
+    //       deliveryDate: deliveryDate,
+    //       color: color,
+    //       halfSleeveQuantities: halfSleeve,
+    //       fullSleeveQuantities: fullSleeve,
+    //       totalHalfSleeve: totalHalf,
+    //       totalFullSleeve: totalFull,
+    //       grandTotal: grandTotal,
+    //       remark: remark,
+    //       SelectedItem: selectedCotton || selectedPolyester || selectedPolyCotton,
+    //       productid: productdetail?._id,
+    //       logos: logoDetails,
+    //     };
+    
+    //     console.log('Form submitted:', formData);
+    //   }
+    // };
+
+    //end
+    
+
+    const validateForm = () => {
+      const errors = {};
+    
+      if (!enteredQty) errors.enteredQty = 'Quantity must be entered';
+      if (!pocketRequired) errors.pocketRequired = 'Pocket selection is required';
+      if (!deliveryDate) errors.deliveryDate = 'Delivery date is required';
+      if (!colorTouched) errors.color = 'Choose color';
+      if (!selectedCotton && !selectedPolyester && !selectedPolyCotton) {
+        errors.selectedoptions = 'Please select at least one option.';
+      }
+      if (parseInt(enteredQty) !== grandTotal) {
+        errors.quantityMatch = 'Total quantities must match entered quantity';
+      }
+    
       logos.forEach((logo, index) => {
-        if (!logo.type) {
-          newErrors[`logoType_${index}`] = `Select Logo Type for logo ${index + 1}`;
-        }
-        if (!logo.position) {
-          newErrors[`logoPosition_${index}`] = `Select Logo Position for logo ${index + 1}`;
-        }
-        if (!logo.image) {
-          newErrors[`logoImage_${index}`] = `Upload logo image for logo ${index + 1}`;
-        }
+        if (!logo.type) errors[`logoType_${index}`] = `Select Logo Type for logo ${index + 1}`;
+        if (!logo.position) errors[`logoPosition_${index}`] = `Select Logo Position for logo ${index + 1}`;
+        if (!logo.image) errors[`logoImage_${index}`] = `Upload logo image for logo ${index + 1}`;
       });
     
-      setFormErrors(newErrors);
-      setHasSubmitted(true); // ✅ always true on submit
-    
-      // if (Object.keys(newErrors).length === 0) {
-       
-      //   const formData = {
-      //     quantity: enteredQty,
-      //     logoCount: logoCount,
-      //     logoPosition: logoPosition,
-      //     logoPositionTwo: logoPositionTwo,
-      //     logoType: logoType,
-      //     logotypetwo: logotypetwo,
-      //     pocketRequired: pocketRequired,
-      //     deliveryDate: deliveryDate,
-      //     color: color,
-      //     halfSleeveQuantities: halfSleeve,
-      //     fullSleeveQuantities: fullSleeve,
-      //     totalHalfSleeve: totalHalf,
-      //     totalFullSleeve: totalFull,
-      //     grandTotal: grandTotal,
-      //     remark: remark,
-      //     logoTwo: uploadedImagetwo,
-      //     logo: uploadedImage,
-      //     SelectedItem: selectedCotton || selectedPolyester || selectedPolyCotton,
-      //     productid: productdetail?._id,
-          
-      //   };
-    
-      //   console.log('Form submitted:', formData);
-      // }
-      if (Object.keys(newErrors).length === 0) {
-        const logoDetails = logos.map((logo, index) => {
-          console.log(`Logo ${index + 1}:`);
-          console.log(`  Type: ${logo.type}`);
-          console.log(`  Position: ${logo.position}`);
-          console.log(`  Image:`, logo.image);
-      
-          return {
-            type: logo.type,
-            position: logo.position,
-            image: logo.image,
-          };
-        });
-      
-        const formData = {
-          quantity: enteredQty,
-          logoCount: logoCount,
-          // logoPosition: logoPosition,
-          // logoPositionTwo: logoPositionTwo,
-          // logoType: logoType,
-          // logotypetwo: logotypetwo,
-          pocketRequired: pocketRequired,
-          deliveryDate: deliveryDate,
-          color: color,
-          halfSleeveQuantities: halfSleeve,
-          fullSleeveQuantities: fullSleeve,
-          totalHalfSleeve: totalHalf,
-          totalFullSleeve: totalFull,
-          grandTotal: grandTotal,
-          remark: remark,
-          // logoTwo: uploadedImagetwo,
-          // logo: uploadedImage,
-          SelectedItem: selectedCotton || selectedPolyester || selectedPolyCotton,
-          productid: productdetail?._id,
-          logos: logoDetails, // ✅ include processed logo details here
-        };
-      
-        console.log('Form submitted:', formData);
-      }
-      
+      return errors;
     };
+  
     
+
+    // const handleSubmit = (e) => {
+    //   e.preventDefault();
     
+    //   const newErrors = validateForm();
+    //   const noErrors = Object.keys(newErrors).length === 0;
+    
+    //   setFormErrors(newErrors);
+    //   setShowSuccess(noErrors);
+    //   setHasSubmitted(true);
+    
+    //   if (!noErrors) {
+    //     setShowErrorMessage(true); 
+        
+    //     setTimeout(() => {
+    //       setShowErrorMessage(false);
+    //     }, 2000);
+    //   }
+    
+    //   if (noErrors) {
+    //     const logoDetails = logos.map((logo) => ({
+    //       type: logo.type,
+    //       position: logo.position,
+    //       image: logo.image,
+    //     }));
+    
+    //     const formData = {
+    //       customerId: "6811f96621f910edb69ea4eb",
+    //       quantityCount: enteredQty,
+    //       logoCount: logoCount,
+    //       pocketRequired: pocketRequired,
+    //       deliveryDate: deliveryDate,
+    //       color: color,
+    //       cloth: selectedCotton || selectedPolyester || selectedPolyCotton,
+    //       clothMaterial: "Soft",
+    //       logos: logoDetails,
+    //       quantitySizeWise: {
+    //         xs: {
+    //           half: halfSleeve,
+    //           full: fullSleeve,
+    //         },
+    //       },
+    //       quantitySleeveWise: {
+    //         half: halfSleeve + fullSleeve,
+    //         full: halfSleeve + fullSleeve,
+    //       },
+    //       totalCount: enteredQty,
+    //       remark: remark,
+    //       amount: 500,
+    //       totalAmount: grandTotal,
+    //       _id: productdetail?._id,
+    //     };
+    
+    //     console.log('Form submitted:', formData);
+    //   }
+    // };
+    
+    const sizestwo = ['xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl', 'xxxxl', 'xxxxxl'];
+
+    const quantitySizeWise = {};
+    sizestwo.forEach(size => {
+      quantitySizeWise[size] = {
+        half: halfSleeve[size] || 0,
+        full: fullSleeve[size] || 0
+      };
+    });
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTA1ZjNmOTc3Mzc1ODkzNzFkODI5YSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0NjUyMzQ3MCwiZXhwIjoxNzQ2NjA5ODcwfQ.iefpEKkUADtYugBuvq3kCZcQfDBHxkGjLauWXBWL0oo";  
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+  const formattedDeliveryDate = new Date(deliveryDate).toISOString()
+  const newErrors = validateForm();
+  const noErrors = Object.keys(newErrors).length === 0;
+ ;
+  setFormErrors(newErrors);
+  setShowSuccess(noErrors);
+  setHasSubmitted(true);
+
+  if (!noErrors) {
+    setShowErrorMessage(true);
+    setTimeout(() => {
+      setShowErrorMessage(false);
+    }, 2000);
+  }
+
+  if (noErrors) {
+    const logoDetails = logos.map((logo) => ({
+      logotype: logo.type,
+      position: logo.position,
+      photo: logo.imageUrl,
+      _id: "68186a0ce1a8beb1bdbf3d56"
+    }));
+
+   
+
+    // if (typeof quantitySizeWise !== 'object' || quantitySizeWise === null) {
+    //   console.error("quantitySizeWise should be an object.");
+    //   return; // Exit function if it's not an object
+    // }
+
+    const formData = {
+      customerId: "6811f96621f910edb69ea4eb",
+      quantityCount: Number(enteredQty),
+      logoCount: Number(logoCount),
+      pocketRequired: pocketRequired === "yes",
+      deliveryDate: formattedDeliveryDate,
+      color: color,
+      cloth: selectedCotton || selectedPolyester || selectedPolyCotton,
+      clothMaterial: "Soft",
+      logos: logoDetails.length > 0 ? logoDetails : [],
+      quantitySizeWise: quantitySizeWise,
+      quantitySleeveWise: {
+        half: totalHalf,
+        full: totalFull,
+      },
+      totalCount: Number(grandTotal),
+      remark: remark,
+      amount: 500,
+      totalAmount: 1000,
+      _id: productdetail?._id,
+    };
+
+const payload = new FormData();
+payload.append('customerId', formData.customerId);
+payload.append('logos', JSON.stringify({ logos: formData.logos }));
+payload.append('quantityCount', String(formData.quantityCount));
+payload.append('logoCount', String(formData.logoCount));
+payload.append('pocketRequired', String(formData.pocketRequired));
+payload.append('deliveryDate', formData.deliveryDate);
+payload.append('color', formData.color);
+payload.append('cloth', formData.cloth);
+payload.append('clothMaterial', formData.clothMaterial);
+payload.append('quantitySizeWise', JSON.stringify(formData.quantitySizeWise));
+payload.append('quantitySleeveWise', JSON.stringify(formData.quantitySleeveWise));
+payload.append('totalCount', String(formData.totalCount));
+payload.append('remark', formData.remark);
+payload.append('amount', String(formData.amount));
+payload.append('totalAmount', String(formData.totalAmount));
+payload.append('_id', formData._id);
+
+payload.forEach((value, key) => {
+  console.log(key, value);
+});
+
+
+// console.log("Final payload to be sent:", JSON.stringify(formData, null, 2));
+
+    const cleanedFormData = JSON.parse(JSON.stringify(formData));
+    axios.post("https://gts.tsitcloud.com/api/cartItems/add", cleanedFormData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      }
+    })
+    .then((response) => {
+      console.log("Form submitted successfully:", response.data);
+    })
+    .catch((error) => {
+      if (error.response) {
+        console.error("Error:", error.response.data); 
+      } else {
+        console.error("Error submitting form:", error);
+      }
+    });
+  }
+};
+
+
+
+
+
+
+
   
     
     const [productdetail, setProductdetail] = useState(null);
@@ -513,7 +752,7 @@ const handleLogoCountBlur = () => {
     useEffect(() => {
       const fetchProduct = async () => {
         try {
-          const response = await axios.get('https://gts.selfietoons.com/api/products/single/products-by-category', {
+          const response = await axios.get('https://gts.tsitcloud.com/api/products/single/products-by-category', {
             headers: {
               Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTA1ZjNmOTc3Mzc1ODkzNzFkODI5YSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0NTk5MDM3OSwiZXhwIjoxNzQ2MDc2Nzc5fQ.A3EHXDY4ABwLQ4HEHuBAUeDfeWJEbvYTaojMbxS4PHA`,
             },
@@ -541,6 +780,22 @@ const handleLogoCountBlur = () => {
   
 
   const product = productdetail;
+
+  const handleCartClick = () => {
+
+    const token = localStorage.getItem('authToken');
+   
+    
+    if (token) {
+      // User is authenticated
+      setActiveButton("cart");
+      navigate(`/cart/${product.id}`);
+    }else {
+      // User is not authenticated
+      alert("Please login to access the cart.");
+      navigate('/profile'); // Or redirect to login page
+    }
+  };
 
   // const product = products.find((p) => p.id === parseInt(id));
   
@@ -1449,7 +1704,7 @@ const responsive = {
 </button>
 
   </div>
-  {hasSubmitted && !showSuccess && (
+  {showErrorMessage && (
   <div className="text-danger mt-2">
     Enter required fields and submit
   </div>
@@ -1504,7 +1759,8 @@ const responsive = {
             <button className={`btn  addtocart-btn col-lg-3 col-12 ${
           activeButton === "cart" ? "active-btn" : ""
         }`}
-        onClick={handleCartClick}>Add to Cart</button>
+        onClick={handleCartClick}
+        >Add to Cart</button>
     </div>
     </div>
 

@@ -18,6 +18,7 @@ import Newdesign from './pages/Newdesign'
 import Stockpage from './pages/Stockpage'
 import Productdetail from './pages/Productdetail';
 import Cartpage from './pages/Cartpage';
+import CartContext from './pages/CartContext';
 import  { CartProvider }  from './pages/CartContext';
 import Profile from './pages/Profile'
 import Stockdetail from './pages/Stockdetail'
@@ -38,7 +39,7 @@ function App() {
         <Route path="/product" element={<Shopcontentproduct/>}></Route>
         <Route path="/productdetail/:id" element={<Productdetail />} />
         <Route path="/Stockdetail/:id" element={<Stockdetail></Stockdetail>}></Route>
-        <Route path="/cart/:id" element={<Cartpage></Cartpage>}></Route>
+        {/* <Route path="/cart/:id" element={<Cartpage></Cartpage>}></Route> */}
         <Route path='/profile' element={<Profile></Profile>}></Route>
         {/* <Route path="/cart/:id"  element={<CartProvider></CartProvider>}></Route> */}
         {/* <Route path="/longsleeves" element={<Longsleeves/>}></Route>
@@ -49,6 +50,7 @@ function App() {
         <Route path='/newdesign' element={<Newdesign></Newdesign>}></Route>
         <Route path='/stock' element={<Stockpage></Stockpage>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>
+        <Route path="/cart/:id" element={<CartContext></CartContext>}></Route>
         
       </Routes>
     {/* </Router> */}

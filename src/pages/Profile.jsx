@@ -40,7 +40,7 @@ const Shopcontent = () => {
     console.log("sendOTP called");
     try {
       const response = await axios.post(
-        'https://gts.selfietoons.com/api/auth/send-customer-otp',
+        'https://gts.tsitcloud.com/api/auth/send-customer-otp',
         { mobile }, // request body
         {
           headers: {
@@ -72,7 +72,7 @@ const Shopcontent = () => {
   
     try {
       const response = await axios.post(
-        'https://gts.selfietoons.com/api/auth/verify-customer-otp', // Replace with your actual URL
+        'https://gts.tsitcloud.com/api/auth/verify-customer-otp', // Replace with your actual URL
         {
           mobile,
           otp: otpCode,
@@ -87,12 +87,19 @@ const Shopcontent = () => {
       console.log("Verify OTP response:", response.data);
   
       if (response.status === 200) {
+        const token=response.data.token;
+        if(token){
+          localStorage.setItem('authToken', token);
+          console.log('Token stored:', token);
+        }
         alert('OTP verified successfully');
         // You can redirect or do next step here
       } else {
+        localStorage.removeItem('authToken');
         alert(response.data.message || 'OTP verification failed');
       }
     } catch (error) {
+      localStorage.removeItem('authToken');
       if (error.response) {
         console.error("Server error:", error.response.data);
         alert(error.response.data.message || 'OTP verification failed');
@@ -162,7 +169,7 @@ const Shopcontent = () => {
           <div className='col-lg-6 d-flex flex-column border-right-dotted mobile-number-box'>
             <Form layout="vertical" style={{ width: '100%' }}
             requiredMark={false}>
-              <Form.Item  label={<div className="form-label-center" style={{color:"white"}}>Mobile Number</div>}
+              <Form.Item  label={<div className="form-label-center fs-5" style={{color:"white"}}>Mobile Number</div>}
               name="mobile" rules={[{ required: true, message: "Please enter your mobile number" }]}>
                 <Input
                   type="text"
@@ -189,7 +196,7 @@ const Shopcontent = () => {
           <div className='col-lg-6 d-flex flex-column otp-verify-box'>
             <Form layout="vertical" style={{ width: '100%' }}>
               <Form.Item
-               label={<div className="form-label-center" style={{color:"white"}}>Enter OTP</div>}
+               label={<div className="form-label-center fs-5" style={{color:"white"}}>Enter OTP</div>}
                 name="otp"
                 hasFeedback
                 validateStatus={otp.join('').length === 6 ? '' : ''} // Validate OTP length for success or error

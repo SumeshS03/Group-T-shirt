@@ -32,7 +32,7 @@ const handleSubmit = async (values)=>{
       };
       const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTA1ZjNmOTc3Mzc1ODkzNzFkODI5YSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0NjQzODQ0NSwiZXhwIjoxNzQ2NTI0ODQ1fQ.EzmLAyGFaueiZgk1BQkPGdfMH0MsFqkLV8Quf1FKjT0";
       try {
-        const response = await axios.post('https://gts.selfietoons.com/api/customers/register', formData,{
+        const response = await axios.post('https://gts.tsitcloud.com/api/customers/register', formData,{
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -91,6 +91,7 @@ const handleSubmit = async (values)=>{
 >
   <Form.Item label="Name" name="name" rules={[{ required: true, message: "Please enter your name" }]}>
     <Input placeholder="Enter your name"
+    className='py-2'
     onChange={(e) => {
         const value = e.target.value;
         const lettersOnly = value.replace(/[^a-zA-Z\s]/g, ""); // allows letters and spaces
@@ -106,6 +107,7 @@ const handleSubmit = async (values)=>{
     },
   ]}>
     <Input placeholder="Enter Mobile Number" 
+    className='py-2'
     maxLength={10}
     onChange={(e) => {
         const onlyDigits = e.target.value.replace(/\D/g, ""); // remove non-digit characters
@@ -120,26 +122,27 @@ const handleSubmit = async (values)=>{
       message: "Please enter a valid email address",
     },
   ]}>
-    <Input placeholder="Enter E-mail" />
+    <Input placeholder="Enter E-mail"
+    className='py-2' />
   </Form.Item>
 
-  <Form.Item label="Address" name="address" rules={[
+  <Form.Item label="Address"  name="address" rules={[
     { required: true, message: "Please enter your address" },
     {
       min: 10,
       message: "Address should be at least 10 characters long",
     },
   ]}>
-    <textarea className='w-100' placeholder="Enter Address" />
+    <textarea className='w-100 py-2 rounded-2' placeholder="Enter Address" />
   </Form.Item>
 
   <Form.Item>
-    <Button type="primary" htmlType="submit" className='mt-5 custom-disabled-button' disabled={!isFormValid} >
+    <Button type="primary" htmlType="submit" className='mt-4 custom-disabled-button' disabled={!isFormValid} >
       Submit
     </Button>
   </Form.Item>
 </Form>
-<div className='row justify-content-center mt-5 fs-5'>
+<div className='row justify-content-center mt-1 fs-5'>
 You already have a account?
   <Link to="/profile" className="text-warning fw-semibold text-decoration-none">
     Login here.

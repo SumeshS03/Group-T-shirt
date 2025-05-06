@@ -40,12 +40,29 @@ const HomeHeader = () => {
   currentPath.startsWith("/productdetail/");
   
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [activeButton, setActiveButton] = useState("");
 
   useEffect(() => {
     setActiveLink(location.pathname.replace("/", ""));
   }, [location]);
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+
+  const handleCartClick = () => {
+
+    const token = localStorage.getItem('authToken');
+   
+    
+    if (token) {
+      // User is authenticated
+      setActiveButton("cart");
+      navigate(`/cart/$`);
+    }else {
+      // User is not authenticated
+      alert("Please login to access the cart.");
+      navigate('/profile'); // Or redirect to login page
+    }
+  };
  
 
   useEffect(() => {
@@ -168,7 +185,7 @@ const HomeHeader = () => {
 
               </div>
               <div className='pofile-box'><FaCartShopping className='profileicons' 
-              onClick={() => navigate("/cart")}/></div>
+              onClick={handleCartClick}/></div>
               </div>
 
 
