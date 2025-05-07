@@ -143,19 +143,44 @@ const Productdetail = () => {
 
   const [halfSleeve, setHalfSleeve] = useState({});
   const [fullSleeve, setFullSleeve] = useState({});
+  const [amountWithGst, setAmountWithGst] = useState(0);
+  const [total,settotal]=useState(0);
 
   const handleInputChange = (type, label, value) => {
     const val = parseInt(value, 10);
     const safeVal = isNaN(val) ? 0 : val;
+
+    const GST_RATE = 0.18;
+    const halfSleevePrice = Number(productdetail?.price.half_sleeve) || 0;
+    const fullSleevePrice = Number(productdetail?.price.full_sleeve) || 0;
+
+
   
     if (type === "half") {
       setHalfSleeve((prev) => ({ ...prev, [label]: safeVal }));
+      console.log("safeVal" , safeVal);
+      var hfSle = safeVal ? safeVal  : 0;
     } else {
       setFullSleeve((prev) => ({ ...prev, [label]: safeVal }));
+      var flSle = safeVal ? safeVal : 0;
     }
+
+    const totalAmount =
+    (Number(hfSle != undefined ? hfSle : 0) * halfSleevePrice) + (Number(flSle != undefined ? flSle : 0) * fullSleevePrice);
+
+    console.log("totalAmount" , Number(hfSle != undefined ? hfSle : 0) * halfSleevePrice , Number(flSle != undefined ? flSle : 0) , flSle);
+    
+    settotal(totalAmount);
+    const totalWithGst = +(totalAmount * 1.18);
+
+    setAmountWithGst(totalWithGst);
+
 
     setFormErrors((prev) => ({ ...prev, quantityMatch: '' }))
   };
+
+  console.log("amountWithGst" , amountWithGst);
+  
 
   const totalHalf = Object.values(halfSleeve).reduce((sum, qty) => sum + qty, 0);
   const totalFull = Object.values(fullSleeve).reduce((sum, qty) => sum + qty, 0);
@@ -215,6 +240,8 @@ const Productdetail = () => {
       { type: '', position: '', image: '' } // 👈 one row initially
     ]);
 
+    console.log("logos0 " , logos);
+    
 
     // const handleLogoCountChange = (e) => {
     //   const count = parseInt(e.target.value) || 1;
@@ -625,19 +652,25 @@ const handleLogoCountBlur = () => {
 
     const quantitySizeWise = {};
     sizestwo.forEach(size => {
+      const upperSize = size.toUpperCase(); // Convert "s" to "S"
       quantitySizeWise[size] = {
-        half: halfSleeve[size] || 0,
-        full: fullSleeve[size] || 0
+        half: Number(halfSleeve[upperSize]) || 0,
+        full: Number(fullSleeve[upperSize]) || 0
       };
     });
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTA1ZjNmOTc3Mzc1ODkzNzFkODI5YSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0NjUyMzQ3MCwiZXhwIjoxNzQ2NjA5ODcwfQ.iefpEKkUADtYugBuvq3kCZcQfDBHxkGjLauWXBWL0oo";  
+
+  
+
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MThhNmQ2ZjA0MzVhYzExMGNiNGYwYSIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc0NjU5Mzg0NSwiZXhwIjoxNzQ2NjgwMjQ1fQ.4DlKuVInOEcGbfnnU2JNL_-16I9e3NzycsghZwcHpyI";  
 
 const handleSubmit = (e) => {
   e.preventDefault();
-  const formattedDeliveryDate = new Date(deliveryDate).toISOString()
+  const storedCustomerId = localStorage.getItem('customerId');
+  console.log("customerId from local:", storedCustomerId);
+  const formattedDeliveryDate = new Date(deliveryDate).toLocaleDateString('en-CA'); 
+
   const newErrors = validateForm();
   const noErrors = Object.keys(newErrors).length === 0;
- ;
   setFormErrors(newErrors);
   setShowSuccess(noErrors);
   setHasSubmitted(true);
@@ -653,19 +686,15 @@ const handleSubmit = (e) => {
     const logoDetails = logos.map((logo) => ({
       logotype: logo.type,
       position: logo.position,
-      photo: logo.imageUrl,
-      _id: "68186a0ce1a8beb1bdbf3d56"
+      photo: logo.image,
     }));
 
    
 
-    // if (typeof quantitySizeWise !== 'object' || quantitySizeWise === null) {
-    //   console.error("quantitySizeWise should be an object.");
-    //   return; // Exit function if it's not an object
-    // }
+   
 
-    const formData = {
-      customerId: "6811f96621f910edb69ea4eb",
+    const formDataObj = {
+      customerId: storedCustomerId,
       quantityCount: Number(enteredQty),
       logoCount: Number(logoCount),
       pocketRequired: pocketRequired === "yes",
@@ -673,7 +702,7 @@ const handleSubmit = (e) => {
       color: color,
       cloth: selectedCotton || selectedPolyester || selectedPolyCotton,
       clothMaterial: "Soft",
-      logos: logoDetails.length > 0 ? logoDetails : [],
+      logos: logoDetails,
       quantitySizeWise: quantitySizeWise,
       quantitySleeveWise: {
         half: totalHalf,
@@ -681,45 +710,57 @@ const handleSubmit = (e) => {
       },
       totalCount: Number(grandTotal),
       remark: remark,
-      amount: 500,
-      totalAmount: 1000,
+      amount: total,
+      totalAmount: amountWithGst,
       _id: productdetail?._id,
     };
-
+console.log(remark, remark);
 const payload = new FormData();
-payload.append('customerId', formData.customerId);
-payload.append('logos', JSON.stringify({ logos: formData.logos }));
-payload.append('quantityCount', String(formData.quantityCount));
-payload.append('logoCount', String(formData.logoCount));
-payload.append('pocketRequired', String(formData.pocketRequired));
-payload.append('deliveryDate', formData.deliveryDate);
-payload.append('color', formData.color);
-payload.append('cloth', formData.cloth);
-payload.append('clothMaterial', formData.clothMaterial);
-payload.append('quantitySizeWise', JSON.stringify(formData.quantitySizeWise));
-payload.append('quantitySleeveWise', JSON.stringify(formData.quantitySleeveWise));
-payload.append('totalCount', String(formData.totalCount));
-payload.append('remark', formData.remark);
-payload.append('amount', String(formData.amount));
-payload.append('totalAmount', String(formData.totalAmount));
-payload.append('_id', formData._id);
+payload.append('customerId', formDataObj.customerId);
+payload.append('quantityCount',formDataObj.quantityCount);
+payload.append('logoCount',formDataObj.logoCount);
+payload.append('pocketRequired',formDataObj.pocketRequired);
+payload.append('deliveryDate', formDataObj.deliveryDate);
+payload.append('color', formDataObj.color);
+payload.append('cloth', formDataObj.cloth);
+payload.append('clothMaterial', formDataObj.clothMaterial);
+payload.append('totalCount',formDataObj.totalCount);
+payload.append('remark', formDataObj.remark);
+payload.append('amount', formDataObj.amount);
+payload.append('totalAmount',formDataObj.totalAmount);
+payload.append('productId', formDataObj._id);
+
+payload.append('quantitySizeWise', JSON.stringify(formDataObj.quantitySizeWise));
+payload.append('quantitySleeveWise', JSON.stringify(formDataObj.quantitySleeveWise));
+
+// Logos (array of objects with optional file)
+console.log("formDataObj" , formDataObj)
+   formDataObj.logos.forEach((item, index) => {
+        payload.append(`logo[${index}][logoType]`, item.logotype);
+        payload.append(`logo[${index}][logoPosition]`, item.position);
+        if (item.photo) {
+          payload.append(`logo[${index}][photo]`, item.photo);
+        }
+   });
+  
 
 payload.forEach((value, key) => {
   console.log(key, value);
 });
 
 
-// console.log("Final payload to be sent:", JSON.stringify(formData, null, 2));
 
-    const cleanedFormData = JSON.parse(JSON.stringify(formData));
-    axios.post("https://gts.tsitcloud.com/api/cartItems/add", cleanedFormData, {
+
+    
+const response = axios.post("https://gts.tsitcloud.com/api/cartItems/add", payload, {
       headers: {
         Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json"
+        "Content-Type": "multipart/form-data"
       }
     })
     .then((response) => {
       console.log("Form submitted successfully:", response.data);
+      alert("Product added to cart successfully!");
     })
     .catch((error) => {
       if (error.response) {
@@ -774,11 +815,15 @@ payload.forEach((value, key) => {
   
       fetchProduct();
     }, [id]);
-  
-    
-    
-  
 
+
+
+
+
+  
+  
+  
+  
   const product = productdetail;
 
   const handleCartClick = () => {
@@ -789,7 +834,7 @@ payload.forEach((value, key) => {
     if (token) {
       // User is authenticated
       setActiveButton("cart");
-      navigate(`/cart/${product.id}`);
+      navigate(`/cart`);
     }else {
       // User is not authenticated
       alert("Please login to access the cart.");
@@ -797,18 +842,7 @@ payload.forEach((value, key) => {
     }
   };
 
-  // const product = products.find((p) => p.id === parseInt(id));
   
-  // const productone = productsData.find((p) => p._id === id);
-  // productsData.forEach((p) => console.log(p._id));
-
-  // const [selectedImage, setSelectedImage] = useState(product.image);
-  
-  // const totalAvailable = product
-  // ? Object.values(product.sizes).reduce((sum, qty) => sum + qty, 0)
-  // : 0;
-
-  // const sizeWiseStock = product.sizes;
 
   
   if (!productdetail) return <p>Loading...</p>;
@@ -973,8 +1007,8 @@ const responsive = {
           <h2 className="text-start">{productdetail?.name}</h2>
           <p className="text-start">{productdetail?.description}</p>
 
-          <p className="text-start"><strong>Price:</strong> ₹{productdetail?.price}</p>
-          <p className="text-start"><strong>Price:</strong> ₹{productdetail?.price}</p>
+          <p className="text-start"><strong>Price:</strong> ₹{productdetail?.price.half_sleeve}</p>
+          <p className="text-start"><strong>fullSleeve:</strong> ₹{productdetail?.price.full_sleeve}</p>
           <p className="text-start"><strong>Color:</strong> {productdetail?.color}</p>
           <p className="text-start"><strong>Material:</strong> {productdetail?.material}</p>
           <p className="text-start"><strong>Brand:</strong> {productdetail?.brand}</p>
@@ -1114,49 +1148,7 @@ const responsive = {
     </div> */}
 
 
-{/* <div className="container mt-5">
-      <div className="d-flex productpage-box row">
-        <div className="col-lg-5 col-12">
-          <div className="product-imageful">
-            <img src={selectedImage} alt={productdetail.name} className="img-fluid" />
-          </div>
 
-          <div className="d-flex mt-4 gap-4 w-100 align-items-start">
-            {productdetail.images.map((img, index) => (
-              <div
-                key={index}
-                className="productdetail-image"
-                onClick={() => setSelectedImage(`https://gts.selfietoons.com/${img}`)}
-                style={{
-                  border: selectedImage.endsWith(img) ? '2px solid blue' : '2px solid transparent',
-                  borderRadius: '8px',
-                  padding: '4px',
-                }}
-              >
-                <img
-                  src={`https://gts.selfietoons.com/${img}`}
-                  alt={`product-thumb-${index}`}
-                  className="img-fluid"
-                  style={{ cursor: 'pointer' }}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="col-lg-5 col-12">
-          <h2 className="text-start">{productdetail.name}</h2>
-          <p className="text-start">{productdetail.description}</p>
-
-          <h2 className="text-xl font-bold mb-2 h5">About this item</h2>
-          <ul>
-            <li className="text-start"><strong>Material:</strong> {productdetail.material}</li>
-            <li className="text-start"><strong>Weight:</strong> {productdetail.weight}</li>
-            <li className="text-start"><strong>Brand:</strong> {productdetail.brand}</li>
-          </ul>
-        </div>
-      </div>
-    </div> */}
 
 
 
@@ -1712,10 +1704,10 @@ const responsive = {
 
 {hasSubmitted && showSuccess && (
   <div className="text-success mt-2">
-    Check amount
+    Product added to cart
   </div>
 )}
-</form>
+{/* </form> */}
 
 
 
@@ -1734,21 +1726,39 @@ const responsive = {
       <label className="fw-bold">Amount:</label>
     </div>
     <div className="col-lg-3">
-      <input type="text" className="form-control" readOnly />
+      <input type="text" className="form-control" readOnly value={`₹${total}`} />
     </div>
       </div>
       <div className="row mt-2">
       <div className="col-lg-2">
-      <label className="fw-bold">Total:</label>
+      <label className="fw-bold">Total amout with gst:</label>
     </div>
     <div className="col-lg-3">
-      <input type="text" className="form-control" readOnly />
+      <input type="text" className="form-control" readOnly value={`₹${amountWithGst}`} />
     </div>
       </div>
 
 
       
     </div>
+
+{/* <div className="container w-50 mt-5">
+  <div className="row">
+    {hasSubmitted && showSuccess && (
+      <>
+        <div className="alert alert-success mt-3">
+          <strong>Amount:</strong> ₹{totalAmount}
+        </div>
+
+        <div className="alert alert-success mt-3">
+          <strong>Total Amount with GST:</strong> ₹{amountWithGst}
+        </div>
+      </>
+    )}
+  </div>
+  </div> */}
+
+
     <div className="container w-50 ">
 
     <div className=" cart-box mt-5 gap-2 row">
@@ -1756,13 +1766,15 @@ const responsive = {
           activeButton === "buy" ? "active-btn" : ""
         }`}
         onClick={() => setActiveButton("buy")}>Buy Now</button>
-            <button className={`btn  addtocart-btn col-lg-3 col-12 ${
+            <button  className={`btn  addtocart-btn col-lg-3 col-12 ${
           activeButton === "cart" ? "active-btn" : ""
         }`}
         onClick={handleCartClick}
         >Add to Cart</button>
     </div>
     </div>
+
+    </form>
 
     <div className="social container-fluid  ">
         <div class="row justify-content-center">

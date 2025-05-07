@@ -88,18 +88,29 @@ const Shopcontent = () => {
   
       if (response.status === 200) {
         const token=response.data.token;
+        const customer = response.data.customer;
+        const customerId = customer?._id;
+
+        console.log('Customer ID stored:', customerId);
         if(token){
           localStorage.setItem('authToken', token);
+
           console.log('Token stored:', token);
+        }
+        if (customerId) {
+          localStorage.setItem('customerId', customerId);
+          console.log('Customer ID stored:', customerId);
         }
         alert('OTP verified successfully');
         // You can redirect or do next step here
       } else {
         localStorage.removeItem('authToken');
+        localStorage.removeItem('customerId');
         alert(response.data.message || 'OTP verification failed');
       }
     } catch (error) {
       localStorage.removeItem('authToken');
+      localStorage.removeItem('customerId');
       if (error.response) {
         console.error("Server error:", error.response.data);
         alert(error.response.data.message || 'OTP verification failed');

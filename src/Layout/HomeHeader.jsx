@@ -56,7 +56,7 @@ const HomeHeader = () => {
     if (token) {
       // User is authenticated
       setActiveButton("cart");
-      navigate(`/cart/$`);
+      navigate(`/cart`);
     }else {
       // User is not authenticated
       alert("Please login to access the cart.");

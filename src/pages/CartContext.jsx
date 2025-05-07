@@ -22,34 +22,33 @@ const CartContext = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [productdetail, setProductdetail] = useState(null);
    const [productsData, setProductsData] = useState([]);
+   const [cartItems, setCartItems] = useState([]);
    const { id } = useParams();
+  
+
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get('https://gts.tsitcloud.com/api/products/single/products-by-category', {
-          headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTA1ZjNmOTc3Mzc1ODkzNzFkODI5YSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0NTk5MDM3OSwiZXhwIjoxNzQ2MDc2Nzc5fQ.A3EHXDY4ABwLQ4HEHuBAUeDfeWJEbvYTaojMbxS4PHA`,
-          },
-        });
-
-       
-        const allProducts = response.data.flatMap(cat => cat.products);
-        setProductsData(allProducts);
-        const foundProduct = allProducts.find((p) => p._id === id);
-
-        if (foundProduct) {
-          setProductdetail(foundProduct);
-          setSelectedImage(`https://gts.selfietoons.com/${foundProduct.images[0]}`);
-        }
+        const storedCustomerId = localStorage.getItem('customerId');
+        const response = await axios.get(
+          `https://gts.tsitcloud.com/api/cartItems/list/${storedCustomerId}`,
+          {
+            headers: {
+              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MThhNmQ2ZjA0MzVhYzExMGNiNGYwYSIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc0NjU5Mzg0NSwiZXhwIjoxNzQ2NjgwMjQ1fQ.4DlKuVInOEcGbfnnU2JNL_-16I9e3NzycsghZwcHpyI`,
+            },
+          }
+        );
+        setCartItems(response.data);
+        console.log('Fetched product:', response.data);
       } catch (error) {
-        console.error('Failed to fetch product:', error);
+        console.error('Error fetching product:', error);
       }
     };
-
+  
     fetchProduct();
-  }, [id]);
+  }, []);
 
-  const product = productdetail;
+  
 
   return (
     <>
@@ -57,66 +56,70 @@ const CartContext = () => {
     <HomeHeader />
    </div>
 
-   
-   {/* <div className="container mt-5">
-  <div className="d-flex productpage-box row">
-  <div className="col-lg-5 col-12">
-  {product ? (
-    <>
-      
-      <div className="product-imageful">
-        <img
-          src={
-            
-            `https://gts.selfietoons.com/${product?.images?.[0]}`
-          }
-          alt={product?.name}
-          className="img-fluid"
-        />
-      </div>
 
-   
-      
-    </>
-  ) : (
-    <p>Loading product images...</p>
-  )}
-</div>
+   <div className='container mt-5'>
+  <div className='row'>
+    <div className='col-12'>
+      {cartItems.length > 0 ? (
+        cartItems.map((item, index) => (
+          <div key={item._id || index} className="card p-3 mb-3">
+            <div className='row'>
+              <div className='col-lg-4'>
+                {/* Product Image */}
+                {item.productId?.images?.length > 0 && (
+                  <img
+                    src={`https://gts.tsitcloud.com/${item.productId.images[0]}`}
+                    alt="Product"
+                    className="img-fluid rounded"
+                    style={{ maxHeight: '200px', objectFit: 'cover' }}
+                  />
+                )}
+              </div>
+              <div className='col-lg-8'>
+                <h5>{item.productId?.name}</h5>
+                <p><strong>Cloth:</strong> {item.cloth}</p>
+                <p><strong>Quantity:</strong> {item.quantityCount}</p>
+                <p><strong>Delivery Date:</strong> {new Date(item.deliveryDate).toLocaleDateString()}</p>
+                <p><strong>Amount:</strong> ₹{item.amount}</p>
+                <p><strong>Total Amount:</strong> ₹{item.totalAmount}</p>
 
-
-    <div className="col-lg-5 col-12">
-     
-      {product ? (
-        <>
-          <h2 className="text-start">{product?.name}</h2>
-          <p className="text-start">{product?.description}</p>
-
-          <p className="text-start"><strong>Price:</strong> ₹{product?.price}</p>
-          <p className="text-start"><strong>Price:</strong> ₹{product?.price}</p>
-          <p className="text-start"><strong>Color:</strong> {product?.color}</p>
-          <p className="text-start"><strong>Material:</strong> {product?.material}</p>
-          <p className="text-start"><strong>Brand:</strong> {product?.brand}</p>
-          <p className="text-start"><strong>Weight:</strong> {product?.weight}</p>
-
-          <h2 className="text-xl font-bold mb-2 h5">About this item</h2>
-          <ul className="text-start">
-            <li><strong>Type:</strong> Comfortable Cotton T-Shirt</li>
-            <li><strong>Fit:</strong> Regular Fit – Comfortable for daily wear</li>
-            <li><strong>Fabric:</strong> 100% Pure Cotton – Durable and skin-friendly</li>
-            <li><strong>Design:</strong> Printed Graphic – Stylish and trendy look</li>
-          </ul>
-
-          
-          
-
-
-        </>
+                {/* Logo Images */}
+                {item.logos?.length > 0 && (
+                  <div className="mt-3">
+                    {/* <strong>Logos:</strong> */}
+                    <div className="d-flex flex-wrap gap-2 mt-2">
+                      {item.logos.map((logo) => (
+                        <div key={logo._id}>
+                          <img
+                            src={`https://gts.tsitcloud.com/${logo.photo.replace(/\\/g, '/')}`}
+                            alt={logo.logotype}
+                            className="img-thumbnail"
+                            style={{ width: '80px', height: '80px', objectFit: 'contain' }}
+                            
+                          />
+                          <div className="text-center small">{logo.logotype}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        ))
       ) : (
-        <p>Loading product details...</p> 
+        <p>Loading cart items...</p>
       )}
     </div>
   </div>
-</div> */}
+</div>
+
+
+
+
+
+   
+  
 
 
    <div className="social container-fluid  ">

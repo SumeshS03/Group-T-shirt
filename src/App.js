@@ -50,7 +50,7 @@ function App() {
         <Route path='/newdesign' element={<Newdesign></Newdesign>}></Route>
         <Route path='/stock' element={<Stockpage></Stockpage>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>
-        <Route path="/cart/:id" element={<CartContext></CartContext>}></Route>
+        <Route path="/cart" element={<CartContext></CartContext>}></Route>
         
       </Routes>
     {/* </Router> */}
