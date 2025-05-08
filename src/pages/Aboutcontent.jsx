@@ -40,6 +40,7 @@ import profilecommon from "../images/profilecommon.png";
 import aboutus from "../images/about-us1.png";
 import { FaFacebook } from "react-icons/fa";
 import Slider from "react-slick";
+import { useNavigate } from 'react-router-dom';
 
 import aboutustwo from "../images/Aboutus2.png";
 
@@ -71,10 +72,42 @@ const sliderSettingsicons = {
       },
     },
   ],
+  
 };
+
 
 const Aboutcontent = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const navigate = useNavigate();
+  const buycheck = () =>{
+    const token = localStorage.getItem('authToken');
+    window.scrollTo(0, 0);
+    if (token) {
+      // User is authenticated
+     
+      navigate(`/product`);
+    }
+    else{
+      alert("Please login to start shopping.");
+      navigate('/profile');
+
+    }
+
+  };
+  const newcheck = () =>{
+    const token = localStorage.getItem('authToken');
+    window.scrollTo(0, 0);
+    if (token) {
+      // User is authenticated
+     
+      navigate(`/newdesign`);
+    }
+    else{
+      alert("Please login to start shopping.");
+      navigate('/profile');
+
+    }
+  }
   return (
     <>
       <div>
@@ -133,7 +166,7 @@ const Aboutcontent = () => {
               <LiaCheckCircle className="circle-check" /> Mix and match
               colors,sizes,and designs
             </p>
-            <button className="start-btd ">GET STARTED</button>
+            <button className="start-btd " onClick={buycheck}>GET STARTED</button>
           </div>
 
           <div className=" col-lg-6 col-md-12  design-text-2  justify-content-end position-relative hide-on-768">
@@ -301,7 +334,7 @@ const Aboutcontent = () => {
                   <div style={{ color: "white" }} className="text-center">Life in minute!</div>
                 </h2>
                 <p className="text-white">Print shirts for yourself or your online business</p>
-                <button className="btn btn-primary text-white px-4 py-2 rounded-5 getstarted-btn">GET STARTED TODAY</button>
+                <button className="btn btn-primary text-white px-4 py-2 rounded-5 getstarted-btn" onClick={newcheck}>GET STARTED TODAY</button>
        
         </div>
         </div>
@@ -677,12 +710,16 @@ const Aboutcontent = () => {
               T-shirts that keep you moving
               <div className="row d-flex mt-4                   gap-2 gap-md-3">
                 <div className="col-auto ">
-                  <button className=" btn rounded-pill shopnow-btn responsive-btn py-2 px-4">
+                  <button className=" btn rounded-pill shopnow-btn responsive-btn py-2 px-4" onClick={buycheck}>
                     SHOP NOW
                   </button>
                 </div>
                 <div className="col-auto">
-                  <button className="btn rounded-pill contactus-btn responsive-btn py-2 px-4 ">
+                  <button className="btn rounded-pill contactus-btn responsive-btn py-2 px-4 " onClick={() => 
+                  {
+                    window.scrollTo(0, 0);
+                    navigate('/contactus');
+                    }}>
                     CONTACT US
                   </button>
                 </div>

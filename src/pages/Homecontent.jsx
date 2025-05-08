@@ -116,6 +116,22 @@ const Homecontent = () => {
         "Their work helped boost our engagement by 40%. Superb service.",
     },
   ];
+
+  const buycheck = () =>{
+    const token = localStorage.getItem('authToken');
+    window.scrollTo(0, 0);
+    if (token) {
+      // User is authenticated
+     
+      navigate(`/product`);
+    }
+    else{
+      alert("Please login to start shopping.");
+      navigate('/profile');
+
+    }
+
+  };
   const profilesettings = {
     dots: false,
     infinite: true,
@@ -137,7 +153,7 @@ const Homecontent = () => {
     ]
   };
 
-
+ 
 
 
 
@@ -236,7 +252,7 @@ const Homecontent = () => {
             <p className="print-shirt">
               Print shirts for yourself or your online business
             </p>
-            <button className="start-btd "  onClick={() => navigate("/shop")}  >Buy Now</button>
+            <button className="start-btd "  onClick={buycheck}  >Buy Now</button>
           </div>
           <div></div>
         </div>
@@ -349,7 +365,7 @@ const Homecontent = () => {
               <LiaCheckCircle className="circle-check" /> Mix and match
               colors,sizes,and designs
             </p>
-            <button className="start-btd " onClick={() => navigate('/product')}>GET STARTED</button>
+            <button className="start-btd " onClick={buycheck}>GET STARTED</button>
           </div>
 
           <div className=" col-lg-6 col-md-12  design-text-2  justify-content-end position-relative hide-on-768 ">
@@ -366,7 +382,10 @@ const Homecontent = () => {
               <h1 className="text-white fw-bold m-0 shopnowpercentage">Need?</h1>
               <p className="text-white m-0 shopnowparatext">Choose from our</p>
               <p className="text-white m-0 shopnowparatext fw-bold">Ready Stock</p>
-              <button className="start-btd-1  mt-4 mb-2 " onClick={() => navigate('/stock')}>
+              <button className="start-btd-1  mt-4 mb-2 " onClick={() => {
+  window.scrollTo(0, 0);
+  navigate('/stock');
+}}>
                 SHOP NOW
               </button>
             </div>
@@ -386,7 +405,10 @@ const Homecontent = () => {
               <h1 className="text-white fw-bold m-0 shopnowpercentage">design </h1>
               <p className="text-white m-0 shopnowparatext">Upload design of</p>
               <p className="text-white m-0 shopnowparatext">your choice</p>
-              <button className="start-btd-1  mt-4 mb-2" onClick={() => navigate('/newdesign')}>
+              <button className="start-btd-1  mt-4 mb-2" onClick={() => {
+  window.scrollTo(0, 0);
+  navigate('/newdesign');
+}}>
                 EXPLORE
               </button>
             </div>
@@ -896,7 +918,7 @@ const Homecontent = () => {
     </div>
       </div>
       <div className="shipping container-fluid mt-3">
-        <div class="row w-75  py-4 justify-content-center text-center">
+        <div class="row shippingrow  py-4 justify-content-center text-center">
           {/* <div
           style={{
             width: "100%",

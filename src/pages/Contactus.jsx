@@ -32,8 +32,13 @@ import { IoLocationOutline } from "react-icons/io5";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const Contactus = () => {
+  const navigate = useNavigate();
+  const newcheck = () =>{
+    navigate(`/newdesign`);
+  }
   return (
     <>
       <div>
@@ -208,6 +213,7 @@ const Contactus = () => {
                       <button
                         className=" btn rounded-pill shopnow-btn px-4 py-2 get-started-today "
                         style={{ textAlign: "none" }}
+                        onClick={newcheck}
                       >
                         GET STARTED TODAY
                       </button>

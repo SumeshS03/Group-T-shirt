@@ -301,6 +301,9 @@
     transition: background-color 0.3s ease, color 0.3s ease;
     
 }
+.shippingrow {
+    width: 96% !important;
+}
 .box:hover{
     background-color: #0066cb;
     

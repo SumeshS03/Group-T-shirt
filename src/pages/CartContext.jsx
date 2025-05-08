@@ -17,6 +17,9 @@ import { IoLocationOutline } from "react-icons/io5";
 import bluef from "../images/blue-f.png"
 import axios from 'axios';
 import { useParams } from "react-router-dom";
+import { MdDelete } from "react-icons/md";
+import './CartContext.css'
+import Button from '@mui/material/Button';
 
 const CartContext = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -34,7 +37,7 @@ const CartContext = () => {
           `https://gts.tsitcloud.com/api/cartItems/list/${storedCustomerId}`,
           {
             headers: {
-              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MThhNmQ2ZjA0MzVhYzExMGNiNGYwYSIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc0NjU5Mzg0NSwiZXhwIjoxNzQ2NjgwMjQ1fQ.4DlKuVInOEcGbfnnU2JNL_-16I9e3NzycsghZwcHpyI`,
+              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MThhNmQ2ZjA0MzVhYzExMGNiNGYwYSIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc0NjY4Mzc1NywiZXhwIjoxNzQ2NzcwMTU3fQ.V7SgeITidTzUAE_S5BCciSTizowlhblmrgBC3Wy6FBk`,
             },
           }
         );
@@ -55,16 +58,21 @@ const CartContext = () => {
     <div>
     <HomeHeader />
    </div>
+    
+   <div className='container mt-5 d-flex align-items-center justify-content-center'>
+   <div className='row w-75'>
+   <div className='fw-bold shopping-cart-text'>Shopping cart</div>
+    </div>
+    </div>
 
-
-   <div className='container mt-5'>
-  <div className='row'>
+   <div className='container mt-5 d-flex align-items-center justify-content-center'>
+  <div className='row w-75'>
     <div className='col-12'>
       {cartItems.length > 0 ? (
         cartItems.map((item, index) => (
           <div key={item._id || index} className="card p-3 mb-3">
             <div className='row'>
-              <div className='col-lg-4'>
+              <div className='col-lg-5'>
                 {/* Product Image */}
                 {item.productId?.images?.length > 0 && (
                   <img
@@ -75,7 +83,7 @@ const CartContext = () => {
                   />
                 )}
               </div>
-              <div className='col-lg-8'>
+              <div className='col-lg-5 text-start'>
                 <h5>{item.productId?.name}</h5>
                 <p><strong>Cloth:</strong> {item.cloth}</p>
                 <p><strong>Quantity:</strong> {item.quantityCount}</p>
@@ -84,25 +92,29 @@ const CartContext = () => {
                 <p><strong>Total Amount:</strong> ₹{item.totalAmount}</p>
 
                 {/* Logo Images */}
-                {item.logos?.length > 0 && (
+                {Array.isArray(item.logos) && item.logos.length > 0 && (
                   <div className="mt-3">
-                    {/* <strong>Logos:</strong> */}
-                    <div className="d-flex flex-wrap gap-2 mt-2">
-                      {item.logos.map((logo) => (
-                        <div key={logo._id}>
+                    <strong>Logos:</strong>
+                    <div className="d-flex flex-wrap gap-3 mt-2">
+                      {item.logos.map((logo, idx) => (
+                        <div key={idx} className="text-center">
                           <img
-                            src={`https://gts.tsitcloud.com/${logo.photo.replace(/\\/g, '/')}`}
+                            src={`https://gts.tsitcloud.com/${logo.photo?.replace(/\\/g, '/')}`}
                             alt={logo.logotype}
                             className="img-thumbnail"
                             style={{ width: '80px', height: '80px', objectFit: 'contain' }}
-                            
                           />
-                          <div className="text-center small">{logo.logotype}</div>
+                          <div className="small mt-1">{logo.logotype}</div>
                         </div>
                       ))}
                     </div>
                   </div>
                 )}
+              </div>
+              <div className='col-lg-2 d-flex flex-column align-items-center justify-content-center gap-5'>
+                
+              <MdDelete className='delete-icon  ' size={32} />
+              <Button variant="contained" style={{ backgroundColor: 'green' }}>Buy Now</Button>
               </div>
             </div>
           </div>
@@ -113,6 +125,7 @@ const CartContext = () => {
     </div>
   </div>
 </div>
+
 
 
 

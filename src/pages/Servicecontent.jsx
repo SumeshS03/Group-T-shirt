@@ -58,6 +58,7 @@ import { Navigation, Pagination } from 'swiper/modules'; // for arrows and pagin
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { useNavigate } from "react-router-dom";
 
 
 const items = [
@@ -116,16 +117,27 @@ const Servicecontent = () => {
     window.addEventListener("resize", handleResize); // Update on resize
     return () => window.removeEventListener("resize", handleResize); // Cleanup
   }, []);
-
+  const [currentStartIndex, setCurrentStartIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const currentItem = items[currentIndex]; 
   const totalPages = Math.ceil(items.length / itemsPerPage);
   const startIndex = currentPage * itemsPerPage;
-  const visibleItems = items.slice(startIndex, startIndex + itemsPerPage);
+  // const visibleItems = items.slice(startIndex, startIndex + itemsPerPage);
+  const visibleItems = items.slice(
+    currentStartIndex,
+    currentStartIndex + itemsPerPage
+  );
 
   const nextPage = () => {
     if (currentPage < totalPages - 1) {
       setCurrentPage(currentPage + 1);
     }
   };
+
+  
+
+
+
   
 
   const prevPage = () => {
@@ -133,6 +145,41 @@ const Servicecontent = () => {
       setCurrentPage(currentPage - 1);
     }
   };
+
+  const nextItem = () => {
+    if (currentStartIndex + itemsPerPage < items.length) {
+      setCurrentStartIndex(currentStartIndex + 1);
+    }
+  };
+
+  const prevItem = () => {
+    if (currentStartIndex > 0) {
+      setCurrentStartIndex(currentStartIndex - 1);
+    }
+  };
+
+ 
+
+  const navigate = useNavigate();
+  const buycheck = () =>{
+    const token = localStorage.getItem('authToken');
+    window.scrollTo(0,0);
+    if (token) {
+      // User is authenticated
+     
+      navigate(`/product`);
+    }
+    else{
+      alert("Please login to start shopping.");
+      navigate('/profile');
+
+    }
+
+  };
+  const newcheck = () =>{
+    window.scrollTo(0,0);
+    navigate(`/newdesign`);
+  }
 
   return (
     
@@ -409,7 +456,7 @@ const Servicecontent = () => {
           <span>T-shirt printing </span>
           <span style={{ color: "blue" }}>made easy.</span>
         </h2>
-        <button className="btn rounded-pill browse-btn mt-3 mt-md-0 px-4 py-2  fs-6 fs-md-5">
+        <button className="btn rounded-pill browse-btn mt-3 mt-md-0 px-4 py-2  fs-6 fs-md-5" onClick={buycheck}>
   Browse all
 </button>
 
@@ -429,19 +476,19 @@ const Servicecontent = () => {
  >
   <div className="row align-items-center">
     
-    {/* Left Arrow Button */}
+    
     <div className="col-auto d-flex align-items-center justify-content-center p-0">
       <button
         className="btn p-0 border-0"
-        onClick={prevPage}
-        disabled={currentPage === 0}
+        onClick={prevItem}
+        disabled={currentStartIndex === 0}
        style={{ boxShadow: "none" }}
       >
         <FaCircleArrowLeft size={40} style={{ color: "yellow" }} />
       </button>
     </div>
 
-    {/* Items */}
+   
     <div className="col">
   <div className="row justify-content-between custom-grid-row">
     {visibleItems.map((item) => (
@@ -472,12 +519,12 @@ const Servicecontent = () => {
 
 
 
-    {/* Right Arrow Button */}
+    
     <div className="col-auto d-flex align-items-center justify-content-center p-0">
       <button
         className="btn p-0 border-0"
-        onClick={nextPage}
-        disabled={currentPage === totalPages - 1}
+        onClick={nextItem}
+        disabled={currentStartIndex + itemsPerPage >= items.length}
         style={{  boxShadow: "none" }}
       >
         <FaCircleArrowRight size={40} style={{ color: "yellow" }} />
@@ -823,6 +870,7 @@ const Servicecontent = () => {
                       <button
                         className=" btn rounded-pill shopnow-btn px-4 py-2 get-started-today "
                         style={{ textAlign: "none" }}
+                        onClick={newcheck}
                       >
                         GET STARTED TODAY
                       </button>
@@ -910,6 +958,11 @@ const Servicecontent = () => {
                     fontWeight: "500",
                     borderBlockStyle: "none",
                   }}
+                  onClick={() => 
+                    {
+                      window.scrollTo(0,0);
+                      navigate('/contactus');
+                    }}
                 >
                   Contact Now
                 </button>

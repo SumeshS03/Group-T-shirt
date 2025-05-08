@@ -36,6 +36,7 @@ import fullsleevethree from "../images/Full-Sleve3.png"
 import axios from 'axios';
 import { Form, Row, Col, FloatingLabel} from 'react-bootstrap';
 
+
 const Productdetail = () => {
 
    const [selectedSize, setSelectedSize] = useState("");
@@ -205,14 +206,6 @@ const Productdetail = () => {
 
     
 
-  //  const products = [
-  //                  { id: 1, image: Hoodiesone,imageone:Hoodie,imagetwo:Hoodiethree, label: "Sleeve", price: 299,sizes: {XS:2,S: 5,M: 4,L: 4,X: 2,XL: 1,'2XL': 3, '3XL': 2, '4XL': 1, '5XL': 0} },
-  //                  { id: 2, image: tshirttwo,imageone:tshirtthree,imagetwo:tshirtfour, label: "Full Sleeve", price: 349,sizes: {XS:2,S: 5,M: 3,L: 1,X: 2,XL: 1,'2XL': 3, '3XL': 2, '4XL': 1, '5XL': 0} },
-  //                  { id: 3, image: fullsleeveone,imageone:fullsleevethree,imagetwo:qualityshirt, label: "Round Neck", price: 279,sizes: {XS:2,S: 2,M: 3,L: 4,X: 2,XL: 1,'2XL': 3, '3XL': 2, '4XL': 1, '5XL': 0} },
-  //                  { id: 4, image: qualityshirt,imageone:shopimage,imagetwo:qualityshirt, label: "V Neck", price: 319,sizes: {XS:2,S: 5,M: 3,L: 1,X: 2,XL: 1,'2XL': 3, '3XL': 2, '4XL': 1, '5XL': 0} },
-  //                  { id: 5, image: shopimage,imageone:shopimage,imagetwo:qualityshirt, label: "V Neck", price: 319,sizes: {XS:2,S: 5,M: 15,L: 4,X: 2,XL: 1,'2XL': 3, '3XL': 2, '4XL': 1, '5XL': 0} },
-  //                  { id: 6, image: shopimage,imageone:shopimage,imagetwo:qualityshirt, label: "V Neck", price: 319,sizes: {XS:2,S: 5,M: 3,L: 4,X: 41,XL: 1,'2XL': 3, '3XL': 2, '4XL': 1, '5XL': 0} },
-  //                ];
    
     const [logoCount, setLogoCount] = useState(1);
     const [visibleLogos, setVisibleLogos] = useState(1);
@@ -243,26 +236,7 @@ const Productdetail = () => {
     console.log("logos0 " , logos);
     
 
-    // const handleLogoCountChange = (e) => {
-    //   const count = parseInt(e.target.value) || 1;
-    //   setLogoCount(count);
-    
-    //   const updatedLogos = [...logos];
-    
-    //   // Expand or trim the logos array
-    //   if (count > updatedLogos.length) {
-    //     while (updatedLogos.length < count) {
-    //       updatedLogos.push({ type: '', position: '', image: '' });
-    //     }
-    //   } else {
-    //     updatedLogos.length = count;
-    //   }
-    
-    //   setLogos(updatedLogos);
-    
-    //   // Optional: Clear error
-    //   setFormErrors((prev) => ({ ...prev, logoCount: '' }));
-    // };
+   
     
 
     const handleLogoCountChange = (e) => {
@@ -661,7 +635,7 @@ const handleLogoCountBlur = () => {
 
   
 
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MThhNmQ2ZjA0MzVhYzExMGNiNGYwYSIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc0NjU5Mzg0NSwiZXhwIjoxNzQ2NjgwMjQ1fQ.4DlKuVInOEcGbfnnU2JNL_-16I9e3NzycsghZwcHpyI";  
+// const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MThhNmQ2ZjA0MzVhYzExMGNiNGYwYSIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc0NjU5Mzg0NSwiZXhwIjoxNzQ2NjgwMjQ1fQ.4DlKuVInOEcGbfnnU2JNL_-16I9e3NzycsghZwcHpyI";  
 
 const handleSubmit = (e) => {
   e.preventDefault();
@@ -671,12 +645,17 @@ const handleSubmit = (e) => {
 
   const newErrors = validateForm();
   const noErrors = Object.keys(newErrors).length === 0;
+  
   setFormErrors(newErrors);
   setShowSuccess(noErrors);
   setHasSubmitted(true);
 
+
+ 
+
   if (!noErrors) {
     setShowErrorMessage(true);
+    alert("Enter all fields to add!");
     setTimeout(() => {
       setShowErrorMessage(false);
     }, 2000);
@@ -701,7 +680,7 @@ const handleSubmit = (e) => {
       deliveryDate: formattedDeliveryDate,
       color: color,
       cloth: selectedCotton || selectedPolyester || selectedPolyCotton,
-      clothMaterial: "Soft",
+      clothMaterial: productdetail?.material,
       logos: logoDetails,
       quantitySizeWise: quantitySizeWise,
       quantitySleeveWise: {
@@ -750,8 +729,7 @@ payload.forEach((value, key) => {
 
 
 
-
-    
+const token = localStorage.getItem('authToken');
 const response = axios.post("https://gts.tsitcloud.com/api/cartItems/add", payload, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -764,7 +742,8 @@ const response = axios.post("https://gts.tsitcloud.com/api/cartItems/add", paylo
     })
     .catch((error) => {
       if (error.response) {
-        console.error("Error:", error.response.data); 
+        console.error("Server error:", error.response.data);
+        alert("Something went wrong. Please try again.");
       } else {
         console.error("Error submitting form:", error);
       }
@@ -792,10 +771,13 @@ const response = axios.post("https://gts.tsitcloud.com/api/cartItems/add", paylo
 
     useEffect(() => {
       const fetchProduct = async () => {
+
+        const token = localStorage.getItem('authToken');
+   
         try {
           const response = await axios.get('https://gts.tsitcloud.com/api/products/single/products-by-category', {
             headers: {
-              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTA1ZjNmOTc3Mzc1ODkzNzFkODI5YSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0NTk5MDM3OSwiZXhwIjoxNzQ2MDc2Nzc5fQ.A3EHXDY4ABwLQ4HEHuBAUeDfeWJEbvYTaojMbxS4PHA`,
+              Authorization: `Bearer token`,
             },
           });
   
@@ -1219,6 +1201,7 @@ const responsive = {
           id="no"
           name="pocketRequired"
           value="no"
+          required
           checked={pocketRequired === 'no'}
           onChange={(e) => {
             setPocketRequired(e.target.value);
@@ -1691,22 +1674,22 @@ const responsive = {
     ></textarea>
   </div>
   <div className="d-flex justify-content-center mt-4">
-  <button type="submit" className="btn btn-primary px-5" >
+  {/* <button type="submit" className="btn btn-primary px-5" >
   Submit
-</button>
+</button> */}
 
   </div>
-  {showErrorMessage && (
+  {/* {showErrorMessage && (
   <div className="text-danger mt-2">
     Enter required fields and submit
   </div>
-)}
+)} */}
 
-{hasSubmitted && showSuccess && (
+{/* {hasSubmitted && showSuccess && (
   <div className="text-success mt-2">
     Product added to cart
   </div>
-)}
+)} */}
 {/* </form> */}
 
 
@@ -1762,19 +1745,33 @@ const responsive = {
     <div className="container w-50 ">
 
     <div className=" cart-box mt-5 gap-2 row">
-            <button  className={`btn  buynow-btn col-lg-2 col-12  ${
-          activeButton === "buy" ? "active-btn" : ""
-        }`}
-        onClick={() => setActiveButton("buy")}>Buy Now</button>
-            <button  className={`btn  addtocart-btn col-lg-3 col-12 ${
-          activeButton === "cart" ? "active-btn" : ""
-        }`}
-        onClick={handleCartClick}
-        >Add to Cart</button>
+            {/* <button  className='btn  buynow-btn col-lg-2 col-12'>Buy Now</button> */}
+
+            <button type="button" class="btn btn-primary btn-lg w-25">Buy Now</button>
+            <button type="submit" class="btn btn-primary btn-lg w-25" 
+            // onClick={() => alert('Fill all the field')}
+            >Add to cart</button>
+
+            {/* <button  className='btn  addtocart-btn col-lg-3 col-12'
+        
+        
+        type="submit"
+        >Add to Cart</button> */}
+
+
     </div>
     </div>
 
     </form>
+
+
+    
+
+
+
+
+
+
 
     <div className="social container-fluid  ">
         <div class="row justify-content-center">
