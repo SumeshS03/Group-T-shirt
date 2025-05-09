@@ -37,7 +37,7 @@ const CartContext = () => {
           `https://gts.tsitcloud.com/api/cartItems/list/${storedCustomerId}`,
           {
             headers: {
-              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MThhNmQ2ZjA0MzVhYzExMGNiNGYwYSIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc0NjY4Mzc1NywiZXhwIjoxNzQ2NzcwMTU3fQ.V7SgeITidTzUAE_S5BCciSTizowlhblmrgBC3Wy6FBk`,
+              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MThhNmQ2ZjA0MzVhYzExMGNiNGYwYSIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc0Njc3MTczMywiZXhwIjoxNzQ2ODU4MTMzfQ._uwyvgYDr7qUICUpI4glRxCfiLwnwdikI_QKw0h4VXE`,
             },
           }
         );
@@ -50,6 +50,34 @@ const CartContext = () => {
   
     fetchProduct();
   }, []);
+
+  const handleDelete = async(itemId) => {
+    const storedCustomerId = localStorage.getItem('customerId');
+    const token = localStorage.getItem('authToken');
+    console.log('itemid',itemId);
+    try{
+      const response = axios.post('https://gts.tsitcloud.com/api/cartItems/delete',
+        {
+           cartItemId:itemId,
+           customerId : storedCustomerId,
+        },
+        {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+      );
+      alert(response.data?.message || "Item deleted successfully!");
+      setCartItems((prev) => prev.filter(item => item._id !== itemId));
+
+    }catch (error) {
+    const errorMsg = error.response?.data?.message || "Error deleting item.";
+    console.error("Delete error:", errorMsg);
+    alert(errorMsg);
+  }
+
+
+  };
 
   
 
@@ -113,14 +141,16 @@ const CartContext = () => {
               </div>
               <div className='col-lg-2 d-flex flex-column align-items-center justify-content-center gap-5'>
                 
-              <MdDelete className='delete-icon  ' size={32} />
+              <MdDelete className='delete-icon  '
+              onClick={() => handleDelete(item._id)}
+               size={32} />
               <Button variant="contained" style={{ backgroundColor: 'green' }}>Buy Now</Button>
               </div>
             </div>
           </div>
         ))
       ) : (
-        <p>Loading cart items...</p>
+        <p>Product not add</p>
       )}
     </div>
   </div>

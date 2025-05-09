@@ -35,6 +35,7 @@ import fullsleeveone from "../images/Full-Sleeve1.png"
 import fullsleevethree from "../images/Full-Sleve3.png"
 import axios from 'axios';
 import { Form, Row, Col, FloatingLabel} from 'react-bootstrap';
+import { FaShoppingCart } from 'react-icons/fa';
 
 
 const Productdetail = () => {
@@ -213,7 +214,7 @@ const Productdetail = () => {
     const [remark, setRemark] = useState('');
     const [qtyError, setQtyError] = useState('');
     const [formErrors, setFormErrors] = useState({});
-    const [pocketRequired, setPocketRequired] = useState('');
+    const [pocketRequired, setPocketRequired] = useState('no');
     const [deliveryDate, setDeliveryDate] = useState('');
     const [selectedCotton, setSelectedCotton] = useState('');
     const [selectedPolyester, setSelectedPolyester] = useState('');
@@ -318,18 +319,7 @@ const Productdetail = () => {
       return today.toISOString().split('T')[0];
     };
 
-   // DELETE THIS UNUSED FUNCTION
-// const validateQuantity = () => {
-//   const newErrors = {};
-//   if (!enteredQty) {
-//     newErrors.enteredQty = 'Quantity Must Be 15 or More';
-//   } else if (isNaN(enteredQty)) {
-//     newErrors.enteredQty = 'Quantity must be a number';
-//   } else if (parseInt(enteredQty) < 15) {
-//     newErrors.enteredQty = 'Minimum quantity should be 15';
-//   }
-//   setFormErrors(prevErrors => ({ ...prevErrors, ...newErrors }));
-// };
+   
 const handleBlur = () => {
   const newErrors = {};
 
@@ -344,17 +334,6 @@ const handleBlur = () => {
   setFormErrors(newErrors);
 };
 const [showSuccess, setShowSuccess] = useState(false);
-// useEffect(() => {
-//   if (hasSubmitted) {
-//     if (Object.keys(formErrors).length === 0) {
-//       setShowSuccess(true);
-//     } else {
-//       setShowSuccess(false);
-//     }
-    
-      
-//   }
-// }, [formErrors, hasSubmitted]);
 
 
 
@@ -378,174 +357,14 @@ const handleLogoCountBlur = () => {
 
     console.log("render")
 
-    // const handleSubmit = (e) => {
-    //   e.preventDefault();
-    //   const newErrors = {};
-    //   setHasSubmitted(true);
-    
-      
-    //   if (!enteredQty) {
-    //     newErrors.enteredQty = 'Quantity must be entered';
-    //   }
-    //   if (!pocketRequired) {
-    //     newErrors.pocketRequired = 'Pocket selection is required';
-    //   }
-      
-    //   if (!deliveryDate) {
-    //     newErrors.deliveryDate = 'Delivery date is required';
-    //   }
-    //   if (!colorTouched) {
-    //     newErrors.color = 'Choose color';
-    //   }
-      
-    //   if (!selectedCotton && !selectedPolyester && !selectedPolyCotton) {
-    //     newErrors.selectedoptions = 'Please select at least one option.';
-    //   }
-      
-    //   if (parseInt(enteredQty) !== grandTotal) {
-    //     newErrors.quantityMatch = 'Total quantities must match entered quantity';
-    //   }
 
-    //   logos.forEach((logo, index) => {
-    //     if (!logo.type) {
-    //       newErrors[`logoType_${index}`] = `Select Logo Type for logo ${index + 1}`;
-    //     }
-    //     if (!logo.position) {
-    //       newErrors[`logoPosition_${index}`] = `Select Logo Position for logo ${index + 1}`;
-    //     }
-    //     if (!logo.image) {
-    //       newErrors[`logoImage_${index}`] = `Upload logo image for logo ${index + 1}`;
-    //     }
-    //   });
-      
-    //   setFormErrors(newErrors);
-    //   setHasSubmitted(true); 
-
-    
-    
-     
-    //   if (Object.keys(newErrors).length === 0) {
-    //     setShowSuccess(true);
-      
-    //     const logoDetails = logos.map((logo, index) => {
-    //       console.log(`Logo ${index + 1}:`);
-    //       console.log(`  Type: ${logo.type}`);
-    //       console.log(`  Position: ${logo.position}`);
-    //       console.log(`  Image:`, logo.image);
-      
-    //       return {
-    //         type: logo.type,
-    //         position: logo.position,
-    //         image: logo.image,
-    //       };
-    //     });
-      
-    //     const formData = {
-    //       quantity: enteredQty,
-    //       logoCount: logoCount,
-    //       pocketRequired: pocketRequired,
-    //       deliveryDate: deliveryDate,
-    //       color: color,
-    //       halfSleeveQuantities: halfSleeve,
-    //       fullSleeveQuantities: fullSleeve,
-    //       totalHalfSleeve: totalHalf,
-    //       totalFullSleeve: totalFull,
-    //       grandTotal: grandTotal,
-    //       remark: remark,
-    //       SelectedItem: selectedCotton || selectedPolyester || selectedPolyCotton,
-    //       productid: productdetail?._id,
-    //       logos: logoDetails, 
-    //     };
-      
-    //     console.log('Form submitted:', formData);
-    //   } else {
-    //     setShowSuccess(false);
-    //   }
-      
-    // };
-
-
-    //new
-    // const handleSubmit = (e) => {
-    //   e.preventDefault();
-    //   const newErrors = {};
-      
-    
-    //   if (!enteredQty) {
-    //     newErrors.enteredQty = 'Quantity must be entered';
-    //   }
-    //   if (!pocketRequired) {
-    //     newErrors.pocketRequired = 'Pocket selection is required';
-    //   }
-    
-    //   if (!deliveryDate) {
-    //     newErrors.deliveryDate = 'Delivery date is required';
-    //   }
-    //   if (!colorTouched) {
-    //     newErrors.color = 'Choose color';
-    //   }
-    
-    //   if (!selectedCotton && !selectedPolyester && !selectedPolyCotton) {
-    //     newErrors.selectedoptions = 'Please select at least one option.';
-    //   }
-    
-    //   if (parseInt(enteredQty) !== grandTotal) {
-    //     newErrors.quantityMatch = 'Total quantities must match entered quantity';
-    //   }
-    
-    //   logos.forEach((logo, index) => {
-    //     if (!logo.type) {
-    //       newErrors[`logoType_${index}`] = `Select Logo Type for logo ${index + 1}`;
-    //     }
-    //     if (!logo.position) {
-    //       newErrors[`logoPosition_${index}`] = `Select Logo Position for logo ${index + 1}`;
-    //     }
-    //     if (!logo.image) {
-    //       newErrors[`logoImage_${index}`] = `Upload logo image for logo ${index + 1}`;
-    //     }
-    //   });
-    
-    //   setFormErrors(newErrors);
-    
-    //   const noErrors = Object.keys(newErrors).length === 0;
-    //   setShowSuccess(noErrors); 
-    //   setHasSubmitted(true);
-    //   if (noErrors) {
-    //     const logoDetails = logos.map((logo, index) => ({
-    //       type: logo.type,
-    //       position: logo.position,
-    //       image: logo.image,
-    //     }));
-    
-    //     const formData = {
-    //       quantity: enteredQty,
-    //       logoCount: logoCount,
-    //       pocketRequired: pocketRequired,
-    //       deliveryDate: deliveryDate,
-    //       color: color,
-    //       halfSleeveQuantities: halfSleeve,
-    //       fullSleeveQuantities: fullSleeve,
-    //       totalHalfSleeve: totalHalf,
-    //       totalFullSleeve: totalFull,
-    //       grandTotal: grandTotal,
-    //       remark: remark,
-    //       SelectedItem: selectedCotton || selectedPolyester || selectedPolyCotton,
-    //       productid: productdetail?._id,
-    //       logos: logoDetails,
-    //     };
-    
-    //     console.log('Form submitted:', formData);
-    //   }
-    // };
-
-    //end
     
 
     const validateForm = () => {
       const errors = {};
     
       if (!enteredQty) errors.enteredQty = 'Quantity must be entered';
-      if (!pocketRequired) errors.pocketRequired = 'Pocket selection is required';
+      // if (!pocketRequired) errors.pocketRequired = 'Pocket selection is required';
       if (!deliveryDate) errors.deliveryDate = 'Delivery date is required';
       if (!colorTouched) errors.color = 'Choose color';
       if (!selectedCotton && !selectedPolyester && !selectedPolyCotton) {
@@ -553,6 +372,9 @@ const handleLogoCountBlur = () => {
       }
       if (parseInt(enteredQty) !== grandTotal) {
         errors.quantityMatch = 'Total quantities must match entered quantity';
+      }
+      if (!remark || remark.trim() === '') {
+      errors.remark = 'Remark is required';
       }
     
       logos.forEach((logo, index) => {
@@ -637,119 +459,225 @@ const handleLogoCountBlur = () => {
 
 // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MThhNmQ2ZjA0MzVhYzExMGNiNGYwYSIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc0NjU5Mzg0NSwiZXhwIjoxNzQ2NjgwMjQ1fQ.4DlKuVInOEcGbfnnU2JNL_-16I9e3NzycsghZwcHpyI";  
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-  const storedCustomerId = localStorage.getItem('customerId');
-  console.log("customerId from local:", storedCustomerId);
-  const formattedDeliveryDate = new Date(deliveryDate).toLocaleDateString('en-CA'); 
+// const handleSubmit = (e) => {
+//   e.preventDefault();
+//   const storedCustomerId = localStorage.getItem('customerId');
+//   console.log("customerId from local:", storedCustomerId);
+//   const formattedDeliveryDate = new Date(deliveryDate).toLocaleDateString('en-CA'); 
 
-  const newErrors = validateForm();
-  const noErrors = Object.keys(newErrors).length === 0;
+//   const newErrors = validateForm();
+//   const noErrors = Object.keys(newErrors).length === 0;
   
-  setFormErrors(newErrors);
-  setShowSuccess(noErrors);
-  setHasSubmitted(true);
+//   setFormErrors(newErrors);
+//   setShowSuccess(noErrors);
+//   setHasSubmitted(true);
 
 
  
 
+//   if (!noErrors) {
+//     setShowErrorMessage(true);
+//     alert("Enter all fields to add!");
+//     setTimeout(() => {
+//       setShowErrorMessage(false);
+//     }, 2000);
+//   }
+
+//   if (noErrors) {
+//     const logoDetails = logos.map((logo) => ({
+//       logotype: logo.type,
+//       position: logo.position,
+//       photo: logo.image,
+//     }));
+
+   
+
+   
+
+//     const formDataObj = {
+//       customerId: storedCustomerId,
+//       quantityCount: Number(enteredQty),
+//       logoCount: Number(logoCount),
+//       pocketRequired: pocketRequired === "yes",
+//       deliveryDate: formattedDeliveryDate,
+//       color: color,
+//       cloth: selectedCotton || selectedPolyester || selectedPolyCotton,
+//       clothMaterial: productdetail?.material,
+//       logos: logoDetails,
+//       quantitySizeWise: quantitySizeWise,
+//       quantitySleeveWise: {
+//         half: totalHalf,
+//         full: totalFull,
+//       },
+//       totalCount: Number(grandTotal),
+//       remark: remark,
+//       amount: total,
+//       totalAmount: amountWithGst,
+//       _id: productdetail?._id,
+//     };
+// console.log(remark, remark);
+// const payload = new FormData();
+// payload.append('customerId', formDataObj.customerId);
+// payload.append('quantityCount',formDataObj.quantityCount);
+// payload.append('logoCount',formDataObj.logoCount);
+// payload.append('pocketRequired',formDataObj.pocketRequired);
+// payload.append('deliveryDate', formDataObj.deliveryDate);
+// payload.append('color', formDataObj.color);
+// payload.append('cloth', formDataObj.cloth);
+// payload.append('clothMaterial', formDataObj.clothMaterial);
+// payload.append('totalCount',formDataObj.totalCount);
+// payload.append('remark', formDataObj.remark);
+// payload.append('amount', formDataObj.amount);
+// payload.append('totalAmount',formDataObj.totalAmount);
+// payload.append('productId', formDataObj._id);
+
+// payload.append('quantitySizeWise', JSON.stringify(formDataObj.quantitySizeWise));
+// payload.append('quantitySleeveWise', JSON.stringify(formDataObj.quantitySleeveWise));
+
+// // Logos (array of objects with optional file)
+//    formDataObj.logos.forEach((item, index) => {
+//         payload.append(`logos[${index}][logoType]`, item.logotype);
+//         payload.append(`logos[${index}][position]`, item.position);
+//         if (item.photo) {
+//           payload.append(`logos[${index}][logoPhotos]`, item.photo);
+//         }
+//    });
+  
+
+// payload.forEach((value, key) => {
+//   console.log(key, value);
+// });
+
+// console.log("formDataObj" , payload)
+
+
+// const token = localStorage.getItem('authToken');
+// const response = axios.post("https://gts.tsitcloud.com/api/cartItems/add", payload, {
+//       headers: {
+//         Authorization: `Bearer ${token}`,
+//         "Content-Type": "multipart/form-data"
+//       }
+//     }).then((response) => {
+//       console.log("Form submitted successfully:", response.data);
+//       alert("Product added to cart successfully!");
+//     })
+//     .catch((error) => {
+//       if (error.response) {
+//         console.error("Server error:", error.response.data);
+//         const apiMessage = error.response.data?.message || "Something went wrong. Please try again.";
+//         alert(apiMessage);
+//       } else {
+//         console.error("Error submitting form:", error);
+//       }
+//     });
+//   }
+// };
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  const storedCustomerId = localStorage.getItem('customerId');
+  const formattedDeliveryDate = new Date(deliveryDate).toLocaleDateString('en-CA'); 
+
+  const newErrors = validateForm();
+  const noErrors = Object.keys(newErrors).length === 0;
+
+  setFormErrors(newErrors);
+  setShowSuccess(noErrors);
+  setHasSubmitted(true);
+
   if (!noErrors) {
     setShowErrorMessage(true);
     alert("Enter all fields to add!");
-    setTimeout(() => {
-      setShowErrorMessage(false);
-    }, 2000);
+    setTimeout(() => setShowErrorMessage(false), 2000);
+    return;
   }
 
-  if (noErrors) {
-    const logoDetails = logos.map((logo) => ({
-      logotype: logo.type,
-      position: logo.position,
-      photo: logo.image,
-    }));
+  // Build logo metadata (no photos here)
+  const logoMetadata = logos.map((logo) => ({
+    logotype: logo.type,
+    position: logo.position,
+  }));
 
-   
+  const formDataObj = {
+    customerId: storedCustomerId,
+    quantityCount: Number(enteredQty),
+    logoCount: Number(logoCount),
+    pocketRequired: pocketRequired === "yes",
+    deliveryDate: formattedDeliveryDate,
+    color,
+    cloth: selectedCotton || selectedPolyester || selectedPolyCotton,
+    clothMaterial: productdetail?.material,
+    logos: logoMetadata,
+    quantitySizeWise,
+    quantitySleeveWise: {
+      half: totalHalf,
+      full: totalFull,
+    },
+    totalCount: Number(grandTotal),
+    remark,
+    amount: total,
+    totalAmount: amountWithGst,
+    productId: productdetail?._id,
+  };
 
-   
+  // Prepare FormData
+  const payload = new FormData();
+  payload.append('customerId', formDataObj.customerId);
+  payload.append('quantityCount', formDataObj.quantityCount);
+  payload.append('logoCount', formDataObj.logoCount);
+  payload.append('pocketRequired', formDataObj.pocketRequired);
+  payload.append('deliveryDate', formDataObj.deliveryDate);
+  payload.append('color', formDataObj.color);
+  payload.append('cloth', formDataObj.cloth);
+  payload.append('clothMaterial', formDataObj.clothMaterial);
+  payload.append('totalCount', formDataObj.totalCount);
+  payload.append('remark', formDataObj.remark);
+  payload.append('amount', formDataObj.amount);
+  payload.append('totalAmount', formDataObj.totalAmount);
+  payload.append('productId', formDataObj.productId);
 
-    const formDataObj = {
-      customerId: storedCustomerId,
-      quantityCount: Number(enteredQty),
-      logoCount: Number(logoCount),
-      pocketRequired: pocketRequired === "yes",
-      deliveryDate: formattedDeliveryDate,
-      color: color,
-      cloth: selectedCotton || selectedPolyester || selectedPolyCotton,
-      clothMaterial: productdetail?.material,
-      logos: logoDetails,
-      quantitySizeWise: quantitySizeWise,
-      quantitySleeveWise: {
-        half: totalHalf,
-        full: totalFull,
-      },
-      totalCount: Number(grandTotal),
-      remark: remark,
-      amount: total,
-      totalAmount: amountWithGst,
-      _id: productdetail?._id,
-    };
-console.log(remark, remark);
-const payload = new FormData();
-payload.append('customerId', formDataObj.customerId);
-payload.append('quantityCount',formDataObj.quantityCount);
-payload.append('logoCount',formDataObj.logoCount);
-payload.append('pocketRequired',formDataObj.pocketRequired);
-payload.append('deliveryDate', formDataObj.deliveryDate);
-payload.append('color', formDataObj.color);
-payload.append('cloth', formDataObj.cloth);
-payload.append('clothMaterial', formDataObj.clothMaterial);
-payload.append('totalCount',formDataObj.totalCount);
-payload.append('remark', formDataObj.remark);
-payload.append('amount', formDataObj.amount);
-payload.append('totalAmount',formDataObj.totalAmount);
-payload.append('productId', formDataObj._id);
+  // Append JSON strings
+  payload.append('quantitySizeWise', JSON.stringify(formDataObj.quantitySizeWise));
+  payload.append('quantitySleeveWise', JSON.stringify(formDataObj.quantitySleeveWise));
+  payload.append('logos', JSON.stringify(formDataObj.logos)); // Add metadata
 
-payload.append('quantitySizeWise', JSON.stringify(formDataObj.quantitySizeWise));
-payload.append('quantitySleeveWise', JSON.stringify(formDataObj.quantitySleeveWise));
+    console.log("logos" , logos);
 
-// Logos (array of objects with optional file)
-console.log("formDataObj" , formDataObj)
-   formDataObj.logos.forEach((item, index) => {
-        payload.append(`logo[${index}][logoType]`, item.logotype);
-        payload.append(`logo[${index}][logoPosition]`, item.position);
-        if (item.photo) {
-          payload.append(`logo[${index}][photo]`, item.photo);
-        }
-   });
-  
 
-payload.forEach((value, key) => {
-  console.log(key, value);
+  // Append logo images under the exact key expected by backend
+logos.forEach((logo) => {
+  if (logo.image) {
+    console.log("success");
+    payload.append('logoPhotos', logo.image); // this key must be exactly "logoPhotos"
+  }
 });
 
+  
 
+  const token = localStorage.getItem('authToken');
 
-const token = localStorage.getItem('authToken');
-const response = axios.post("https://gts.tsitcloud.com/api/cartItems/add", payload, {
+  try {
+    const response = await axios.post("https://gts.tsitcloud.com/api/cartItems/add", payload, {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "multipart/form-data"
       }
-    })
-    .then((response) => {
-      console.log("Form submitted successfully:", response.data);
-      alert("Product added to cart successfully!");
-    })
-    .catch((error) => {
-      if (error.response) {
-        console.error("Server error:", error.response.data);
-        alert("Something went wrong. Please try again.");
-      } else {
-        console.error("Error submitting form:", error);
-      }
     });
+
+    console.log("Form submitted successfully:", response.data);
+    alert("Product added to cart successfully!");
+  } catch (error) {
+    if (error.response) {
+      console.error("Server error:", error.response.data);
+      const apiMessage = error.response.data?.message || "Something went wrong. Please try again.";
+      alert(apiMessage);
+    } else {
+      console.error("Error submitting form:", error);
+      alert("Network error or server not reachable.");
+    }
   }
 };
+
 
 
 
@@ -1050,89 +978,14 @@ const responsive = {
 
 
 
-    {/* <div className="container mt-5">
-      <div className="d-flex productpage-box row ">
-        <div className="col-lg-5 col-12">
-        <div className="product-imageful">
-        <img src={selectedImage} alt={product.label} className="img-fluid" />
-
-     
-
-      </div>
-      
-      <div className="d-flex mt-4 gap-4 w-100 align-items-start">
-      <div className="productdetail-image" onClick={() => setSelectedImage(product.image)}
-         style={{
-          border: selectedImage === product.image ? '2px solid blue' : '2px solid transparent',
-          borderRadius: '8px',
-          padding: '4px'
-        }}>
-     <img src={product.image} alt={product.label} className="img-fluid" style={{ cursor: "pointer" }}
-      />
-     </div>
-
-     <div className="productdetail-image" onClick={() => setSelectedImage(product.imageone)}
-      style={{
-        border: selectedImage === product.imageone ? '2px solid blue' : '2px solid transparent',
-        borderRadius: '8px',
-        padding: '4px'
-      }}>
-     <img src={product.imageone} alt={product.label} className="img-fluid" style={{ cursor: "pointer" }} />
-     </div>
-  
-  
-    </div>
- 
-
-      
-       </div>
-       <div className="col-lg-5 col-12 ">
-        <h2 className="text-start">{product.label}</h2>
-        <p className="text-start">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non atque quasi alias eveniet consequuntur dolor.</p>
-        <p className="text-start">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non atque quasi alias eveniet consequuntur dolor.</p>
-        <p className="text-start">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non atque quasi alias eveniet consequuntur dolor.</p>
-        
-        <h2 className="text-xl font-bold mb-2 h5">About this item</h2>
-        <li className="text-start"><strong>Type:</strong> Cotton Round Neck T-Shirt – Soft and breathable fabric</li>
-        <li className="text-start"><strong>Fit:</strong> Regular Fit – Comfortable for daily wear</li>
-        <li className="text-start"><strong>Fabric:</strong> 100% Pure Cotton – Durable and skin-friendly</li>
-        <li className="text-start"><strong>Design:</strong> Printed Graphic – Stylish and trendy look</li>
-
-        <div className="mt-5" style={{ margin: '20px' }}>
-      <table style={{ borderCollapse: 'collapse', width: '100%' }}>
-        <thead>
-          <tr>
-            {sizesone.map((size, index) => (
-              <th key={index} style={{ border: '1px solid black', padding: '8px' }}>
-                {size.label}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            {sizesone.map((size, index) => (
-              <td key={index} style={{ border: '1px solid black', padding: '8px', textAlign: 'center' }}>
-                {size.chest}"
-              </td>
-            ))}
-          </tr>
-        </tbody>
-      </table>
-    </div>
-      </div>
-
-
-      
-      </div>  
-      
-      
-    </div> */}
 
 
 
 
 
+{productdetail &&
+  productdetail.category &&
+  productdetail.category._id === "68073351ecf739b9dae26185" && (
 
 <form onSubmit={handleSubmit}>
     <div className="container mt-5">
@@ -1169,7 +1022,7 @@ const responsive = {
       value={logoCount}
 
      
-      // onChange={(e) => setLogoCount(e.target.value)}
+      
       onChange={handleLogoCountChange}
       onBlur={handleLogoCountBlur}
     />
@@ -1273,7 +1126,7 @@ const responsive = {
             setSelectedPolyester("");
             setSelectedPolyCotton("");
         
-            // Clear material selection error
+            
             setFormErrors((prev) => ({ ...prev, selectedoptions: '' }));
           }}>
             
@@ -1348,146 +1201,7 @@ const responsive = {
 
 
       
-      {/* <div className="row mt-2 pt-2 pb-4 chooseoption-box ">
-        <div>
-        <label className=" fs-6 fw-bold  d-flex align-items-center justify-content-center text-center mb-3">Logo:</label>
-        </div>
-
-
-        <div className="row d-flex  justify-content-evenly">
-        <div className="col-lg-2">
-        <label className="dropdown-label w-100 fw-bold fs-6 mb-3">Logo Type</label>
-        <select className="form-select"
-        value={logoType}
-        onChange={(e) =>{
-          setLogoType(e.target.value);
-        setFormErrors((prev)=>({...prev,logoType:''}))}
-        }>
-        <option value="">Select Type</option>
-        <option value="printed">Printed</option>
-        <option value="embroidered">Emposed</option>
-  </select>
-  {formErrors.logoType && (
-         <div className="text-danger mt-1">{formErrors.logoType}</div>
-          )}
-
-        </div>
-        <div className="col-lg-2">
-        <label className="dropdown-label w-100 fw-bold fs-6 mb-3">Logo Position</label>
-        <select className="form-select"
-        value={logoPosition}
-        onChange={(e)=>{setLogoPosition(e.target.value);
-          setFormErrors((prev)=>({...prev,logoPosition:''}))
-        }}>
-        <option value="">Select</option>
-        <option value="left Chest">left Chest</option>
-        <option value="Right Chest">Right Chest</option>
-        <option value="Left Sleeve">Left Sleeve</option>
-        <option value="Right Sleeve">Right Sleeve</option>
-        <option value="Front Center">Front Center</option>
-        <option value="Back Top">Back Top</option>
-        <option value="Back Center">Back Center</option>
-        <option value="On Pocket">On Pocket</option>
-  </select>
-  {formErrors.logoPosition && (
-         <div className="text-danger mt-1">{formErrors.logoPosition}</div>
-          )}
-        </div>
-        <div className="col-lg-2">
-        <label className="dropdown-label w-100 fw-bold fs-6 mb-3">Upload 
-          Logo</label>
-          <input 
-          type="file"
-          accept="image/*"
-          className="form-control"
-          onChange={handleImageUpload}
-          />
-          {formErrors.uploadedImage && (
-  <div className="text-danger">{formErrors.uploadedImage}</div>
-)}
-          
-        </div>
-        </div>
-<div>
-        {uploadedImage && (
-          <>
-          
-          <img src={uploadedImage} alt="Uploaded preview" className="uploded-img p-2  col-lg-2 rounded-5" 
-   />
-
-
-   <div>
-   <Button className=" col-lg-1  text-center mb-3 " onClick={showsecondlogoadd}>Add Logo</Button>
-   </div>
-   </>
-  
-  
-   
-)}
-</div>
-
- {secondlogo && (
-  <div className="">
     
-    
-    <div className="row d-flex  justify-content-evenly">
-    <div className="col-12 col-sm-6 col-lg-2">
-        <label className="form-label">Logo Type</label>
-        <select className="form-select"
-        value={logotypetwo}
-        onChange={(e)=> setLogoTypeTwo(e.target.value)}>
-        <option value="">Select Type</option>
-        <option value="printed">Printed</option>
-        <option value="embroidered">Embroidered</option>
-  </select>
-        </div>
-
-        <div className="col-lg-2">
-        <label className="form-label">Logo Position</label>
-        <select className="form-select"
-        value={logoPositionTwo}
-        onChange={(e)=> setLogoPositionTwo(e.target.value)}>
-        <option value="">Select</option> 
-        <option value="left Chest">left Chest</option>
-        <option value="Right Chest">Right Chest</option>
-        <option value="Left Sleeve">Left Sleeve</option>
-        <option value="Right Sleeve">Right Sleeve</option>
-        <option value="Front Center">Front Center</option>
-        <option value="Back Top">Back Top</option>
-        <option value="Back Center">Back Center</option>
-        <option value="On Pocket">On Pocket</option>
-  </select>
-        </div>
-    <div className="col-lg-2 ms-3">
-    <label className="form-label">Upload 
-    Logo</label>
-          <input 
-          type="file"
-          accept="image/*"
-          className="form-control"
-          onChange={handleImageUploadtwo}
-          />
-          
-        </div>
-        </div>
-        <div>
-        {uploadedImagetwo && (
-          <>
-        
-          <img src={uploadedImagetwo} alt="Uploaded preview" className="uploded-img p-2  col-lg-2 rounded-5" 
-   />
-   
-  
-   </>
-  
-  
-   
-)}
-</div>
-  </div>
-   )}
-
-      </div> */}
 
       <div className="row mt-2 pt-2 pb-4 chooseoption-box ">
       <div>
@@ -1496,7 +1210,7 @@ const responsive = {
         {logos.map((logo, index) => (
   <div key={index} className="mb-4">
     <div className="row d-flex justify-content-evenly">
-      {/* Logo Type */}
+      
       <div className="col-lg-2">
         <label className="form-label fw-bold">Logo Type</label>
         <select
@@ -1513,7 +1227,7 @@ const responsive = {
         )}
       </div>
 
-      {/* Logo Position */}
+      
       <div className="col-lg-2">
         <label className="form-label fw-bold">Logo Position</label>
         <select
@@ -1536,7 +1250,7 @@ const responsive = {
         )}
       </div>
 
-      {/* Upload Logo */}
+      
       <div className="col-lg-2">
         <label className="form-label fw-bold">Upload Logo</label>
         <input
@@ -1551,7 +1265,7 @@ const responsive = {
       </div>
     </div>
 
-    {/* Image Preview */}
+    
     {logo.image && (
       <div className="row mt-2">
         <div className="col-lg-12 d-flex justify-content-center">
@@ -1666,31 +1380,29 @@ const responsive = {
     </div>
     <div className="d-flex justify-content-center mt-4">
     <textarea
-      className="form-control w-50"
-      placeholder="Remark"
-      rows="4"
-      value={remark}
-      onChange={(e) => setRemark(e.target.value)}
-    ></textarea>
+  className="form-control w-50"
+  placeholder="Remark"
+  rows="4"
+  value={remark}
+  onChange={(e) => {
+    setRemark(e.target.value);
+    if (formErrors.remark) {
+      setFormErrors((prev) => ({ ...prev, remark: '' }));
+    }
+  }}
+></textarea>
+    
   </div>
+  {formErrors.remark && (
+      <div className="text-danger mt-1">{formErrors.remark}</div>
+    )}
   <div className="d-flex justify-content-center mt-4">
-  {/* <button type="submit" className="btn btn-primary px-5" >
-  Submit
-</button> */}
+  
 
   </div>
-  {/* {showErrorMessage && (
-  <div className="text-danger mt-2">
-    Enter required fields and submit
-  </div>
-)} */}
+ 
 
-{/* {hasSubmitted && showSuccess && (
-  <div className="text-success mt-2">
-    Product added to cart
-  </div>
-)} */}
-{/* </form> */}
+
 
 
 
@@ -1725,38 +1437,20 @@ const responsive = {
       
     </div>
 
-{/* <div className="container w-50 mt-5">
-  <div className="row">
-    {hasSubmitted && showSuccess && (
-      <>
-        <div className="alert alert-success mt-3">
-          <strong>Amount:</strong> ₹{totalAmount}
-        </div>
 
-        <div className="alert alert-success mt-3">
-          <strong>Total Amount with GST:</strong> ₹{amountWithGst}
-        </div>
-      </>
-    )}
-  </div>
-  </div> */}
 
 
     <div className="container w-50 ">
 
     <div className=" cart-box mt-5 gap-2 row">
-            {/* <button  className='btn  buynow-btn col-lg-2 col-12'>Buy Now</button> */}
+            
 
-            <button type="button" class="btn btn-primary btn-lg w-25">Buy Now</button>
-            <button type="submit" class="btn btn-primary btn-lg w-25" 
-            // onClick={() => alert('Fill all the field')}
-            >Add to cart</button>
+            <button type="button" class="btn btn-success btn-lg w-25">Buy Now</button>
+            <button type="submit" className="btn btn-primary btn-lg w-25">
+            <FaShoppingCart className="me-2" /> Add to cart
+            </button>
 
-            {/* <button  className='btn  addtocart-btn col-lg-3 col-12'
-        
-        
-        type="submit"
-        >Add to Cart</button> */}
+            
 
 
     </div>
@@ -1764,9 +1458,478 @@ const responsive = {
 
     </form>
 
+)}
+    
+{/* <form onSubmit={handleSubmit}>
+    <div className="container mt-5">
+    <div className="row mb-4">
+  <label className="fs-6 fw-bold col-lg-2 mb-md-3">Enter Quantity required:</label>
+  <div className="col-lg-2">
+    <input
+      type="number"
+      min="15"
+      className={`form-control ${formErrors.enteredQty ? 'is-invalid' : ''}`}
+      placeholder="Enter Quantity"
+      value={enteredQty}
+      onChange={(e) => {
+        setEnteredQty(e.target.value);
+        if (formErrors.enteredQty && parseInt(e.target.value) >= 15) {
+          setFormErrors((prev) => ({ ...prev, enteredQty: '' }));
+        }
+      }}
+      onBlur={handleBlur}
+    />
+    {formErrors.enteredQty && (
+      <div className="text-danger mt-1">{formErrors.enteredQty}</div>
+    )}
+  </div>
 
+  <label className="fs-6 fw-bold col-lg-2 mt-lg-0 mb-md-3 mt-md-3">How many Logos to add:</label>
+  <div className="col-lg-2">
+    <input
+      type="number"
+      min="1"
+      max="4"
+      className={`form-control ${formErrors.logoCount ? 'is-invalid' : ''}`}
+      placeholder="Enter quantity"
+      value={logoCount}
+
+     
+      
+      onChange={handleLogoCountChange}
+      onBlur={handleLogoCountBlur}
+    />
+    {formErrors.logoCount && (
+      <div className="text-danger mt-1">{formErrors.logoCount}</div>
+    )}
+  </div>
+
+  <label className="fs-6 fw-bold col-lg-2 mt-lg-0 mt-3 mb-md-3">Pocket Required:</label>
+  <div className="col-lg-2">
+    <div className="d-flex gap-3">
+      <div>
+        <input
+          type="radio"
+          id="yes"
+          name="pocketRequired"
+          value="yes"
+          checked={pocketRequired === 'yes'}
+          onChange={(e) => {
+            setPocketRequired(e.target.value);
+            setFormErrors((prev) => ({ ...prev, pocketRequired: '' }));
+          }}
+        />
+        <label htmlFor="yes">Yes</label>
+      </div>
+      <div>
+        <input
+          type="radio"
+          id="no"
+          name="pocketRequired"
+          value="no"
+          required
+          checked={pocketRequired === 'no'}
+          onChange={(e) => {
+            setPocketRequired(e.target.value);
+            setFormErrors((prev) => ({ ...prev, pocketRequired: '' }));
+          }}
+        />
+        <label htmlFor="no">No</label>
+      </div>
+    </div>
+    {formErrors.pocketRequired && (
+      <div className="text-danger mt-1">{formErrors.pocketRequired}</div>
+    )}
+  </div>
+</div>
+
+      
+      
+
+      <div className="row mt-2 mb-4">
+        <label className="fs-6 fw-bold col-lg-2 text-lg-end mb-md-3 ">Delivery Date:</label>
+        <div className="col-lg-2 mb-md-3">
+          <input 
+          type="date"
+         
+          className={`form-control ${formErrors.deliveryDate ? 'is-invalid' : ''}`}
+          value={deliveryDate}
+          required
+          min={getMinDate()}
+          onChange={(e) => {
+            setDeliveryDate(e.target.value);
+      
+            
+            setFormErrors((prev) => ({ ...prev, deliveryDate: '' }));
+          }}
+          ></input>
+          {formErrors.deliveryDate && (
+         <div className="text-danger mt-1">{formErrors.deliveryDate}</div>
+          )}
+        </div>
+        <label className="fs-6 fw-bold col-lg-2 text-lg-end mt-lg-0 mt-3">Choose Colour:</label>
+        <div className="col-lg-1 d-flex align-items-lg-start align-items-center justify-content-lg-start justify-content-center mt-lg-0 mt-3 ">
+        <input  type="color" id="favcolor" name="favcolor" value={color} 
+        onChange={(e) => {
+          setColor(e.target.value);
+          setColorTouched(true);
+    
+          
+          setFormErrors((prev) => ({ ...prev, color: '' }));
+        }}
+        className="form-control-color rounded-color"></input>
+        
+        </div>
+        {formErrors.color && <div className="text-danger">{formErrors.color}</div>}
+      </div>
+      
+      <div className="row mt-2 pt-2 pb-4 chooseoption-box mb-4   ">
+        <div>
+        
+        <label className="fs-6 fw-bold   text-center mb-3">Choose Your Option:</label>
+        </div>
+        <div className="selectmaterial-box row justify-content-evenly">
+        <div className="col-lg-2">
+          <div className="cotton-dropdown">
+          <label onClick={polycottoggle} className="dropdown-label w-100 fw-bold fs-6 mb-2">Cotton</label>
+          <select className="form-select mt-2"
+          value={selectedCotton}
+          onChange={(e) => {
+            setSelectedCotton(e.target.value);
+            setSelectedPolyester("");
+            setSelectedPolyCotton("");
+        
+            
+            setFormErrors((prev) => ({ ...prev, selectedoptions: '' }));
+          }}>
+            
+        <option value="">option </option>
+        <option value="Combed Cotton">Combed</option>
+        <option value="Ringspun Cotton">Ringspun</option>
+        <option value="Organic Cotton">Organic</option>
+        <option value="Pima Cotton">Pima</option>
+        <option value="Supima Cotton">Supima</option>
+        <option value="Slub Cotton">Slub</option>
+        
+  </select>
+          </div>
+          <div>
+            
+          </div>
+        </div>
+        <div className="col-lg-2 mt-lg-0 mt-md-3">
+          <div className="cotton-dropdown">
+          <label onClick={polytoggle} className="dropdown-label w-100 fw-bold fs-6 mb-2">Polyester</label>
+          <select className="form-select mt-2"
+           value={selectedPolyester}
+           onChange={(e) => {
+            setSelectedPolyester(e.target.value);
+            setSelectedCotton("");
+            setSelectedPolyCotton("");
+          
+            setFormErrors((prev) => ({ ...prev, selectedoptions: '' }));
+          }} >
+        <option value="">option </option>
+        <option value="Poly-cotton">Poly-cotton</option>
+        <option value="Tri-blend Fabric">Tri-blend Fabric</option>
+        <option value="Microfiber Polyester">Microfiber</option>
+        <option value="Interlock Polyester">Interlock</option>
+        <option value="Moisture-wicking">Moisture-wicking</option>
+        
+  </select>
+          </div>
+          <div>
+            
+          </div>
+        </div>
+        <div className="col-lg-2 mt-lg-0 mt-md-3">
+          <div className="cotton-dropdown">
+          <label onClick={toggleOptions} className="dropdown-label w-100 fw-bold fs-6 mb-2">Poly Cotton</label>
+          <select className="form-select mt-2"
+           value={selectedPolyCotton}
+           onChange={(e) => {
+            setSelectedPolyCotton(e.target.value);
+            setSelectedCotton("");
+            setSelectedPolyester("");
+          
+            setFormErrors((prev) => ({ ...prev, selectedoptions: '' }));
+          }}>
+        <option value="">option</option>
+        <option value="Ring-Spun Poly-Cotton">Ring-Spun</option>
+        <option value="Combed Poly-Cotton">Combed Poly</option>
+        <option value="Brushed Poly-Cotton">Brushed Poly</option>
+        
+  </select>
+          </div>
+          <div>
+            
+          </div>
+        </div>
+        </div>
+        {formErrors.selectedoptions && (
+         <div className="text-danger mt-1">{formErrors.selectedoptions}</div>
+          )}
+        
+      </div>
+
+
+      
     
 
+      <div className="row mt-2 pt-2 pb-4 chooseoption-box ">
+      <div>
+        <label className=" fs-6 fw-bold  d-flex align-items-center justify-content-center text-center mb-3">Logo:</label>
+        </div>
+        {logos.map((logo, index) => (
+  <div key={index} className="mb-4">
+    <div className="row d-flex justify-content-evenly">
+      
+      <div className="col-lg-2">
+        <label className="form-label fw-bold">Logo Type</label>
+        <select
+          className="form-select"
+          value={logo.type}
+          onChange={(e) => handleLogoChange(index, 'type', e.target.value)}
+        >
+          <option value="">Select Type</option>
+          <option value="printed">Printed</option>
+          <option value="embroidered">Embroidered</option>
+        </select>
+        {formErrors[`logoType_${index}`] && (
+          <div className="text-danger">{formErrors[`logoType_${index}`]}</div>
+        )}
+      </div>
+
+      
+      <div className="col-lg-2">
+        <label className="form-label fw-bold">Logo Position</label>
+        <select
+          className="form-select"
+          value={logo.position}
+          onChange={(e) => handleLogoChange(index, 'position', e.target.value)}
+        >
+          <option value="">Select</option>
+          <option value="left Chest">Left Chest</option>
+          <option value="Right Chest">Right Chest</option>
+          <option value="Left Sleeve">Left Sleeve</option>
+          <option value="Right Sleeve">Right Sleeve</option>
+          <option value="Front Center">Front Center</option>
+          <option value="Back Top">Back Top</option>
+          <option value="Back Center">Back Center</option>
+          <option value="On Pocket">On Pocket</option>
+        </select>
+        {formErrors[`logoPosition_${index}`] && (
+          <div className="text-danger">{formErrors[`logoPosition_${index}`]}</div>
+        )}
+      </div>
+
+      
+      <div className="col-lg-2">
+        <label className="form-label fw-bold">Upload Logo</label>
+        <input
+          type="file"
+          accept="image/*"
+          className="form-control"
+          onChange={(e) => handleLogoImageUpload(index, e.target.files[0])}
+        />
+        {formErrors[`logoImage_${index}`] && (
+          <div className="text-danger">{formErrors[`logoImage_${index}`]}</div>
+        )}
+      </div>
+    </div>
+
+    
+    {logo.image && (
+      <div className="row mt-2">
+        <div className="col-lg-12 d-flex justify-content-center">
+          <img
+            src={logo.image}
+            alt={`Logo ${index + 1}`}
+            style={{ width: '200px', height: '200px', objectFit: 'contain' }}
+            className="rounded-4 border"
+          />
+        </div>
+      </div>
+    )}
+  </div>
+))}
+
+      </div>
+      
+    </div>
+    
+
+    <div className="container mt-5 d-flex justify-content-center align-items-center ">
+      <div className="custom-scroll-x">
+    <table className="table table-bordered text-center w-100">
+      <thead>
+        <tr>
+          <th>Size</th>
+          <th>Chest</th>
+          <th colSpan="2">Qty</th>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <th>Half Sleeve</th>
+          <th>Full Sleeve</th>
+        </tr>
+      </thead>
+      <tbody>
+        {sizes.map(({ label, chest }) => (
+          <tr key={label}>
+            <td className="fw-bold">{label}</td>
+            <td>{chest}</td>
+            <td>
+            <input
+  type="number"
+  className="form-control"
+  min="0"
+  value={halfSleeve[label] || ''}
+  onChange={(e) => handleInputChange("half", label, e.target.value)}
+  
+  
+  
+/>
+            </td>
+            <td>
+            <input
+  type="number"
+  className="form-control"
+  min="0"
+  value={fullSleeve[label] || ''}
+  onChange={(e) => handleInputChange("full", label, e.target.value)}
+  
+  
+/>
+            </td>
+          </tr>
+        ))}
+
+        <tr>
+          <td></td>
+          <td className="fw-bold">Total</td>
+          <td>
+            <input
+              type="text"
+              className="form-control"
+              value={totalHalf}
+              readOnly
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              className="form-control"
+              value={totalFull}
+              readOnly
+            />
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td className="fw-bold">Grand Total</td>
+          <td colSpan="2">
+            <input
+              type="text"
+              className="form-control"
+              value={grandTotal}
+              readOnly
+            />
+          </td>
+        </tr>
+        <tr>
+    <td colSpan="4">
+    {formErrors.quantityMatch && (
+  <div className="text-danger fw-bold mt-2">{formErrors.quantityMatch}</div>
+)}
+    </td>
+  </tr>
+        
+      </tbody>
+    </table>
+    </div>
+
+    </div>
+    <div className="d-flex justify-content-center mt-4">
+    <textarea
+  className="form-control w-50"
+  placeholder="Remark"
+  rows="4"
+  value={remark}
+  onChange={(e) => {
+    setRemark(e.target.value);
+    if (formErrors.remark) {
+      setFormErrors((prev) => ({ ...prev, remark: '' }));
+    }
+  }}
+></textarea>
+    
+  </div>
+  {formErrors.remark && (
+      <div className="text-danger mt-1">{formErrors.remark}</div>
+    )}
+  <div className="d-flex justify-content-center mt-4">
+  
+
+  </div>
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div className="container w-50 mt-5">
+      <div className="row">
+      <div className="col-lg-2">
+      <label className="fw-bold">Amount:</label>
+    </div>
+    <div className="col-lg-3">
+      <input type="text" className="form-control" readOnly value={`₹${total}`} />
+    </div>
+      </div>
+      <div className="row mt-2">
+      <div className="col-lg-2">
+      <label className="fw-bold">Total amout with gst:</label>
+    </div>
+    <div className="col-lg-3">
+      <input type="text" className="form-control" readOnly value={`₹${amountWithGst}`} />
+    </div>
+      </div>
+
+
+      
+    </div>
+
+
+
+
+    <div className="container w-50 ">
+
+    <div className=" cart-box mt-5 gap-2 row">
+            
+
+            <button type="button" class="btn btn-success btn-lg w-25">Buy Now</button>
+            <button type="submit" className="btn btn-primary btn-lg w-25">
+            <FaShoppingCart className="me-2" /> Add to cart
+            </button>
+
+            
+
+
+    </div>
+    </div>
+
+    </form> */}
 
 
 
