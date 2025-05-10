@@ -37,7 +37,7 @@ const CartContext = () => {
           `https://gts.tsitcloud.com/api/cartItems/list/${storedCustomerId}`,
           {
             headers: {
-              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MThhNmQ2ZjA0MzVhYzExMGNiNGYwYSIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc0Njc3MTczMywiZXhwIjoxNzQ2ODU4MTMzfQ._uwyvgYDr7qUICUpI4glRxCfiLwnwdikI_QKw0h4VXE`,
+              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MThhNmQ2ZjA0MzVhYzExMGNiNGYwYSIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc0Njg2MTA5OSwiZXhwIjoxNzQ2OTQ3NDk5fQ.ETBiTUBtL1VVKT67Sv8ZEo7HDxVP2AGCSVrkP_HvAO8`,
             },
           }
         );

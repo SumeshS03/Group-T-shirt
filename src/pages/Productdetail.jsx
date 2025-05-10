@@ -4,6 +4,7 @@ import qualityshirt from "../images/Premium-Quality.png";
 import HomeHeader from "../Layout/HomeHeader";
 import shopimage from "../images/shopimage.png";
 import { useLocation,useNavigate } from "react-router-dom";
+import './Roundneck'
 import "./Productdetail.css"
 import { useCart } from "./CartContext";
 import Carousel from "react-multi-carousel";
@@ -36,12 +37,18 @@ import fullsleevethree from "../images/Full-Sleve3.png"
 import axios from 'axios';
 import { Form, Row, Col, FloatingLabel} from 'react-bootstrap';
 import { FaShoppingCart } from 'react-icons/fa';
+import Roundneck from "./Roundneck";
+import Hoodies from "./Hoodies";
+import Jackets from "./Jackets";
+import Caps from "./Cups"
+import Jerseys from "./Jerseys";
 
 
 const Productdetail = () => {
 
    const [selectedSize, setSelectedSize] = useState("");
    const [color, setColor] = useState("#e6194b");
+   const [collarcolor,setcollarcolor]=useState("#e6194b");
    const [enteredQty, setEnteredQty] = useState('');
    const [quantityError, setQuantityError] = useState('');
   
@@ -209,6 +216,8 @@ const Productdetail = () => {
 
    
     const [logoCount, setLogoCount] = useState(1);
+    // const [logos, setLogos] = useState([{ logotype: '', position: '' }]);
+
     const [visibleLogos, setVisibleLogos] = useState(1);
     const [uploadedImages, setUploadedImages] = useState({});
     const [remark, setRemark] = useState('');
@@ -225,14 +234,15 @@ const Productdetail = () => {
     const [logoPositionTwo, setLogoPositionTwo] = useState('')
     const [selectedoptions, setSelectedoptions] = useState('');
     const [colorTouched, setColorTouched] = useState(false);
+    const [collarcolorTouched,setcollarcolorTouched]= useState(false);
      const [productsData, setProductsData] = useState([]);
      const [hasSubmitted, setHasSubmitted] = useState(false);
      const [showRequiredError, setShowRequiredError] = useState(false);
      const [showErrorMessage, setShowErrorMessage] = useState(false);
     
-     const [logos, setLogos] = useState([
-      { type: '', position: '', image: '' } // 👈 one row initially
-    ]);
+   const [logos, setLogos] = useState([
+  { logotype: '', position: '', image: '' }
+]);
 
     console.log("logos0 " , logos);
     
@@ -253,23 +263,37 @@ const Productdetail = () => {
     
     
 
+    // const handleLogoChange = (index, field, value) => {
+    //   const updatedLogos = [...logos];
+    //   updatedLogos[index][field] = value;
+    //   setLogos(updatedLogos);
+    
+    //   // Clear individual error if corrected
+    //   const updatedErrors = { ...formErrors };
+    //   if (field === 'type' && value) {
+    //     delete updatedErrors[`logoType_${index}`];
+    //   }
+    //   if (field === 'position' && value) {
+    //     delete updatedErrors[`logoPosition_${index}`];
+    //   }
+    
+    //   setFormErrors(updatedErrors);
+    // };
+
     const handleLogoChange = (index, field, value) => {
-      const updatedLogos = [...logos];
-      updatedLogos[index][field] = value;
-      setLogos(updatedLogos);
-    
-      // Clear individual error if corrected
-      const updatedErrors = { ...formErrors };
-      if (field === 'type' && value) {
-        delete updatedErrors[`logoType_${index}`];
-      }
-      if (field === 'position' && value) {
-        delete updatedErrors[`logoPosition_${index}`];
-      }
-    
-      setFormErrors(updatedErrors);
-    };
-    
+    const updated = [...logos];
+    updated[index][field] = value;
+    setLogos(updated);
+  };
+
+ const handleLogoPhotoChange = (index, file) => {
+  const updatedLogos = [...logos];
+  updatedLogos[index].image = URL.createObjectURL(file); // for preview
+  updatedLogos[index].file = file; // for backend upload
+  setLogos(updatedLogos);
+};
+
+
     
     
 
@@ -357,8 +381,27 @@ const handleLogoCountBlur = () => {
 
     console.log("render")
 
+  const [logoPhotos, setLogoPhotos] = useState([]);
 
-    
+  //    const handleLogoPhotoChange = (e) => {
+  //   setLogoPhotos([...e.target.files]);
+  // };
+const handleLogoImageUploadone = (index, file) => {
+  if (!file) return;
+
+  const updatedLogos = [...logos];
+  updatedLogos[index].imageFile = file; 
+  updatedLogos[index].image = URL.createObjectURL(file); 
+  setLogos(updatedLogos);
+
+
+  const updatedErrors = { ...formErrors };
+  delete updatedErrors[`logoImage_${index}`];
+  setFormErrors(updatedErrors);
+};
+
+console.log("logos123" , logos);
+
 
     const validateForm = () => {
       const errors = {};
@@ -367,6 +410,7 @@ const handleLogoCountBlur = () => {
       // if (!pocketRequired) errors.pocketRequired = 'Pocket selection is required';
       if (!deliveryDate) errors.deliveryDate = 'Delivery date is required';
       if (!colorTouched) errors.color = 'Choose color';
+      if(!collarcolorTouched) errors.collarcolor='Choose collare color'
       if (!selectedCotton && !selectedPolyester && !selectedPolyCotton) {
         errors.selectedoptions = 'Please select at least one option.';
       }
@@ -378,7 +422,7 @@ const handleLogoCountBlur = () => {
       }
     
       logos.forEach((logo, index) => {
-        if (!logo.type) errors[`logoType_${index}`] = `Select Logo Type for logo ${index + 1}`;
+        if (!logo.logotype) errors[`logotype_${index}`] = `Select Logo Type for logo ${index + 1}`;
         if (!logo.position) errors[`logoPosition_${index}`] = `Select Logo Position for logo ${index + 1}`;
         if (!logo.image) errors[`logoImage_${index}`] = `Upload logo image for logo ${index + 1}`;
       });
@@ -388,62 +432,7 @@ const handleLogoCountBlur = () => {
   
     
 
-    // const handleSubmit = (e) => {
-    //   e.preventDefault();
-    
-    //   const newErrors = validateForm();
-    //   const noErrors = Object.keys(newErrors).length === 0;
-    
-    //   setFormErrors(newErrors);
-    //   setShowSuccess(noErrors);
-    //   setHasSubmitted(true);
-    
-    //   if (!noErrors) {
-    //     setShowErrorMessage(true); 
-        
-    //     setTimeout(() => {
-    //       setShowErrorMessage(false);
-    //     }, 2000);
-    //   }
-    
-    //   if (noErrors) {
-    //     const logoDetails = logos.map((logo) => ({
-    //       type: logo.type,
-    //       position: logo.position,
-    //       image: logo.image,
-    //     }));
-    
-    //     const formData = {
-    //       customerId: "6811f96621f910edb69ea4eb",
-    //       quantityCount: enteredQty,
-    //       logoCount: logoCount,
-    //       pocketRequired: pocketRequired,
-    //       deliveryDate: deliveryDate,
-    //       color: color,
-    //       cloth: selectedCotton || selectedPolyester || selectedPolyCotton,
-    //       clothMaterial: "Soft",
-    //       logos: logoDetails,
-    //       quantitySizeWise: {
-    //         xs: {
-    //           half: halfSleeve,
-    //           full: fullSleeve,
-    //         },
-    //       },
-    //       quantitySleeveWise: {
-    //         half: halfSleeve + fullSleeve,
-    //         full: halfSleeve + fullSleeve,
-    //       },
-    //       totalCount: enteredQty,
-    //       remark: remark,
-    //       amount: 500,
-    //       totalAmount: grandTotal,
-    //       _id: productdetail?._id,
-    //     };
-    
-    //     console.log('Form submitted:', formData);
-    //   }
-    // };
-    
+ 
     const sizestwo = ['xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl', 'xxxxl', 'xxxxxl'];
 
     const quantitySizeWise = {};
@@ -457,121 +446,7 @@ const handleLogoCountBlur = () => {
 
   
 
-// const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MThhNmQ2ZjA0MzVhYzExMGNiNGYwYSIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc0NjU5Mzg0NSwiZXhwIjoxNzQ2NjgwMjQ1fQ.4DlKuVInOEcGbfnnU2JNL_-16I9e3NzycsghZwcHpyI";  
 
-// const handleSubmit = (e) => {
-//   e.preventDefault();
-//   const storedCustomerId = localStorage.getItem('customerId');
-//   console.log("customerId from local:", storedCustomerId);
-//   const formattedDeliveryDate = new Date(deliveryDate).toLocaleDateString('en-CA'); 
-
-//   const newErrors = validateForm();
-//   const noErrors = Object.keys(newErrors).length === 0;
-  
-//   setFormErrors(newErrors);
-//   setShowSuccess(noErrors);
-//   setHasSubmitted(true);
-
-
- 
-
-//   if (!noErrors) {
-//     setShowErrorMessage(true);
-//     alert("Enter all fields to add!");
-//     setTimeout(() => {
-//       setShowErrorMessage(false);
-//     }, 2000);
-//   }
-
-//   if (noErrors) {
-//     const logoDetails = logos.map((logo) => ({
-//       logotype: logo.type,
-//       position: logo.position,
-//       photo: logo.image,
-//     }));
-
-   
-
-   
-
-//     const formDataObj = {
-//       customerId: storedCustomerId,
-//       quantityCount: Number(enteredQty),
-//       logoCount: Number(logoCount),
-//       pocketRequired: pocketRequired === "yes",
-//       deliveryDate: formattedDeliveryDate,
-//       color: color,
-//       cloth: selectedCotton || selectedPolyester || selectedPolyCotton,
-//       clothMaterial: productdetail?.material,
-//       logos: logoDetails,
-//       quantitySizeWise: quantitySizeWise,
-//       quantitySleeveWise: {
-//         half: totalHalf,
-//         full: totalFull,
-//       },
-//       totalCount: Number(grandTotal),
-//       remark: remark,
-//       amount: total,
-//       totalAmount: amountWithGst,
-//       _id: productdetail?._id,
-//     };
-// console.log(remark, remark);
-// const payload = new FormData();
-// payload.append('customerId', formDataObj.customerId);
-// payload.append('quantityCount',formDataObj.quantityCount);
-// payload.append('logoCount',formDataObj.logoCount);
-// payload.append('pocketRequired',formDataObj.pocketRequired);
-// payload.append('deliveryDate', formDataObj.deliveryDate);
-// payload.append('color', formDataObj.color);
-// payload.append('cloth', formDataObj.cloth);
-// payload.append('clothMaterial', formDataObj.clothMaterial);
-// payload.append('totalCount',formDataObj.totalCount);
-// payload.append('remark', formDataObj.remark);
-// payload.append('amount', formDataObj.amount);
-// payload.append('totalAmount',formDataObj.totalAmount);
-// payload.append('productId', formDataObj._id);
-
-// payload.append('quantitySizeWise', JSON.stringify(formDataObj.quantitySizeWise));
-// payload.append('quantitySleeveWise', JSON.stringify(formDataObj.quantitySleeveWise));
-
-// // Logos (array of objects with optional file)
-//    formDataObj.logos.forEach((item, index) => {
-//         payload.append(`logos[${index}][logoType]`, item.logotype);
-//         payload.append(`logos[${index}][position]`, item.position);
-//         if (item.photo) {
-//           payload.append(`logos[${index}][logoPhotos]`, item.photo);
-//         }
-//    });
-  
-
-// payload.forEach((value, key) => {
-//   console.log(key, value);
-// });
-
-// console.log("formDataObj" , payload)
-
-
-// const token = localStorage.getItem('authToken');
-// const response = axios.post("https://gts.tsitcloud.com/api/cartItems/add", payload, {
-//       headers: {
-//         Authorization: `Bearer ${token}`,
-//         "Content-Type": "multipart/form-data"
-//       }
-//     }).then((response) => {
-//       console.log("Form submitted successfully:", response.data);
-//       alert("Product added to cart successfully!");
-//     })
-//     .catch((error) => {
-//       if (error.response) {
-//         console.error("Server error:", error.response.data);
-//         const apiMessage = error.response.data?.message || "Something went wrong. Please try again.";
-//         alert(apiMessage);
-//       } else {
-//         console.error("Error submitting form:", error);
-//       }
-//     });
-//   }
-// };
 
 const handleSubmit = async (e) => {
   e.preventDefault();
@@ -593,10 +468,12 @@ const handleSubmit = async (e) => {
   }
 
   // Build logo metadata (no photos here)
-  const logoMetadata = logos.map((logo) => ({
-    logotype: logo.type,
+ const logoMetadata = logos.map((logo) => ({
+    logotype: logo.logotype,
     position: logo.position,
+
   }));
+  
 
   const formDataObj = {
     customerId: storedCustomerId,
@@ -635,22 +512,26 @@ const handleSubmit = async (e) => {
   payload.append('amount', formDataObj.amount);
   payload.append('totalAmount', formDataObj.totalAmount);
   payload.append('productId', formDataObj.productId);
+  payload.append('logos', JSON.stringify(logoMetadata));
+ logos.forEach((logo) => {
+  if (logo.file) {
+    payload.append('logoPhotos', logo.file);
+  }
+});
 
   // Append JSON strings
   payload.append('quantitySizeWise', JSON.stringify(formDataObj.quantitySizeWise));
   payload.append('quantitySleeveWise', JSON.stringify(formDataObj.quantitySleeveWise));
-  payload.append('logos', JSON.stringify(formDataObj.logos)); // Add metadata
+  // payload.append('logos', JSON.stringify(formDataObj.logos)); // Add metadata
 
     console.log("logos" , logos);
 
 
   // Append logo images under the exact key expected by backend
-logos.forEach((logo) => {
-  if (logo.image) {
-    console.log("success");
-    payload.append('logoPhotos', logo.image); // this key must be exactly "logoPhotos"
-  }
-});
+// logoPhotos.forEach(file => {
+//       payload.append('logoPhotos', file);
+//     });
+
 
   
 
@@ -659,7 +540,7 @@ logos.forEach((logo) => {
   try {
     const response = await axios.post("https://gts.tsitcloud.com/api/cartItems/add", payload, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
         "Content-Type": "multipart/form-data"
       }
     });
@@ -983,6 +864,512 @@ const responsive = {
 
 
 
+{/* {productdetail &&
+  productdetail.category &&
+  productdetail.category._id === "68073351ecf739b9dae26185" && (
+
+<form onSubmit={handleSubmit}>
+    <div className="container mt-5">
+    <div className="row mb-4">
+  <label className="fs-6 fw-bold col-lg-2 mb-md-3">Enter Quantity required:</label>
+  <div className="col-lg-2">
+    <input
+      type="number"
+      min="15"
+      className={`form-control ${formErrors.enteredQty ? 'is-invalid' : ''}`}
+      placeholder="Enter Quantity"
+      value={enteredQty}
+      onChange={(e) => {
+        setEnteredQty(e.target.value);
+        if (formErrors.enteredQty && parseInt(e.target.value) >= 15) {
+          setFormErrors((prev) => ({ ...prev, enteredQty: '' }));
+        }
+      }}
+      onBlur={handleBlur}
+    />
+    {formErrors.enteredQty && (
+      <div className="text-danger mt-1">{formErrors.enteredQty}</div>
+    )}
+  </div>
+
+  <label className="fs-6 fw-bold col-lg-2 mt-lg-0 mb-md-3 mt-md-3">How many Logos to add:</label>
+  <div className="col-lg-2">
+    <input
+      type="number"
+      min="1"
+      max="4"
+      className={`form-control ${formErrors.logoCount ? 'is-invalid' : ''}`}
+      placeholder="Enter quantity"
+      value={logoCount}
+
+     
+      
+      onChange={handleLogoCountChange}
+      onBlur={handleLogoCountBlur}
+    />
+    {formErrors.logoCount && (
+      <div className="text-danger mt-1">{formErrors.logoCount}</div>
+    )}
+  </div>
+
+  <label className="fs-6 fw-bold col-lg-2 mt-lg-0 mt-3 mb-md-3">Pocket Required:</label>
+  <div className="col-lg-2">
+    <div className="d-flex gap-3">
+      <div>
+        <input
+          type="radio"
+          id="yes"
+          name="pocketRequired"
+          value="yes"
+          checked={pocketRequired === 'yes'}
+          onChange={(e) => {
+            setPocketRequired(e.target.value);
+            setFormErrors((prev) => ({ ...prev, pocketRequired: '' }));
+          }}
+        />
+        <label htmlFor="yes">Yes</label>
+      </div>
+      <div>
+        <input
+          type="radio"
+          id="no"
+          name="pocketRequired"
+          value="no"
+          required
+          checked={pocketRequired === 'no'}
+          onChange={(e) => {
+            setPocketRequired(e.target.value);
+            setFormErrors((prev) => ({ ...prev, pocketRequired: '' }));
+          }}
+        />
+        <label htmlFor="no">No</label>
+      </div>
+    </div>
+    {formErrors.pocketRequired && (
+      <div className="text-danger mt-1">{formErrors.pocketRequired}</div>
+    )}
+  </div>
+</div>
+
+      
+      
+
+      <div className="row mt-2 mb-4">
+ 
+  <label className="fs-6 fw-bold col-lg-2 text-lg-end mb-md-3">Delivery Date:</label>
+  <div className="col-lg-2 mb-md-3">
+    <input
+      type="date"
+      className={`form-control ${formErrors.deliveryDate ? 'is-invalid' : ''}`}
+      value={deliveryDate}
+      required
+      min={getMinDate()}
+      onChange={(e) => {
+        setDeliveryDate(e.target.value);
+        setFormErrors((prev) => ({ ...prev, deliveryDate: '' }));
+      }}
+    />
+    {formErrors.deliveryDate && (
+      <div className="text-danger mt-1">{formErrors.deliveryDate}</div>
+    )}
+  </div>
+
+  
+  <label className="fs-6 fw-bold col-lg-2 text-lg-end mt-lg-0 mt-3">Choose Colour:</label>
+  <div className="col-lg-2 d-flex flex-column align-items-lg-start align-items-center justify-content-lg-start justify-content-center mt-lg-0 mt-3">
+    <input
+      type="color"
+      id="favcolor"
+      name="favcolor"
+      value={color}
+      onChange={(e) => {
+        setColor(e.target.value);
+        setColorTouched(true);
+        setFormErrors((prev) => ({ ...prev, color: '' }));
+      }}
+      className="form-control-color rounded-color"
+    />
+    <div style={{ height: '20px' }}>
+      {formErrors.color && <div className="text-danger small">{formErrors.color}</div>}
+    </div>
+  </div>
+
+  
+  <label className="fs-6 fw-bold col-lg-2 text-lg-end mt-lg-0 mt-3">Choose Collar Colour:</label>
+  <div className="col-lg-2 d-flex flex-column align-items-lg-start align-items-center justify-content-lg-start justify-content-center mt-lg-0 mt-3">
+    <input
+      type="color"
+      id="collarcolor"
+      name="collarcolor"
+      value={collarcolor}
+      onChange={(e) => {
+        setcollarcolor(e.target.value);
+        setcollarcolorTouched(true);
+        setFormErrors((prev) => ({ ...prev, collarcolor: '' }));
+      }}
+      className="form-control-color rounded-color"
+    />
+    <div style={{ height: '20px' }}>
+      {formErrors.collarcolor && <div className="text-danger small">{formErrors.collarcolor}</div>}
+    </div>
+  </div>
+</div>
+
+
+      
+      
+      <div className="row mt-2 pt-2 pb-4 chooseoption-box mb-4   ">
+        <div>
+        
+        <label className="fs-6 fw-bold   text-center mb-3">Choose Your Option:</label>
+        </div>
+        <div className="selectmaterial-box row justify-content-evenly">
+        <div className="col-lg-2">
+          <div className="cotton-dropdown">
+          <label onClick={polycottoggle} className="dropdown-label w-100 fw-bold fs-6 mb-2">Cotton</label>
+          <select className="form-select mt-2"
+          value={selectedCotton}
+          onChange={(e) => {
+            setSelectedCotton(e.target.value);
+            setSelectedPolyester("");
+            setSelectedPolyCotton("");
+        
+            
+            setFormErrors((prev) => ({ ...prev, selectedoptions: '' }));
+          }}>
+            
+        <option value="">option </option>
+        <option value="Combed Cotton">Combed</option>
+        <option value="Ringspun Cotton">Ringspun</option>
+        <option value="Organic Cotton">Organic</option>
+        <option value="Pima Cotton">Pima</option>
+        <option value="Supima Cotton">Supima</option>
+        <option value="Slub Cotton">Slub</option>
+        
+  </select>
+          </div>
+          <div>
+            
+          </div>
+        </div>
+        <div className="col-lg-2 mt-lg-0 mt-md-3">
+          <div className="cotton-dropdown">
+          <label onClick={polytoggle} className="dropdown-label w-100 fw-bold fs-6 mb-2">Polyester</label>
+          <select className="form-select mt-2"
+           value={selectedPolyester}
+           onChange={(e) => {
+            setSelectedPolyester(e.target.value);
+            setSelectedCotton("");
+            setSelectedPolyCotton("");
+          
+            setFormErrors((prev) => ({ ...prev, selectedoptions: '' }));
+          }} >
+        <option value="">option </option>
+        <option value="Poly-cotton">Poly-cotton</option>
+        <option value="Tri-blend Fabric">Tri-blend Fabric</option>
+        <option value="Microfiber Polyester">Microfiber</option>
+        <option value="Interlock Polyester">Interlock</option>
+        <option value="Moisture-wicking">Moisture-wicking</option>
+        
+  </select>
+          </div>
+          <div>
+            
+          </div>
+        </div>
+        <div className="col-lg-2 mt-lg-0 mt-md-3">
+          <div className="cotton-dropdown">
+          <label onClick={toggleOptions} className="dropdown-label w-100 fw-bold fs-6 mb-2">Poly Cotton</label>
+          <select className="form-select mt-2"
+           value={selectedPolyCotton}
+           onChange={(e) => {
+            setSelectedPolyCotton(e.target.value);
+            setSelectedCotton("");
+            setSelectedPolyester("");
+          
+            setFormErrors((prev) => ({ ...prev, selectedoptions: '' }));
+          }}>
+        <option value="">option</option>
+        <option value="Ring-Spun Poly-Cotton">Ring-Spun</option>
+        <option value="Combed Poly-Cotton">Combed Poly</option>
+        <option value="Brushed Poly-Cotton">Brushed Poly</option>
+        
+  </select>
+          </div>
+          <div>
+            
+          </div>
+        </div>
+        </div>
+        {formErrors.selectedoptions && (
+         <div className="text-danger mt-1">{formErrors.selectedoptions}</div>
+          )}
+        
+      </div>
+
+
+      
+    
+
+      <div className="row mt-2 pt-2 pb-4 chooseoption-box ">
+      <div>
+        <label className=" fs-6 fw-bold  d-flex align-items-center justify-content-center text-center mb-3">Logo:</label>
+        </div>
+        {logos.map((logo, index) => (
+  <div key={index} className="mb-4">
+    <div className="row d-flex justify-content-evenly">
+      
+      <div className="col-lg-2">
+        <label className="form-label fw-bold">Logo Type</label>
+        <select
+          className="form-select"
+          value={logo.type}
+          onChange={(e) => handleLogoChange(index, 'type', e.target.value)}
+        >
+          <option value="">Select Type</option>
+          <option value="printed">Printed</option>
+          <option value="embroidered">Embroidered</option>
+        </select>
+        {formErrors[`logoType_${index}`] && (
+          <div className="text-danger">{formErrors[`logoType_${index}`]}</div>
+        )}
+      </div>
+
+      
+      <div className="col-lg-2">
+        <label className="form-label fw-bold">Logo Position</label>
+        <select
+          className="form-select"
+          value={logo.position}
+          onChange={(e) => handleLogoChange(index, 'position', e.target.value)}
+        >
+          <option value="">Select</option>
+          <option value="left Chest">Left Chest</option>
+          <option value="Right Chest">Right Chest</option>
+          <option value="Left Sleeve">Left Sleeve</option>
+          <option value="Right Sleeve">Right Sleeve</option>
+          <option value="Front Center">Front Center</option>
+          <option value="Back Top">Back Top</option>
+          <option value="Back Center">Back Center</option>
+          <option value="On Pocket">On Pocket</option>
+        </select>
+        {formErrors[`logoPosition_${index}`] && (
+          <div className="text-danger">{formErrors[`logoPosition_${index}`]}</div>
+        )}
+      </div>
+
+      
+      <div className="col-lg-2">
+        <label className="form-label fw-bold">Upload Logo</label>
+        <input
+          type="file"
+          accept="image/*"
+          className="form-control"
+          onChange={(e) => handleLogoImageUpload(index, e.target.files[0])}
+        />
+        {formErrors[`logoImage_${index}`] && (
+          <div className="text-danger">{formErrors[`logoImage_${index}`]}</div>
+        )}
+      </div>
+    </div>
+
+    
+    {logo.image && (
+      <div className="row mt-2">
+        <div className="col-lg-12 d-flex justify-content-center">
+          <img
+            src={logo.image}
+            alt={`Logo ${index + 1}`}
+            style={{ width: '200px', height: '200px', objectFit: 'contain' }}
+            className="rounded-4 border"
+          />
+        </div>
+      </div>
+    )}
+  </div>
+))}
+
+      </div>
+      
+    </div>
+    
+
+    <div className="container mt-5 d-flex justify-content-center align-items-center ">
+      <div className="custom-scroll-x">
+    <table className="table table-bordered text-center w-100">
+      <thead>
+        <tr>
+          <th>Size</th>
+          <th>Chest</th>
+          <th colSpan="2">Qty</th>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <th>Half Sleeve</th>
+          <th>Full Sleeve</th>
+        </tr>
+      </thead>
+      <tbody>
+        {sizes.map(({ label, chest }) => (
+          <tr key={label}>
+            <td className="fw-bold">{label}</td>
+            <td>{chest}</td>
+            <td>
+            <input
+  type="number"
+  className="form-control"
+  min="0"
+  value={halfSleeve[label] || ''}
+  onChange={(e) => handleInputChange("half", label, e.target.value)}
+  
+  
+  
+/>
+            </td>
+            <td>
+            <input
+  type="number"
+  className="form-control"
+  min="0"
+  value={fullSleeve[label] || ''}
+  onChange={(e) => handleInputChange("full", label, e.target.value)}
+  
+  
+/>
+            </td>
+          </tr>
+        ))}
+
+        <tr>
+          <td></td>
+          <td className="fw-bold">Total</td>
+          <td>
+            <input
+              type="text"
+              className="form-control"
+              value={totalHalf}
+              readOnly
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              className="form-control"
+              value={totalFull}
+              readOnly
+            />
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td className="fw-bold">Grand Total</td>
+          <td colSpan="2">
+            <input
+              type="text"
+              className="form-control"
+              value={grandTotal}
+              readOnly
+            />
+          </td>
+        </tr>
+        <tr>
+    <td colSpan="4">
+    {formErrors.quantityMatch && (
+  <div className="text-danger fw-bold mt-2">{formErrors.quantityMatch}</div>
+)}
+    </td>
+  </tr>
+        
+      </tbody>
+    </table>
+    </div>
+
+    </div>
+    <div className="d-flex justify-content-center mt-4">
+    <textarea
+  className="form-control w-50"
+  placeholder="Remark"
+  rows="4"
+  value={remark}
+  onChange={(e) => {
+    setRemark(e.target.value);
+    if (formErrors.remark) {
+      setFormErrors((prev) => ({ ...prev, remark: '' }));
+    }
+  }}
+></textarea>
+    
+  </div>
+  {formErrors.remark && (
+      <div className="text-danger mt-1">{formErrors.remark}</div>
+    )}
+  <div className="d-flex justify-content-center mt-4">
+  
+
+  </div>
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div className="container w-50 mt-5">
+      <div className="row">
+      <div className="col-lg-3">
+      <label className="fw-bold">Amount:</label>
+    </div>
+    <div className="col-lg-5">
+      <input type="text" className="form-control" readOnly value={`₹${total}`} />
+    </div>
+      </div>
+      <div className="row mt-2">
+      <div className="col-lg-3">
+      <label className="fw-bold">Total amout with gst:</label>
+    </div>
+    <div className="col-lg-5">
+      <input type="text" className="form-control" readOnly value={`₹${amountWithGst}`} />
+    </div>
+      </div>
+
+
+      
+    </div>
+
+
+
+
+    <div className="container w-50 ">
+
+    <div className=" cart-box mt-5 gap-2 row">
+            
+
+            <button type="button" class="btn btn-success btn-lg w-25">Buy Now</button>
+            <button type="submit" className="btn btn-primary btn-lg w-25">
+            <FaShoppingCart className="me-2" /> Add to cart
+            </button>
+
+            
+
+
+    </div>
+    </div>
+
+    </form>
+
+)} */}
+
+
+
 {productdetail &&
   productdetail.category &&
   productdetail.category._id === "68073351ecf739b9dae26185" && (
@@ -1074,41 +1461,68 @@ const responsive = {
       
 
       <div className="row mt-2 mb-4">
-        <label className="fs-6 fw-bold col-lg-2 text-lg-end mb-md-3 ">Delivery Date:</label>
-        <div className="col-lg-2 mb-md-3">
-          <input 
-          type="date"
-         
-          className={`form-control ${formErrors.deliveryDate ? 'is-invalid' : ''}`}
-          value={deliveryDate}
-          required
-          min={getMinDate()}
-          onChange={(e) => {
-            setDeliveryDate(e.target.value);
+ 
+  <label className="fs-6 fw-bold col-lg-2 text-lg-end mb-md-3">Delivery Date:</label>
+  <div className="col-lg-2 mb-md-3">
+    <input
+      type="date"
+      className={`form-control ${formErrors.deliveryDate ? 'is-invalid' : ''}`}
+      value={deliveryDate}
+      required
+      min={getMinDate()}
+      onChange={(e) => {
+        setDeliveryDate(e.target.value);
+        setFormErrors((prev) => ({ ...prev, deliveryDate: '' }));
+      }}
+    />
+    {formErrors.deliveryDate && (
+      <div className="text-danger mt-1">{formErrors.deliveryDate}</div>
+    )}
+  </div>
+
+  
+  <label className="fs-6 fw-bold col-lg-2 text-lg-end mt-lg-0 mt-3">Choose Colour:</label>
+  <div className="col-lg-2 d-flex flex-column align-items-lg-start align-items-center justify-content-lg-start justify-content-center mt-lg-0 mt-3">
+    <input
+      type="color"
+      id="favcolor"
+      name="favcolor"
+      value={color}
+      onChange={(e) => {
+        setColor(e.target.value);
+        setColorTouched(true);
+        setFormErrors((prev) => ({ ...prev, color: '' }));
+      }}
+      className="form-control-color rounded-color"
+    />
+    <div style={{ height: '20px' }}>
+      {formErrors.color && <div className="text-danger small">{formErrors.color}</div>}
+    </div>
+  </div>
+
+  
+  <label className="fs-6 fw-bold col-lg-2 text-lg-end mt-lg-0 mt-3">Choose Collar Colour:</label>
+  <div className="col-lg-2 d-flex flex-column align-items-lg-start align-items-center justify-content-lg-start justify-content-center mt-lg-0 mt-3">
+    <input
+      type="color"
+      id="collarcolor"
+      name="collarcolor"
+      value={collarcolor}
+      onChange={(e) => {
+        setcollarcolor(e.target.value);
+        setcollarcolorTouched(true);
+        setFormErrors((prev) => ({ ...prev, collarcolor: '' }));
+      }}
+      className="form-control-color rounded-color"
+    />
+    <div style={{ height: '20px' }}>
+      {formErrors.collarcolor && <div className="text-danger small">{formErrors.collarcolor}</div>}
+    </div>
+  </div>
+</div>
+
+
       
-            
-            setFormErrors((prev) => ({ ...prev, deliveryDate: '' }));
-          }}
-          ></input>
-          {formErrors.deliveryDate && (
-         <div className="text-danger mt-1">{formErrors.deliveryDate}</div>
-          )}
-        </div>
-        <label className="fs-6 fw-bold col-lg-2 text-lg-end mt-lg-0 mt-3">Choose Colour:</label>
-        <div className="col-lg-1 d-flex align-items-lg-start align-items-center justify-content-lg-start justify-content-center mt-lg-0 mt-3 ">
-        <input  type="color" id="favcolor" name="favcolor" value={color} 
-        onChange={(e) => {
-          setColor(e.target.value);
-          setColorTouched(true);
-    
-          
-          setFormErrors((prev) => ({ ...prev, color: '' }));
-        }}
-        className="form-control-color rounded-color"></input>
-        
-        </div>
-        {formErrors.color && <div className="text-danger">{formErrors.color}</div>}
-      </div>
       
       <div className="row mt-2 pt-2 pb-4 chooseoption-box mb-4   ">
         <div>
@@ -1215,15 +1629,15 @@ const responsive = {
         <label className="form-label fw-bold">Logo Type</label>
         <select
           className="form-select"
-          value={logo.type}
-          onChange={(e) => handleLogoChange(index, 'type', e.target.value)}
+          value={logo.logotype}
+           onChange={(e) => handleLogoChange(index, 'logotype', e.target.value)}
         >
           <option value="">Select Type</option>
           <option value="printed">Printed</option>
           <option value="embroidered">Embroidered</option>
         </select>
-        {formErrors[`logoType_${index}`] && (
-          <div className="text-danger">{formErrors[`logoType_${index}`]}</div>
+        {formErrors[`logotype_${index}`] && (
+          <div className="text-danger">{formErrors[`logotype_${index}`]}</div>
         )}
       </div>
 
@@ -1234,6 +1648,7 @@ const responsive = {
           className="form-select"
           value={logo.position}
           onChange={(e) => handleLogoChange(index, 'position', e.target.value)}
+
         >
           <option value="">Select</option>
           <option value="left Chest">Left Chest</option>
@@ -1254,11 +1669,16 @@ const responsive = {
       <div className="col-lg-2">
         <label className="form-label fw-bold">Upload Logo</label>
         <input
-          type="file"
-          accept="image/*"
-          className="form-control"
-          onChange={(e) => handleLogoImageUpload(index, e.target.files[0])}
-        />
+  type="file"
+  className="form-control"
+  accept="image/*"
+  onChange={(e) => {
+    if (e.target.files[0]) {
+      handleLogoPhotoChange(index, e.target.files[0]);
+    }
+  }}
+/>
+
         {formErrors[`logoImage_${index}`] && (
           <div className="text-danger">{formErrors[`logoImage_${index}`]}</div>
         )}
@@ -1417,18 +1837,18 @@ const responsive = {
 
     <div className="container w-50 mt-5">
       <div className="row">
-      <div className="col-lg-2">
+      <div className="col-lg-3">
       <label className="fw-bold">Amount:</label>
     </div>
-    <div className="col-lg-3">
+    <div className="col-lg-5">
       <input type="text" className="form-control" readOnly value={`₹${total}`} />
     </div>
       </div>
       <div className="row mt-2">
-      <div className="col-lg-2">
+      <div className="col-lg-3">
       <label className="fw-bold">Total amout with gst:</label>
     </div>
-    <div className="col-lg-3">
+    <div className="col-lg-5">
       <input type="text" className="form-control" readOnly value={`₹${amountWithGst}`} />
     </div>
       </div>
@@ -1459,477 +1879,32 @@ const responsive = {
     </form>
 
 )}
-    
-{/* <form onSubmit={handleSubmit}>
-    <div className="container mt-5">
-    <div className="row mb-4">
-  <label className="fs-6 fw-bold col-lg-2 mb-md-3">Enter Quantity required:</label>
-  <div className="col-lg-2">
-    <input
-      type="number"
-      min="15"
-      className={`form-control ${formErrors.enteredQty ? 'is-invalid' : ''}`}
-      placeholder="Enter Quantity"
-      value={enteredQty}
-      onChange={(e) => {
-        setEnteredQty(e.target.value);
-        if (formErrors.enteredQty && parseInt(e.target.value) >= 15) {
-          setFormErrors((prev) => ({ ...prev, enteredQty: '' }));
-        }
-      }}
-      onBlur={handleBlur}
-    />
-    {formErrors.enteredQty && (
-      <div className="text-danger mt-1">{formErrors.enteredQty}</div>
-    )}
-  </div>
-
-  <label className="fs-6 fw-bold col-lg-2 mt-lg-0 mb-md-3 mt-md-3">How many Logos to add:</label>
-  <div className="col-lg-2">
-    <input
-      type="number"
-      min="1"
-      max="4"
-      className={`form-control ${formErrors.logoCount ? 'is-invalid' : ''}`}
-      placeholder="Enter quantity"
-      value={logoCount}
-
-     
-      
-      onChange={handleLogoCountChange}
-      onBlur={handleLogoCountBlur}
-    />
-    {formErrors.logoCount && (
-      <div className="text-danger mt-1">{formErrors.logoCount}</div>
-    )}
-  </div>
-
-  <label className="fs-6 fw-bold col-lg-2 mt-lg-0 mt-3 mb-md-3">Pocket Required:</label>
-  <div className="col-lg-2">
-    <div className="d-flex gap-3">
-      <div>
-        <input
-          type="radio"
-          id="yes"
-          name="pocketRequired"
-          value="yes"
-          checked={pocketRequired === 'yes'}
-          onChange={(e) => {
-            setPocketRequired(e.target.value);
-            setFormErrors((prev) => ({ ...prev, pocketRequired: '' }));
-          }}
-        />
-        <label htmlFor="yes">Yes</label>
-      </div>
-      <div>
-        <input
-          type="radio"
-          id="no"
-          name="pocketRequired"
-          value="no"
-          required
-          checked={pocketRequired === 'no'}
-          onChange={(e) => {
-            setPocketRequired(e.target.value);
-            setFormErrors((prev) => ({ ...prev, pocketRequired: '' }));
-          }}
-        />
-        <label htmlFor="no">No</label>
-      </div>
-    </div>
-    {formErrors.pocketRequired && (
-      <div className="text-danger mt-1">{formErrors.pocketRequired}</div>
-    )}
-  </div>
-</div>
-
-      
-      
-
-      <div className="row mt-2 mb-4">
-        <label className="fs-6 fw-bold col-lg-2 text-lg-end mb-md-3 ">Delivery Date:</label>
-        <div className="col-lg-2 mb-md-3">
-          <input 
-          type="date"
-         
-          className={`form-control ${formErrors.deliveryDate ? 'is-invalid' : ''}`}
-          value={deliveryDate}
-          required
-          min={getMinDate()}
-          onChange={(e) => {
-            setDeliveryDate(e.target.value);
-      
-            
-            setFormErrors((prev) => ({ ...prev, deliveryDate: '' }));
-          }}
-          ></input>
-          {formErrors.deliveryDate && (
-         <div className="text-danger mt-1">{formErrors.deliveryDate}</div>
-          )}
-        </div>
-        <label className="fs-6 fw-bold col-lg-2 text-lg-end mt-lg-0 mt-3">Choose Colour:</label>
-        <div className="col-lg-1 d-flex align-items-lg-start align-items-center justify-content-lg-start justify-content-center mt-lg-0 mt-3 ">
-        <input  type="color" id="favcolor" name="favcolor" value={color} 
-        onChange={(e) => {
-          setColor(e.target.value);
-          setColorTouched(true);
-    
-          
-          setFormErrors((prev) => ({ ...prev, color: '' }));
-        }}
-        className="form-control-color rounded-color"></input>
-        
-        </div>
-        {formErrors.color && <div className="text-danger">{formErrors.color}</div>}
-      </div>
-      
-      <div className="row mt-2 pt-2 pb-4 chooseoption-box mb-4   ">
-        <div>
-        
-        <label className="fs-6 fw-bold   text-center mb-3">Choose Your Option:</label>
-        </div>
-        <div className="selectmaterial-box row justify-content-evenly">
-        <div className="col-lg-2">
-          <div className="cotton-dropdown">
-          <label onClick={polycottoggle} className="dropdown-label w-100 fw-bold fs-6 mb-2">Cotton</label>
-          <select className="form-select mt-2"
-          value={selectedCotton}
-          onChange={(e) => {
-            setSelectedCotton(e.target.value);
-            setSelectedPolyester("");
-            setSelectedPolyCotton("");
-        
-            
-            setFormErrors((prev) => ({ ...prev, selectedoptions: '' }));
-          }}>
-            
-        <option value="">option </option>
-        <option value="Combed Cotton">Combed</option>
-        <option value="Ringspun Cotton">Ringspun</option>
-        <option value="Organic Cotton">Organic</option>
-        <option value="Pima Cotton">Pima</option>
-        <option value="Supima Cotton">Supima</option>
-        <option value="Slub Cotton">Slub</option>
-        
-  </select>
-          </div>
-          <div>
-            
-          </div>
-        </div>
-        <div className="col-lg-2 mt-lg-0 mt-md-3">
-          <div className="cotton-dropdown">
-          <label onClick={polytoggle} className="dropdown-label w-100 fw-bold fs-6 mb-2">Polyester</label>
-          <select className="form-select mt-2"
-           value={selectedPolyester}
-           onChange={(e) => {
-            setSelectedPolyester(e.target.value);
-            setSelectedCotton("");
-            setSelectedPolyCotton("");
-          
-            setFormErrors((prev) => ({ ...prev, selectedoptions: '' }));
-          }} >
-        <option value="">option </option>
-        <option value="Poly-cotton">Poly-cotton</option>
-        <option value="Tri-blend Fabric">Tri-blend Fabric</option>
-        <option value="Microfiber Polyester">Microfiber</option>
-        <option value="Interlock Polyester">Interlock</option>
-        <option value="Moisture-wicking">Moisture-wicking</option>
-        
-  </select>
-          </div>
-          <div>
-            
-          </div>
-        </div>
-        <div className="col-lg-2 mt-lg-0 mt-md-3">
-          <div className="cotton-dropdown">
-          <label onClick={toggleOptions} className="dropdown-label w-100 fw-bold fs-6 mb-2">Poly Cotton</label>
-          <select className="form-select mt-2"
-           value={selectedPolyCotton}
-           onChange={(e) => {
-            setSelectedPolyCotton(e.target.value);
-            setSelectedCotton("");
-            setSelectedPolyester("");
-          
-            setFormErrors((prev) => ({ ...prev, selectedoptions: '' }));
-          }}>
-        <option value="">option</option>
-        <option value="Ring-Spun Poly-Cotton">Ring-Spun</option>
-        <option value="Combed Poly-Cotton">Combed Poly</option>
-        <option value="Brushed Poly-Cotton">Brushed Poly</option>
-        
-  </select>
-          </div>
-          <div>
-            
-          </div>
-        </div>
-        </div>
-        {formErrors.selectedoptions && (
-         <div className="text-danger mt-1">{formErrors.selectedoptions}</div>
-          )}
-        
-      </div>
-
-
-      
-    
-
-      <div className="row mt-2 pt-2 pb-4 chooseoption-box ">
-      <div>
-        <label className=" fs-6 fw-bold  d-flex align-items-center justify-content-center text-center mb-3">Logo:</label>
-        </div>
-        {logos.map((logo, index) => (
-  <div key={index} className="mb-4">
-    <div className="row d-flex justify-content-evenly">
-      
-      <div className="col-lg-2">
-        <label className="form-label fw-bold">Logo Type</label>
-        <select
-          className="form-select"
-          value={logo.type}
-          onChange={(e) => handleLogoChange(index, 'type', e.target.value)}
-        >
-          <option value="">Select Type</option>
-          <option value="printed">Printed</option>
-          <option value="embroidered">Embroidered</option>
-        </select>
-        {formErrors[`logoType_${index}`] && (
-          <div className="text-danger">{formErrors[`logoType_${index}`]}</div>
-        )}
-      </div>
-
-      
-      <div className="col-lg-2">
-        <label className="form-label fw-bold">Logo Position</label>
-        <select
-          className="form-select"
-          value={logo.position}
-          onChange={(e) => handleLogoChange(index, 'position', e.target.value)}
-        >
-          <option value="">Select</option>
-          <option value="left Chest">Left Chest</option>
-          <option value="Right Chest">Right Chest</option>
-          <option value="Left Sleeve">Left Sleeve</option>
-          <option value="Right Sleeve">Right Sleeve</option>
-          <option value="Front Center">Front Center</option>
-          <option value="Back Top">Back Top</option>
-          <option value="Back Center">Back Center</option>
-          <option value="On Pocket">On Pocket</option>
-        </select>
-        {formErrors[`logoPosition_${index}`] && (
-          <div className="text-danger">{formErrors[`logoPosition_${index}`]}</div>
-        )}
-      </div>
-
-      
-      <div className="col-lg-2">
-        <label className="form-label fw-bold">Upload Logo</label>
-        <input
-          type="file"
-          accept="image/*"
-          className="form-control"
-          onChange={(e) => handleLogoImageUpload(index, e.target.files[0])}
-        />
-        {formErrors[`logoImage_${index}`] && (
-          <div className="text-danger">{formErrors[`logoImage_${index}`]}</div>
-        )}
-      </div>
-    </div>
-
-    
-    {logo.image && (
-      <div className="row mt-2">
-        <div className="col-lg-12 d-flex justify-content-center">
-          <img
-            src={logo.image}
-            alt={`Logo ${index + 1}`}
-            style={{ width: '200px', height: '200px', objectFit: 'contain' }}
-            className="rounded-4 border"
-          />
-        </div>
-      </div>
-    )}
-  </div>
-))}
-
-      </div>
-      
-    </div>
-    
-
-    <div className="container mt-5 d-flex justify-content-center align-items-center ">
-      <div className="custom-scroll-x">
-    <table className="table table-bordered text-center w-100">
-      <thead>
-        <tr>
-          <th>Size</th>
-          <th>Chest</th>
-          <th colSpan="2">Qty</th>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <th>Half Sleeve</th>
-          <th>Full Sleeve</th>
-        </tr>
-      </thead>
-      <tbody>
-        {sizes.map(({ label, chest }) => (
-          <tr key={label}>
-            <td className="fw-bold">{label}</td>
-            <td>{chest}</td>
-            <td>
-            <input
-  type="number"
-  className="form-control"
-  min="0"
-  value={halfSleeve[label] || ''}
-  onChange={(e) => handleInputChange("half", label, e.target.value)}
-  
-  
-  
-/>
-            </td>
-            <td>
-            <input
-  type="number"
-  className="form-control"
-  min="0"
-  value={fullSleeve[label] || ''}
-  onChange={(e) => handleInputChange("full", label, e.target.value)}
-  
-  
-/>
-            </td>
-          </tr>
-        ))}
-
-        <tr>
-          <td></td>
-          <td className="fw-bold">Total</td>
-          <td>
-            <input
-              type="text"
-              className="form-control"
-              value={totalHalf}
-              readOnly
-            />
-          </td>
-          <td>
-            <input
-              type="text"
-              className="form-control"
-              value={totalFull}
-              readOnly
-            />
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td className="fw-bold">Grand Total</td>
-          <td colSpan="2">
-            <input
-              type="text"
-              className="form-control"
-              value={grandTotal}
-              readOnly
-            />
-          </td>
-        </tr>
-        <tr>
-    <td colSpan="4">
-    {formErrors.quantityMatch && (
-  <div className="text-danger fw-bold mt-2">{formErrors.quantityMatch}</div>
-)}
-    </td>
-  </tr>
-        
-      </tbody>
-    </table>
-    </div>
-
-    </div>
-    <div className="d-flex justify-content-center mt-4">
-    <textarea
-  className="form-control w-50"
-  placeholder="Remark"
-  rows="4"
-  value={remark}
-  onChange={(e) => {
-    setRemark(e.target.value);
-    if (formErrors.remark) {
-      setFormErrors((prev) => ({ ...prev, remark: '' }));
-    }
-  }}
-></textarea>
-    
-  </div>
-  {formErrors.remark && (
-      <div className="text-danger mt-1">{formErrors.remark}</div>
-    )}
-  <div className="d-flex justify-content-center mt-4">
-  
-
-  </div>
- 
 
 
 
 
+    <>
+    <Roundneck></Roundneck>
+    </>
+
+    <>
+    <Hoodies></Hoodies>
+    </>
+
+    <>
+    <Jackets></Jackets>
+    </>
 
 
+     <>
+    <Caps></Caps>
+    </>
 
 
+    <>
+    <Jerseys></Jerseys>
+    </>
 
-
-
-
-
-
-    <div className="container w-50 mt-5">
-      <div className="row">
-      <div className="col-lg-2">
-      <label className="fw-bold">Amount:</label>
-    </div>
-    <div className="col-lg-3">
-      <input type="text" className="form-control" readOnly value={`₹${total}`} />
-    </div>
-      </div>
-      <div className="row mt-2">
-      <div className="col-lg-2">
-      <label className="fw-bold">Total amout with gst:</label>
-    </div>
-    <div className="col-lg-3">
-      <input type="text" className="form-control" readOnly value={`₹${amountWithGst}`} />
-    </div>
-      </div>
-
-
-      
-    </div>
-
-
-
-
-    <div className="container w-50 ">
-
-    <div className=" cart-box mt-5 gap-2 row">
-            
-
-            <button type="button" class="btn btn-success btn-lg w-25">Buy Now</button>
-            <button type="submit" className="btn btn-primary btn-lg w-25">
-            <FaShoppingCart className="me-2" /> Add to cart
-            </button>
-
-            
-
-
-    </div>
-    </div>
-
-    </form> */}
 
 
 
@@ -2150,75 +2125,3 @@ export default Productdetail
 
 
 
-{/* {logos.map((logo, index) => (
-  <div key={index} className="mb-4">
-    <div className="row justify-content-evenly">
-      <div className="col-lg-2">
-        <label className="form-label">Logo Type</label>
-        <select
-          className={`form-select ${formErrors[index]?.type ? 'is-invalid' : ''}`}
-          value={logo.type}
-          onChange={(e) => handleLogoChange(index, 'type', e.target.value)}
-        >
-          <option value="">Select Type</option>
-          <option value="printed">Printed</option>
-          <option value="embroidered">Embroidered</option>
-        </select>
-        {formErrors[index]?.type && (
-          <div className="text-danger mt-1">{formErrors[index].type}</div>
-        )}
-      </div>
-
-      <div className="col-lg-2">
-        <label className="form-label">Logo Position</label>
-        <select
-          className={`form-select ${formErrors[index]?.position ? 'is-invalid' : ''}`}
-          value={logo.position}
-          onChange={(e) => handleLogoChange(index, 'position', e.target.value)}
-        >
-          <option value="">Select</option>
-          <option value="left Chest">Left Chest</option>
-          <option value="Right Chest">Right Chest</option>
-          <option value="Left Sleeve">Left Sleeve</option>
-          <option value="Right Sleeve">Right Sleeve</option>
-          <option value="Front Center">Front Center</option>
-          <option value="Back Top">Back Top</option>
-          <option value="Back Center">Back Center</option>
-          <option value="On Pocket">On Pocket</option>
-        </select>
-        {formErrors[index]?.position && (
-          <div className="text-danger mt-1">{formErrors[index].position}</div>
-        )}
-      </div>
-
-      <div className="col-lg-2">
-        <label className="form-label">Upload Logo</label>
-        <input
-          type="file"
-          accept="image/*"
-          className={`form-control ${formErrors[index]?.image ? 'is-invalid' : ''}`}
-          onChange={(e) =>
-            handleLogoImageUpload(index, e.target.files[0])
-          }
-        />
-        {formErrors[index]?.image && (
-          <div className="text-danger mt-1">{formErrors[index].image}</div>
-        )}
-      </div>
-    </div>
-
-    
-    {logo.image && (
-      <div className="row justify-content-center mt-3">
-        <div className="col-lg-2">
-          <img
-            src={logo.image}
-            alt={`Logo ${index + 1}`}
-            style={{ width: '200px', height: '200px', objectFit: 'contain' }}
-            className="border rounded"
-          />
-        </div>
-      </div>
-    )}
-  </div>
-))} */}

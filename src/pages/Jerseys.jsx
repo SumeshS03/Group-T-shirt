@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from 'axios';
 
 
-const Cups = () => {
+const Jerseys = () => {
 
 const { id } = useParams();
 
@@ -51,15 +51,14 @@ const { id } = useParams();
     <>
       {productdetail &&
         productdetail.category &&
-        productdetail.category._id === "680f271543a9574da31d61be" && (
+        productdetail.category._id === "680f271c43a9574da31d61c1" && (
           <div>
             <div className="container mt-5"></div>
-            <p>This is a Caps</p>
+            <p>This is a Jerseys product</p>
           </div>
         )}
     </>
   );
 };
 
-export default Cups;
-
+export default Jerseys;

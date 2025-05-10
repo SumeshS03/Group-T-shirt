@@ -40,14 +40,9 @@ function App() {
         <Route path="/product" element={<Shopcontentproduct/>}></Route>
         <Route path="/productdetail/:id" element={<Productdetail />} />
         <Route path="/Stockdetail/:id" element={<Stockdetail></Stockdetail>}></Route>
-        {/* <Route path="/cart/:id" element={<Cartpage></Cartpage>}></Route> */}
+       
         <Route path='/profile' element={<Profile></Profile>}></Route>
-        {/* <Route path="/cart/:id"  element={<CartProvider></CartProvider>}></Route> */}
-        {/* <Route path="/longsleeves" element={<Longsleeves/>}></Route>
-        <Route path="/sweater" element={<Sweater/>}></Route>
-        <Route path="/hoodies" element={<Hoodies></Hoodies>}></Route>
-        <Route path='/cups' element={<Cups></Cups>}></Route> */}
-        {/* <Route path='/product' element={<Productpage></Productpage>}></Route> */}
+        
         <Route path='/newdesign' element={<Newdesign></Newdesign>}></Route>
         <Route path='/stock' element={<Stockpage></Stockpage>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>
