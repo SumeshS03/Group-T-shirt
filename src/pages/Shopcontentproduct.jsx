@@ -227,7 +227,7 @@ const products = [
                       style={{ cursor: 'pointer' }}
                     >
                       <img
-                        src={`https://gts.selfietoons.com/${product.images[0]}`}
+                        src={`https://gts.tsitcloud.com/${product.images[0]}`}
                         alt={`product-img-${prodIndex}`}
                         style={{ width: '100%', height: '200px', objectFit: 'cover' }}
                       />

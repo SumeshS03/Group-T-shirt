@@ -32,7 +32,7 @@ const Roundneck = () => {
         if (foundProduct) {
           setProductdetail(foundProduct);
           setSelectedImage(
-            `https://gts.selfietoons.com/${foundProduct.images[0]}`
+            `https://gts.tsitcloud.com/${foundProduct.images[0]}`
           );
         }
       } catch (error) {

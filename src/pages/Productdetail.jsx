@@ -597,7 +597,7 @@ const handleSubmit = async (e) => {
   
           if (foundProduct) {
             setProductdetail(foundProduct);
-            setSelectedImage(`https://gts.selfietoons.com/${foundProduct.images[0]}`);
+            setSelectedImage(`https://gts.tsitcloud.com/${foundProduct.images[0]}`);
           }
         } catch (error) {
           console.error('Failed to fetch product:', error);
@@ -748,7 +748,7 @@ const responsive = {
           src={
             hoveredImage ||
             selectedImage ||
-            `https://gts.selfietoons.com/${productdetail?.images?.[0]}`
+            `https://gts.tsitcloud.com/${productdetail?.images?.[0]}`
           }
           alt={productdetail?.name}
           className="img-fluid"
@@ -760,7 +760,7 @@ const responsive = {
         <div
           className="productdetail-image"
           onMouseEnter={() =>
-            setHoveredImage(`https://gts.selfietoons.com/${productdetail?.images?.[1]}`)
+            setHoveredImage(`https://gts.tsitcloud.com/${productdetail?.images?.[1]}`)
           }
           onMouseLeave={() => setHoveredImage(null)}
           // onClick={() =>
@@ -769,7 +769,7 @@ const responsive = {
           style={{
             border:
               selectedImage ===
-              `https://gts.selfietoons.com/${productdetail?.images?.[1]}`
+              `https://gts.tsitcloud.com/${productdetail?.images?.[1]}`
                 ? '2px solid blue'
                 : '2px solid transparent',
             borderRadius: '8px',
@@ -777,7 +777,7 @@ const responsive = {
           }}
         >
           <img
-            src={`https://gts.selfietoons.com/${productdetail?.images?.[1]}`}
+            src={`https://gts.tsitcloud.com/${productdetail?.images?.[1]}`}
             alt="Second"
             className="img-fluid"
             style={{ cursor: 'pointer' }}

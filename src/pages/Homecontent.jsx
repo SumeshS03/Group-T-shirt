@@ -250,7 +250,7 @@ const Homecontent = () => {
             </h1>
 
             <p className="print-shirt">
-              Print shirts for yourself or your online business
+              Print shirts for yourself or your online business 
             </p>
             <button className="start-btd "  onClick={buycheck}  >Buy Now</button>
           </div>

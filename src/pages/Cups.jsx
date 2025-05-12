@@ -31,7 +31,7 @@ const { id } = useParams();
       
               if (foundProduct) {
                 setProductdetail(foundProduct);
-                setSelectedImage(`https://gts.selfietoons.com/${foundProduct.images[0]}`);
+                setSelectedImage(`https://gts.tsitcloud.com/${foundProduct.images[0]}`);
               }
             } catch (error) {
               console.error('Failed to fetch product:', error);

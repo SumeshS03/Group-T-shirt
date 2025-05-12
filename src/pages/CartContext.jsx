@@ -33,11 +33,12 @@ const CartContext = () => {
     const fetchProduct = async () => {
       try {
         const storedCustomerId = localStorage.getItem('customerId');
+        const token =localStorage.getItem('authToken')
         const response = await axios.get(
           `https://gts.tsitcloud.com/api/cartItems/list/${storedCustomerId}`,
           {
             headers: {
-              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MThhNmQ2ZjA0MzVhYzExMGNiNGYwYSIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc0Njg2MTA5OSwiZXhwIjoxNzQ2OTQ3NDk5fQ.ETBiTUBtL1VVKT67Sv8ZEo7HDxVP2AGCSVrkP_HvAO8`,
+              Authorization: `Bearer ${token}`,
             },
           }
         );
@@ -54,7 +55,7 @@ const CartContext = () => {
   const handleDelete = async(itemId) => {
     const storedCustomerId = localStorage.getItem('customerId');
     const token = localStorage.getItem('authToken');
-    console.log('itemid',itemId);
+    // console.log('itemid',itemId);
     try{
       const response = axios.post('https://gts.tsitcloud.com/api/cartItems/delete',
         {

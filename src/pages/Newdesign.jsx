@@ -214,6 +214,7 @@ const addSelectedColor = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
+  const[deliverydate,setDeliveryDate]=useState('');
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
 
@@ -245,7 +246,8 @@ const addSelectedColor = () => {
     quantity: '',
     name: '',
     phone: '',
-    address: ''
+    address: '',
+    deliverydate:''
   });
 
 
@@ -272,7 +274,7 @@ const addSelectedColor = () => {
 
   const validate = () => {
     const newErrors = {};
-    const { previewImage, quantity, name, phone, address } = formData;
+    const { previewImage, quantity, name, phone, address ,deliverydate } = formData;
   
     if (!previewImage) newErrors.previewImage = 'Please upload an image';
     if (!quantity) {
@@ -291,6 +293,8 @@ const addSelectedColor = () => {
     }
   
     if (!address) newErrors.address = 'Address is required';
+
+    if (!deliverydate) newErrors.deliverydate ='select delivery date';
   
     return newErrors;
   };
@@ -640,6 +644,15 @@ const addSelectedColor = () => {
               onChange={handleChange('address')}
             />
             {errors.address && <div className="text-danger">{errors.address}</div>}
+
+            <input
+              type="date"
+              className="form-control mb-3"
+              placeholder="Delivery date"
+              value={formData.deliverydate}
+              onChange={handleChange('deliverydate')}
+            />
+            {errors.deliverydate && <div className="text-danger">{errors.deliverydate}</div>}
           </div>
         </div>
       </div>
