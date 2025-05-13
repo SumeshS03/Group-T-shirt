@@ -24,6 +24,7 @@ import Profile from './pages/Profile'
 import Stockdetail from './pages/Stockdetail'
 import Register from './pages/Register';
 import SampleOne from './pages/sample'
+import OrderHistory from './pages/OrderHistory';
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
         <Route path='/register' element={<Register></Register>}></Route>
         <Route path="/cart" element={<CartContext></CartContext>}></Route>
         <Route path="/sample" element={<SampleOne />} />
+        <Route path='/history' element={<OrderHistory ></OrderHistory>}></Route>
         
       </Routes>
     {/* </Router> */}

@@ -108,7 +108,7 @@ const CartContext = () => {
                     src={`https://gts.tsitcloud.com/${item.productId.images[0]}`}
                     alt="Product"
                     className="img-fluid rounded"
-                    style={{ maxHeight: '200px', objectFit: 'cover' }}
+                    style={{ objectFit: 'cover' }}
                   />
                 )}
               </div>
@@ -133,16 +133,16 @@ const CartContext = () => {
                             className="img-thumbnail"
                             style={{ width: '80px', height: '80px', objectFit: 'contain' }}
                           />
-                          <div className="small mt-1">{logo.logotype}</div>
+                          <div className="small mt-1">{logo.position}</div>
                         </div>
                       ))}
                     </div>
                   </div>
                 )}
               </div>
-              <div className='col-lg-2 d-flex flex-column align-items-center justify-content-center gap-5'>
+              <div className='col-lg-2 d-flex flex-column align-items-center justify-content-center gap-lg-5 gap-2  mt-lg-0 mt-3'>
                 
-              <MdDelete className='delete-icon  '
+              <MdDelete className='delete-icon   '
               onClick={() => handleDelete(item._id)}
                size={32} />
               <Button variant="contained" style={{ backgroundColor: 'green' }}>Buy Now</Button>

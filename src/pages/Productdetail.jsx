@@ -536,6 +536,12 @@ const handleSubmit = async (e) => {
   
 
   const token = localStorage.getItem('authToken');
+  const customerId = localStorage.getItem('customerId');
+  if (!token || !customerId) {
+    alert("Login and continue");
+    navigate('/profile')
+    return;
+  }
 
   try {
     const response = await axios.post("https://gts.tsitcloud.com/api/cartItems/add", payload, {
@@ -551,7 +557,8 @@ const handleSubmit = async (e) => {
     if (error.response) {
       console.error("Server error:", error.response.data);
       const apiMessage = error.response.data?.message || "Something went wrong. Please try again.";
-      alert(apiMessage);
+      alert("Login and continue");
+      navigate('/profile')
     } else {
       console.error("Error submitting form:", error);
       alert("Network error or server not reachable.");

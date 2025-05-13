@@ -83,7 +83,7 @@
 
   .inner-box{
     
-    width: 280px; 
+    width: 265px; 
     height: 304px;
     background-color: antiquewhite;
     border: none;
@@ -852,7 +852,7 @@
 
 @media screen and (max-width: 1024px) {
     .inner-box{
-    width: 180px; 
+    width: 180px !important; 
     height: 250px;
     }
       .logo-imgone {

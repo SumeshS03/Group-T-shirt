@@ -23,6 +23,7 @@ import { FaYoutube } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { FaFileSignature } from "react-icons/fa6";
 
 
 
@@ -45,6 +46,13 @@ const HomeHeader = () => {
   useEffect(() => {
     setActiveLink(location.pathname.replace("/", ""));
   }, [location]);
+
+  const handlehistoryclick =() =>{
+    const token =localStorage.getItem('authToken')
+    if (token){
+    navigate('/history')
+    }
+  }
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
@@ -142,7 +150,7 @@ const HomeHeader = () => {
               
                <Link to="/aboutus" className="no-underline-2 fw-bold"  style={{ color: activeLink === "aboutus" ? "#cf9601" : "blue" }}>
      
-                    ABOUTUS 
+                    ABOUT US 
                </Link>
                
                <div className="dropdown" onMouseEnter={() => setDropdownOpen(true)} onMouseLeave={() => setDropdownOpen(false)} >
@@ -186,6 +194,11 @@ const HomeHeader = () => {
               </div>
               <div className='pofile-box'><FaCartShopping className='profileicons' 
               onClick={handleCartClick}/></div>
+              {localStorage.getItem('authToken') && (
+  <div className='pofile-box'>
+    <FaFileSignature className='profileicons' onClick={handlehistoryclick}  />
+  </div>
+)}
               </div>
 
 
@@ -199,7 +212,7 @@ const HomeHeader = () => {
                <div className='st-line'>
 
               </div>
-              <div className='pofile-box'><FaCartShopping /></div>
+              <div className='pofile-box' onClick={handleCartClick}><FaCartShopping /></div>
               
 
               </div>
@@ -219,6 +232,11 @@ const HomeHeader = () => {
           {/* added */}
           <div className={`mobile-sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <div className="close-btn" onClick={toggleSidebar} style={{color:'blue'}}>×</div>
+         {localStorage.getItem('authToken') && (
+  <div className='pofile-box '>
+    <FaFileSignature className='profileicons' onClick={handlehistoryclick}  />
+  </div>
+)}
         <Link to="/" onClick={toggleSidebar} className="no-underline-1" style={{ color: activeLink === "home" ? "#cf9601" : "blue" }}>HOME</Link>
         <Link to="/aboutus" onClick={toggleSidebar} className="no-underline-2"  style={{ color: activeLink === "aboutus" ? "#cf9601" : "blue" }}>ABOUTUS</Link>
         <div className="dropdown" onMouseEnter={() => setDropdownOpen(true)} onMouseLeave={() => setDropdownOpen(false)} >
@@ -237,7 +255,7 @@ const HomeHeader = () => {
 </div>
         <Link to="/service" onClick={toggleSidebar} className="no-underline-2"  style={{ color: activeLink === "service" ? "#cf9601" : "blue" }}>SERVICE</Link>
         <Link to="/contactus" onClick={toggleSidebar} className="no-underline-2"  style={{ color: activeLink === "contactus" ? "#cf9601" : "blue" }}>CONTACT US</Link>
-        <div className='icon-diver'>
+        <div className='icon-diver '>
         <div className='insta-box'>
               <FaInstagram className='insta-icons'  />
 
@@ -254,7 +272,14 @@ const HomeHeader = () => {
               <div className='insta-box'>
               <FaYoutube className='youtube-icon' />
               </div>
+
+              
+              
               </div>
+              
+
+
+             
       </div>
           
 

@@ -143,7 +143,7 @@ const products = [
               }
               onClick={() => navigate("/product")}
               >
-                <h2 className="h4 heading-text-product">Product Page</h2>
+                <h2 className="h4 heading-text-product">Product</h2>
               </div>
               <div
                 className={`col-lg-3 col-12 new-design-page ${
@@ -151,7 +151,7 @@ const products = [
                 }`}
                 onClick={() => navigate("/newdesign")}
               >
-                <h2 className="h4 heading-text-product">New Design Page</h2>
+                <h2 className="h4 heading-text-product">New Design</h2>
               </div>
               <div
                 className={`col-lg-3 col-12 stock-page ${
@@ -159,7 +159,7 @@ const products = [
                 }`}
                 onClick={() => navigate("/stock")}
               >
-                <h2 className="h4 heading-text-product">Stock Page</h2>
+                <h2 className="h4 heading-text-product">Ready Stock</h2>
               </div>
             {/* </div> */}
           </div>

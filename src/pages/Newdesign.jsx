@@ -39,10 +39,37 @@ import { RiUpload2Fill } from "react-icons/ri";
 import "./Newdesign.css"
 import Button from 'react-bootstrap/Button';
 
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+import axios from 'axios';
+
+
+
 
 const Shopcontentproduct = () => {
   const [activeTab, setActiveTab] = useState("product");
   const [showColors, setShowColors] = useState(false);
+ 
+
+const responsive = {
+  superLargeDesktop: {
+    breakpoint: { max: 4000, min: 1200 },
+    items: 1
+  },
+  desktop: {
+    breakpoint: { max: 1200, min: 992 },
+    items: 1
+  },
+  tablet: {
+    breakpoint: { max: 992, min: 768 },
+    items: 1
+  },
+  mobile: {
+    breakpoint: { max: 768, min: 0 },
+    items: 1
+  }
+};
+
 
 const [showColorList, setShowColorList] = useState(false);
 const colors = ["red", "blue", "green", "yellow", "black", "purple"];
@@ -199,7 +226,7 @@ const addSelectedColor = () => {
   };
 
   const defaultRow = {
-    colors: ['#ff0000', '#00ff00'], // default color options
+    colors: ['#ff0000', '#00ff00'],
     activeColorIndex: 0,
     showColorList: false,
     selectedQuantity: 1,
@@ -229,108 +256,133 @@ const addSelectedColor = () => {
     }
   };
 
-  // const handleChange = (size, value) => {
-  //   setSizeQuantities((prev) => ({
-  //     ...prev,
-  //     [size]: value === "" ? "" : parseInt(value) || 0,
-  //   }));
-  // };
+
 
   const handleChange = (field) => (e) => {
     setFormData((prev) => ({ ...prev, [field]: e.target.value }));
     setErrors((prev) => ({ ...prev, [field]: undefined }));
   };
 
-  const [formData, setFormData] = useState({
-    previewImage: '',
-    quantity: '',
-    name: '',
-    phone: '',
-    address: '',
-    deliverydate:''
+ const [previewImages, setPreviewImages] = useState([]);
+const [formData, setFormData] = useState({
+  previewImages: [], 
+  quantity: '',
+ 
+  deliverydate: '',
+});
+
+
+
+
+
+
+
+ const validate = () => {
+  const newErrors = {};
+  const { previewImages,deliverydate,quantity } = formData;
+
+  if (!previewImages || previewImages.length === 0) {
+    newErrors.previewImages = 'Please upload at least one image';
+  }
+
+  if (!quantity) {
+    newErrors.quantity = 'Quantity is required';
+  } else if (isNaN(quantity)) {
+    newErrors.quantity = 'Quantity must be a number';
+  } else if (parseInt(quantity) <= 15) {
+    newErrors.quantity = 'Quantity must be greater than 15';
+  }
+
+ 
+
+ 
+ 
+
+  if (!deliverydate) newErrors.deliverydate = 'Select delivery date';
+
+  return newErrors;
+};
+
+  
+
+  
+
+
+const [isSubmitting, setIsSubmitting] = useState(false);
+
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+ 
+
+  const validationErrors = validate();
+  if (Object.keys(validationErrors).length > 0) {
+    setErrors(validationErrors);
+    setSubmitted(false);
+    
+    return; // Important: exit early on validation error
+  }
+  setIsSubmitting(true);
+  const customerId = localStorage.getItem('customerId');
+  const token = localStorage.getItem('authToken');
+  const data = new FormData();
+  data.append('quantity', formData.quantity);
+  data.append('customerId', customerId);
+  data.append('deliveryDate', new Date(formData.deliverydate).toISOString());
+
+  formData.previewImages.forEach((file) => {
+    data.append('designImages', file); 
   });
 
-
-
-
-  // const validate = () => {
-  //   const newErrors = {};
-  //   if (!previewImage) newErrors.previewImage = 'Please upload an image';
-  //   if (!quantity) {
-  //     newErrors.quantity = 'Quantity is required';
-  //   } else if (isNaN(quantity)) {
-  //     newErrors.quantity = 'Quantity must be a number';
-  //   } else if (parseInt(quantity) <= 15) {
-  //     newErrors.quantity = 'Quantity must be greater than 15';
-  //   }
-  //   if (isNaN(quantity)) newErrors.quantity = 'Quantity must be a number';
-  //   if (!name) newErrors.name = 'Name is required';
-  //   if (!phone) newErrors.phone = 'Phone number is required';
-  //   if (!/^\d{10}$/.test(phone)) newErrors.phone = 'Phone number must be 10 digits';
-  //   if (!address) newErrors.address = 'Address is required';
-  //   return newErrors;
-  // };
-
-
-  const validate = () => {
-    const newErrors = {};
-    const { previewImage, quantity, name, phone, address ,deliverydate } = formData;
-  
-    if (!previewImage) newErrors.previewImage = 'Please upload an image';
-    if (!quantity) {
-      newErrors.quantity = 'Quantity is required';
-    } else if (isNaN(quantity)) {
-      newErrors.quantity = 'Quantity must be a number';
-    } else if (parseInt(quantity) <= 15) {
-      newErrors.quantity = 'Quantity must be greater than 15';
+  for (let [key, value] of data.entries()) {
+      console.log(key, value);
     }
-  
-    if (!name) newErrors.name = 'Name is required';
-    if (!phone) {
-      newErrors.phone = 'Phone number is required';
-    } else if (!/^\d{10}$/.test(phone)) {
-      newErrors.phone = 'Phone number must be 10 digits';
-    }
-  
-    if (!address) newErrors.address = 'Address is required';
 
-    if (!deliverydate) newErrors.deliverydate ='select delivery date';
+  if (!token || !customerId) {
+    alert("Login and continue");
+    navigate('/profile')
+    return;
+  }
   
-    return newErrors;
-  };
-  
+  console.log('token', token);
+  try {
+    const response = await axios.post('https://gts.tsitcloud.com/api/customizeDesign/add', data, {
+      headers: {
+        
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+      },
+    });
 
-  
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   // console.log("test");
-    
-  //   const validationErrors = validate();
-  //   if (Object.keys(validationErrors).length > 0) {
-  //     setErrors(validationErrors);
-  //     setSubmitted(false);
-  //   } else {
-  //     setErrors({});
-  //     console.log({ previewImage, quantity, name, phone, address });
-  //     setSubmitted(true);
-  //   }
-  // };
-
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const validationErrors = validate();
-  
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      setSubmitted(false);
-    } else {
-      setErrors({});
+    if (response.data && response.data.message === "CustomizeDesign saved successfully") {
+      console.log('API Response:', response.data);
       setSubmitted(true);
-      console.log('Form submitted:', formData);
+      // Reset form after successful submission
+      setFormData({
+        previewImages: [],
+        quantity: '',
+        deliverydate: '',
+      });
+      setPreviewImages([]);
+      alert('Your design details have been sent to your registered email!');
+      
+    } else {
+      console.error('Unexpected API response:', response);
+      // alert('Submission failed. Please try again.');
     }
-  };
+  }  catch (error) {
+    console.error('Submission error:', error);
+    if (error.response) {
+      
+      console.error('Server response:', error.response.data);
+      
+    } else {
+      alert('Network error. Please check your connection.');
+    }
+  }
+  finally{
+    setIsSubmitting(false);
+  }
+};
 
 
 
@@ -343,22 +395,26 @@ const addSelectedColor = () => {
 
  
  const [previewImage, setPreviewImage] = useState(null);
- const handleImageChange = (e) => {
-  const file = e.target.files[0];
-  if (file) {
+
+const handleImageChange = (e) => {
+  const files = Array.from(e.target.files);
+  if (files.length > 0) {
     setFormData((prev) => ({
       ...prev,
-      previewImage: file,
+      previewImages: files,
     }));
-    setPreviewImage(URL.createObjectURL(file));
 
-    // Clear error if previously set
+    const previews = files.map((file) => URL.createObjectURL(file));
+    setPreviewImages(previews);
+
+    
     setErrors((prev) => {
-      const { previewImage, ...rest } = prev;
+      const { previewImages, ...rest } = prev;
       return rest;
     });
   }
 };
+
 
   
 
@@ -388,9 +444,7 @@ const addSelectedColor = () => {
         <img src={shopimage} className="imagetopone"></img>
       </div>
 
-      {/* <div className="container p-5 mt-5 mb-5">
-
-      </div> */}
+   
 
 
 
@@ -412,7 +466,7 @@ const addSelectedColor = () => {
               }
               onClick={() => navigate("/product")}
               >
-                <h2 className="h4 heading-text-product">Product Page</h2>
+                <h2 className="h4 heading-text-product">Product</h2>
               </div>
               <div
                 className={`col-lg-3 col-12 new-design-page ${
@@ -420,7 +474,7 @@ const addSelectedColor = () => {
                 }`}
                 onClick={() => navigate("/newdesign")}
               >
-                <h2 className="h4 heading-text-product">New Design Page</h2>
+                <h2 className="h4 heading-text-product">New Design</h2>
               </div>
               <div
                 className={`col-lg-3 col-12 stock-page ${
@@ -428,45 +482,14 @@ const addSelectedColor = () => {
                 }`}
                 onClick={() => navigate("/stock")}
               >
-                <h2 className="h4 heading-text-product">Stock Page</h2>
+                <h2 className="h4 heading-text-product">Ready Stock</h2>
               </div>
             
           </div>
 
 
 
-          {/* old design */}
-
-          {/* <h1 className="heading-text mt-3 mb-3">
-            Choose
-            <span style={{ color: "#015dc0" }}> Category</span>
-          </h1> */}
-          {/* <div className="p-2 t-shirtsrowbox">
-          <div className="custom-tshirts row justify-content-between align-items-center gx-0 gy-4">
-        {items.map((item, idx) => (
-          <div
-            key={idx}
-            className={`verityproduct-box col-12 col-md-12 col-lg-3 ${
-              selectedBox === item.title ? "selected-box" : ""
-            }`}
-            onClick={() => handleClick(item)}
-            style={{ cursor: "pointer" }}
-          >
-            <div className="box-innersize">
-              <img
-                src={qualityshirt}
-                alt={item.title}
-                className="t-shirt-image img-fluid"
-              />
-              <h2 className="h5 bortexthead">{item.title}</h2>
-              <p className="tshirtstext">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, quo! Deserunt
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div> */}
+          
         </div>
       </div>
 
@@ -478,125 +501,61 @@ const addSelectedColor = () => {
               </span>
             </h1>
 
-            {/* <form onSubmit={handleSubmit}>
-      <div className="container d-flex justify-content-center align-items-center mt-5">
-        <div className="upload-newdeisgn-box text-center">
-          <label className="upload-button">
-            <RiUpload2Fill className="uplode-icon" />
-            <span>Upload File</span>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageChange}
-              style={{ display: 'none' }}
-            />
-          </label>
-          {previewImage && (
-            <div className="mt-3">
-              <img src={previewImage} alt="Preview" className="preview-image" />
-            </div>
-          )}
-          {errors.previewImage && <div className="text-danger mt-2">{errors.previewImage}</div>}
-        </div>
-      </div>
-
-      <div className="container mt-5">
-  <div className="row justify-content-center">
-    <div className="col-12 col-sm-10 col-md-8 col-lg-6 enter-quality-box text-center">
-      <h1 className="h5 mb-3">Enter Quantity Required</h1>
-      <input
-        type="number"
-        className="form-control mb-2"
-        value={quantity}
-        onChange={(e) => {setQuantity(e.target.value)}}
-        placeholder="Enter quantity"
-      />
-      {errors.quantity && <div className="text-danger">{errors.quantity}</div>}
-    </div>
-  </div>
-</div>
-
-
-<div className="container mt-5">
-  <div className="row justify-content-center">
-    <div className="col-12 col-sm-10 col-md-8 col-lg-6 enter-quality-box text-center">
-      <h1 className="h5 mb-4">Enter Contact Details</h1>
-
-      <input
-        type="text"
-        className="form-control mb-3"
-        placeholder="Name"
-        value={name}
-        onChange={(e) => {
-          const value = e.target.value;
-          if (/^[a-zA-Z\s]*$/.test(value)) {
-            setName(value);
-          }
-        }}
-      />
-      {errors.name && <div className="text-danger mb-3">{errors.name}</div>}
-
-      <input
-        type="text"
-        className="form-control mb-3"
-        placeholder="Phone Number"
-        value={phone}
-        onChange={(e) => setPhone(e.target.value)}
-      />
-      {errors.phone && <div className="text-danger mb-3">{errors.phone}</div>}
-
-      <input
-        type="text"
-        className="form-control mb-3"
-        placeholder="Address"
-        value={address}
-        onChange={(e) => setAddress(e.target.value)}
-      />
-      {errors.address && <div className="text-danger">{errors.address}</div>}
-    </div>
-  </div>
-</div>
-
-
-<div className="container">
-  <div className="row justify-content-center mt-4">
-    <div className="col-12 col-sm-6 text-center">
-      <Button type="submit" className="w-100 btn btn-primary new-sent-btn">
-        Send
-      </Button>
-    </div>
-  </div>
-</div>
-
-
-      {submitted && (
-        <div className="text-success text-center mb-4">
-          <strong>*You will get a call from our production team</strong>
-        </div>
-      )}
-    </form> */}
+            
 
 <form onSubmit={handleSubmit}>
       <div className="container d-flex justify-content-center align-items-center mt-5">
-        <div className="upload-newdeisgn-box text-center">
-          <label className="upload-button">
-            <RiUpload2Fill className="uplode-icon" />
-            <span>Upload File</span>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageChange}
-              style={{ display: 'none' }}
-            />
-          </label>
-          {previewImage && (
-            <div className="mt-3">
-              <img src={previewImage} alt="Preview" className="preview-image" />
-            </div>
-          )}
-          {errors.previewImage && <div className="text-danger mt-2">{errors.previewImage}</div>}
-        </div>
-      </div>
+  <div className="upload-newdeisgn-box text-center">
+    <label className="upload-button">
+      <RiUpload2Fill className="uplode-icon" />
+      <span>Upload File</span>
+      <input
+        type="file"
+        accept="image/*"
+        multiple
+        onChange={handleImageChange}
+        style={{ display: 'none' }}
+      />
+    </label>
+
+   {previewImages.length > 0 && (
+  <div className="mt-3" style={{ width: '100%', height: '148px' }}>
+    <Carousel
+      responsive={responsive}
+      infinite={false}
+      arrows={true}
+      keyBoardControl={true}
+      autoPlay={false}
+      containerClass="carousel-container"
+      itemClass="carousel-item-padding-40-px"
+    >
+      {previewImages.map((img, index) => (
+        <img
+          key={index}
+          src={img}
+          alt={`Preview ${index}`}
+          style={{
+            width: '70%',
+            height: '100px',
+            objectFit: 'cover',
+            borderRadius: '8px',
+            padding: '5px'
+          }}
+        />
+      ))}
+    </Carousel>
+  </div>
+)}
+
+
+
+
+    {errors.previewImages && (
+      <div className="text-danger mt-2">{errors.previewImages}</div>
+    )}
+  </div>
+</div>
+
 
       <div className="container mt-5">
         <div className="row justify-content-center">
@@ -617,61 +576,36 @@ const addSelectedColor = () => {
       <div className="container mt-5">
         <div className="row justify-content-center">
           <div className="col-12 col-sm-10 col-md-8 col-lg-6 enter-quality-box text-center">
-            <h1 className="h5 mb-4">Enter Contact Details</h1>
-            <input
-              type="text"
-              className="form-control mb-3"
-              placeholder="Name"
-              value={formData.name}
-              onChange={handleChange('name')}
-            />
-            {errors.name && <div className="text-danger mb-3">{errors.name}</div>}
-
-            <input
-              type="text"
-              className="form-control mb-3"
-              placeholder="Phone Number"
-              value={formData.phone}
-              onChange={handleChange('phone')}
-            />
-            {errors.phone && <div className="text-danger mb-3">{errors.phone}</div>}
-
-            <input
-              type="text"
-              className="form-control mb-3"
-              placeholder="Address"
-              value={formData.address}
-              onChange={handleChange('address')}
-            />
-            {errors.address && <div className="text-danger">{errors.address}</div>}
-
+            <h1 className="h5 mb-3">Enter Delivery date</h1>
             <input
               type="date"
-              className="form-control mb-3"
-              placeholder="Delivery date"
+              className="form-control mb-2"
               value={formData.deliverydate}
               onChange={handleChange('deliverydate')}
+              
             />
             {errors.deliverydate && <div className="text-danger">{errors.deliverydate}</div>}
           </div>
         </div>
       </div>
 
+     
+
       <div className="container">
         <div className="row justify-content-center mt-4">
           <div className="col-12 col-sm-6 text-center">
-            <Button type="submit" className="w-100 btn btn-primary new-sent-btn">
-              Send
+            <Button type="submit" className="w-25 btn btn-primary new-sent-btn" disabled={isSubmitting}>
+              {isSubmitting ? 'Sending...' : 'Send'}
             </Button>
           </div>
         </div>
       </div>
 
-      {submitted && (
+      {/* {submitted && (
         <div className="text-success text-center mb-4">
-          <strong>*You will get a call from our production team</strong>
+          <strong>*Detail Sent to Register mail</strong>
         </div>
-      )}
+      )} */}
     </form>
     
 
@@ -683,439 +617,7 @@ const addSelectedColor = () => {
 
 
 
-      {/* <div className="container d-flex justify-content-center align-items-center mt-3">
-      <div 
-       className={`btn  rounded-5 leftarrw-rounded  ${!canGoPrev ? "disabled" : ""}`}
-       onClick={() => canGoPrev && setCurrentPage((prev) => prev - 1)}
-      >
-        <FaCircleChevronLeft className="leftarrw-btn" />
-      </div>
-      
-      <div className="p-3 tshirtstyles row gap-3 gap-md-3 gap-lg-2">
-          {visibleItems.map((item) => (
-            <div key={item.id} className="tshirtstylebox col-12 col-md-12 col-lg-3">
-              <div className="box-innersize">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="t-shirtstyle-image"
-                />
-                <h2 className="h5 bortextheadone">{item.title}</h2>
-              </div>
-            </div>
-          ))}
-        </div>
 
-      <div 
-        className={`btn rounded-5 rightarrw-rouded  ${!canGoNext ? "disabled" : ""}`}
-        onClick={() => canGoNext && setCurrentPage((prev) => prev + 1)}
-      >
-        <FaCircleChevronRight className="rightarrw-btn" />
-      </div>
-    </div> */}
-      {/* <div className="container d-flex justify-content-center align-items-center mt-3  ">
-        <div className="row ">
-        <div className="d-flex gap-4 enter-quatity-box">
-          <div className="d-flex align-items-center col-lg-6 col-12">
-            <label className="me-2 mb-0 fw-bold p-3">Enter Quantity:</label>
-            <input type="text" className="rounded-5 py-1 px-3 w-50" />
-          </div>
-          <div className="d-flex align-items-center col-lg-6 col-12">
-            <label className="me-2 mb-0 fw-bold p-3">Number of logos:</label>
-            <input type="text" className="rounded-5 py-1 px-3 w-25" />
-          </div>
-        </div>
-        </div>
-      </div> */}
-      {/* <div className="container d-flex justify-content-center align-items-center mt-3 sample-image-box">
-        <div className="row justify-content-center align-items-center">
-          <div col-4>
-            <button className="sample-btn"
-            onClick={() => setShowSamples(!showSamples)}>Sample-Design</button>
-             {showSamples && (
-    <div className="sample-images mt-3 d-flex gap-2">
-     
-      <img
-        src={sampleimages}
-        alt="Design 1"
-        className="img-fluid sampleimages"
-       
-      />
-      <img
-        src={sampleimages}
-        alt="Design 2"
-        className="img-fluid sampleimages"
-       
-      />
-    </div>
-  )}
-          </div>
-        </div>
-      </div> */}
-      {/* <div className="container d-flex justify-content-center align-items-center  logoaddedtshirt-box-con ">
-        <div className="logoaddedtshirt-box text-center justify-content-center align-items-center gap-3 ">
-          <div className="newdesign-uplode col-12 col-md-12 col-lg-3 ">
-            <div className="box-inner">
-              <img
-                src={""}
-                // alt="Premium Quality"
-                className="t-shirtstyle-logo"
-                style={{}}
-              />
-            </div>
-          </div>
-
-          <div className="newdesign-uplode col-12 col-md-12 col-lg-3 ">
-            <div className="box-inner">
-              <img
-                src={""}
-                // alt="Premium Quality"
-                className="t-shirtstyle-logo"
-                style={{}}
-              />
-            </div>
-          </div>
-        </div>
-      </div> */}
-      
-      {/* <div
-        className="container w-75 d-flex flex-column justify-content-center align-items-center  position-relative styling-box "
-        style={{ minHeight: "150px", paddingTop: "80px" }}
-      >
-        <div className="quality-type text-center">
-          <div>Price Format:</div>
-          <div className="row justify-content-center align-items-center">
-            <div className=" justify-content-center align-items-center quality-types-box">
-            {["Premium", "VFM", "Budget"].map((type) => (
-        <button
-          key={type}
-          className={`btn rounded-5 quality-btn ${
-            selectedQuality === type ? "active" : ""
-          }`}
-          onClick={() => setSelectedQuality(type)}
-        >
-          {type}
-        </button>
-      ))}
-            </div>
-          </div>
-        </div>
-
-
-       
-  
-
-
-
-
-
-
-
-
-
-
-        {productRows.map((row, index) => (
-  <div key={index} className="row w-100 mt-5 ">
-    
-   
-    <div className="col-lg-6 col-12 p-2 d-flex flex-column choose-colour-box justify-content-center align-items-center">
- 
-  <label className="mb-2">Choose Colour:</label>
-
-  <div className="colour-choose-box d-flex align-items-center gap-2 position-relative">
-    
-    {row.colors.map((color, i) => (
-  <div key={i} className="position-relative">
-   
-    <input 
-      type="color"
-      value={color}
-      className="w-10 h-10 border-0 p-0 cursor-pointer circle-color-picker"
-      onChange={(e) => {
-        const updatedRows = [...productRows];
-        updatedRows[index].colors[i] = e.target.value;
-        setProductRows(updatedRows);
-      }}
-    />
-
-    
-    {row.colors.length > 1 && (
-      <div
-        className="position-absolute"
-        style={{
-          top: "-6px",
-          right: "-6px",
-          backgroundColor: "white",
-          borderRadius: "50%",
-          width: "16px",
-          height: "16px",
-          fontSize: "12px",
-          color: "red",
-          textAlign: "center",
-          lineHeight: "16px",
-          cursor: "pointer",
-          border: "1px solid #ccc",
-          zIndex: 10,
-        }}
-        onClick={(e) => {
-          e.stopPropagation();
-          const updatedRows = [...productRows];
-          updatedRows[index].colors.splice(i, 1);
-          setProductRows(updatedRows);
-        }}
-      >
-        ×
-      </div>
-    )}
-  </div>
-))}
-
-    
-    <div
-      className="color-select-icon d-flex align-items-center"
-      style={{ backgroundColor: "white", cursor: "pointer" }}
-    >
-      <IoIosArrowDown
-        size={20}
-        color="#555"
-        onClick={() => {
-          const updatedRows = [...productRows];
-          updatedRows[index].showColorList = !row.showColorList;
-          setProductRows(updatedRows);
-        }}
-      />
-    </div>
-
-    
-    {row.showColorList && (
-      <div
-        className="color-list position-absolute bg-white p-2 rounded shadow"
-        style={{ top: "100%", left: 0, zIndex: 1000, minWidth: "150px" }}
-      >
-        {colors.map((color, i) => (
-          <div
-            key={i}
-            className="color-option d-inline-block m-1"
-            style={{
-              width: "24px",
-              height: "24px",
-              borderRadius: "50%",
-              backgroundColor: color,
-              cursor: "pointer",
-            }}
-            onClick={() => {
-              const updatedRows = [...productRows];
-              updatedRows[index].colors[row.activeColorIndex] = color;
-              updatedRows[index].showColorList = false;
-              setProductRows(updatedRows);
-            }}
-          ></div>
-        ))}
-      </div>
-    )}
-
-   
-    <div
-      style={{ cursor: "pointer" }}
-      onClick={() => {
-        if (row.colors.length < 2) {
-          const updatedRows = [...productRows];
-          updatedRows[index].colors.push("#eee");
-          setProductRows(updatedRows);
-        }
-      }}
-    >
-      <FaPlusCircle size={20} />
-    </div>
-  </div>
-</div>
-
-    
-    <div className="col-lg-6 col-12 p-2 d-flex flex-column choose-colour-box align-items-center">
-  <label className="mb-4">T-shirt Quantity:</label>
-  <div
-    className="position-relative w-100 d-flex flex-column align-items-center"
-  >
-    <div
-      className="pieces-box d-flex justify-content-between align-items-center  px-2 py-1 border rounded-5"
-      onClick={() => {
-        const updatedRows = [...productRows];
-        updatedRows[index].showDropdown = !row.showDropdown;
-        setProductRows(updatedRows);
-      }}
-    >
-      <span>{row.selectedQuantity}</span>
-      <IoIosArrowDown size={20} color="#555" />
-    </div>
-
-    {row.showDropdown && (
-      <div
-        className="dropdown-list position-absolute mt-1"
-        style={{
-          top: "100%",
-          maxHeight: "200px",
-          overflowY: "auto",
-          width: "100%",
-          border: "1px solid #ccc",
-          borderRadius: "5px",
-          backgroundColor: "#fff",
-          zIndex: 100,
-        }}
-      >
-        {numbers.map((num) => (
-          <div
-            key={num}
-            onClick={() => {
-              const updatedRows = [...productRows];
-              updatedRows[index].selectedQuantity = num;
-              updatedRows[index].showDropdown = false;
-              setProductRows(updatedRows);
-            }}
-            style={{
-              padding: "8px",
-              cursor: "pointer",
-              borderBottom: "1px solid #eee",
-            }}
-          >
-            {num}
-          </div>
-        ))}
-      </div>
-    )}
-  </div>
-</div>
-
-    
-    <div className="col-lg-6 col-12 p-2 d-flex flex-column choose-colour-box justify-content-center ">
-      <label className="mb-3">Logo Type:</label>
-      <div className="d-flex justify-content-center align-items-center quality-type-select mb-5">
-        <div className={`btn print-btn ${row.selectedType === "Print" ? "active" : ""}`}
-             onClick={() => {
-               const updatedRows = [...productRows];
-               updatedRows[index].selectedType = "Print";
-               setProductRows(updatedRows);
-             }}>Print</div>
-        <div className={`btn emposed-btn ${row.selectedType === "Emposed" ? "active" : ""}`}
-             onClick={() => {
-               const updatedRows = [...productRows];
-               updatedRows[index].selectedType = "Emposed";
-               setProductRows(updatedRows);
-             }}>Emposed</div>
-      </div>
-      <div className="container w-100 d-flex flex-column justify-content-center align-items-center ">
-        <p className="tshirtchangetext mb-5">Tshirt any change in add design</p>
-        <textarea className="design-change-box"></textarea>
-        
-      </div>
-    </div>
-
-   
-    <div className="col-lg-6 col-12 d-flex flex-column align-items-center justify-content-center mb-md-2">
-      <label className="mb-3">Size Chart:</label>
-
-     
-
-      <table className="table table-bordered w-100 text-center">
-    <thead>
-      <tr>
-        <th>Size</th>
-        <th className="w-50">Quantity</th>
-      </tr>
-    </thead>
-    <tbody>
-      
-      {sizes.slice(0, visibleSizeCount).map((size) =>(
-        <tr key={size}>
-          <td>{size}</td>
-          <td>
-            <input
-            type="number"
-            min='0'
-            className="form-control"
-            value={
-              sizeQuantities[size] === 0 || sizeQuantities[size]
-                ? sizeQuantities[size]
-                : ""
-            }
-            onChange={(e) => handleChange(size, e.target.value)}
-            
-            
-            
-            ></input>
-          </td>
-        </tr>
-
-      ))}
-      
-    </tbody>
-    
-  </table>
-  {visibleSizeCount < sizes.length &&(
-    <button className="btn rounded-5 add-size-btn" onClick={handleAddSize}>
-    Add Size
-  </button>
-  )}
-  
-      
-
-
-
-      
-    </div>
-
-  </div>
-))}
-        
-      </div> */}
-
-      
-      
-      
-      {/* <div className="container w-100 d-flex flex-column justify-content-center align-items-center ">
-      <div className={`sent-text-btn mt-3 ${clicked ? "active" : ""}`}
-      onClick={() => setClicked(!clicked)}>Send</div>
-      </div> */}
-
-
-
-
-
-
-      
-
-      {/* <div className="container price-cal-box ">
-        <div className="row price-calculate display-flex justify-content-center align-items-center ">
-          <div className="d-flex flex-column col-lg-2 col-12 ">
-            <label>Amount:</label>
-            <div className="amount-box mt-3">
-
-            </div>
-          </div>
-          <div className="d-flex flex-column col-lg-2 col-12 ">
-            <label>GST Detailes:</label>
-            <div className="gst-box mt-3">
-
-            </div>
-          </div>
-          <div className="d-flex flex-column col-lg-2 col-12 justify-content-center align-items-center">
-            <label>Discount:<strong> 50%</strong></label>
-           
-            <div className="discount-box mt-3">
-             50%
-            </div>
-          </div>
-          <div className="col-1">=</div>
-          <div className="d-flex flex-column col-lg-2 col-12 ">
-            <label>Total-Amount:</label>
-            <div className="total-amount-box mt-3">
-             
-            </div>
-          </div>
-
-        </div>
-
-
-      </div> */}
 
 
 <div className="social container-fluid  ">
