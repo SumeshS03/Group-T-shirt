@@ -82,6 +82,7 @@ const products = [
   const [imageUrl, setImageUrl] = useState(null);
   const [categoryData, setCategoryData] = useState(null);
   const [productData, setProductData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
  
   const targetCategoryName = 'Collared Tshirts';
@@ -99,6 +100,9 @@ const products = [
         setProductsData(response.data);
       } catch (error) {
         console.error('Error fetching products:', error);
+      }finally{
+        setLoading(false);
+
       }
     };
   
@@ -169,50 +173,21 @@ const products = [
         </div>
       </div>
 
-      {/* <div className="container mt-5">
-    <h1 className="h4 text-start">T-shirts</h1>
-    <div className="product-slider-container">
-      <Carousel responsive={responsive} infinite={false} arrows={true}>
-        {products.map((item, index) => (
-          <div key={index} className="product-card text-center p-2">
-            <div className="product-image"
-            onClick={() => navigate(`/productdetail/${item.id}`)}>
-              <img src={item.image} alt={`product-img-${index}`} />
-            </div>
-
-            
-
-          
-          </div>
-        ))}
-      </Carousel>
-    </div>
-  </div> */}
+      
 
 
-  {/* <div className="container mt-5">
-    <h1 className="h4 text-start">Jackets</h1>
-    <div className="product-slider-container">
-      <Carousel responsive={responsive} infinite={false} arrows={true}>
-        {products.map((item, index) => (
-          <div key={index} className="product-card text-center p-2">
-            <div className="product-image"
-            onClick={() => navigate(`/productdetail/${item.id}`)}>
-              <img src={item.image} alt={`product-img-${index}`} />
-            </div>
-
-            
-
-            
-          </div>
-        ))}
-      </Carousel>
-    </div>
-  </div> */}
+  
 
 
   <div className="container mt-5">
-      {productsData.map((categoryItem, catIndex) => (
+    {loading ? (
+      <div className="text-center my-5">
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    ) : (
+      productsData.map((categoryItem, catIndex) => (
         <div key={catIndex} className="mb-5">
           <h2 className="h4 text-start mb-3">{categoryItem.category}</h2>
 
@@ -232,7 +207,6 @@ const products = [
                         style={{ width: '100%', height: '200px', objectFit: 'cover' }}
                       />
                     </div>
-                    
                   </div>
                 ))}
               </Carousel>
@@ -241,8 +215,9 @@ const products = [
             <p>No products available in this category.</p>
           )}
         </div>
-      ))}
-    </div>
+      ))
+    )}
+  </div>
 
   
       

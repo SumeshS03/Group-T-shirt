@@ -19,7 +19,7 @@
 
 
   .productpage-box{
-    gap: 10%;
+    /* gap: 10%; */
   }
   .cart-box{
     gap: 5%;
@@ -93,6 +93,13 @@
 .chooseoption-box{
   border: 1px solid blue;
   border-radius: 20px;
+  margin-left: 2px;
+}
+.sticky-items{
+  border: 1px solid blue;
+}
+.table-width-fix{
+  width: 70%;
 }
 
 .table, th, td {

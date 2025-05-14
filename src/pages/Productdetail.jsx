@@ -239,6 +239,12 @@ const Productdetail = () => {
      const [hasSubmitted, setHasSubmitted] = useState(false);
      const [showRequiredError, setShowRequiredError] = useState(false);
      const [showErrorMessage, setShowErrorMessage] = useState(false);
+
+  const [materialOptions, setMaterialOptions] = useState({
+  Cotton: [],
+  Polyester: [],
+  Polycotton: [],
+});
     
    const [logos, setLogos] = useState([
   { logotype: '', position: '', image: '' }
@@ -263,22 +269,7 @@ const Productdetail = () => {
     
     
 
-    // const handleLogoChange = (index, field, value) => {
-    //   const updatedLogos = [...logos];
-    //   updatedLogos[index][field] = value;
-    //   setLogos(updatedLogos);
-    
-    //   // Clear individual error if corrected
-    //   const updatedErrors = { ...formErrors };
-    //   if (field === 'type' && value) {
-    //     delete updatedErrors[`logoType_${index}`];
-    //   }
-    //   if (field === 'position' && value) {
-    //     delete updatedErrors[`logoPosition_${index}`];
-    //   }
-    
-    //   setFormErrors(updatedErrors);
-    // };
+
 
     const handleLogoChange = (index, field, value) => {
     const updated = [...logos];
@@ -383,9 +374,7 @@ const handleLogoCountBlur = () => {
 
   const [logoPhotos, setLogoPhotos] = useState([]);
 
-  //    const handleLogoPhotoChange = (e) => {
-  //   setLogoPhotos([...e.target.files]);
-  // };
+  
 const handleLogoImageUploadone = (index, file) => {
   if (!file) return;
 
@@ -407,7 +396,7 @@ console.log("logos123" , logos);
       const errors = {};
     
       if (!enteredQty) errors.enteredQty = 'Quantity must be entered';
-      // if (!pocketRequired) errors.pocketRequired = 'Pocket selection is required';
+      
       if (!deliveryDate) errors.deliveryDate = 'Delivery date is required';
       if (!colorTouched) errors.color = 'Choose color';
       if(!collarcolorTouched) errors.collarcolor='Choose collare color'
@@ -437,7 +426,7 @@ console.log("logos123" , logos);
 
     const quantitySizeWise = {};
     sizestwo.forEach(size => {
-      const upperSize = size.toUpperCase(); // Convert "s" to "S"
+      const upperSize = size.toUpperCase(); 
       quantitySizeWise[size] = {
         half: Number(halfSleeve[upperSize]) || 0,
         full: Number(fullSleeve[upperSize]) || 0
@@ -522,26 +511,17 @@ const handleSubmit = async (e) => {
   // Append JSON strings
   payload.append('quantitySizeWise', JSON.stringify(formDataObj.quantitySizeWise));
   payload.append('quantitySleeveWise', JSON.stringify(formDataObj.quantitySleeveWise));
-  // payload.append('logos', JSON.stringify(formDataObj.logos)); // Add metadata
+ 
 
     console.log("logos" , logos);
 
 
-  // Append logo images under the exact key expected by backend
-// logoPhotos.forEach(file => {
-//       payload.append('logoPhotos', file);
-//     });
+
 
 
   
 
   const token = localStorage.getItem('authToken');
-  const customerId = localStorage.getItem('customerId');
-  if (!token || !customerId) {
-    alert("Login and continue");
-    navigate('/profile')
-    return;
-  }
 
   try {
     const response = await axios.post("https://gts.tsitcloud.com/api/cartItems/add", payload, {
@@ -557,8 +537,7 @@ const handleSubmit = async (e) => {
     if (error.response) {
       console.error("Server error:", error.response.data);
       const apiMessage = error.response.data?.message || "Something went wrong. Please try again.";
-      alert("Login and continue");
-      navigate('/profile')
+      alert(apiMessage);
     } else {
       console.error("Error submitting form:", error);
       alert("Network error or server not reachable.");
@@ -605,6 +584,11 @@ const handleSubmit = async (e) => {
           if (foundProduct) {
             setProductdetail(foundProduct);
             setSelectedImage(`https://gts.tsitcloud.com/${foundProduct.images[0]}`);
+            const categoryId = foundProduct?.category?._id;
+        if (categoryId) {
+          localStorage.setItem('categoryId', categoryId);
+          console.log("Stored category ID:", categoryId);
+        }
           }
         } catch (error) {
           console.error('Failed to fetch product:', error);
@@ -614,6 +598,58 @@ const handleSubmit = async (e) => {
       fetchProduct();
     }, [id]);
 
+
+useEffect(() => {
+  const token = localStorage.getItem('authToken');
+  const cat_id = localStorage.getItem('categoryId');
+
+  console.log("Token:", token);
+  console.log("Category ID:", cat_id);
+
+  axios.get(`https://gts.tsitcloud.com/api/category/${cat_id}`, {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    }
+  })
+    .then((response) => {
+      console.log("Full API response:", response);
+      const selectedCategory = response.data;
+      console.log("Selected Category:", selectedCategory);
+
+      if (selectedCategory) {
+        const options = {
+          Cotton: [],
+          Polyester: [],
+          Polycotton: []
+        };
+
+        selectedCategory.cloth_type.forEach((type) => {
+          const typeName = type.name.toLowerCase().replace(/[-\s]/g, '');
+          if (typeName.includes('cotton') && !typeName.includes('poly')) {
+            options.Cotton = type.material;
+          } else if (typeName === 'polyester') {
+            options.Polyester = type.material;
+          } else if (typeName.includes('poly') && typeName.includes('cotton')) {
+            options.Polycotton = type.material;
+          } else {
+            console.warn("Unhandled cloth type:", typeName);
+          }
+        });
+
+        setMaterialOptions(options);
+        console.log('MaterialOptions to be set:', options);
+      }
+    })
+    .catch((error) => {
+      if (error.response) {
+        console.error('Server responded with error:', error.response.status);
+        console.error('Response data:', error.response.data);
+      } else {
+        console.error('Error setting up request:', error.message);
+      }
+    });
+}, []);
 
 
 
@@ -743,10 +779,10 @@ const responsive = {
     
 
     
-
-      <div className="container mt-5">
+<div className="collartshirt-fields">
+      <div className="container-fluid mt-5">
   <div className="d-flex productpage-box row">
-  <div className="col-lg-5 col-12">
+  <div className="col-lg-4 col-12">
   {productdetail ? (
     <>
       {/* Main image display */}
@@ -770,9 +806,7 @@ const responsive = {
             setHoveredImage(`https://gts.tsitcloud.com/${productdetail?.images?.[1]}`)
           }
           onMouseLeave={() => setHoveredImage(null)}
-          // onClick={() =>
-          //   setSelectedImage(`https://gts.selfietoons.com/${productdetail?.images?.[1]}`)
-          // }
+          
           style={{
             border:
               selectedImage ===
@@ -858,510 +892,98 @@ const responsive = {
         <p>Loading product details...</p> 
       )}
     </div>
-  </div>
-</div>
+    <div className="col-lg-3 d-flex flex-column align-items-start sticky-items"
+    style={{
+      position: "sticky",
+      top: "1rem",
+      zIndex: 2,
+      alignSelf: "flex-start",
+    }}>
 
-
-
-
-
-
-
-
-
-
-
-{/* {productdetail &&
-  productdetail.category &&
-  productdetail.category._id === "68073351ecf739b9dae26185" && (
-
-<form onSubmit={handleSubmit}>
-    <div className="container mt-5">
-    <div className="row mb-4">
-  <label className="fs-6 fw-bold col-lg-2 mb-md-3">Enter Quantity required:</label>
-  <div className="col-lg-2">
-    <input
-      type="number"
-      min="15"
-      className={`form-control ${formErrors.enteredQty ? 'is-invalid' : ''}`}
-      placeholder="Enter Quantity"
-      value={enteredQty}
-      onChange={(e) => {
-        setEnteredQty(e.target.value);
-        if (formErrors.enteredQty && parseInt(e.target.value) >= 15) {
-          setFormErrors((prev) => ({ ...prev, enteredQty: '' }));
-        }
-      }}
-      onBlur={handleBlur}
+  
+  <div className="d-flex align-items-center gap-2 mt-3 w-100">
+    <strong className="me-2" style={{ minWidth: "90px" }}>Half sleeve:</strong>
+    <input 
+      value={totalHalf}
+      readOnly
+      className="form-control form-control-sm"
+      style={{ width: '60px' }}
     />
-    {formErrors.enteredQty && (
-      <div className="text-danger mt-1">{formErrors.enteredQty}</div>
-    )}
-  </div>
-
-  <label className="fs-6 fw-bold col-lg-2 mt-lg-0 mb-md-3 mt-md-3">How many Logos to add:</label>
-  <div className="col-lg-2">
-    <input
-      type="number"
-      min="1"
-      max="4"
-      className={`form-control ${formErrors.logoCount ? 'is-invalid' : ''}`}
-      placeholder="Enter quantity"
-      value={logoCount}
-
-     
-      
-      onChange={handleLogoCountChange}
-      onBlur={handleLogoCountBlur}
+    <span>*</span>
+    <span>price</span>
+    <span>=</span>
+    <input 
+      readOnly
+      className="form-control form-control-sm"
+      style={{ width: '60px' }}
     />
-    {formErrors.logoCount && (
-      <div className="text-danger mt-1">{formErrors.logoCount}</div>
-    )}
   </div>
 
-  <label className="fs-6 fw-bold col-lg-2 mt-lg-0 mt-3 mb-md-3">Pocket Required:</label>
-  <div className="col-lg-2">
-    <div className="d-flex gap-3">
-      <div>
-        <input
-          type="radio"
-          id="yes"
-          name="pocketRequired"
-          value="yes"
-          checked={pocketRequired === 'yes'}
-          onChange={(e) => {
-            setPocketRequired(e.target.value);
-            setFormErrors((prev) => ({ ...prev, pocketRequired: '' }));
-          }}
-        />
-        <label htmlFor="yes">Yes</label>
-      </div>
-      <div>
-        <input
-          type="radio"
-          id="no"
-          name="pocketRequired"
-          value="no"
-          required
-          checked={pocketRequired === 'no'}
-          onChange={(e) => {
-            setPocketRequired(e.target.value);
-            setFormErrors((prev) => ({ ...prev, pocketRequired: '' }));
-          }}
-        />
-        <label htmlFor="no">No</label>
-      </div>
-    </div>
-    {formErrors.pocketRequired && (
-      <div className="text-danger mt-1">{formErrors.pocketRequired}</div>
-    )}
+  
+  <div className="d-flex align-items-center gap-2 mt-3 w-100">
+    <strong className="me-2" style={{ minWidth: "90px" }}>Full sleeve:</strong>
+    <input 
+      value={totalFull}
+      readOnly
+      className="form-control form-control-sm"
+      style={{ width: '60px' }}
+    />
+    <span>*</span>
+    <span>price</span>
+    <span>=</span>
+    <input 
+      readOnly
+      className="form-control form-control-sm"
+      style={{ width: '60px' }}
+    />
   </div>
-</div>
 
-      
-      
-
-      <div className="row mt-2 mb-4">
  
-  <label className="fs-6 fw-bold col-lg-2 text-lg-end mb-md-3">Delivery Date:</label>
-  <div className="col-lg-2 mb-md-3">
-    <input
-      type="date"
-      className={`form-control ${formErrors.deliveryDate ? 'is-invalid' : ''}`}
-      value={deliveryDate}
-      required
-      min={getMinDate()}
-      onChange={(e) => {
-        setDeliveryDate(e.target.value);
-        setFormErrors((prev) => ({ ...prev, deliveryDate: '' }));
-      }}
+  <div className="d-flex align-items-center gap-2 mt-3 w-100">
+    <strong className="me-2" style={{ minWidth: "90px" }}>Logo:</strong>
+    <input 
+    
+      readOnly
+      className="form-control form-control-sm"
+      style={{ width: '60px' }}
     />
-    {formErrors.deliveryDate && (
-      <div className="text-danger mt-1">{formErrors.deliveryDate}</div>
-    )}
-  </div>
-
-  
-  <label className="fs-6 fw-bold col-lg-2 text-lg-end mt-lg-0 mt-3">Choose Colour:</label>
-  <div className="col-lg-2 d-flex flex-column align-items-lg-start align-items-center justify-content-lg-start justify-content-center mt-lg-0 mt-3">
-    <input
-      type="color"
-      id="favcolor"
-      name="favcolor"
-      value={color}
-      onChange={(e) => {
-        setColor(e.target.value);
-        setColorTouched(true);
-        setFormErrors((prev) => ({ ...prev, color: '' }));
-      }}
-      className="form-control-color rounded-color"
+    <span>*</span>
+    <span>price</span>
+    <span>=</span>
+    <input 
+      readOnly
+      className="form-control form-control-sm"
+      style={{ width: '60px' }}
     />
-    <div style={{ height: '20px' }}>
-      {formErrors.color && <div className="text-danger small">{formErrors.color}</div>}
-    </div>
   </div>
 
-  
-  <label className="fs-6 fw-bold col-lg-2 text-lg-end mt-lg-0 mt-3">Choose Collar Colour:</label>
-  <div className="col-lg-2 d-flex flex-column align-items-lg-start align-items-center justify-content-lg-start justify-content-center mt-lg-0 mt-3">
-    <input
-      type="color"
-      id="collarcolor"
-      name="collarcolor"
-      value={collarcolor}
-      onChange={(e) => {
-        setcollarcolor(e.target.value);
-        setcollarcolorTouched(true);
-        setFormErrors((prev) => ({ ...prev, collarcolor: '' }));
-      }}
-      className="form-control-color rounded-color"
+  <div className="d-flex align-items-center gap-2 mt-3 w-100">
+    <strong className="me-2" style={{ minWidth: "90px" }}>Amount:</strong>
+    <input 
+    
+      readOnly
+      className="form-control form-control-sm"
+      value={`₹${total}`}
+      
     />
-    <div style={{ height: '20px' }}>
-      {formErrors.collarcolor && <div className="text-danger small">{formErrors.collarcolor}</div>}
-    </div>
   </div>
-</div>
 
-
-      
-      
-      <div className="row mt-2 pt-2 pb-4 chooseoption-box mb-4   ">
-        <div>
-        
-        <label className="fs-6 fw-bold   text-center mb-3">Choose Your Option:</label>
-        </div>
-        <div className="selectmaterial-box row justify-content-evenly">
-        <div className="col-lg-2">
-          <div className="cotton-dropdown">
-          <label onClick={polycottoggle} className="dropdown-label w-100 fw-bold fs-6 mb-2">Cotton</label>
-          <select className="form-select mt-2"
-          value={selectedCotton}
-          onChange={(e) => {
-            setSelectedCotton(e.target.value);
-            setSelectedPolyester("");
-            setSelectedPolyCotton("");
-        
-            
-            setFormErrors((prev) => ({ ...prev, selectedoptions: '' }));
-          }}>
-            
-        <option value="">option </option>
-        <option value="Combed Cotton">Combed</option>
-        <option value="Ringspun Cotton">Ringspun</option>
-        <option value="Organic Cotton">Organic</option>
-        <option value="Pima Cotton">Pima</option>
-        <option value="Supima Cotton">Supima</option>
-        <option value="Slub Cotton">Slub</option>
-        
-  </select>
-          </div>
-          <div>
-            
-          </div>
-        </div>
-        <div className="col-lg-2 mt-lg-0 mt-md-3">
-          <div className="cotton-dropdown">
-          <label onClick={polytoggle} className="dropdown-label w-100 fw-bold fs-6 mb-2">Polyester</label>
-          <select className="form-select mt-2"
-           value={selectedPolyester}
-           onChange={(e) => {
-            setSelectedPolyester(e.target.value);
-            setSelectedCotton("");
-            setSelectedPolyCotton("");
-          
-            setFormErrors((prev) => ({ ...prev, selectedoptions: '' }));
-          }} >
-        <option value="">option </option>
-        <option value="Poly-cotton">Poly-cotton</option>
-        <option value="Tri-blend Fabric">Tri-blend Fabric</option>
-        <option value="Microfiber Polyester">Microfiber</option>
-        <option value="Interlock Polyester">Interlock</option>
-        <option value="Moisture-wicking">Moisture-wicking</option>
-        
-  </select>
-          </div>
-          <div>
-            
-          </div>
-        </div>
-        <div className="col-lg-2 mt-lg-0 mt-md-3">
-          <div className="cotton-dropdown">
-          <label onClick={toggleOptions} className="dropdown-label w-100 fw-bold fs-6 mb-2">Poly Cotton</label>
-          <select className="form-select mt-2"
-           value={selectedPolyCotton}
-           onChange={(e) => {
-            setSelectedPolyCotton(e.target.value);
-            setSelectedCotton("");
-            setSelectedPolyester("");
-          
-            setFormErrors((prev) => ({ ...prev, selectedoptions: '' }));
-          }}>
-        <option value="">option</option>
-        <option value="Ring-Spun Poly-Cotton">Ring-Spun</option>
-        <option value="Combed Poly-Cotton">Combed Poly</option>
-        <option value="Brushed Poly-Cotton">Brushed Poly</option>
-        
-  </select>
-          </div>
-          <div>
-            
-          </div>
-        </div>
-        </div>
-        {formErrors.selectedoptions && (
-         <div className="text-danger mt-1">{formErrors.selectedoptions}</div>
-          )}
-        
-      </div>
-
-
-      
+  <div className="d-flex align-items-center gap-2 mt-3 w-100">
+    <strong className="me-2" style={{ minWidth: "90px" }}>Amount with GST:</strong>
+    <input 
     
-
-      <div className="row mt-2 pt-2 pb-4 chooseoption-box ">
-      <div>
-        <label className=" fs-6 fw-bold  d-flex align-items-center justify-content-center text-center mb-3">Logo:</label>
-        </div>
-        {logos.map((logo, index) => (
-  <div key={index} className="mb-4">
-    <div className="row d-flex justify-content-evenly">
+      readOnly
+      className="form-control form-control-sm"
+      value={`₹${amountWithGst}`}
       
-      <div className="col-lg-2">
-        <label className="form-label fw-bold">Logo Type</label>
-        <select
-          className="form-select"
-          value={logo.type}
-          onChange={(e) => handleLogoChange(index, 'type', e.target.value)}
-        >
-          <option value="">Select Type</option>
-          <option value="printed">Printed</option>
-          <option value="embroidered">Embroidered</option>
-        </select>
-        {formErrors[`logoType_${index}`] && (
-          <div className="text-danger">{formErrors[`logoType_${index}`]}</div>
-        )}
-      </div>
-
-      
-      <div className="col-lg-2">
-        <label className="form-label fw-bold">Logo Position</label>
-        <select
-          className="form-select"
-          value={logo.position}
-          onChange={(e) => handleLogoChange(index, 'position', e.target.value)}
-        >
-          <option value="">Select</option>
-          <option value="left Chest">Left Chest</option>
-          <option value="Right Chest">Right Chest</option>
-          <option value="Left Sleeve">Left Sleeve</option>
-          <option value="Right Sleeve">Right Sleeve</option>
-          <option value="Front Center">Front Center</option>
-          <option value="Back Top">Back Top</option>
-          <option value="Back Center">Back Center</option>
-          <option value="On Pocket">On Pocket</option>
-        </select>
-        {formErrors[`logoPosition_${index}`] && (
-          <div className="text-danger">{formErrors[`logoPosition_${index}`]}</div>
-        )}
-      </div>
-
-      
-      <div className="col-lg-2">
-        <label className="form-label fw-bold">Upload Logo</label>
-        <input
-          type="file"
-          accept="image/*"
-          className="form-control"
-          onChange={(e) => handleLogoImageUpload(index, e.target.files[0])}
-        />
-        {formErrors[`logoImage_${index}`] && (
-          <div className="text-danger">{formErrors[`logoImage_${index}`]}</div>
-        )}
-      </div>
-    </div>
-
-    
-    {logo.image && (
-      <div className="row mt-2">
-        <div className="col-lg-12 d-flex justify-content-center">
-          <img
-            src={logo.image}
-            alt={`Logo ${index + 1}`}
-            style={{ width: '200px', height: '200px', objectFit: 'contain' }}
-            className="rounded-4 border"
-          />
-        </div>
-      </div>
-    )}
+    />
   </div>
-))}
-
-      </div>
-      
-    </div>
-    
-
-    <div className="container mt-5 d-flex justify-content-center align-items-center ">
-      <div className="custom-scroll-x">
-    <table className="table table-bordered text-center w-100">
-      <thead>
-        <tr>
-          <th>Size</th>
-          <th>Chest</th>
-          <th colSpan="2">Qty</th>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <th>Half Sleeve</th>
-          <th>Full Sleeve</th>
-        </tr>
-      </thead>
-      <tbody>
-        {sizes.map(({ label, chest }) => (
-          <tr key={label}>
-            <td className="fw-bold">{label}</td>
-            <td>{chest}</td>
-            <td>
-            <input
-  type="number"
-  className="form-control"
-  min="0"
-  value={halfSleeve[label] || ''}
-  onChange={(e) => handleInputChange("half", label, e.target.value)}
-  
-  
-  
-/>
-            </td>
-            <td>
-            <input
-  type="number"
-  className="form-control"
-  min="0"
-  value={fullSleeve[label] || ''}
-  onChange={(e) => handleInputChange("full", label, e.target.value)}
-  
-  
-/>
-            </td>
-          </tr>
-        ))}
-
-        <tr>
-          <td></td>
-          <td className="fw-bold">Total</td>
-          <td>
-            <input
-              type="text"
-              className="form-control"
-              value={totalHalf}
-              readOnly
-            />
-          </td>
-          <td>
-            <input
-              type="text"
-              className="form-control"
-              value={totalFull}
-              readOnly
-            />
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td className="fw-bold">Grand Total</td>
-          <td colSpan="2">
-            <input
-              type="text"
-              className="form-control"
-              value={grandTotal}
-              readOnly
-            />
-          </td>
-        </tr>
-        <tr>
-    <td colSpan="4">
-    {formErrors.quantityMatch && (
-  <div className="text-danger fw-bold mt-2">{formErrors.quantityMatch}</div>
-)}
-    </td>
-  </tr>
-        
-      </tbody>
-    </table>
-    </div>
-
-    </div>
-    <div className="d-flex justify-content-center mt-4">
-    <textarea
-  className="form-control w-50"
-  placeholder="Remark"
-  rows="4"
-  value={remark}
-  onChange={(e) => {
-    setRemark(e.target.value);
-    if (formErrors.remark) {
-      setFormErrors((prev) => ({ ...prev, remark: '' }));
-    }
-  }}
-></textarea>
-    
-  </div>
-  {formErrors.remark && (
-      <div className="text-danger mt-1">{formErrors.remark}</div>
-    )}
-  <div className="d-flex justify-content-center mt-4">
-  
-
-  </div>
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div className="container w-50 mt-5">
-      <div className="row">
-      <div className="col-lg-3">
-      <label className="fw-bold">Amount:</label>
-    </div>
-    <div className="col-lg-5">
-      <input type="text" className="form-control" readOnly value={`₹${total}`} />
-    </div>
-      </div>
-      <div className="row mt-2">
-      <div className="col-lg-3">
-      <label className="fw-bold">Total amout with gst:</label>
-    </div>
-    <div className="col-lg-5">
-      <input type="text" className="form-control" readOnly value={`₹${amountWithGst}`} />
-    </div>
-      </div>
-
-
-      
-    </div>
-
-
-
-
-    <div className="container w-50 ">
-
-    <div className=" cart-box mt-5 gap-2 row">
+   <div className=" cart-box mt-5 gap-2 row ms-5">
             
 
-            <button type="button" class="btn btn-success btn-lg w-25">Buy Now</button>
-            <button type="submit" className="btn btn-primary btn-lg w-25">
+            <button type="button" class="btn btn-success btn-lg w-75">Buy Now</button>
+            <button  className="btn btn-primary btn-lg w-75"
+            onClick={handleSubmit}>
             <FaShoppingCart className="me-2" /> Add to cart
             </button>
 
@@ -1369,11 +991,25 @@ const responsive = {
 
 
     </div>
-    </div>
 
-    </form>
+</div>
 
-)} */}
+
+
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1382,7 +1018,8 @@ const responsive = {
   productdetail.category._id === "68073351ecf739b9dae26185" && (
 
 <form onSubmit={handleSubmit}>
-    <div className="container mt-5">
+  
+    <div className="container w-75 mt-5 ms-lg-2 ps-lg-1">
     <div className="row mb-4">
   <label className="fs-6 fw-bold col-lg-2 mb-md-3">Enter Quantity required:</label>
   <div className="col-lg-2">
@@ -1531,13 +1168,12 @@ const responsive = {
 
       
       
-      <div className="row mt-2 pt-2 pb-4 chooseoption-box mb-4   ">
+      {/* <div className="row mt-2 pt-2 pb-4 chooseoption-box mb-4 w-75  ">
         <div>
-        
         <label className="fs-6 fw-bold   text-center mb-3">Choose Your Option:</label>
         </div>
-        <div className="selectmaterial-box row justify-content-evenly">
-        <div className="col-lg-2">
+        <div className="selectmaterial-box row w-100 justify-content-between">
+        <div className="col-lg-4">
           <div className="cotton-dropdown">
           <label onClick={polycottoggle} className="dropdown-label w-100 fw-bold fs-6 mb-2">Cotton</label>
           <select className="form-select mt-2"
@@ -1565,7 +1201,7 @@ const responsive = {
             
           </div>
         </div>
-        <div className="col-lg-2 mt-lg-0 mt-md-3">
+        <div className="col-lg-4 mt-lg-0 mt-md-3">
           <div className="cotton-dropdown">
           <label onClick={polytoggle} className="dropdown-label w-100 fw-bold fs-6 mb-2">Polyester</label>
           <select className="form-select mt-2"
@@ -1590,7 +1226,7 @@ const responsive = {
             
           </div>
         </div>
-        <div className="col-lg-2 mt-lg-0 mt-md-3">
+        <div className="col-lg-4 mt-lg-0 mt-md-3">
           <div className="cotton-dropdown">
           <label onClick={toggleOptions} className="dropdown-label w-100 fw-bold fs-6 mb-2">Poly Cotton</label>
           <select className="form-select mt-2"
@@ -1618,26 +1254,122 @@ const responsive = {
          <div className="text-danger mt-1">{formErrors.selectedoptions}</div>
           )}
         
-      </div>
+      </div> */}
+
+      <div className="row mt-2 pt-2 pb-4 chooseoption-box mb-4 w-75  ">
+        <div>
+          <label className="fs-6 fw-bold   text-center mb-3">Choose Your Option:</label>
+        </div>
+        <div className="selectmaterial-box row w-100 justify-content-between">
+         <div className="col-lg-4">
+          <div className="cotton-dropdown">
+          <label onClick={polycottoggle} className="dropdown-label w-100 fw-bold fs-6 mb-2">Cotton</label>
+          <select
+  className="form-select mt-2"
+  value={selectedCotton}
+  onChange={(e) => {
+    setSelectedCotton(e.target.value);
+    setSelectedPolyester("");
+    setSelectedPolyCotton("");
+    setFormErrors((prev) => ({ ...prev, selectedoptions: '' }));
+  }}
+>
+  <option value="">Select</option>
+  {materialOptions.Cotton.map((mat) => (
+    <option key={mat._id} value={mat.name}>
+      {mat.name}
+    </option>
+  ))}
+</select>
+          </div>
+          <div>
+            
+          </div>
+        </div>
+        <div className="col-lg-4 mt-lg-0 mt-md-3">
+          <div className="cotton-dropdown">
+          <label onClick={polytoggle} className="dropdown-label w-100 fw-bold fs-6 mb-2">Polyester</label>
+          <select
+  className="form-select mt-2"
+  value={selectedPolyester}
+  onChange={(e) => {
+    setSelectedPolyester(e.target.value);
+    setSelectedCotton("");
+    setSelectedPolyCotton("");
+    setFormErrors((prev) => ({ ...prev, selectedoptions: '' }));
+  }}
+>
+  <option value="">Select</option>
+  {materialOptions.Polyester.map((mat) => (
+    <option key={mat._id} value={mat.name}>
+      {mat.name}
+    </option>
+  ))}
+</select>
+          </div>
+          <div>
+            
+          </div>
+        </div>
+        <div className="col-lg-4 mt-lg-0 mt-md-3">
+          <div className="cotton-dropdown">
+          <label onClick={toggleOptions} className="dropdown-label w-100 fw-bold fs-6 mb-2">Poly Cotton</label>
+          <select
+  className="form-select mt-2"
+  value={selectedPolyCotton}
+  onChange={(e) => {
+    setSelectedPolyCotton(e.target.value);
+    setSelectedCotton("");
+    setSelectedPolyester("");
+    setFormErrors((prev) => ({ ...prev, selectedoptions: '' }));
+  }}
+>
+  <option value="">Select</option>
+  {materialOptions.Polycotton.map((mat) => (
+    <option key={mat._id} value={mat.name}>
+      {mat.name}
+    </option>
+  ))}
+</select>
+          </div>
+          <div>
+            
+          </div>
+        </div>
+        </div>
+         {formErrors.selectedoptions && (
+         <div className="text-danger mt-1">{formErrors.selectedoptions}</div>
+          )}
+        </div>
 
 
       
     
 
-      <div className="row mt-2 pt-2 pb-4 chooseoption-box ">
+      <div className="row mt-2 pt-2 pb-4 chooseoption-box w-75 ">
       <div>
         <label className=" fs-6 fw-bold  d-flex align-items-center justify-content-center text-center mb-3">Logo:</label>
         </div>
         {logos.map((logo, index) => (
   <div key={index} className="mb-4">
-    <div className="row d-flex justify-content-evenly">
+    <div className="row d-flex w-100 justify-content-between">
       
-      <div className="col-lg-2">
+      <div className="col-lg-4">
         <label className="form-label fw-bold">Logo Type</label>
         <select
           className="form-select"
           value={logo.logotype}
-           onChange={(e) => handleLogoChange(index, 'logotype', e.target.value)}
+          onChange={(e) => {
+  const value = e.target.value;
+  handleLogoChange(index, 'logotype', value);
+
+  if (value) {
+    setFormErrors((prev) => ({
+      ...prev,
+      [`logotype_${index}`]: '',
+    }));
+  }
+}}
         >
           <option value="">Select Type</option>
           <option value="printed">Printed</option>
@@ -1649,12 +1381,22 @@ const responsive = {
       </div>
 
       
-      <div className="col-lg-2">
+      <div className="col-lg-4">
         <label className="form-label fw-bold">Logo Position</label>
         <select
           className="form-select"
           value={logo.position}
-          onChange={(e) => handleLogoChange(index, 'position', e.target.value)}
+          onChange={(e) => {
+  const value = e.target.value;
+  handleLogoChange(index, 'position', value);
+
+  if (value) {
+    setFormErrors((prev) => ({
+      ...prev,
+      [`logoPosition_${index}`]: '',
+    }));
+  }
+}}
 
         >
           <option value="">Select</option>
@@ -1673,18 +1415,24 @@ const responsive = {
       </div>
 
       
-      <div className="col-lg-2">
+      <div className="col-lg-4">
         <label className="form-label fw-bold">Upload Logo</label>
-        <input
+       <input
   type="file"
   className="form-control"
   accept="image/*"
   onChange={(e) => {
-    if (e.target.files[0]) {
-      handleLogoPhotoChange(index, e.target.files[0]);
-    }
-  }}
+  const file = e.target.files[0];
+  if (file) {
+    handleLogoPhotoChange(index, file);
+    setFormErrors((prev) => ({
+      ...prev,
+      [`logoImage_${index}`]: '',
+    }));
+  }
+}}
 />
+
 
         {formErrors[`logoImage_${index}`] && (
           <div className="text-danger">{formErrors[`logoImage_${index}`]}</div>
@@ -1711,9 +1459,10 @@ const responsive = {
       </div>
       
     </div>
+  
     
 
-    <div className="container mt-5 d-flex justify-content-center align-items-center ">
+    <div className="container table-width-fix mt-5 d-flex justify-content-center align-items-center ms-lg-1 ps-lg-1 ">
       <div className="custom-scroll-x">
     <table className="table table-bordered text-center w-100">
       <thead>
@@ -1805,7 +1554,7 @@ const responsive = {
     </div>
 
     </div>
-    <div className="d-flex justify-content-center mt-4">
+    <div className=" container w-75 d-flex justify-content-center mt-4 ms-lg-1 ps-lg-1">
     <textarea
   className="form-control w-50"
   placeholder="Remark"
@@ -1827,65 +1576,11 @@ const responsive = {
   
 
   </div>
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div className="container w-50 mt-5">
-      <div className="row">
-      <div className="col-lg-3">
-      <label className="fw-bold">Amount:</label>
-    </div>
-    <div className="col-lg-5">
-      <input type="text" className="form-control" readOnly value={`₹${total}`} />
-    </div>
-      </div>
-      <div className="row mt-2">
-      <div className="col-lg-3">
-      <label className="fw-bold">Total amout with gst:</label>
-    </div>
-    <div className="col-lg-5">
-      <input type="text" className="form-control" readOnly value={`₹${amountWithGst}`} />
-    </div>
-      </div>
-
-
-      
-    </div>
-
-
-
-
-    <div className="container w-50 ">
-
-    <div className=" cart-box mt-5 gap-2 row">
-            
-
-            <button type="button" class="btn btn-success btn-lg w-25">Buy Now</button>
-            <button type="submit" className="btn btn-primary btn-lg w-25">
-            <FaShoppingCart className="me-2" /> Add to cart
-            </button>
-
-            
-
-
-    </div>
-    </div>
-
-    </form>
+ </form>
 
 )}
+
+</div>
 
 
 

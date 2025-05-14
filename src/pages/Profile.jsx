@@ -102,6 +102,7 @@ const Shopcontent = () => {
           console.log('Customer ID stored:', customerId);
         }
         alert('OTP verified successfully');
+        navigate('/product');
         // You can redirect or do next step here
       } else {
         localStorage.removeItem('authToken');
