@@ -24,6 +24,7 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaFileSignature } from "react-icons/fa6";
+import logofinal from "../images/GT-FInal-Logo.png"
 
 
 
@@ -83,7 +84,7 @@ const HomeHeader = () => {
         <header className='header'  >
          
           <nav className='logo d-flex'>
-            <img src={bluef} className='logo-img'></img>
+            <img src={logofinal} className='logo-img'></img>
           </nav>
           
           <div className='divider'>
@@ -141,14 +142,14 @@ const HomeHeader = () => {
           
             <div className='home-divider'>
               
-               <Link to="/home" className="no-underline-1 fw-bold" style={{ color: activeLink === "home" ? "#cf9601" : "blue" }}>
+               <Link to="/home" className="no-underline-1 fw-bold" style={{ color: activeLink === "home" ? "#cf9601" : "#007fff" }}>
        
                  HOME 
                </Link>
               
               
               
-               <Link to="/aboutus" className="no-underline-2 fw-bold"  style={{ color: activeLink === "aboutus" ? "#cf9601" : "blue" }}>
+               <Link to="/aboutus" className="no-underline-2 fw-bold"  style={{ color: activeLink === "aboutus" ? "#cf9601" : "#007fff" }}>
      
                     ABOUT US 
                </Link>
@@ -156,7 +157,7 @@ const HomeHeader = () => {
                <div className="dropdown" onMouseEnter={() => setDropdownOpen(true)} onMouseLeave={() => setDropdownOpen(false)} >
   <span
     className="dropdown-toggle fw-bold"
-    style={{ color: isShopActive ? "#cf9601" : "blue", cursor: "pointer" }}
+    style={{ color: isShopActive ? "#cf9601" : "#007fff", cursor: "pointer" }}
     
   >
     SHOP
@@ -167,11 +168,11 @@ const HomeHeader = () => {
     <li><Link className="dropdown-item" to="/newdesign">New Design</Link></li>
   </ul>
 </div>
-               <Link to="/service" className="no-underline-2 fw-bold"  style={{ color: activeLink === "service" ? "#cf9601" : "blue" }}>
+               <Link to="/service" className="no-underline-2 fw-bold"  style={{ color: activeLink === "service" ? "#cf9601" : "#007fff" }}>
        
                  SERVICE 
                </Link>
-               <Link to="/contactus" className="no-underline-2 fw-bold"  style={{ color: activeLink === "contactus" ? "#cf9601" : "blue" }}>  
+               <Link to="/contactus" className="no-underline-2 fw-bold"  style={{ color: activeLink === "contactus" ? "#cf9601" : "#007fff" }}>  
                     
                  CONTACT US 
                </Link>

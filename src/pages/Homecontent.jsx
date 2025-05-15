@@ -64,19 +64,16 @@ import { FiYoutube } from "react-icons/fi";
 import { useState, useEffect } from "react";
 import { ReactTyped } from "react-typed";
 import { useNavigate } from "react-router-dom";
+import readystock from "../images/blue-rectangle.png"
+// import newdesign from "../images/Blue-recta2.png"
+import newdesign from "../images/blue-rect3.png"
+
+import { MdPlayArrow } from "react-icons/md";
+import boyimage from "../images/boy-image.png"
+
 
 const Homecontent = () => {
-  // {
-  //   const [colorIndex, setColorIndex] = useState(0);
-  //   const colors = ["#eeae0c", "red", "green", "purple", "#ff5733"]; // Add more colors
-
-  //   useEffect(() => {
-  //     const interval = setInterval(() => {
-  //       setColorIndex((prevIndex) => (prevIndex + 1) % colors.length);
-  //     }, 1000); // Change color every second
-
-  //     return () => clearInterval(interval); // Cleanup function
-  //   }, []);
+  
   const navigate = useNavigate();
   const profiles = [
     {
@@ -172,7 +169,7 @@ const Homecontent = () => {
       {
         breakpoint: 1024, // Tablets and smaller
         settings: {
-          slidesToShow: 5, // Show 3 slides on tablets
+          slidesToShow: 4, // Show 3 slides on tablets
         },
       },
       {
@@ -196,7 +193,7 @@ const Homecontent = () => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 6,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
@@ -241,7 +238,7 @@ const Homecontent = () => {
                 className="heading-text"
                 strings={["Unique Style"]}
                 style={{
-                  color: "blue",
+                  color: "#007fff",
                 }}
                 typeSpeed={100} // Speed of typing
                 backSpeed={50} // Speed of deleting
@@ -258,7 +255,7 @@ const Homecontent = () => {
         </div>
 
         {/* Multi-item Carousel */}
-        <div className="photo-box d-flex justify-content-center row">
+        <div className="photo-box  d-flex justify-content-center row">
           <Slider {...settings}>
             <div>
               <div className="inner-box ">
@@ -310,12 +307,7 @@ const Homecontent = () => {
       </div>
       <div className="offset-text">
         <marquee className="marqueetext"
-          // style={{
-          //   width: "100%",
-          //   textAlign: "center",
-          //   fontSize: "45px",
-          //   color: "#a2a2a2",
-          // }}
+          
         >
           OFFSET PRINTING <span style={{ color: "blue" }}>*</span> WELCOME TO
           GROUPTSHIRT <span style={{ color: "blue" }}>*</span> DESIGN YOUR OWN
@@ -333,39 +325,39 @@ const Homecontent = () => {
             <h1 className="heading-text m-0">Create Stunning Print</h1>
 
             <h1 className="m-0 text-start">
-              <span className="heading-text">for</span>
-              <span className="heading-text-two" style={{ margin: "0px" }}>
+              <span className="heading-text">for </span>
+              <span className="heading-text-two" style={{ margin: "0px" ,color:'#007fff' }}>
               
                 Your Business
               </span>
             </h1>
             <p
-              className="text-secondary mt-3 "
-              style={{ color: "#a2a2a2", marginTop: "23px" }}
+              className=" mt-3 fs-4 mb-0 "
+              style={{ color: "#a2a2a2"}}
             >
               T-Shirt Printing for Everyone. Get a head start wiyh
             </p>
             <p
-              className="text-secondary  "
+              className=" fs-4 mt-0  "
               style={{ color: "#a2a2a2" }}
             >
               free design templates you can customize in a few clicks
             </p>
             <p
-              className="text-secondary mt-3 "
-              style={{ color: "#a2a2a2", marginTop: "23px" }}
+              className="text-secondary mt-2 mb-2 "
+              style={{ color: "#a2a2a2" }}
             >
               <LiaCheckCircle className="circle-check" /> Top quality prints
               using the latest technology
             </p>
             <p
-              className="text-secondary mt-3 "
+              className="text-secondary  "
               style={{ color: "#a2a2a2" }}
             >
               <LiaCheckCircle className="circle-check" /> Mix and match
               colors,sizes,and designs
             </p>
-            <button className="start-btd " onClick={buycheck}>GET STARTED</button>
+            <button className="start-btd-new mt-3  fs-5" onClick={buycheck}>GET STARTED</button>
           </div>
 
           <div className=" col-lg-6 col-md-12  design-text-2  justify-content-end position-relative hide-on-768 ">
@@ -377,12 +369,12 @@ const Homecontent = () => {
       <div className="offer-box  d-flex row  py-5 px-0 justify-content-center ">
         <div className="col-lg-6">
           <div className="shopnow d-flex flex-row  align-items-center justify-content-center position-relative  ">
-            <div className="shopnow-one  text-md-start text-center ms-5">
-              <h1 className="text-white fw-bold m-0 shopnowpercentage ">Last Minute </h1>
+            <div className="shopnow-one  text-md-start text-center me-5">
+              <h1 className="text-white fw-bold m-0 shopnowpercentage ">Last Minute  </h1>
               <h1 className="text-white fw-bold m-0 shopnowpercentage">Need?</h1>
               <p className="text-white m-0 shopnowparatext">Choose from our</p>
               <p className="text-white m-0 shopnowparatext fw-bold">Ready Stock</p>
-              <button className="start-btd-1  mt-4 mb-2 " onClick={() => {
+              <button className="start-btd-1  mt-4 mb-4 " onClick={() => {
   window.scrollTo(0, 0);
   navigate('/stock');
 }}>
@@ -390,7 +382,7 @@ const Homecontent = () => {
               </button>
             </div>
             <div>
-              <img className="shopnow-image" src={tshirtmen1} alt="logo"></img>
+              <img className="shopnow-image" src={readystock} alt="logo"></img>
             </div>
           </div>
         </div>
@@ -398,14 +390,14 @@ const Homecontent = () => {
         <div className="col-lg-6">
           <div className="explore d-flex flex-row align-items-center justify-content-center position-relative   ">
             <div>
-              <img className="explore-image" src={tshirtmen1} alt="logo"></img>
+              <img className="explore-image" src={newdesign} alt="logo"></img>
             </div>
-            <div className="explore-gapfix  text-md-start text-center">
+            <div className="explore-gapfix   text-md-start text-center">
               <h1 className="text-white fw-bold m-0 shopnowpercentage">Want a different</h1>
               <h1 className="text-white fw-bold m-0 shopnowpercentage">design </h1>
               <p className="text-white m-0 shopnowparatext">Upload design of</p>
               <p className="text-white m-0 shopnowparatext">your choice</p>
-              <button className="start-btd-1  mt-4 mb-2" onClick={() => {
+              <button className="start-btd-1  mt-4 mb-4" onClick={() => {
   window.scrollTo(0, 0);
   navigate('/newdesign');
 }}>
@@ -421,14 +413,9 @@ const Homecontent = () => {
         </text>
         <h1
           className="heading-text"
-          // style={{
-          //   margin: "0",
-          //   color: "#eeae0c",
-          //   fontSize: "3rem",
-          //   fontWeight: "bold",
-          // }}
+          
         >
-          What Makes <span style={{ color: "blue" }}>GroupTshirt</span>
+          What Makes <span style={{ color: "#007fff" }}>GroupTshirt</span>
         </h1>
         <h1 className="heading-text" style={{ margin: "0" }}>
           <span style={{ color: "#eeae0c" }}>Custom T-Shirts Different</span>
@@ -581,11 +568,13 @@ const Homecontent = () => {
             {/* Text Section */}
             <div className="col-lg-6 ">
               <div className="verify-photo-text w-100">
-                <h2 className="heading-text text-start">
-                  Ok, Let's See{" "}
-                  <span style={{ color: "blue" }}>GroupTshirt</span>
-                </h2>
-                <h2 className="heading-text text-start">In Numbers</h2>
+                <h2
+  className="heading-text fs-1 text-start"
+  style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
+>
+  Ok, Let's See <span style={{ color: '#007fff' }}>GroupTshirt</span>
+</h2>
+                <h2 className="heading-text text-start fs-1">In Numbers</h2>
                 <p
                   className="text-left text-start mt-2"
                   style={{ fontSize: "17px" }}
@@ -661,7 +650,7 @@ const Homecontent = () => {
           <div className="w-80">
           <h1 className="heading-textone">
             How we
-            <span style={{ color: "blue" }}> work </span>
+            <span style={{ color: "#007fff" }}> work </span>
           </h1>
          
 
@@ -673,8 +662,8 @@ const Homecontent = () => {
           </text>
          
           <div className="container-fluid d-flex flex-column align-items-center mt-4">
-            <div className="your-style row d-flex flex-wrap justify-content-center align-items-center bg-light mt-4 rounded">
-              <div className="your-print col-lg-3 col-md-6 col-12 d-flex flex-column align-items-center mb-3 ">
+            <div className="your-style row d-flex flex-wrap justify-content-center align-items-center  mt-4 rounded">
+              <div className="your-print col-lg-3 col-md-6 col-12 d-flex flex-column align-items-center mb-3 gap-2 ">
                 <div className="your-tshirt">
                   <img
                     src={tshirt}
@@ -687,9 +676,12 @@ const Homecontent = () => {
                     }}
                   ></img>
                 </div>
-                <h3 className="yourstyle-box  ">Your Style</h3>
+                <div style={{display : "flex"}}>
+                <h3 className="yourstyle-box ">Your Style </h3>
+                <MdPlayArrow style={{fontSize : 50}}/>
+                </div>
               </div>
-              <div className="your-print col-lg-3 col-md-6 col-12 d-flex flex-column align-items-center mb-3 your-printtwo">
+              <div className="your-print col-lg-3 col-md-6 col-12 d-flex flex-column align-items-center mb-3 your-printtwo gap-2">
                 <div className="your-tshirt">
                   <img
                     src={yourprintone}
@@ -702,14 +694,17 @@ const Homecontent = () => {
                     }}
                   ></img>
                 </div>
+                  <div style={{display : "flex"}}>
                 <h3
                   className="yourstyle-box"
                   style={{ backgroundColor: "#ffd401", color: "blue" }}
                 >
                   Your Print
                 </h3>
+                <MdPlayArrow style={{fontSize : 50}}/>
+                </div>
               </div>
-              <div className="your-print col-lg-3 col-md-6 col-12 d-flex flex-column align-items-center mb-3 your-printone">
+              <div className="your-print col-lg-3 col-md-6 col-12 d-flex flex-column align-items-center mb-3 your-printone gap-2">
                 <div className="your-tshirt">
                   <img
                     src={quantity}
@@ -729,7 +724,7 @@ const Homecontent = () => {
                   Quantity
                 </h3>
               </div>
-              <div className="your-print col-lg-3 col-md-6 col-12 d-flex flex-column align-items-center mb-3 your-printone">
+              <div className="your-print col-lg-3 col-md-6 col-12 d-flex flex-column align-items-center mb-3 your-printone gap-2">
                 <div className="your-tshirt">
                   <img
                     src={payment}
@@ -755,15 +750,15 @@ const Homecontent = () => {
       </div>
       </div>
       <div className="rating">
-        <h1 className="heading-textone" style={{ marginTop: "180px" }}>
+        <h1 className="heading-textone" style={{ marginTop: "120px" }}>
           <span>What {}</span>
-          <span style={{ color: "blue" }}>Pepole Are Saying</span>
+          <span style={{ color: "#007fff" }}>Pepole Are Saying</span>
         </h1>
         <p style={{ fontSize: "17px" }}>
           We provide support for more than 15K+ Businesses.
         </p>
 
-        <div className="comment-box container mt-4 p-5">
+        <div className="comment-box container p-2">
       <Slider {...profilesettings}>
         {profiles.map((profile, index) => (
           <div className="col-lg-4 px-2 py-2" key={index}>
@@ -802,7 +797,7 @@ const Homecontent = () => {
                 </div>
               </div>
               <div className="profile-about">
-                <p>{profile.review}</p>
+                <p className="mt-3">{profile.review}</p>
               </div>
             </div>
           </div>
@@ -811,8 +806,8 @@ const Homecontent = () => {
     </div>
       </div>
       <div className="mailbox  mt-4">
-        <div className="mailbox-divider container-fluid ">
-          <div className="row w-100  ps-md-1 ps-4">
+        <div className="mailbox-divider container-fluid d-flex justify-content-center ">
+          <div className="row  mailbox-widthfix   ps-md-1 ps-4">
 
           {/* d-flex flex-column flex-md-row align-items-md-start px-5 */}
             <div className="text-divider col-lg-6 d-flex flex-column align-items-start justify-content-center p-5">
@@ -833,7 +828,7 @@ const Homecontent = () => {
                 }}
               >
                 <span style={{ color: "white"}}>On </span>
-                <span style={{ color: "blue"}}>
+                <span style={{ color: "#007fff"}}>
                   Special Offer
                 </span>
               </h1>
@@ -876,7 +871,7 @@ const Homecontent = () => {
             <div className="col-12 col-lg-6 position-relative">
                           <div className=" d-flex justify-content-center align-items-end mt-3  image-bottomfix ">
                             <img
-                              src={aboutustwo}
+                              src={boyimage}
                               
                               alt="About Us"
                               className="letstalkimageone position-absolute"
@@ -899,7 +894,7 @@ const Homecontent = () => {
         <span className="wegottext" style={{marginTop:"0px"}} >
           everyon can wear your brand or message"
         </span>
-        <div className="toolsbox container-fluid mt-5">
+        <div className="toolsbox mt-5">
       <Slider {...sliderSettingsicons}>
         {[
           { icon: <TbBrandElastic />, label: "Elastic" },
@@ -911,42 +906,25 @@ const Homecontent = () => {
         ].map((item, index) => (
           <div key={index} className="d-flex justify-content-center align-items-center bg-white p-2">
             {item.icon}
-            <span className="ms-2 elastix-text">{item.label}</span>
+            <span className="ms-2 elastix-text fs-3">{item.label}</span>
           </div>
         ))}
       </Slider>
     </div>
       </div>
       <div className="shipping container-fluid mt-3">
-        <div class="row shippingrow  py-4 justify-content-center text-center">
-          {/* <div
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            gap: "68px",
-            marginTop:"10px"
-          }}
-        > */}
+        <div class="row shippingrow  py-5 justify-content-center text-center">
+          
           <div className="shippingdivider col-lg-3 d-flex flex-column align-items-center">
             <img
             className="shippingimagefix"
               src={worldwideshipping}
-              // style={{
-              //   width: "31%",
-              //   height: "41%",
-              //   color: "green",
-              //   marginTop: "20px",
-              // }}
+              
             ></img>
 
             <text 
             className="shippingtextfix"
-              // style={{
-              //   marginTop: "15px",
-              //   fontWeight: "bold",
-              //   marginBottom: "10px",
-              // }}
+              
             >
               Worldwide shipping
             </text>

@@ -111,7 +111,7 @@ const Productdetail = () => {
   
       setUploadedImage(imageUrl);
   
-      // ✅ Clear the error for uploadedImage
+     
       setFormErrors((prev) => {
         const updated = { ...prev };
         delete updated.uploadedImage;
@@ -153,7 +153,8 @@ const Productdetail = () => {
   const [halfSleeve, setHalfSleeve] = useState({});
   const [fullSleeve, setFullSleeve] = useState({});
   const [amountWithGst, setAmountWithGst] = useState(0);
-  const [total,settotal]=useState(0);
+  const [totalamount,settotal]=useState(0);
+  const [gsttotal,setgsttotal]=useState(0);
 
   const handleInputChange = (type, label, value) => {
     const val = parseInt(value, 10);
@@ -174,15 +175,16 @@ const Productdetail = () => {
       var flSle = safeVal ? safeVal : 0;
     }
 
-    const totalAmount =
-    (Number(hfSle != undefined ? hfSle : 0) * halfSleevePrice) + (Number(flSle != undefined ? flSle : 0) * fullSleevePrice);
-
-    console.log("totalAmount" , Number(hfSle != undefined ? hfSle : 0) * halfSleevePrice , Number(flSle != undefined ? flSle : 0) , flSle);
     
-    settotal(totalAmount);
-    const totalWithGst = +(totalAmount * 1.18);
 
-    setAmountWithGst(totalWithGst);
+    // console.log("totalAmount" , Number(hfSle != undefined ? hfSle : 0) * halfSleevePrice , Number(flSle != undefined ? flSle : 0) , flSle);
+    
+    // settotal(totalAmount);
+    // const totalWithGst = +(totalAmount * 1.18);
+
+    // setAmountWithGst(totalWithGst);
+
+
 
 
     setFormErrors((prev) => ({ ...prev, quantityMatch: '' }))
@@ -194,6 +196,34 @@ const Productdetail = () => {
   const totalHalf = Object.values(halfSleeve).reduce((sum, qty) => sum + qty, 0);
   const totalFull = Object.values(fullSleeve).reduce((sum, qty) => sum + qty, 0);
   const grandTotal = totalHalf + totalFull;
+  const [logoCount, setLogoCount] = useState(1);
+
+  
+
+
+  useEffect(() => {
+    if (totalHalf > 0 || totalFull > 0) {
+      const halfTotal = totalHalf * selectedPrice;
+const fullTotal = totalFull * (selectedPrice + 50);
+const logoTotal = logoCount > 0 ? logoCount * 50 : 0;
+
+const totalamount = halfTotal + fullTotal + logoTotal;
+const gstAmount = totalamount + (totalamount* 0.18);
+
+console.log('selectedprice from top', totalHalf )
+console.log('gst selectedprice from top', gstAmount )
+
+console.log('halftotal from top',halfTotal)
+console.log('fulltotal from top',fullTotal)
+console.log('logo price from top',logoTotal)
+
+settotal(totalamount);
+setgsttotal(gstAmount);
+console.log('totalamount ',totalamount)
+    }
+
+  }, [halfSleeve , fullSleeve , logoCount])
+  
 
   const [quantities, setQuantities] = useState(
     sizes.map(() => ({ half: 0, full: 0 }))
@@ -215,7 +245,6 @@ const Productdetail = () => {
     
 
    
-    const [logoCount, setLogoCount] = useState(1);
     // const [logos, setLogos] = useState([{ logotype: '', position: '' }]);
 
     const [visibleLogos, setVisibleLogos] = useState(1);
@@ -481,8 +510,8 @@ const handleSubmit = async (e) => {
     },
     totalCount: Number(grandTotal),
     remark,
-    amount: total,
-    totalAmount: amountWithGst,
+    amount: totalamount,
+    totalAmount: gsttotal,
     productId: productdetail?._id,
   };
 
@@ -598,6 +627,7 @@ const handleSubmit = async (e) => {
       fetchProduct();
     }, [id]);
 
+const [selectedPrice, setSelectedPrice] = useState(0);
 
 useEffect(() => {
   const token = localStorage.getItem('authToken');
@@ -650,8 +680,6 @@ useEffect(() => {
       }
     });
 }, []);
-
-
 
 
   
@@ -779,13 +807,13 @@ const responsive = {
     
 
     
-<div className="collartshirt-fields">
+{/* <div className="collartshirt-fields" style={{ position: "relative" }}>
       <div className="container-fluid mt-5">
   <div className="d-flex productpage-box row">
   <div className="col-lg-4 col-12">
   {productdetail ? (
     <>
-      {/* Main image display */}
+     
       <div className="product-imageful">
         <img
           src={
@@ -798,7 +826,7 @@ const responsive = {
         />
       </div>
 
-      {/* Thumbnail image (image[1]) */}
+      
       <div className="d-flex mt-4 gap-4 w-100 align-items-start">
         <div
           className="productdetail-image"
@@ -910,10 +938,13 @@ const responsive = {
       style={{ width: '60px' }}
     />
     <span>*</span>
-    <span>price</span>
+    <span>
+  {selectedPrice > 0 ? `₹${selectedPrice}` : "Price"}
+</span>
     <span>=</span>
     <input 
       readOnly
+      value={selectedPrice > 0 ? totalHalf * selectedPrice : ''}
       className="form-control form-control-sm"
       style={{ width: '60px' }}
     />
@@ -929,10 +960,13 @@ const responsive = {
       style={{ width: '60px' }}
     />
     <span>*</span>
-    <span>price</span>
+    <span>
+  {selectedPrice > 0 ? `₹${selectedPrice + 50}` : "Price"}
+</span>
     <span>=</span>
     <input 
       readOnly
+      value={selectedPrice > 0 ? totalFull * (selectedPrice + 50) : ''}
       className="form-control form-control-sm"
       style={{ width: '60px' }}
     />
@@ -944,14 +978,16 @@ const responsive = {
     <input 
     
       readOnly
+      value={logoCount}
       className="form-control form-control-sm"
       style={{ width: '60px' }}
     />
     <span>*</span>
-    <span>price</span>
+    <span className="ms-2"> ₹50</span>
     <span>=</span>
     <input 
       readOnly
+      value={logoCount > 0 ? logoCount * 50 : ''}
       className="form-control form-control-sm"
       style={{ width: '60px' }}
     />
@@ -963,7 +999,7 @@ const responsive = {
     
       readOnly
       className="form-control form-control-sm"
-      value={`₹${total}`}
+      value={`₹${totalamount}`}
       
     />
   </div>
@@ -974,7 +1010,7 @@ const responsive = {
     
       readOnly
       className="form-control form-control-sm"
-      value={`₹${amountWithGst}`}
+      value={`₹${gsttotal}`}
       
     />
   </div>
@@ -1168,93 +1204,7 @@ const responsive = {
 
       
       
-      {/* <div className="row mt-2 pt-2 pb-4 chooseoption-box mb-4 w-75  ">
-        <div>
-        <label className="fs-6 fw-bold   text-center mb-3">Choose Your Option:</label>
-        </div>
-        <div className="selectmaterial-box row w-100 justify-content-between">
-        <div className="col-lg-4">
-          <div className="cotton-dropdown">
-          <label onClick={polycottoggle} className="dropdown-label w-100 fw-bold fs-6 mb-2">Cotton</label>
-          <select className="form-select mt-2"
-          value={selectedCotton}
-          onChange={(e) => {
-            setSelectedCotton(e.target.value);
-            setSelectedPolyester("");
-            setSelectedPolyCotton("");
-        
-            
-            setFormErrors((prev) => ({ ...prev, selectedoptions: '' }));
-          }}>
-            
-        <option value="">option </option>
-        <option value="Combed Cotton">Combed</option>
-        <option value="Ringspun Cotton">Ringspun</option>
-        <option value="Organic Cotton">Organic</option>
-        <option value="Pima Cotton">Pima</option>
-        <option value="Supima Cotton">Supima</option>
-        <option value="Slub Cotton">Slub</option>
-        
-  </select>
-          </div>
-          <div>
-            
-          </div>
-        </div>
-        <div className="col-lg-4 mt-lg-0 mt-md-3">
-          <div className="cotton-dropdown">
-          <label onClick={polytoggle} className="dropdown-label w-100 fw-bold fs-6 mb-2">Polyester</label>
-          <select className="form-select mt-2"
-           value={selectedPolyester}
-           onChange={(e) => {
-            setSelectedPolyester(e.target.value);
-            setSelectedCotton("");
-            setSelectedPolyCotton("");
-          
-            setFormErrors((prev) => ({ ...prev, selectedoptions: '' }));
-          }} >
-        <option value="">option </option>
-        <option value="Poly-cotton">Poly-cotton</option>
-        <option value="Tri-blend Fabric">Tri-blend Fabric</option>
-        <option value="Microfiber Polyester">Microfiber</option>
-        <option value="Interlock Polyester">Interlock</option>
-        <option value="Moisture-wicking">Moisture-wicking</option>
-        
-  </select>
-          </div>
-          <div>
-            
-          </div>
-        </div>
-        <div className="col-lg-4 mt-lg-0 mt-md-3">
-          <div className="cotton-dropdown">
-          <label onClick={toggleOptions} className="dropdown-label w-100 fw-bold fs-6 mb-2">Poly Cotton</label>
-          <select className="form-select mt-2"
-           value={selectedPolyCotton}
-           onChange={(e) => {
-            setSelectedPolyCotton(e.target.value);
-            setSelectedCotton("");
-            setSelectedPolyester("");
-          
-            setFormErrors((prev) => ({ ...prev, selectedoptions: '' }));
-          }}>
-        <option value="">option</option>
-        <option value="Ring-Spun Poly-Cotton">Ring-Spun</option>
-        <option value="Combed Poly-Cotton">Combed Poly</option>
-        <option value="Brushed Poly-Cotton">Brushed Poly</option>
-        
-  </select>
-          </div>
-          <div>
-            
-          </div>
-        </div>
-        </div>
-        {formErrors.selectedoptions && (
-         <div className="text-danger mt-1">{formErrors.selectedoptions}</div>
-          )}
-        
-      </div> */}
+     
 
       <div className="row mt-2 pt-2 pb-4 chooseoption-box mb-4 w-75  ">
         <div>
@@ -1268,10 +1218,14 @@ const responsive = {
   className="form-select mt-2"
   value={selectedCotton}
   onChange={(e) => {
-    setSelectedCotton(e.target.value);
+    const selected = e.target.value;
+    // setSelectedCotton(e.target.value);
+    setSelectedCotton(selected);
     setSelectedPolyester("");
     setSelectedPolyCotton("");
     setFormErrors((prev) => ({ ...prev, selectedoptions: '' }));
+    const price = materialOptions.Cotton.find((mat) => mat.name === selected)?.price || 0;
+    setSelectedPrice(price);
   }}
 >
   <option value="">Select</option>
@@ -1293,10 +1247,14 @@ const responsive = {
   className="form-select mt-2"
   value={selectedPolyester}
   onChange={(e) => {
-    setSelectedPolyester(e.target.value);
+    const selected = e.target.value;
+    setSelectedPolyester(selected);
     setSelectedCotton("");
     setSelectedPolyCotton("");
     setFormErrors((prev) => ({ ...prev, selectedoptions: '' }));
+
+    const price = materialOptions.Polyester.find((mat) => mat.name === selected)?.price || 0;
+    setSelectedPrice(price);
   }}
 >
   <option value="">Select</option>
@@ -1318,10 +1276,13 @@ const responsive = {
   className="form-select mt-2"
   value={selectedPolyCotton}
   onChange={(e) => {
-    setSelectedPolyCotton(e.target.value);
+    const selected = e.target.value;
+    setSelectedPolyCotton(selected);
     setSelectedCotton("");
     setSelectedPolyester("");
     setFormErrors((prev) => ({ ...prev, selectedoptions: '' }));
+     const price = materialOptions.Polycotton.find((mat) => mat.name === selected)?.price || 0;
+    setSelectedPrice(price);
   }}
 >
   <option value="">Select</option>
@@ -1341,6 +1302,12 @@ const responsive = {
          <div className="text-danger mt-1">{formErrors.selectedoptions}</div>
           )}
         </div>
+
+        {selectedPrice > 0 && (
+  <div className="mt-3 fw-bold">
+    Selected Material Price: ₹{selectedPrice}
+  </div>
+)}
 
 
       
@@ -1580,7 +1547,741 @@ const responsive = {
 
 )}
 
+</div> */}
+
+
+
+<div className="row">
+
+  <div className="col-9">
+    <div className="row">
+      <div className="container-fluid mt-5"></div>
+      <div className="col-lg-6 col-12">
+  {productdetail ? (
+    <>
+      
+      <div className="product-imageful">
+        <img
+          src={
+            hoveredImage ||
+            selectedImage ||
+            `https://gts.tsitcloud.com/${productdetail?.images?.[0]}`
+          }
+          alt={productdetail?.name}
+          className="img-fluid"
+        />
+      </div>
+
+      
+      <div className="d-flex mt-4 gap-4 w-100 align-items-start">
+        <div
+          className="productdetail-image"
+          onMouseEnter={() =>
+            setHoveredImage(`https://gts.tsitcloud.com/${productdetail?.images?.[1]}`)
+          }
+          onMouseLeave={() => setHoveredImage(null)}
+          
+          style={{
+            border:
+              selectedImage ===
+              `https://gts.tsitcloud.com/${productdetail?.images?.[1]}`
+                ? '2px solid blue'
+                : '2px solid transparent',
+            borderRadius: '8px',
+            padding: '4px',
+          }}
+        >
+          <img
+            src={`https://gts.tsitcloud.com/${productdetail?.images?.[1]}`}
+            alt="Second"
+            className="img-fluid"
+            style={{ cursor: 'pointer' }}
+          />
+        </div>
+      </div>
+    </>
+  ) : (
+    <p>Loading product images...</p>
+  )}
 </div>
+<div className="col-lg-6 col-12">
+     
+      {productdetail ? (
+        <>
+          <h2 className="text-start">{productdetail?.name}</h2>
+          <p className="text-start">{productdetail?.description}</p>
+
+          <p className="text-start"><strong>Price:</strong> ₹{productdetail?.price.half_sleeve}</p>
+          <p className="text-start"><strong>fullSleeve:</strong> ₹{productdetail?.price.full_sleeve}</p>
+          <p className="text-start"><strong>Color:</strong> {productdetail?.color}</p>
+          <p className="text-start"><strong>Material:</strong> {productdetail?.material}</p>
+          <p className="text-start"><strong>Brand:</strong> {productdetail?.brand}</p>
+          <p className="text-start"><strong>Weight:</strong> {productdetail?.weight}</p>
+
+          <h2 className="text-xl font-bold mb-2 h5">About this item</h2>
+          <ul className="text-start">
+            <li><strong>Type:</strong> Comfortable Cotton T-Shirt</li>
+            <li><strong>Fit:</strong> Regular Fit – Comfortable for daily wear</li>
+            <li><strong>Fabric:</strong> 100% Pure Cotton – Durable and skin-friendly</li>
+            <li><strong>Design:</strong> Printed Graphic – Stylish and trendy look</li>
+          </ul>
+
+          
+          <div className="responsive-table-container mt-5">
+  <table className="responsive-table table table-bordered text-center">
+    <thead>
+      <tr>
+        {sizesone.length > 0 ? (
+          sizesone.map((size, index) => (
+            <th key={index} style={{ padding: '8px' }}>
+              {size.label}
+            </th>
+          ))
+        ) : (
+          <th>No sizes available</th>
+        )}
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        {sizesone.length > 0 ? (
+          sizesone.map((size, index) => (
+            <td key={index} style={{ padding: '8px' }}>
+              {size.chest ? `${size.chest}"` : 'N/A'}
+            </td>
+          ))
+        ) : (
+          <td>No chest data available</td>
+        )}
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+        </>
+      ) : (
+        <p>Loading product details...</p> 
+      )}
+    </div>
+    <div className="row">
+      {productdetail &&
+  productdetail.category &&
+  productdetail.category._id === "68073351ecf739b9dae26185" && (
+
+<form onSubmit={handleSubmit}>
+  
+    <div className="container w-100 mt-5 ms-lg-2 ps-lg-1">
+    <div className="row mb-4">
+  <label className="fs-6 fw-bold col-lg-2 mb-md-3">Enter Quantity required:</label>
+  <div className="col-lg-2">
+    <input
+      type="number"
+      min="15"
+      className={`form-control ${formErrors.enteredQty ? 'is-invalid' : ''}`}
+      placeholder="Enter Quantity"
+      value={enteredQty}
+      onChange={(e) => {
+        setEnteredQty(e.target.value);
+        if (formErrors.enteredQty && parseInt(e.target.value) >= 15) {
+          setFormErrors((prev) => ({ ...prev, enteredQty: '' }));
+        }
+      }}
+      onBlur={handleBlur}
+    />
+    {formErrors.enteredQty && (
+      <div className="text-danger mt-1">{formErrors.enteredQty}</div>
+    )}
+  </div>
+
+  <label className="fs-6 fw-bold col-lg-2 mt-lg-0 mb-md-3 mt-md-3">How many Logos to add:</label>
+  <div className="col-lg-2">
+    <input
+      type="number"
+      min="1"
+      max="4"
+      className={`form-control ${formErrors.logoCount ? 'is-invalid' : ''}`}
+      placeholder="Enter quantity"
+      value={logoCount}
+
+     
+      
+      onChange={handleLogoCountChange}
+      onBlur={handleLogoCountBlur}
+    />
+    {formErrors.logoCount && (
+      <div className="text-danger mt-1">{formErrors.logoCount}</div>
+    )}
+  </div>
+
+  <label className="fs-6 fw-bold col-lg-2 mt-lg-0 mt-3 mb-md-3">Pocket Required:</label>
+  <div className="col-lg-2">
+    <div className="d-flex gap-3">
+      <div>
+        <input
+          type="radio"
+          id="yes"
+          name="pocketRequired"
+          value="yes"
+          checked={pocketRequired === 'yes'}
+          onChange={(e) => {
+            setPocketRequired(e.target.value);
+            setFormErrors((prev) => ({ ...prev, pocketRequired: '' }));
+          }}
+        />
+        <label htmlFor="yes">Yes</label>
+      </div>
+      <div>
+        <input
+          type="radio"
+          id="no"
+          name="pocketRequired"
+          value="no"
+          required
+          checked={pocketRequired === 'no'}
+          onChange={(e) => {
+            setPocketRequired(e.target.value);
+            setFormErrors((prev) => ({ ...prev, pocketRequired: '' }));
+          }}
+        />
+        <label htmlFor="no">No</label>
+      </div>
+    </div>
+    {formErrors.pocketRequired && (
+      <div className="text-danger mt-1">{formErrors.pocketRequired}</div>
+    )}
+  </div>
+</div>
+
+      
+      
+
+      <div className="row mt-2 mb-4">
+ 
+  <label className="fs-6 fw-bold col-lg-2 text-lg-end mb-md-3">Delivery Date:</label>
+  <div className="col-lg-2 mb-md-3">
+    <input
+      type="date"
+      className={`form-control ${formErrors.deliveryDate ? 'is-invalid' : ''}`}
+      value={deliveryDate}
+      required
+      min={getMinDate()}
+      onChange={(e) => {
+        setDeliveryDate(e.target.value);
+        setFormErrors((prev) => ({ ...prev, deliveryDate: '' }));
+      }}
+    />
+    {formErrors.deliveryDate && (
+      <div className="text-danger mt-1">{formErrors.deliveryDate}</div>
+    )}
+  </div>
+
+  
+  <label className="fs-6 fw-bold col-lg-2 text-lg-end mt-lg-0 mt-3">Choose Colour:</label>
+  <div className="col-lg-2 d-flex flex-column align-items-lg-start align-items-center justify-content-lg-start justify-content-center mt-lg-0 mt-3">
+    <input
+      type="color"
+      id="favcolor"
+      name="favcolor"
+      value={color}
+      onChange={(e) => {
+        setColor(e.target.value);
+        setColorTouched(true);
+        setFormErrors((prev) => ({ ...prev, color: '' }));
+      }}
+      className="form-control-color rounded-color"
+    />
+    <div style={{ height: '20px' }}>
+      {formErrors.color && <div className="text-danger small">{formErrors.color}</div>}
+    </div>
+  </div>
+
+  
+  <label className="fs-6 fw-bold col-lg-2 text-lg-end mt-lg-0 mt-3">Choose Collar Colour:</label>
+  <div className="col-lg-2 d-flex flex-column align-items-lg-start align-items-center justify-content-lg-start justify-content-center mt-lg-0 mt-3">
+    <input
+      type="color"
+      id="collarcolor"
+      name="collarcolor"
+      value={collarcolor}
+      onChange={(e) => {
+        setcollarcolor(e.target.value);
+        setcollarcolorTouched(true);
+        setFormErrors((prev) => ({ ...prev, collarcolor: '' }));
+      }}
+      className="form-control-color rounded-color"
+    />
+    <div style={{ height: '20px' }}>
+      {formErrors.collarcolor && <div className="text-danger small">{formErrors.collarcolor}</div>}
+    </div>
+  </div>
+</div>
+
+
+      
+      
+   
+
+      <div className="row mt-2 pt-2 pb-4 chooseoption-box mb-4 w-100  ">
+        <div>
+          <label className="fs-6 fw-bold   text-center mb-3">Choose Your Option:</label>
+        </div>
+        <div className="selectmaterial-box row w-100 justify-content-between">
+         <div className="col-lg-4">
+          <div className="cotton-dropdown">
+          <label onClick={polycottoggle} className="dropdown-label w-100 fw-bold fs-6 mb-2">Cotton</label>
+          <select
+  className="form-select mt-2"
+  value={selectedCotton}
+  onChange={(e) => {
+    const selected = e.target.value;
+    
+    setSelectedCotton(selected);
+    setSelectedPolyester("");
+    setSelectedPolyCotton("");
+    setFormErrors((prev) => ({ ...prev, selectedoptions: '' }));
+    const price = materialOptions.Cotton.find((mat) => mat.name === selected)?.price || 0;
+    setSelectedPrice(price);
+  }}
+>
+  <option value="">Select</option>
+  {materialOptions.Cotton.map((mat) => (
+    <option key={mat._id} value={mat.name}>
+      {mat.name}
+    </option>
+  ))}
+</select>
+          </div>
+          <div>
+            
+          </div>
+        </div>
+        <div className="col-lg-4 mt-lg-0 mt-md-3">
+          <div className="cotton-dropdown">
+          <label onClick={polytoggle} className="dropdown-label w-100 fw-bold fs-6 mb-2">Polyester</label>
+          <select
+  className="form-select mt-2"
+  value={selectedPolyester}
+  onChange={(e) => {
+    const selected = e.target.value;
+    setSelectedPolyester(selected);
+    setSelectedCotton("");
+    setSelectedPolyCotton("");
+    setFormErrors((prev) => ({ ...prev, selectedoptions: '' }));
+
+    const price = materialOptions.Polyester.find((mat) => mat.name === selected)?.price || 0;
+    setSelectedPrice(price);
+  }}
+>
+  <option value="">Select</option>
+  {materialOptions.Polyester.map((mat) => (
+    <option key={mat._id} value={mat.name}>
+      {mat.name}
+    </option>
+  ))}
+</select>
+          </div>
+          <div>
+            
+          </div>
+        </div>
+        <div className="col-lg-4 mt-lg-0 mt-md-3">
+          <div className="cotton-dropdown">
+          <label onClick={toggleOptions} className="dropdown-label w-100 fw-bold fs-6 mb-2">Poly Cotton</label>
+          <select
+  className="form-select mt-2"
+  value={selectedPolyCotton}
+  onChange={(e) => {
+    const selected = e.target.value;
+    setSelectedPolyCotton(selected);
+    setSelectedCotton("");
+    setSelectedPolyester("");
+    setFormErrors((prev) => ({ ...prev, selectedoptions: '' }));
+     const price = materialOptions.Polycotton.find((mat) => mat.name === selected)?.price || 0;
+    setSelectedPrice(price);
+  }}
+>
+  <option value="">Select</option>
+  {materialOptions.Polycotton.map((mat) => (
+    <option key={mat._id} value={mat.name}>
+      {mat.name}
+    </option>
+  ))}
+</select>
+          </div>
+          <div>
+            
+          </div>
+        </div>
+        </div>
+         {formErrors.selectedoptions && (
+         <div className="text-danger mt-1">{formErrors.selectedoptions}</div>
+          )}
+        </div>
+
+        {selectedPrice > 0 && (
+  <div className="mt-3 fw-bold">
+    Selected Material Price: ₹{selectedPrice}
+  </div>
+)}
+
+
+      
+    
+
+      <div className="row mt-2 pt-2 pb-4 chooseoption-box w-100 ">
+      <div>
+        <label className=" fs-6 fw-bold  d-flex align-items-center justify-content-center text-center mb-3">Logo:</label>
+        </div>
+        {logos.map((logo, index) => (
+  <div key={index} className="mb-4">
+    <div className="row d-flex w-100 justify-content-between">
+      
+      <div className="col-lg-4">
+        <label className="form-label fw-bold">Logo Type</label>
+        <select
+          className="form-select"
+          value={logo.logotype}
+          onChange={(e) => {
+  const value = e.target.value;
+  handleLogoChange(index, 'logotype', value);
+
+  if (value) {
+    setFormErrors((prev) => ({
+      ...prev,
+      [`logotype_${index}`]: '',
+    }));
+  }
+}}
+        >
+          <option value="">Select Type</option>
+          <option value="printed">Printed</option>
+          <option value="embroidered">Embroidered</option>
+        </select>
+        {formErrors[`logotype_${index}`] && (
+          <div className="text-danger">{formErrors[`logotype_${index}`]}</div>
+        )}
+      </div>
+
+      
+      <div className="col-lg-4">
+        <label className="form-label fw-bold">Logo Position</label>
+        <select
+          className="form-select"
+          value={logo.position}
+          onChange={(e) => {
+  const value = e.target.value;
+  handleLogoChange(index, 'position', value);
+
+  if (value) {
+    setFormErrors((prev) => ({
+      ...prev,
+      [`logoPosition_${index}`]: '',
+    }));
+  }
+}}
+
+        >
+          <option value="">Select</option>
+          <option value="left Chest">Left Chest</option>
+          <option value="Right Chest">Right Chest</option>
+          <option value="Left Sleeve">Left Sleeve</option>
+          <option value="Right Sleeve">Right Sleeve</option>
+          <option value="Front Center">Front Center</option>
+          <option value="Back Top">Back Top</option>
+          <option value="Back Center">Back Center</option>
+          <option value="On Pocket">On Pocket</option>
+        </select>
+        {formErrors[`logoPosition_${index}`] && (
+          <div className="text-danger">{formErrors[`logoPosition_${index}`]}</div>
+        )}
+      </div>
+
+      
+      <div className="col-lg-4">
+        <label className="form-label fw-bold">Upload Logo</label>
+       <input
+  type="file"
+  className="form-control"
+  accept="image/*"
+  onChange={(e) => {
+  const file = e.target.files[0];
+  if (file) {
+    handleLogoPhotoChange(index, file);
+    setFormErrors((prev) => ({
+      ...prev,
+      [`logoImage_${index}`]: '',
+    }));
+  }
+}}
+/>
+
+
+        {formErrors[`logoImage_${index}`] && (
+          <div className="text-danger">{formErrors[`logoImage_${index}`]}</div>
+        )}
+      </div>
+    </div>
+
+    
+    {logo.image && (
+      <div className="row mt-2">
+        <div className="col-lg-12 d-flex justify-content-center">
+          <img
+            src={logo.image}
+            alt={`Logo ${index + 1}`}
+            style={{ width: '200px', height: '200px', objectFit: 'contain' }}
+            className="rounded-4 border"
+          />
+        </div>
+      </div>
+    )}
+  </div>
+))}
+
+      </div>
+      
+    </div>
+  
+    
+
+    <div className="container table-width-fix mt-5 d-flex justify-content-center align-items-center ms-lg-1 ps-lg-1 ">
+      <div className="custom-scroll-x">
+    <table className="table table-bordered text-center w-100">
+      <thead>
+        <tr>
+          <th>Size</th>
+          <th>Chest</th>
+          <th colSpan="2">Qty</th>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <th>Half Sleeve</th>
+          <th>Full Sleeve</th>
+        </tr>
+      </thead>
+      <tbody>
+        {sizes.map(({ label, chest }) => (
+          <tr key={label}>
+            <td className="fw-bold">{label}</td>
+            <td>{chest}</td>
+            <td>
+            <input
+  type="number"
+  className="form-control"
+  min="0"
+  value={halfSleeve[label] || ''}
+  onChange={(e) => handleInputChange("half", label, e.target.value)}
+  
+  
+  
+/>
+            </td>
+            <td>
+            <input
+  type="number"
+  className="form-control"
+  min="0"
+  value={fullSleeve[label] || ''}
+  onChange={(e) => handleInputChange("full", label, e.target.value)}
+  
+  
+/>
+            </td>
+          </tr>
+        ))}
+
+        <tr>
+          <td></td>
+          <td className="fw-bold">Total</td>
+          <td>
+            <input
+              type="text"
+              className="form-control"
+              value={totalHalf}
+              readOnly
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              className="form-control"
+              value={totalFull}
+              readOnly
+            />
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td className="fw-bold">Grand Total</td>
+          <td colSpan="2">
+            <input
+              type="text"
+              className="form-control"
+              value={grandTotal}
+              readOnly
+            />
+          </td>
+        </tr>
+        <tr>
+    <td colSpan="4">
+    {formErrors.quantityMatch && (
+  <div className="text-danger fw-bold mt-2">{formErrors.quantityMatch}</div>
+)}
+    </td>
+  </tr>
+        
+      </tbody>
+    </table>
+    </div>
+
+    </div>
+    <div className=" container w-75 d-flex justify-content-center mt-4 ms-lg-1 ps-lg-1">
+    <textarea
+  className="form-control w-75"
+  placeholder="Remark"
+  rows="4"
+  value={remark}
+  onChange={(e) => {
+    setRemark(e.target.value);
+    if (formErrors.remark) {
+      setFormErrors((prev) => ({ ...prev, remark: '' }));
+    }
+  }}
+></textarea>
+    
+  </div>
+  {formErrors.remark && (
+      <div className="text-danger mt-1">{formErrors.remark}</div>
+    )}
+  <div className="d-flex justify-content-center mt-4">
+  
+
+  </div>
+ </form>
+
+)}
+    </div>
+
+    </div>
+  </div>
+  <div className="col-3">
+    <div className=" d-flex flex-column align-items-start sticky-items"
+    style={{
+      position: "sticky",
+      top: "1rem",
+      zIndex: 2,
+      alignSelf: "flex-start",
+    }}>
+
+  
+  <div className="d-flex align-items-center gap-2 mt-3 w-100">
+    <strong className="me-2" style={{ minWidth: "90px" }}>Half sleeve:</strong>
+    <input 
+      value={totalHalf}
+      readOnly
+      className="form-control form-control-sm"
+      style={{ width: '60px' }}
+    />
+    <span>*</span>
+    <span>
+  {selectedPrice > 0 ? `₹${selectedPrice}` : "Price"}
+</span>
+    <span>=</span>
+    <input 
+      readOnly
+      value={selectedPrice > 0 ? totalHalf * selectedPrice : ''}
+      className="form-control form-control-sm"
+      style={{ width: '60px' }}
+    />
+  </div>
+
+  
+  <div className="d-flex align-items-center gap-2 mt-3 w-100">
+    <strong className="me-2" style={{ minWidth: "90px" }}>Full sleeve:</strong>
+    <input 
+      value={totalFull}
+      readOnly
+      className="form-control form-control-sm"
+      style={{ width: '60px' }}
+    />
+    <span>*</span>
+    <span>
+  {selectedPrice > 0 ? `₹${selectedPrice + 50}` : "Price"}
+</span>
+    <span>=</span>
+    <input 
+      readOnly
+      value={selectedPrice > 0 ? totalFull * (selectedPrice + 50) : ''}
+      className="form-control form-control-sm"
+      style={{ width: '60px' }}
+    />
+  </div>
+
+ 
+  <div className="d-flex align-items-center gap-2 mt-3 w-100">
+    <strong className="me-2" style={{ minWidth: "90px" }}>Logo:</strong>
+    <input 
+    
+      readOnly
+      value={logoCount}
+      className="form-control form-control-sm"
+      style={{ width: '60px' }}
+    />
+    <span>*</span>
+    <span className="ms-2"> ₹50</span>
+    <span>=</span>
+    <input 
+      readOnly
+      value={logoCount > 0 ? logoCount * 50 : ''}
+      className="form-control form-control-sm"
+      style={{ width: '60px' }}
+    />
+  </div>
+
+  <div className="d-flex align-items-center gap-2 mt-3 w-100">
+    <strong className="me-2" style={{ minWidth: "90px" }}>Amount:</strong>
+    <input 
+    
+      readOnly
+      className="form-control form-control-sm"
+      value={`₹${totalamount}`}
+      
+    />
+  </div>
+
+  <div className="d-flex align-items-center gap-2 mt-3 w-100">
+    <strong className="me-2" style={{ minWidth: "90px" }}>Amount with GST:</strong>
+    <input 
+    
+      readOnly
+      className="form-control form-control-sm"
+      value={`₹${gsttotal}`}
+      
+    />
+  </div>
+   <div className=" cart-box mt-5 gap-2 row ms-5">
+            
+
+            <button type="button" class="btn btn-success btn-lg w-75">Buy Now</button>
+            <button  className="btn btn-primary btn-lg w-75"
+            onClick={handleSubmit}>
+            <FaShoppingCart className="me-2" /> Add to cart
+            </button>
+
+            
+
+
+    </div>
+
+</div>
+  </div>
+
+</div>
+
+
+
 
 
 
