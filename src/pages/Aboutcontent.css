@@ -70,6 +70,12 @@
     width: 40px;
     height: 30px;
 }
+.wegottexttwo{
+  margin-top: 7%;
+    margin-bottom: 0px;
+    font-size: 18px;
+    font-weight: bold;
+}
 .toolsbox {
     width: 85%;
     background-color: white;
@@ -105,8 +111,8 @@
     padding: 0 !important;
   }
   .letstalk-box{
-    margin-top: 100px;
-    padding-left: 27% !important;
+    margin-top: 10%;
+    padding-left: 15% !important;
   }
   .jionour-team{
     padding: 10px;
@@ -169,13 +175,12 @@
 
 
   .profile-box {
-    width: 16%; /* Set a fixed width */
-    height: 180px; /* Set a fixed height */
-    background: #f7f7f7; /* Light gray background */
-    border-radius: 10px; /* Rounded corners */
-    padding: 15px;
-    /* box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); 
-    transition: transform 0.3s ease, box-shadow 0.3s ease; */
+    width: 16%; 
+    height: 205px; 
+    background: #f7f7f7; 
+    border-radius: 10px; 
+    /* padding: 15px; */
+   
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -189,13 +194,15 @@
   }
 
   .profile-img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 10px;
-    border: 1px solid gray;
-  }
+  width: 55%;
+  height: 65%;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+  
+  display: block;
+  overflow: hidden;
+}
   .join-our-team {
     background-color: #04509e !important;
     color: white !important;
@@ -204,13 +211,17 @@
     
   }
 
-  .enjoyup{
+  
+   .enjoyupone{
     background-color: #3a3e40 !important;
-    background-image: url('../images/about-us3.png'); /* Add your image URL */
-    background-size: cover; /* Ensures the image covers the entire div */
-    background-position: center; /* Centers the image */
+     background-image: url("../images/about-us3.png"); 
+    background-size: cover; 
+    background-position: center; 
     background-repeat: no-repeat; 
     
+  }
+  .playbutton{
+    width: 75%;
   }
   .shopnow-btn{
     background-color: #034e9f !important;

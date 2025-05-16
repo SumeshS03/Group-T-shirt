@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Bevan&display=swap');
 
+* {
+  margin-right: 0%;
+}
 
 .home-feed{
     
@@ -97,8 +100,8 @@
 
   .inner-box{
     
-    width: 265px; 
-    height: 304px;
+    /* width: 265px;  */
+    height: 300px;
     background-color: antiquewhite;
     border: none;
     border-radius: 20px;
@@ -106,13 +109,22 @@
   }
   .logo-imgone {
     width: 100%;
-    height: 304px;
+    /* height: 304px; */
     border-radius: 20px;
 
 }
+.slider-image {
+  /* display: block; */
+  width: 100%;
+  height: 290px;
+  object-fit: cover;
+  border-radius: 20px;
+  margin: 0;
+  padding: 0;
+}
 .logologo-imgone{
     border-radius: 20px;
-    width: 98%;
+    width: 100%;
 }
 .offset-text{
     /* width: 100vw; */
@@ -215,6 +227,7 @@
 
     
 }
+
 .shopnow{
    
     border-radius: 0 60px 60px 0;
@@ -319,7 +332,7 @@
     width: 85% !important;
 }
 .box:hover{
-    background-color: #0066cb;
+    background-color: #007fff;
     
 }
 
@@ -337,9 +350,17 @@
 .box:hover .bortextone {
     color: white;
 }
+.slick-slide > div {
+    /* margin: 0 10px; */
+    width: 78%;
+}
+
+.slick-list {
+  margin: 0 -10px; /* Negative margin to avoid overflow on the sides */
+}
 .bortextone {
     color: #a2a2a2;
-    font-size: 15px;
+    font-size: 13px;
     /* max-width: 90%; */
     display: block;
     transition: color 0.3s ease-in-out;
@@ -347,7 +368,7 @@
 }
 .bortexthead {
     margin: 10px 0;
-    color: blue;
+    color: #007fff;
     font-size: 24px;
     text-align: center;
     transition: color 0.3s ease-in-out;
@@ -430,7 +451,7 @@
 }
 .your-style {
   width: 100%;
-  transform: translateY(20%);
+  transform: translateY(10%);
   
   position: relative;
   /* background-color: #f8f8f8; */
@@ -447,7 +468,7 @@
 }
 
 .yourstyle-box{
-    width: 100%;
+    width: 93%;
     height: 50px;
     padding: 10px 20px;
     background-color: #0051c5;
@@ -522,7 +543,7 @@
 }
 .profile-icon{
     margin-left: 17px;
-    width: 16%;
+    width: 20%;
    
     border-radius: 50%;
     background-color: #ababab;
@@ -578,12 +599,15 @@
 .combos{
     width: 40px;
     height: 40px;
-    background-color: blue;
+    background-color:#007fff;
     border-radius: 50%;
     font-size: 21px; 
     font-weight: bold;
     margin-top: 2px;
     color: white;
+    display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .toolsbox{
     width: 85%;
@@ -875,6 +899,13 @@
     width: 180px !important; 
     height: 250px;
     }
+    .profile-icon{
+    margin-left: 17px;
+    width: 26%;
+   
+    border-radius: 50%;
+    background-color: #ababab;
+}
       .logo-imgone {
         height: 275px;
     }
@@ -993,6 +1024,12 @@
     .letstalkimageone{
         display: none !important;
     }
+    .profile-icon{
+   
+    width: 10%;
+   
+   
+}
     .verify-photo-img {
        
         width: 66%;
@@ -1120,6 +1157,12 @@
     .your-printone{
         margin-top: 50px !important;
     }
+    .profile-icon{
+   
+    width: 18%;
+   
+   
+}
     .get-started {
         margin-bottom: 50px;
         margin-top: -116px;
@@ -1375,6 +1418,11 @@
         font-size: 12px;
     }
     .comment-lines { height: 280px; }
-    .profile-icon { margin-left: 17px; width: 53%; border-radius: 50%; background-color: #ababab; }
+    .profile-icon 
+    { margin-left: 17px; 
+        width: 24%; 
+        border-radius: 50%; 
+        background-color: #ababab; 
+    }
 
   }

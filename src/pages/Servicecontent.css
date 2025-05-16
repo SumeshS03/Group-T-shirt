@@ -2,15 +2,15 @@
     gap: 20rem;
     margin-left: 12rem;
   }
-  .browse-all{
+  /* .browse-all{
     background-color: #3a3e40 !important;
     background-image: url("../images/about-us3.png");
-    /* background: no-repeat; */
+    
     background-repeat: no-repeat;
-    background-repeat: no-repeat; /* Prevents image repetition */
-    background-size: cover; /* Ensures image covers the entire div */
+    background-repeat: no-repeat; 
+    background-size: cover; 
     background-position: center;
-}
+} */
 /* .browse-all {
   background-color: #3a3e40 !important;
   background-image: url("../images/about-us3.png");
@@ -20,6 +20,74 @@
   position: relative;
   padding-bottom: 50px; 
 }  */
+
+.browse-all {
+  background-color: #3a3e40 !important;
+  background-image: url('../images/about-us3.png'); 
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  min-height: 300px;       
+  padding: 60px 15px;     
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;     
+  text-align: center;      
+}
+
+.serviseprofile-slick {
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
+}
+
+.slide-box {
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 95%; 
+  margin: 0 auto; 
+}
+
+
+.slide-image {
+  width: 100%;
+  height: 220px; 
+  object-fit: cover; 
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  display: block;
+}
+.slide-boxone {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+.slick-slide > div {
+  margin: 0 0px;
+}
+
+
+.slide-text {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.arrow-icon {
+  margin-left: 10px;
+  font-size: 20px;
+}
+
 
 
 .browse-btn{
@@ -37,9 +105,11 @@
 }
 
 .accordion-button:not(.collapsed)::after {
-    background-image: var(--bs-accordion-btn-active-icon);
-    transform: var(--bs-accordion-btn-icon-transform);
-    background-color: aliceblue !important;
+    /* background-image: var(--bs-accordion-btn-active-icon);
+    transform: var(--bs-accordion-btn-icon-transform); */
+    /* background-color: aliceblue !important; */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.5 6.5L8 13l6.5-6.5-.707-.707L8 11.586 2.207 5.793 1.5 6.5z'/%3E%3C/svg%3E");
+    color: white;
     width: 24px !important; 
   height: 24px !important;
   border-radius: 50%;
@@ -80,7 +150,7 @@
     
 }
 .custom-artwork{
-    width: 86% !important;
+    width: 80% !important;
     height: 350px !important;
     
 }
@@ -102,16 +172,16 @@
     height: 276px;
     z-index: 10;
     width: 118%;
-    border-radius: 40px ;
+    border-radius: 33px ;
     margin-bottom: 23px;
-    /* background-image: url(../images/service-page1.png); */
+   
     background-size: cover;
     background-position: center;
     overflow: hidden;
-    display: flex; /* Ensures the image follows the box's dimensions */
+    display: flex; 
     align-items: center;
     justify-content: center;
-    border: 1px solid black;
+   
 }
 .shipit-you{
   margin-bottom: -283px;
@@ -183,16 +253,16 @@
   
 }
 .outterimage-border{
-  width: 110px;
-  height: 110px;
+  width: 140px;
+  height: 140px;
   border-radius: 50% !important;
-  border: 0.1px solid GRAY;
+  /* border: 0.1px solid GRAY; */
   box-shadow: 5px;
   align-items: center;
 }
 .designerprofile{
-  width: 100%;
-  height: 100%;
+  width: 72%;
+  
   /* border-radius:  !important; */
 }
 .pickproducttext{
@@ -286,7 +356,7 @@
 .profile-boxes{
   position: relative;
   top: 50%;
-  transform: translateY(68%);
+  transform: translateY(0%);
 }
 .custom-grid-row .col-lg-2 {
   flex: 0 0 auto;

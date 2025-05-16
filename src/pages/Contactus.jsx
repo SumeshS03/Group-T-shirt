@@ -11,6 +11,7 @@ import customerhappy from "../images/customerhappy.png"
 import bluef from "../images/blue-f.png"
 import contactusimage from "../images/contactusimage.png"
 import contactusimageone from "../images/contactusimageone.png"
+import logofinal from "../images/GT-FInal-Logo.png"
 
 import applepay from "../images/apple.jpg";
 import gpay from "../images/gpay1.jpg";
@@ -223,7 +224,7 @@ const Contactus = () => {
               </div>
             </div>
       
-            <div className="toolsbox container-fluid mt-3">
+            <div className="toolsbox container-fluid mt-3 py-3">
                     <div className="row w-100">
                     <div className="easycustomize col-lg-3 col-12 ">
                       <img src={glow} alt="profile" className="toolsicons" style={{width:"45px"}}></img>
@@ -343,9 +344,9 @@ const Contactus = () => {
       <div className="footerone container-fluid py-5">
         <div className="row align-items-center justify-content-center">
           <div className=" col-5 d-flex flex-column align-items-center justify-content-center text-white">
-            <img className="img img-fluid footer-img" alt="logo" src={bluef} ></img>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores beatae itaque veniam doloremque.</p>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero ipsa architecto nulla reprehenderit odio aspernatur aperiam esse nam qui expedita.</p>
+            <img className="img img-fluid footer-img" alt="logo" src={logofinal} ></img>
+            <p className="mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores beatae itaque veniam doloremque Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero ipsa architecto nulla reprehenderit odio aspernatur aperiam esse nam qui expedita.</p>
+            
           </div>
         </div>
         <div className="footerdetails row justify-content-center text-white">

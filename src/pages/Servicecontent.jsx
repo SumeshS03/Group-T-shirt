@@ -13,6 +13,7 @@ import menstshirt from "../images/menst-shirt.jpg";
 import { FaRegArrowAltCircleRight } from "react-icons/fa";
 import bluef from "../images/blue-f.png"
 import serviceimage from "../images/serviceimage.png"
+import logofinal from "../images/GT-FInal-Logo.png"
 
 import applepay from "../images/apple.jpg";
 import gpay from "../images/gpay1.jpg";
@@ -59,6 +60,9 @@ import { Navigation, Pagination } from 'swiper/modules'; // for arrows and pagin
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useNavigate } from "react-router-dom";
+import React from "react";
+import Slider from "react-slick";
+import { MdArrowRightAlt } from "react-icons/md";
 
 
 const items = [
@@ -104,7 +108,7 @@ const Servicecontent = () => {
       if (window.innerWidth < 770) {
         setItemsPerPage(1); // Small screen (below 768px) - Show 2 items
       }
-      else if(window.innerWidth < 1025){
+      else if(window.innerWidth < 1020){
         setItemsPerPage(4);
       }
       
@@ -122,7 +126,7 @@ const Servicecontent = () => {
   const currentItem = items[currentIndex]; 
   const totalPages = Math.ceil(items.length / itemsPerPage);
   const startIndex = currentPage * itemsPerPage;
-  // const visibleItems = items.slice(startIndex, startIndex + itemsPerPage);
+  
   const visibleItems = items.slice(
     currentStartIndex,
     currentStartIndex + itemsPerPage
@@ -157,6 +161,33 @@ const Servicecontent = () => {
       setCurrentStartIndex(currentStartIndex - 1);
     }
   };
+
+  const settings = {
+  dots: false,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 5,
+  slidesToScroll: 1,
+  centerMode: true,
+  centerPadding: "2.5%", // This gives space between slides (5% total gap)
+  responsive: [
+    {
+      breakpoint: 1000,
+      settings: {
+        slidesToShow: 2,
+        centerPadding: "5%",
+      },
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 1,
+        centerPadding: "10%",
+      },
+    },
+  ],
+};
+
 
  
 
@@ -206,7 +237,7 @@ const Servicecontent = () => {
         className="heading-text"
         style={{ textAlign: "center", marginTop: "0" }}
       >
-        Fast and <span style={{ color: "blue" }}>Quality service</span>
+        Fast and <span style={{ color: "#007fff" }}>Quality service</span>
       </h2>
       <p style={{ color: "#949494" }}>
         T-Shirt Printing for Everyone. Get a head start wiyh free design
@@ -285,168 +316,11 @@ const Servicecontent = () => {
               
               
             </div>
-      {/* <div className="browse-all p-lg-5 mt-5 d-flex justify-content-center flex-column position-relative">
-        <div className="row w-100">
-          <div className="col-12 text-center ">
-            <div className="d-flex  col-12 custom-gap ">
-              <h2 className="photoboxheader"
-                style={{ margin: "0px", fontFamily: "bevan", color: "#eeae0c" }}
-              >
-                <span>T-shirt printing </span>
-                <span style={{ margin: "0px", color: "blue" }}>
-                  {" "}
-                  made easy.
-                </span>
-              </h2>
-              <button className="btn rounded-pill browse-btn lg-mt-3 mt-md-0 px-3">
-                Browse all
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="row w-100">
-          <div className="col-12 text-center d-flex">
-            <div
-              className="d-flex  col-12 custom-gap  "
-              style={{ color: "white" }}
-            >
-              <p>Let us show you how your product come to life</p>
-            </div>
-          </div>
-        </div>
-        <div className="row w-100  digitalscanpagenation justify-content-center mt-4">
-        
-          <div className="col-12 gap-3 text-center d-flex profilesimagepad  ">
-          
-            <button
-              className="btn"
-              onClick={prevPage}
-              disabled={currentPage === 0}
-            >
-              <FaCircleArrowLeft className="pagination-button" size={40} />
-            </button>
-            
-
-            
-          
-            
-      {visibleItems.map((item) => (
-        <div key={item.id} className="d-flex flex-column align-items-center profileimagesizing" style={{ color: "white" }}>
-          <div className="w-100 border border-2 border-secondary rounded-4 overflow-hidden">
-            <img
-              className="bg-white w-100"
-              style={{ height: "200px" }}
-              src={item.image}
-              alt="Quality Shirt"
-            />
-            <p
-              className="text-center bg-dark text-blue py-3 m-0 bg-white d-flex align-items-center justify-content-center gap-2"
-              style={{ color: "blue", fontSize: "20px" }}
-            >
-              {item.title}{" "}
-              <FaRegArrowAltCircleRight size={20} style={{ color: "gray" }} />
-            </p>
-          </div>
-        </div>
-      ))}
-   
-
-            
-            <button
-              className="btn"
-              onClick={nextPage}
-              disabled={currentPage === totalPages - 1}
-            >
-              <FaCircleArrowRight className="pagination-button" size={40} />
-            </button>
-          </div>
-        </div>
-      </div> */}
-
-{/* <div className="browse-all p-lg-5 mt-5 d-flex justify-content-center flex-column">
-        <div className="row w-100">
-          <div className="col-12 text-center ">
-            <div className="d-flex  col-12 custom-gap ">
-              <h2 className="photoboxheader"
-                style={{ margin: "0px", fontFamily: "bevan", color: "#eeae0c" }}
-              >
-                <span>T-shirt printing </span>
-                <span style={{ margin: "0px", color: "blue" }}>
-                  {" "}
-                  made easy.
-                </span>
-              </h2>
-              <button className="btn rounded-pill browse-btn lg-mt-3 mt-md-0 px-3">
-                Browse all
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="row w-100">
-          <div className="col-12 text-center d-flex">
-            <div
-              className="d-flex  col-12 custom-gap  "
-              style={{ color: "white" }}
-            >
-              <p>Let us show you how your product come to life</p>
-            </div>
-          </div>
-        </div>
-        <div className="row w-100  digitalscanpagenation justify-content-center mt-4">
-        
-         
-            <button
-              className="btn col-1"
-              onClick={prevPage}
-              disabled={currentPage === 0}
-            >
-              <FaCircleArrowLeft className="pagination-button" size={40} />
-            </button>
-            
-
-         
-            {visibleItems.map((item) => (
-              <div
-                key={item.id}
-                className="d-flex col-4 col-lg-2 flex-column align-items-center profileimagesizing"
-                style={{ color: "white" }}
-              >
-                <div className="w-100 border border-2 border-secondary rounded-4 overflow-hidden">
-                  <img
-                    className="bg-white w-100"
-                    style={{ height: "200px" }}
-                    src={item.image}
-                    alt="Quality Shirt"
-                  />
-                  <p
-                    className="text-center bg-dark text-blue py-3 m-0 bg-white d-flex align-items-center justify-content-center gap-2"
-                    style={{ color: "blue", fontSize: "18px" }}
-                  >
-                    {item.title}{" "}
-                    <FaRegArrowAltCircleRight
-                      size={20}
-                      style={{ color: "gray" }}
-                    />
-                  </p>
-                </div>
-              </div>
-            ))}
-
-            
-            <button
-              className="btn col-1"
-              onClick={nextPage}
-              disabled={currentPage === totalPages - 1}
-            >
-              <FaCircleArrowRight className="pagination-button" size={40} />
-            </button>
-          
-        </div>
-      </div> */}
+      
 
 
 <div className="container-fluid browse-all py-5 mt-5 d-flex flex-column align-items-center">
-<div className="row w-100 mt-sm-3">
+<div className="row w-100 ">
     <div className="col-12 text-center">
       <div className="d-flex flex-column flex-md-row align-items-center justify-content-center gap-3">
         <h2
@@ -471,69 +345,51 @@ const Servicecontent = () => {
       </p>
     </div>
   </div>
-
-  <div className="w-100 mt-4 profile-boxes px-2 px-md-4"
- >
-  <div className="row align-items-center">
-    
-    
-    <div className="col-auto d-flex align-items-center justify-content-center p-0">
-      <button
-        className="btn p-0 border-0"
-        onClick={prevItem}
-        disabled={currentStartIndex === 0}
-       style={{ boxShadow: "none" }}
-      >
-        <FaCircleArrowLeft size={40} style={{ color: "yellow" }} />
-      </button>
+ <div className="container serviseprofile-slick">
+   <Slider {...settings}>
+  <div className="slide-boxone">
+    <div className="slide-box">
+      <img src={menstshirt} alt="Profile 1" className="slide-image" />
+      <p className="slide-text">
+       Web Developer <MdArrowRightAlt className="arrow-icon" />
+        </p>
     </div>
-
-   
-    <div className="col">
-  <div className="row justify-content-between custom-grid-row">
-    {visibleItems.map((item) => (
-      <div
-        key={item.id}
-        className="col-12 col-lg-2 d-flex flex-column align-items-center"
-        style={{ color: "white" }}
-      >
-        <div className="w-100 border border-2 border-secondary rounded-4 overflow-hidden">
-          <img
-            className="bg-white w-100"
-            style={{ height: "200px", objectFit: "cover" }}
-            src={item.image}
-            alt="Quality Shirt"
-          />
-          <p
-            className="text-center bg-white py-3 m-0 d-flex align-items-center justify-content-center gap-2"
-            style={{ color: "blue", fontSize: "18px" }}
-          >
-            {item.title}
-            <FaRegArrowAltCircleRight size={20} style={{ color: "gray" }} />
-          </p>
-        </div>
-      </div>
-    ))}
   </div>
-</div>
-
-
-
-    
-    <div className="col-auto d-flex align-items-center justify-content-center p-0">
-      <button
-        className="btn p-0 border-0"
-        onClick={nextItem}
-        disabled={currentStartIndex + itemsPerPage >= items.length}
-        style={{  boxShadow: "none" }}
-      >
-        <FaCircleArrowRight size={40} style={{ color: "yellow" }} />
-      </button>
+  <div className="slide-boxone">
+    <div className="slide-box">
+      <img src={menstshirt} alt="Profile 2" className="slide-image" />
+      <p className="slide-text">
+  Web Developer <MdArrowRightAlt className="arrow-icon" />
+</p>
     </div>
-
   </div>
-</div>
+  <div className="slide-boxone">
+    <div className="slide-box">
+      <img src={menstshirt} alt="Profile 3" className="slide-image" />
+      <p className="slide-text">
+        Web Developer <MdArrowRightAlt className="arrow-icon" />
+        </p>
+    </div>
+  </div>
+  <div className="slide-boxone">
+    <div className="slide-box">
+      <img src={menstshirt} alt="Profile 4" className="slide-image" />
+      <p className="slide-text">
+        Web Developer <MdArrowRightAlt className="arrow-icon" />
+        </p>
+    </div>
+  </div>
+  <div className="slide-boxone">
+    <div className="slide-box">
+      <img src={menstshirt} alt="Profile 5" className="slide-image" />
+      <p className="slide-text">
+        Web Developer <MdArrowRightAlt className="arrow-icon" />
+        </p>
+    </div>
+  </div>
+</Slider>
 
+</div>
 
 
 
@@ -541,56 +397,7 @@ const Servicecontent = () => {
 
       
 
-{/* <div className="browse-all p-lg-5 mt-5 d-flex justify-content-center flex-column position-relative">
-  <div className="row w-100">
-    <div className="col-12 text-center">
-      <div className="d-flex col-12 custom-gap">
-        <h2 className="photoboxheader" style={{ margin: "0px", fontFamily: "bevan", color: "#eeae0c" }}>
-          <span>T-shirt printing </span>
-          <span style={{ margin: "0px", color: "blue" }}> made easy.</span>
-        </h2>
-        <button className="btn rounded-pill browse-btn lg-mt-3 mt-md-0 px-3">Browse all</button>
-      </div>
-    </div>
-  </div>
-  <div className="row w-100">
-    <div className="col-12 text-center d-flex">
-      <div className="d-flex col-12 custom-gap" style={{ color: "white" }}>
-        <p>Let us show you how your product come to life</p>
-      </div>
-    </div>
-  </div>
-  <div className="row w-100 digitalscanpagenation justify-content-center mt-4">
-    <div className="col-12 gap-3 text-center d-flex profilesimagepad">
-      <button
-        className="btn pagination-button left"
-        onClick={prevPage}
-        disabled={currentPage === 0}
-      >
-        <FaCircleArrowLeft size={40} />
-      </button>
 
-      {visibleItems.map((item) => (
-        <div key={item.id} className="d-flex flex-column align-items-center profileimagesizing" style={{ color: "white" }}>
-          <div className="w-100 border border-2 border-secondary rounded-4 overflow-hidden">
-            <img className="bg-white w-100" src={item.image} alt="Quality Shirt" />
-            <p className="text-center bg-dark text-blue py-3 m-0 bg-white d-flex align-items-center justify-content-center gap-2" style={{ color: "blue", fontSize: "20px" }}>
-              {item.title} <FaRegArrowAltCircleRight size={20} style={{ color: "gray" }} />
-            </p>
-          </div>
-        </div>
-      ))}
-
-      <button
-        className="btn pagination-button right"
-        onClick={nextPage}
-        disabled={currentPage === totalPages - 1}
-      >
-        <FaCircleArrowRight size={40} />
-      </button>
-    </div>
-  </div>
-</div> */}
 
 
       <div className="container  graphic-design">
@@ -615,7 +422,7 @@ const Servicecontent = () => {
           </div>
 
           <div className="accordion mt-4" id="accordionExample">
-            {/* Accordion Item #1 */}
+          
             <div className="accordion-item mb-2 ">
               <h1 className="accordion-header" id="headingOne">
                 <button
@@ -636,7 +443,7 @@ const Servicecontent = () => {
                 aria-labelledby="headingOne"
                 data-bs-parent="#accordionExample"
               >
-                <div className="accordion-body">
+                <div className="accordion-body text-start">
                   It is a long established fact that a reader will be distracted
                   by the readable content of a page when looking at its layout.
                   The point of using Lorem Ipsum is that it has a more-or-less
@@ -671,7 +478,7 @@ const Servicecontent = () => {
                 aria-labelledby="headingTwo"
                 data-bs-parent="#accordionExample"
               >
-                <div className="accordion-body">
+                <div className="accordion-body text-start">
                   It is a long established fact that a reader will be distracted
                   by the readable content of a page when looking at its layout.
                   The point of using Lorem Ipsum is that it has a more-or-less
@@ -706,7 +513,7 @@ const Servicecontent = () => {
                 aria-labelledby="headingThree"
                 data-bs-parent="#accordionExample"
               >
-                <div className="accordion-body">
+                <div className="accordion-body text-start">
                   It is a long established fact that a reader will be distracted
                   by the readable content of a page when looking at its layout.
                   The point of using Lorem Ipsum is that it has a more-or-less
@@ -741,7 +548,7 @@ const Servicecontent = () => {
                 aria-labelledby="headingFour"
                 data-bs-parent="#accordionExample"
               >
-                <div className="accordion-body">
+                <div className="accordion-body text-start">
                   It is a long established fact that a reader will be distracted
                   by the readable content of a page when looking at its layout.
                   The point of using Lorem Ipsum is that it has a more-or-less
@@ -763,10 +570,10 @@ const Servicecontent = () => {
         className="mt-5"
         style={{ margin: "0px", fontFamily: "bevan", color: "#eeae0c" }}
       >
-        <span>How </span>
-        <span style={{ margin: "0px", color: "blue" }}> It Work</span>
+        <span className="mb-2">How </span>
+        <span className="mb-2" style={{ margin: "0px", color: "blue" }}> It Work</span>
       </h2>
-      <p className="my-0">
+      <p className="my-0 mt-2">
         Lorem ipsum dhitecto dolor nihilliquam saepe facere neque odit! Delectus
         provident necessitatibus molestiae eius nihil earum minima dolorem.
       </p>
@@ -775,16 +582,16 @@ const Servicecontent = () => {
       </p>
       </div>
 
-      <div className=" bg-white  d-flex justify-content-center align-items-center">
+      <div className=" bg-white  d-flex justify-content-center align-items-center ">
         
         <div className="row justify-content-center custom-artwork mt-5 rounded-fill ">
           <div className="col-12 rounded-fill custom-artworkone d-flex flex-column justify-content-center align-items-center position-relative ">
-          <div className="row justify-content-center w-100">
-          <div className="col-auto">
+          <div className="row justify-content-center">
+          
       <div className="w-20 start-50 video-box ">
               <img className="videoimage rounded-4" src={videoimage}></img>
             </div>
-            </div>
+            
             </div>
             <div className="container py-5">
             <div className=" d-flex row  justify-center  shipit-you profilecustomart items-center">
@@ -800,7 +607,7 @@ const Servicecontent = () => {
                 </div>
                 </div>
                 <div className="w-55">
-                <h2 className=" font-semibold pickproductheadtext" >PICK A PRODUCT</h2>
+                <h2 className=" font-semibold pickproductheadtext mb-0" >PICK A PRODUCT</h2>
                 <p className="  my-0 pickproducttext " >PRINTED ON 100% QUALITY COTTON FOR A </p>
                 <p className="pickproducttext">VIBRANT FINISH AND ALL - DAY COMFORT</p>
                 </div>
@@ -818,7 +625,7 @@ const Servicecontent = () => {
                 </div>
                 </div>
                 <div className="w-55">
-                <h2 className="text-xl font-semibold pickproductheadtext ">CUSTOM ARTWORK</h2>
+                <h2 className="text-xl font-semibold pickproductheadtext mb-0 ">CUSTOM ARTWORK</h2>
                 <p className=" my-0 pickproducttext " style={{color:"#6b6b6b"}}>PRINTED ON 100% QUALITY COTTON FOR A </p>
                 <p className="pickproducttext">VIBRANT FINISH AND ALL - DAY COMFORT</p>
                 </div>
@@ -836,7 +643,7 @@ const Servicecontent = () => {
                 </div>
                 </div>
                 <div className="w-55">
-                <h2 className="text-xl font-semibold pickproductheadtext">SHIP IT FOR YOU</h2>
+                <h2 className="text-xl font-semibold pickproductheadtext mb-0">SHIP IT FOR YOU</h2>
                 <p className="my-0 pickproducttext" style={{color:"#6b6b6b"}}>PRINTED ON 100% QUALITY COTTON FOR A </p>
                 <p className="pickproducttext">VIBRANT FINISH AND ALL - DAY COMFORT</p>
                 </div>
@@ -880,7 +687,7 @@ const Servicecontent = () => {
               </div>
             </div>
 
-      <div className="toolsbox container-fluid mt-3 ">
+      <div className="toolsbox container-fluid mt-3 py-3 ">
         <div className="row w-100">
         <div className="easycustomize col-lg-3 col-12 ">
           <img src={glow} alt="profile" className="toolsicons" style={{width:"45px"}}></img>
@@ -1005,9 +812,9 @@ const Servicecontent = () => {
      <div className="footerone container-fluid py-5">
         <div className="row align-items-center justify-content-center">
           <div className=" col-5 d-flex flex-column align-items-center justify-content-center text-white">
-            <img className="img img-fluid footer-img" alt="logo" src={bluef} ></img>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores beatae itaque veniam doloremque.</p>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero ipsa architecto nulla reprehenderit odio aspernatur aperiam esse nam qui expedita.</p>
+            <img className="img img-fluid footer-img" alt="logo" src={logofinal} ></img>
+            <p className="mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores beatae itaque veniam doloremque Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero ipsa architecto nulla reprehenderit odio aspernatur aperiam esse nam qui expedita.</p>
+            
           </div>
         </div>
         <div className="footerdetails row justify-content-center text-white">

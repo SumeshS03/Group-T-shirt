@@ -71,6 +71,11 @@ import newdesign from "../images/blue-rect3.png"
 import { MdPlayArrow } from "react-icons/md";
 import boyimage from "../images/boy-image.png"
 
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import logofinal from "../images/GT-FInal-Logo.png"
+
+
 
 const Homecontent = () => {
   
@@ -218,6 +223,33 @@ const Homecontent = () => {
       },
     ],
   };
+
+  
+
+  const settingsone = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+  };
+
   return (
     <>
       <div>
@@ -249,13 +281,13 @@ const Homecontent = () => {
             <p className="print-shirt">
               Print shirts for yourself or your online business 
             </p>
-            <button className="start-btd "  onClick={buycheck}  >Buy Now</button>
+            <button className="start-btd fs-5 "  onClick={buycheck}  >Buy Now</button>
           </div>
           <div></div>
         </div>
 
-        {/* Multi-item Carousel */}
-        <div className="photo-box  d-flex justify-content-center row">
+       
+        {/* <div className="photo-box  d-flex justify-content-center row">
           <Slider {...settings}>
             <div>
               <div className="inner-box ">
@@ -303,7 +335,31 @@ const Homecontent = () => {
               </div>
             </div>
           </Slider>
-        </div>
+        </div> */}
+
+         
+      <Slider   {...settingsone}>
+  <div>
+    <img src={grouptshirtone} alt="Group T-shirt 1" className="slider-image" />
+  </div>
+  <div>
+    <img src={grouptshirttwo} alt="Group T-shirt 2" className="slider-image" />
+  </div>
+  <div>
+    <img src={grouptshirtthree} alt="Group T-shirt 3" className="slider-image" />
+  </div>
+  <div>
+    <img src={grouptshirtfour} alt="Group T-shirt 4" className="slider-image" />
+  </div>
+  <div>
+    <img src={grouptshirtfive} alt="Group T-shirt 5" className="slider-image" />
+  </div>
+</Slider>
+
+
+    
+
+
       </div>
       <div className="offset-text">
         <marquee className="marqueetext"
@@ -584,14 +640,14 @@ const Homecontent = () => {
                   screen, providing a simple way to add dynamic movement to
                   elements. Although this tag is deprecated.
                 </p>
-                <div className="row mt-4">
-                  <div className="col-lg-4 col-12 d-flex flex-column align-items-center mt-2">
-                    <div className="first-box bg-warning rounded p-3">
+                <div className="row mt-4 d-flex justify-content-between">
+                  <div className="col-lg-3 col-12 d-flex flex-column align-items-center mt-2 ms-2">
+                    <div className="first-box bg-warning  p-3">
                       <h4
                         className="text-primary fw-bold designboxhead text-center"
                         style={{ fontSize: "38px" }}
                       >
-                        $ 50M
+                        $50M
                       </h4>
                       <div className="text-center">
                       <span
@@ -603,8 +659,8 @@ const Homecontent = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-lg-4 col-12 d-flex flex-column align-items-center mt-2">
-                    <div className="first-box bg-primary text-white rounded p-3">
+                  <div className="col-lg-3 col-12 d-flex flex-column align-items-center mt-2">
+                    <div className="first-box bg-primary text-white  p-3">
                       <h4
                         className="fw-bold designboxhead text-center"
                         style={{ fontSize: "38px" }}
@@ -623,8 +679,8 @@ const Homecontent = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-lg-4 col-12 d-flex flex-column align-items-center mt-2">
-                    <div className="first-box bg-warning rounded p-3">
+                  <div className="col-lg-3 col-12 d-flex flex-column align-items-center mt-2 ">
+                    <div className="first-box bg-warning  p-3">
                       <h4
                         className="text-primary fw-bold designboxhead text-center"
                         style={{ fontSize: "38px" }}
@@ -676,11 +732,11 @@ const Homecontent = () => {
                     }}
                   ></img>
                 </div>
-                <div style={{display : "flex"}}>
+                
                 <h3 className="yourstyle-box ">Your Style </h3>
-                <MdPlayArrow style={{fontSize : 50}}/>
+                
                 </div>
-              </div>
+              
               <div className="your-print col-lg-3 col-md-6 col-12 d-flex flex-column align-items-center mb-3 your-printtwo gap-2">
                 <div className="your-tshirt">
                   <img
@@ -694,15 +750,15 @@ const Homecontent = () => {
                     }}
                   ></img>
                 </div>
-                  <div style={{display : "flex"}}>
+                  
                 <h3
                   className="yourstyle-box"
                   style={{ backgroundColor: "#ffd401", color: "blue" }}
                 >
                   Your Print
                 </h3>
-                <MdPlayArrow style={{fontSize : 50}}/>
-                </div>
+                
+                
               </div>
               <div className="your-print col-lg-3 col-md-6 col-12 d-flex flex-column align-items-center mb-3 your-printone gap-2">
                 <div className="your-tshirt">
@@ -809,7 +865,6 @@ const Homecontent = () => {
         <div className="mailbox-divider container-fluid d-flex justify-content-center ">
           <div className="row  mailbox-widthfix   ps-md-1 ps-4">
 
-          {/* d-flex flex-column flex-md-row align-items-md-start px-5 */}
             <div className="text-divider col-lg-6 d-flex flex-column align-items-start justify-content-center p-5">
               <h1
                 className="heading-text mt-4 text-white"
@@ -968,7 +1023,6 @@ const Homecontent = () => {
             <text className="shippingtextfixone">Pay with Multiple Credit Cards </text>
           </div>
         </div>
-        {/* </div> */}
       </div>
       <div className="social container-fluid  ">
         <div class="row justify-content-center">
@@ -1007,9 +1061,9 @@ const Homecontent = () => {
       <div className="footerone container-fluid py-5">
         <div className="row align-items-center justify-content-center">
           <div className=" col-5 d-flex flex-column align-items-center justify-content-center text-white">
-            <img className="img img-fluid footer-img" alt="logo" src={bluef} ></img>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores beatae itaque veniam doloremque.</p>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero ipsa architecto nulla reprehenderit odio aspernatur aperiam esse nam qui expedita.</p>
+            <img className="img img-fluid footer-img" alt="logo" src={logofinal} ></img>
+            <p className="mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores beatae itaque veniam doloremque Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero ipsa architecto nulla reprehenderit odio aspernatur aperiam esse nam qui expedita.</p>
+            
           </div>
         </div>
         <div className="footerdetails row justify-content-center text-white">
