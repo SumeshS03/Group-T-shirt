@@ -29,10 +29,15 @@ import { HiOutlineMailOpen } from "react-icons/hi";
 import { IoLocationOutline } from "react-icons/io5";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import axios from 'axios';
+
 
 
 const Shopcontentproduct = () => {
   const [activeTab, setActiveTab] = useState("product");
+  const [stockData, setstockData] = useState(null);
+
+  const [loading, setLoading] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -70,6 +75,31 @@ const products = [
       items: 1,
     },
   };
+
+
+
+   useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get('https://gts.tsitcloud.com/api/stocks/grouped-by-category'
+          , {
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTA1ZjNmOTc3Mzc1ODkzNzFkODI5YSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0NTk5MDM3OSwiZXhwIjoxNzQ2MDc2Nzc5fQ.A3EHXDY4ABwLQ4HEHuBAUeDfeWJEbvYTaojMbxS4PHA`
+          }
+        });
+        setstockData(response.data);
+        console.log("Fetched grouped data:", response.data);
+        console.log("stockdata",stockData)
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }finally{
+        setLoading(false);
+
+      }
+    };
+  
+    fetchProducts();
+  }, []);
 
  
   return (
@@ -135,7 +165,7 @@ const products = [
         </div>
       </div>
 
-      <div className="container mt-5">
+      {/* <div className="container mt-5">
     <h1 className="h4 text-start">T-shirts</h1>
     <div className="product-slider-container">
       <Carousel responsive={responsive} infinite={false} arrows={true}>
@@ -171,46 +201,52 @@ const products = [
         ))}
       </Carousel>
     </div>
-  </div>
+  </div> */}
 
 
   <div className="container mt-5">
-    <h1 className="h4 text-start">Jackets</h1>
-    <div className="product-slider-container">
-      <Carousel responsive={responsive} infinite={false} arrows={true}>
-        {products.map((item, index) => (
-          <div key={index} className="product-card text-center p-2">
-            <div className="product-image">
-              <img src={item.image} alt={`product-img-${index}`} />
-            </div>
-
-            <div className="d-flex justify-content-between">
-              <div>
-                <h6 className="mt-2 text-start">{item.label}</h6>
-                <p className="text-start fw-semibold price-tag">₹ {item.price}</p>
-              </div>
-              <div>
-                <h6 className="mt-2 text-start">Quantity Available</h6>
-                <input
-                  type="text"
-                  value={Object.values(item.sizes).reduce((sum, qty) => sum + qty, 0)}
-                  readOnly
-                  className="form-control quantity-input"
-                />
-              </div>
-            </div>
-
-            <button
-              className="rounded-5 showdetail-btn mt-2"
-              onClick={() => navigate(`/stockdetail/${item.id}`)}
-            >
-              Show Detail
-            </button>
+      {loading ? (
+        <div className="text-center my-5">
+          <div className="spinner-border text-primary" role="status">
+            <span className="visually-hidden">Loading...</span>
           </div>
-        ))}
-      </Carousel>
-    </div>
+        </div>
+      ) : (
+        stockData.map((categoryItem, catIndex) => (
+          <div key={catIndex} className="mb-5">
+            <h2 className="h4 text-start mb-3">{categoryItem.categoryName}</h2>
+  
+            {categoryItem.stocks && categoryItem.stocks.length > 0 ? (
+  <div className="product-slider-container">
+    <Carousel responsive={responsive} infinite={false} arrows={true}>
+      {categoryItem.stocks.map((stockItem, prodIndex) => {
+        const product = stockItem.product;
+        return (
+          <div key={prodIndex} className="product-card text-center p-2">
+            <div
+              className="product-image"
+              onClick={() => navigate(`/stockdetail/${product._id}`)}
+              style={{ cursor: 'pointer' }}
+            >
+              <img
+                src={`https://gts.tsitcloud.com/${product.images[0]}`}
+                alt={`product-img-${prodIndex}`}
+                style={{ width: '100%', height: '200px', objectFit: 'cover' }}
+              />
+            </div>
+          </div>
+        );
+      })}
+    </Carousel>
   </div>
+) : (
+  <p>No products available in this category.</p>
+)}
+
+          </div>
+        ))
+      )}
+    </div>
       
       
       

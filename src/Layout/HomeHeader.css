@@ -139,8 +139,13 @@
     padding: 5px 10px; 
     font-size: 16px; 
     outline: none; 
+    position: relative;
+  display: inline-block;
+  padding: 10px;
+  cursor: pointer;
 }
 .pofile-box{
+    
     height: 32px;
     width: 31px;
     background-color: #f5f5f5;
@@ -149,6 +154,8 @@
     align-items: center; /* Centers vertically */
     justify-content: center;
 }
+
+
 .search-container {
     position: relative;
     display: inline-block;
@@ -257,7 +264,41 @@
     cursor: pointer;
     margin-bottom: 20px;
   }
+  .profile-box {
+  position: relative;
+  padding: 10px;
+  cursor: pointer;
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 1px solid #ccc;
+  min-width: 180px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  z-index: 1000;
+}
+.dropdown-menu li {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
 
+.profile-box:hover .dropdown-menu {
+  display: block;
+}
+.dropdown-item {
+  color: black;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
   /* added */
 .location-icon {
     color: #00a0ff; 
@@ -278,6 +319,7 @@
     font-size: 20px;
     color: #007fff;
   }
+  
 .solid{
     width: 1px;
     height: 18px;
@@ -295,6 +337,7 @@
     margin-top: var(--bs-dropdown-spacer);
     border: #004e99 1px solid;
     background: #00a0ff;
+    /* z-index: 10000000000; */
 }
 
 @media screen and (max-width: 1280px) {

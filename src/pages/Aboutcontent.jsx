@@ -48,6 +48,7 @@ import profilrseven from "../images/profileseven.jpg"
 import profileeight from "../images/profileeight.jpg"
 import profilenine from "../images/profilenine.jpg"
 import profileten from "../images/profileten.jpg"
+import groupimage from "../images/groupimagehome.png"
 
 
 
@@ -144,7 +145,7 @@ const Aboutcontent = () => {
         <img src={aboutus} className="imagetop"></img>
       </div>
 
-      <div className="design-box container-fluid " style={{marginTop:"7%"}}>
+      <div className="design-box container-fluid mt-5 ">
         <div className="row  ">
           <div className="  col-lg-6  col-md-12  design-text d-flex flex-column justify-content-between text-start">
             <p
@@ -190,9 +191,9 @@ const Aboutcontent = () => {
             <button className="start-btd-new mt-3  fs-5" onClick={buycheck}>GET STARTED</button>
           </div>
 
-          <div className=" col-lg-6 col-md-12  design-text-2  justify-content-end position-relative hide-on-768 ">
-            <img src={designimage} alt="Image 1" className="image-1" />
-            <img src={designimage} alt="Image 1" className="image-2" />
+          <div className=" col-lg-6 col-md-12   justify-content-end position-relative hide-on-768 ">
+            <img src={groupimage} alt="Image 1" className="image" />
+            {/* <img src={designimage} alt="Image 1" className="image-2" /> */}
           </div>
         </div>
       </div>

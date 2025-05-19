@@ -30,10 +30,10 @@
 
 
 .letstalkimage {
-  position: relative;
-  bottom: 0 !important;
-  width: 102%;
-  right: -1%;
+    /* position: relative; */
+    bottom: 0 !important;
+    width: 95%;
+    right: 9%;
 }
 .heading-text {
     margin: 0;
@@ -176,7 +176,7 @@
 
   .profile-box {
     width: 16%; 
-    height: 205px; 
+    height: 223px; 
     background: #f7f7f7; 
     border-radius: 10px; 
     /* padding: 15px; */

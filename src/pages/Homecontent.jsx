@@ -25,6 +25,7 @@ import grouptshirtthree from "../images/grouptshirtthree.png";
 import grouptshirtfour from "../images//grouptshirtfour.png";
 import grouptshirtfive from "../images/grouptshirtfive.png";
 import designimage from "../images/designimage.png";
+import groupimage from "../images/groupimagehome.png"
 import { MdOutlineAssignmentReturn } from "react-icons/md";
 import worldwideshipping from "../images/worldwide shipping.png";
 import returnicon from "../images/return icon.png";
@@ -287,56 +288,7 @@ const Homecontent = () => {
         </div>
 
        
-        {/* <div className="photo-box  d-flex justify-content-center row">
-          <Slider {...settings}>
-            <div>
-              <div className="inner-box ">
-                <img
-                  src={grouptshirtone}
-                  className="logo-imgone col-12 h-100 "
-                ></img>
-              </div>
-            </div>
-            <div>
-              <div className="inner-box">
-                <img
-                  src={grouptshirttwo}
-                  className="logo-imgone col-12 h-100 "
-                ></img>
-              </div>
-            </div>
-            <div>
-              <div className="inner-box">
-                <img
-                  src={grouptshirtthree}
-                  className="logo-imgone col-12 h-100 "
-                ></img>
-              </div>
-            </div>
-            <div>
-              <div className="inner-box">
-                <img
-                  src={grouptshirtfour}
-                  className="logo-imgone col-12 h-100 "
-                ></img>
-              </div>
-            </div>
-            <div>
-              <div className="inner-box">
-                <img
-                  src={grouptshirtfive}
-                  className="logo-imgone col-12 h-100 "
-                ></img>
-              </div>
-            </div>
-            <div>
-              <div className="inner-box">
-                <img src={logo} className="logo-imgone col-12 h-100 "></img>
-              </div>
-            </div>
-          </Slider>
-        </div> */}
-
+       
          
       <Slider   {...settingsone}>
   <div>
@@ -361,6 +313,9 @@ const Homecontent = () => {
 
 
       </div>
+
+
+
       <div className="offset-text">
         <marquee className="marqueetext"
           
@@ -416,13 +371,13 @@ const Homecontent = () => {
             <button className="start-btd-new mt-3  fs-5" onClick={buycheck}>GET STARTED</button>
           </div>
 
-          <div className=" col-lg-6 col-md-12  design-text-2  justify-content-end position-relative hide-on-768 ">
-            <img src={designimage} alt="Image 1" className="image-1" />
-            <img src={designimage} alt="Image 1" className="image-2" />
+          <div className=" col-lg-6 col-md-12   justify-content-end position-relative hide-on-768 ">
+            <img src={groupimage} alt="Image 1" className="image" />
+            {/* <img src={designimage} alt="Image 1" className="image-2" /> */}
           </div>
         </div>
       </div>
-      <div className="offer-box  d-flex row  py-5 px-0 justify-content-center ">
+      <div className="offer-box  d-flex row  py-5 px-0 justify-content-center " style={{width : "100%"}}>
         <div className="col-lg-6">
           <div className="shopnow d-flex flex-row  align-items-center justify-content-center position-relative  ">
             <div className="shopnow-one  text-md-start text-center me-5">
@@ -865,12 +820,10 @@ const Homecontent = () => {
         <div className="mailbox-divider container-fluid d-flex justify-content-center ">
           <div className="row  mailbox-widthfix   ps-md-1 ps-4">
 
-            <div className="text-divider col-lg-6 d-flex flex-column align-items-start justify-content-center p-5">
+            <div className="text-divider col-lg-6 d-flex flex-column align-items-start justify-content-center mb-4">
               <h1
                 className="heading-text mt-4 text-white"
-                // style={{
-                //   fontSize: "3rem",
-                // }}
+               
               >
                 Don't Miss Out
               </h1>

@@ -25,15 +25,20 @@ import { useParams } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaFileSignature } from "react-icons/fa6";
 import logofinal from "../images/GT-FInal-Logo.png"
+import { FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+
 
 
 
 import { FaBars } from 'react-icons/fa';
+import { Popover } from 'antd';
 
 const HomeHeader = () => {
   const location = useLocation(); // Get current URL
   const [activeLink, setActiveLink] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [showCartTooltip, setShowCartTooltip] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
   const currentPath = location.pathname;
   const { id } = useParams();
@@ -54,6 +59,13 @@ const HomeHeader = () => {
     navigate('/history')
     }
   }
+
+const content = (
+  <ul >
+    <li><Link  to="/cart">Product Cart</Link></li>
+    <li><Link to="/stockcart">Ready Stock Cart</Link></li>
+  </ul>
+);
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
@@ -193,14 +205,44 @@ const HomeHeader = () => {
                <div className='st-line'>
 
               </div>
-              <div className='pofile-box'><FaCartShopping className='profileicons' 
-              onClick={handleCartClick}/></div>
+
+
+               {/* <div className="pofile-box">
+  <FaCartShopping
+    className="profile-icons"
+    style={{ color: "#007fff" }}
+  />
+  <ul className="dropdown-menu">
+    <li><Link className="dropdown-item" >Product Cart</Link></li>
+    <li><Link to={'/'} className="dropdown-item">Ready Stock Cart</Link></li>
+  </ul>
+</div> */}
+
+<Popover content={content} trigger="hover" placement="bottom">
+  <div className="pofile-box">
+    <FaCartShopping
+      className="profile-icons"
+      style={{ color: "#007fff" }}
+    />
+  </div>
+</Popover>
+ 
+      <div className='st-line'>
+
+              </div>
+
+
+
+
               {localStorage.getItem('authToken') && (
   <div className='pofile-box'>
     <FaFileSignature className='profileicons' onClick={handlehistoryclick}  />
   </div>
 )}
+
               </div>
+
+              
 
 
               <div className='hamburger-menu search-boxhead '>

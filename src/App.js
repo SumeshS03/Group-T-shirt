@@ -25,6 +25,7 @@ import Stockdetail from './pages/Stockdetail'
 import Register from './pages/Register';
 import SampleOne from './pages/sample'
 import OrderHistory from './pages/OrderHistory';
+import { Stockcart } from './pages/Stockcart';
 
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
         <Route path="/cart" element={<CartContext></CartContext>}></Route>
         <Route path="/sample" element={<SampleOne />} />
         <Route path='/history' element={<OrderHistory ></OrderHistory>}></Route>
+        <Route path='/stockcart' element={<Stockcart />} />
         
       </Routes>
     {/* </Router> */}

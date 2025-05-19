@@ -13,6 +13,11 @@
     align-items: center; /* Center content horizontally */
     justify-content: center;
 }
+
+.home-feed .slick-arrow{
+    display: none !important;
+}
+
 .get-started {
     /* position: absolute;  
     top: 35%;  
@@ -39,7 +44,7 @@
 }
 
 .letstalkimageone {
-    width: 85%;
+    width: 76%;
     bottom: 0 !important;
 }
 
@@ -692,7 +697,7 @@
 
 }
 .emailbox{
-    width: 428px;
+  
     height: 42px;
     margin-top: 45px;
     background-color: #1d1d1d;
@@ -915,8 +920,12 @@
         margin-right: 2%;
     }
     .letstalkimageone {
-        width: 145%;
+        width: 111%;
         bottom: 0px !important;
+    }
+    .comment-lines{
+        height: 231px;
+
     }
     .image-2 {
         left: 9%;
@@ -974,9 +983,7 @@
         width: 16%;
     } */
     
-    .emailbox{
-        width: 200px;
-    }
+   
     .address-fix{
        
         /* margin-left: 5px; */
@@ -1426,3 +1433,9 @@
     }
 
   }
+
+
+
+
+
+  
