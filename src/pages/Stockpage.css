@@ -14,6 +14,15 @@
     object-fit: contain; */
 
   }
+  .product-imagefultwo{
+    
+    /* height: 450px; */
+    height: 390px;
+    width: 90%;
+    /* background-color: bisque; */
+    overflow: hidden;
+    position: relative;
+  }
 
 .product-box{
     border: 1px solid blue;

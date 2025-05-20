@@ -215,17 +215,19 @@ const products = [
         stockData.map((categoryItem, catIndex) => (
           <div key={catIndex} className="mb-5">
             <h2 className="h4 text-start mb-3">{categoryItem.categoryName}</h2>
-  
+  {console.log("categoryItem" , categoryItem)
+  }
             {categoryItem.stocks && categoryItem.stocks.length > 0 ? (
   <div className="product-slider-container">
     <Carousel responsive={responsive} infinite={false} arrows={true}>
       {categoryItem.stocks.map((stockItem, prodIndex) => {
-        const product = stockItem.product;
+        const stockId = stockItem._id;
+        const product = stockItem.product
         return (
           <div key={prodIndex} className="product-card text-center p-2">
             <div
               className="product-image"
-              onClick={() => navigate(`/stockdetail/${product._id}`)}
+              onClick={() => navigate(`/stockdetail/${stockId}`)}
               style={{ cursor: 'pointer' }}
             >
               <img

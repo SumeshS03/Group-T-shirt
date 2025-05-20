@@ -871,8 +871,8 @@ const responsive = {
           <h2 className="text-start">{productdetail?.name}</h2>
           <p className="text-start">{productdetail?.description}</p>
 
-          <p className="text-start"><strong>Price:</strong> ₹{productdetail?.price.half_sleeve}</p>
-          <p className="text-start"><strong>fullSleeve:</strong> ₹{productdetail?.price.full_sleeve}</p>
+          {/* <p className="text-start"><strong>Price:</strong> ₹{productdetail?.price.half_sleeve}</p> */}
+          
           <p className="text-start"><strong>Color:</strong> {productdetail?.color}</p>
           <p className="text-start"><strong>Material:</strong> {productdetail?.material}</p>
           <p className="text-start"><strong>Brand:</strong> {productdetail?.brand}</p>
@@ -1430,7 +1430,7 @@ const responsive = {
     <div className=" d-flex flex-column align-items-start sticky-items"
     style={{
       position: "sticky",
-      top: "1rem",
+      top: "20%",
       zIndex: 2,
       alignSelf: "flex-start",
     }}>
