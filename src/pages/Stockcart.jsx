@@ -8,10 +8,13 @@ import Button from '@mui/material/Button';
 
 export const Stockcart = () => {
 
-  const [cartItems, setCartItems] = useState({ items: [] });
+  const [cartItems, setCartItems] = useState({});
 
   useEffect(() => {
-      const fetchProduct = async () => {
+      fetchProduct();
+    }, []);
+
+    const fetchProduct = async () => {
         try {
           const storedCustomerId = localStorage.getItem('customerId');
           const token =localStorage.getItem('authToken')
@@ -29,17 +32,15 @@ export const Stockcart = () => {
           console.error('Error fetching product:', error);
         }
       };
-    
-      fetchProduct();
-    }, []);
 
  
     const handleDelete = async(itemId) => {
     const storedCustomerId = localStorage.getItem('customerId');
     const token = localStorage.getItem('authToken');
     console.log('itemid',itemId);
+    console.log('custid',storedCustomerId)
     try{
-      const response = axios.post(`https://gts.tsitcloud.com/api/stockCart/${storedCustomerId}`,
+      const response = await axios.post(`https://gts.tsitcloud.com/api/stockCart/remove`,
         {
            itemId:itemId,
            customerId : storedCustomerId,
@@ -50,17 +51,27 @@ export const Stockcart = () => {
         },
       }
       );
-      alert(response.data?.message || "Item deleted successfully!");
-      setCartItems((prev) => prev.filter(item => item._id !== itemId));
+
+      if(response.status == 200){
+        fetchProduct();
+      }
+      
+
+      // if(response.message){
+      // fetchProduct();
+      // }
+     // alert(response.data?.message );
+      // setCartItems((prev) => prev.filter(item => item._id !== itemId));
 
     }catch (error) {
     const errorMsg = error.response?.data?.message || "Error deleting item.";
     console.error("Delete error:", errorMsg);
     alert(errorMsg);
   }
-
-
   };
+
+  console.log("cartItems" , cartItems);
+  
 
   return (
     <>
